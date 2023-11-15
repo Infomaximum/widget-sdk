@@ -1,0 +1,71 @@
+// Типы, используемые в значениях элементов управления.
+
+import type { TNullable } from "../utilityTypes";
+
+export interface IPlacement {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+  zIndex: number;
+}
+
+export enum EWidgetFilterMode {
+  DEFAULT = "DEFAULT",
+  SINGLE = "SINGLE",
+  MULTI = "MULTI",
+}
+
+export type TWidgetFiltering =
+  | { ignore: true; mode: EWidgetFilterMode.SINGLE | EWidgetFilterMode.MULTI }
+  | { ignore: false; mode: EWidgetFilterMode };
+
+export enum EColorMode {
+  FORMULA = "FORMULA",
+  BASE = "BASE",
+  GRADIENT = "GRADIENT",
+  AUTO = "AUTO",
+}
+
+/** Настройка цвета */
+export type TColor =
+  | {
+      mode: EColorMode.FORMULA;
+      formula: string;
+    }
+  | {
+      mode: EColorMode.BASE;
+      value?: string;
+      defaultColor?: string;
+    }
+  | {
+      mode: EColorMode.GRADIENT;
+      startValue: string;
+      endValue: string;
+    }
+  | {
+      mode: EColorMode.AUTO;
+    };
+
+export enum EDisplayConditionMode {
+  FORMULA = "FORMULA",
+  VARIABLE = "VARIABLE",
+}
+
+/** Условие отображения для компонента и меры */
+export type TDisplayCondition =
+  | {
+      mode: EDisplayConditionMode.FORMULA;
+      formula: TNullable<string>;
+    }
+  | {
+      mode: EDisplayConditionMode.VARIABLE;
+      variableGuid: TNullable<string>;
+      variableValue: TNullable<string>;
+    };
+
+export interface IRange {
+  unit?: string;
+  min?: number;
+  max?: number;
+}

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "outDir": "dist",
+    "lib": ["DOM", "ESNext"],
+    "declaration": true,
+    "declarationDir": "dts",
+    "module": "ESNext",
+    "verbatimModuleSyntax": true,
+    "moduleResolution": "node",
+    "noUncheckedIndexedAccess": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "removeComments": true,
+    "strict": true
+  }
+}

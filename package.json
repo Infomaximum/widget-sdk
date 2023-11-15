@@ -1,6 +1,6 @@
 {
   "name": "@infomaximum/custom-widget",
-  "version": "1.10.1",
+  "version": "1.10.2",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -31,5 +31,12 @@
     "standard-version": "9.5.0",
     "tslib": "^2.4.1",
     "typescript": "5.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Infomaximum/custom-widget.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Infomaximum/custom-widget/issues"
   }
 }

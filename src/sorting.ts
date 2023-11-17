@@ -7,9 +7,12 @@ export enum ESortDirection {
   DESC = "descend",
 }
 
-
 export type TSortDirection = ESortDirection.ascend | ESortDirection.descend;
 
+export interface ISortOrder {
+  formula: string;
+  direction: TSortDirection;
+}
 
 export type TWidgetSortingValueRelatedWidgetMeasure = {
   mode: EWidgetIndicatorValueModes.MEASURE_IN_WIDGET;
@@ -17,7 +20,9 @@ export type TWidgetSortingValueRelatedWidgetMeasure = {
 };
 
 export type TWidgetSortingValueRelatedWidgetDimension = {
-  mode: EWidgetIndicatorValueModes.DIMENSION_IN_WIDGET | EWidgetIndicatorValueModes.HIERARCHY;
+  mode:
+    | EWidgetIndicatorValueModes.DIMENSION_IN_WIDGET
+    | EWidgetIndicatorValueModes.HIERARCHY;
   index: number;
 };
 
@@ -27,13 +32,16 @@ export type TWidgetSortingValueRelatedWidgetIndicator =
 
 export type TWidgetSortingValue =
   | {
-      mode: EWidgetIndicatorValueModes.FORMULA | EWidgetIndicatorValueModes.QUANTITY;
+      mode:
+        | EWidgetIndicatorValueModes.FORMULA
+        | EWidgetIndicatorValueModes.QUANTITY;
       formula: string;
     }
   | TWidgetSortingValueRelatedWidgetIndicator
   | {
-      mode: EWidgetIndicatorValueModes.IN_DASHBOARD | EWidgetIndicatorValueModes.IN_WORKSPACE;
+      mode:
+        | EWidgetIndicatorValueModes.IN_DASHBOARD
+        | EWidgetIndicatorValueModes.IN_WORKSPACE;
       guid: string;
       formula: string;
     };
-

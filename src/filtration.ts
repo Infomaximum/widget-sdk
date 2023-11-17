@@ -1,3 +1,4 @@
+import type { ICalculatorFilter } from "./calculators/calculator/calculator";
 import type { ESimpleDataType } from "./data";
 import type { EFormatTypes } from "./formatting";
 import type { TNullable } from "./utilityTypes";
@@ -28,17 +29,6 @@ export enum EProcessFilterNames {
   presenceOfTransition = "presenceOfTransition",
   /** Длительность перехода */
   durationOfTransition = "durationOfTransition",
-}
-
-export interface ICalculatorFilter {
-  /** Формула фильтра */
-  formula: string;
-  /** Тип данных для формулы фильтра */
-  dataType: ESimpleDataType;
-  /** Значения фильтра */
-  values: string[];
-  /** Метод фильтрации */
-  filteringMethod: EFilteringMethodValues | EDashboardFilteringMethodValues;
 }
 
 export interface IWidgetFormulaFilterValue extends ICalculatorFilter {

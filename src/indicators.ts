@@ -1,6 +1,6 @@
 import type { ESimpleDataType } from "./data";
 import type { EFormatTypes, EFormattingPresets } from "./formatting";
-import type { TDisplayCondition } from "./settings/values.types";
+import type { TDisplayCondition } from "./settings/values";
 import type { TSortDirection, TWidgetSortingValue } from "./sorting";
 import type { TNullable } from "./utilityTypes";
 
@@ -120,7 +120,7 @@ export interface IWidgetColumnIndicator extends IWidgetIndicator {
 }
 
 export interface IWidgetDimensionHierarchy<
-  D extends IWidgetDimension = IWidgetDimension
+  D extends IWidgetDimension = IWidgetDimension,
 > {
   /** Идентификатор, генерируемый на основе текущего времени */
   id: number;

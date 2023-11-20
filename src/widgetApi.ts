@@ -1,5 +1,5 @@
 import type { ELanguages } from "@infomaximum/localization";
-import type { IBaseWidgetSettings } from "./settings/baseWidget.types";
+import type { IBaseWidgetSettings } from "./settings/baseWidget";
 import type {
   IPanelDescriptionCreator,
   IWidgetProcess,

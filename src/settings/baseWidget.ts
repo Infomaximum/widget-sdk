@@ -1,7 +1,7 @@
 import type { IWidgetAction } from "../actions";
 import type { IFormulaFilterValue } from "../filtration";
 import type { IWidgetSortingIndicator } from "../indicators";
-import type { IPlacement } from "./values.types";
+import type { IPlacement } from "./values";
 
 export interface IBaseWidgetSettings {
   apiVersion: string;

@@ -3,13 +3,15 @@ import type { ESimpleDataType } from "./data";
 import type { EControlType, IControlRecord } from "./controls";
 import type { EWidgetIndicatorType, IWidgetIndicator } from "./indicators";
 import type { IWidgetsContext } from "./widgetContext";
+import type { IBaseWidgetSettings } from "./settings/baseWidget";
 
+// todo: удалить
 export interface ILens<T extends TNullable<object>, Value> {
   get(obj: T): TNullable<Value>;
   set(obj: T, value: Value): void;
 }
 
-export type TValuePath = string;
+export type TValuePath = string | string[];
 export type TRecordAccessor<Settings extends object, Value> =
   | TValuePath
   | ILens<Settings, Value>;
@@ -30,7 +32,7 @@ export interface IGroupSetRecord {
   groupSetKey: string;
 }
 
-type TEmptyRecord = boolean | null | undefined;
+export type TEmptyRecord = boolean | null | undefined;
 
 /** Набор конфигураций, которые могут встречаться на уровне виджета */
 export type TWidgetLevelRecord<Settings extends object> =
@@ -40,20 +42,10 @@ export type TWidgetLevelRecord<Settings extends object> =
   | TEmptyRecord;
 
 /** Набор конфигураций, которые могут встречаться на уровне группы */
-export type TGroupLevelRecord<LevelSettings extends object> =
-  | IControlRecord<LevelSettings, any, EControlType>
-  | IDividerRecord<LevelSettings>
+export type TGroupLevelRecord<LevelGroupSettings extends object> =
+  | IControlRecord<LevelGroupSettings, any, EControlType>
+  | IDividerRecord<LevelGroupSettings>
   | TEmptyRecord;
-
-/**
- * todo: widgets - использовать для указания типа IGroupSetDescription,
- * чтобы предоставлять контент по умолчанию и добавление новых сущностей.
- */
-export enum EGroupSetType {
-  VARIABLES = "variables",
-  COLUMN_INDICATORS = "columnIndicators",
-  SORTING = "sorting",
-}
 
 export interface ICustomAddButtonProps {
   options: { key: string; name: string }[];
@@ -100,6 +92,8 @@ export interface IGroupSetDescription<
   ): TGroupLevelRecord<GroupSettings>[];
   /** Получить название для плашки */
   getGroupTitle?(indicator: IWidgetIndicator): string;
+  /** Валидная ли группа */
+  isValid?(indicator: IWidgetIndicator): boolean;
 }
 
 /** Конфигурация левой панели */
@@ -147,7 +141,7 @@ export interface IDivePanelDescription<
 > extends IPanelDescription<Settings, GroupSettings> {}
 
 export interface IPanelDescriptionCreator<
-  Settings extends object,
+  Settings extends IBaseWidgetSettings,
   GroupSettings extends object,
 > {
   (

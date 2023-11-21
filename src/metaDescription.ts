@@ -5,7 +5,6 @@ import type { EWidgetIndicatorType, IWidgetIndicator } from "./indicators";
 import type { IWidgetsContext } from "./widgetContext";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
 
-// todo: удалить
 export interface ILens<T extends TNullable<object>, Value> {
   get(obj: T): TNullable<Value>;
   set(obj: T, value: Value): void;

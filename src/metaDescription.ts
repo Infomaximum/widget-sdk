@@ -50,9 +50,7 @@ export interface ICustomAddButtonProps {
   options: { key: string; name: string }[];
   onSelect: (
     key: string,
-    push: <T extends Omit<IWidgetIndicator, "id" | "type">>(
-      indicator: T
-    ) => void
+    update: <T extends object>(f: (prevItems: T[]) => T[]) => void
   ) => void;
 }
 
@@ -68,6 +66,18 @@ type TAddButton =
       props: ICustomAddButtonProps;
     };
 
+interface IAutoIdentifiedArrayItem {
+  /**
+   * Идентификатор, добавляемый системой "на лету" для удобства разработки, не сохраняется на сервер.
+   * Гарантируется уникальность id в пределах settings виджета.
+   */
+  id: number;
+}
+
+export interface IGroupSettings
+  extends IAutoIdentifiedArrayItem,
+    Record<string, any> {}
+
 /** Конфигурация набора групп */
 export interface IGroupSetDescription<
   Settings extends object,
@@ -82,23 +92,23 @@ export interface IGroupSetDescription<
   /** Кнопки добавления группы в набор */
   addButtons: TAddButton[];
   /** Создать элементы управления внутри группы (для вкладки настроек данных) */
-  createDataRecords?(
-    indicator: IWidgetIndicator
-  ): TGroupLevelRecord<GroupSettings>[];
+  createDataRecords?(group: IGroupSettings): TGroupLevelRecord<GroupSettings>[];
   /** Создать элементы управления внутри группы (для вкладки настроек отображения) */
   createDisplayRecords?(
-    indicator: IWidgetIndicator
+    group: IGroupSettings
   ): TGroupLevelRecord<GroupSettings>[];
   /** Получить название для плашки */
-  getGroupTitle?(indicator: IWidgetIndicator): string;
+  getGroupTitle?(group: IGroupSettings): string;
   /** Валидная ли группа */
-  isValid?(indicator: IWidgetIndicator): boolean;
+  isValid?(group: IGroupSettings): boolean;
+  /** Находится ли группа в состоянии загрузки */
+  isLoading?(group: IGroupSettings): boolean;
 }
 
 /** Конфигурация левой панели */
 export interface IPanelDescription<
   Settings extends object,
-  GroupSettings extends object = object,
+  GroupSettings extends IGroupSettings = IGroupSettings,
 > {
   /** Конфигурация настроек данных виджета */
   dataRecords?: TWidgetLevelRecord<Settings>[];
@@ -136,12 +146,12 @@ export interface IWidgetProcess {
 /** Конфигурация левой панели при погружении на уровень вниз */
 export interface IDivePanelDescription<
   Settings extends object,
-  GroupSettings extends object = object,
+  GroupSettings extends IGroupSettings = IGroupSettings,
 > extends IPanelDescription<Settings, GroupSettings> {}
 
 export interface IPanelDescriptionCreator<
   Settings extends IBaseWidgetSettings,
-  GroupSettings extends object,
+  GroupSettings extends IGroupSettings,
 > {
   (
     context: IWidgetsContext,

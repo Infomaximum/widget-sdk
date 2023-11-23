@@ -1,6 +1,5 @@
 import type { TWidgetVariable } from "../../indicators";
-import { compactMap } from "../../utils";
-import { isNil } from "../../utils/functions";
+import { compactMap, isNil } from "../../utils/functions";
 import type { ICalculatorVariablesValues } from "../variables";
 
 export function mapVariablesToInputs(

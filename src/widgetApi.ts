@@ -1,6 +1,7 @@
 import type { ELanguages } from "@infomaximum/localization";
-import type { IBaseWidgetSettings } from "./settings/baseWidget.types";
+import type { IBaseWidgetSettings } from "./settings/baseWidget";
 import type {
+  IGroupSettings,
   IPanelDescriptionCreator,
   IWidgetProcess,
 } from "./metaDescription";
@@ -18,45 +19,68 @@ import type { IWidgetAction } from "./actions";
 import type { ICalculatorFilter } from "./calculators/calculator/calculator";
 import type { ICalculatorFactory } from "./calculators";
 
-export interface IWidgetApiProps<WidgetSettings extends IBaseWidgetSettings> {
-  language: ELanguages;
-  calculatorFactory: ICalculatorFactory;
-  captureFocus: () => void;
-  /** @deprecated - режим дашборда приходит в widgetsContext */
-  isViewMode: boolean;
-  subscribeOnFocusOut: (subscriber: () => void) => void;
+export interface IWidgetProps<
+  WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings,
+> {
+  /** guid виджета */
+  guid: string;
+  /** Настройки виджета */
   settings: WidgetSettings;
-  manifest: Record<string, any>;
-  /** @deprecated - процессы приходят в widgetsContext */
-  processes: Map<string, IWidgetProcess>;
-  bodyElement: HTMLBodyElement;
-  rootViewContainer: HTMLDivElement;
+
   /** Объект для взаимодействия с фильтрацией */
   filtration: IWidgetFiltration;
+
+  /** Функция для подписки на расфокусировку виджета */
+  subscribeOnFocusOut(subscriber: () => void): void;
+  /** Захватить фокус: остальные виджеты будут оповещены о расфокусировке */
+  captureFocus(): void;
+
+  /** Фабрика вычислителей. */
+  calculatorFactory: ICalculatorFactory;
+  /**
+   * Корневой контейнер отчета.
+   * Служит для возможности использования портала внутри виджетов.
+   */
+  rootViewContainer: HTMLDivElement;
+
   /** Объект для управления плейсхолдером */
   placeholder: IWidgetPlaceholderController;
-  /** @deprecated - значения переменных на дашборде приходят в widgetsContext */
-  variables: Map<string, TWidgetVariable>;
-  formatting: IWidgetFormatting;
-  /** Получить ресурс виджета */
-  getWidgetAsset: (fileName: string) => Promise<Blob | null>;
+
+  /** Контекст виджета */
   widgetsContext: IWidgetsContext;
+
   /** Вызывает модальное окно для запуска действия */
   launchAction(params: {
     action: IWidgetAction;
     onSuccess: () => void;
     filters: ICalculatorFilter[];
   }): void;
-  guid: string;
 }
 
-export type WidgetProps<
-  P extends IWidgetApiProps<WidgetSettings>,
-  WidgetSettings extends IBaseWidgetSettings,
-> = P;
+export interface ICustomWidgetProps<
+  WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings,
+> extends IWidgetProps<WidgetSettings> {
+  /** @deprecated - нужно использовать из widgetsContext */
+  language: ELanguages;
+
+  /** @deprecated - режим дашборда приходит в widgetsContext */
+  isViewMode: boolean;
+  /** манифест виджета */
+  manifest: Record<string, any>;
+  /** @deprecated - процессы приходят в widgetsContext */
+  processes: Map<string, IWidgetProcess>;
+  /** body DOM элемент родительского приложения */
+  bodyElement: HTMLBodyElement;
+  /** @deprecated - значения переменных на дашборде нужно использовать из widgetsContext */
+  variables: Map<string, TWidgetVariable>;
+  /** Форматирование */
+  formatting: IWidgetFormatting;
+  /** Получить ресурс виджета по имени файла */
+  getWidgetAsset: (fileName: string) => Promise<Blob | null>;
+}
 
 export interface IWidget<
-  P extends IWidgetApiProps<WidgetSettings>,
+  P extends ICustomWidgetProps<WidgetSettings>,
   WidgetSettings extends IBaseWidgetSettings,
 > {
   initialize(container: HTMLElement): void;
@@ -65,10 +89,10 @@ export interface IWidget<
   unmount(container: HTMLElement): void;
 }
 
-export interface IWidgetClass<
-  Props extends IWidgetApiProps<WidgetSettings>,
+export interface IWidgetDefinition<
+  Props extends ICustomWidgetProps<WidgetSettings>,
   WidgetSettings extends IBaseWidgetSettings,
-  GroupSettings extends Record<string, any>,
+  GroupSettings extends IGroupSettings,
 > {
   new (): IWidget<Props, WidgetSettings>;
 

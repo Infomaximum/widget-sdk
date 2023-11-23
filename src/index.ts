@@ -1,7 +1,8 @@
 /// <reference types="@infomaximum/global-types" />
 
-import type { IBaseWidgetSettings } from "./settings/baseWidget.types";
-import type { IWidgetApiProps, IWidgetClass } from "./widgetApi";
+import type { IGroupSettings } from "./metaDescription";
+import type { IBaseWidgetSettings } from "./settings/baseWidget";
+import type { ICustomWidgetProps, IWidgetDefinition } from "./widgetApi";
 export { ELanguages } from "@infomaximum/localization";
 export { EFilteringMethodValues } from "@infomaximum/base-filter";
 
@@ -15,20 +16,20 @@ export * from "./formatting";
 export * from "./indicators";
 export * from "./metaDescription";
 export * from "./placeholder";
-export * from "./settings/baseWidget.types";
-export * from "./settings/values.types";
+export * from "./settings/baseWidget";
+export * from "./settings/values";
 export * from "./sorting";
 export * from "./widgetContext";
 
 declare global {
   interface Infomaximum {
     defineWidget: <
-      Props extends IWidgetApiProps<WidgetSettings>,
+      Props extends ICustomWidgetProps<WidgetSettings>,
       WidgetSettings extends IBaseWidgetSettings,
-      GroupSettings extends Record<string, any>,
+      GroupSettings extends IGroupSettings,
     >(
       uuid: string,
-      Widget: IWidgetClass<Props, WidgetSettings, GroupSettings>
+      Widget: IWidgetDefinition<Props, WidgetSettings, GroupSettings>
     ) => void;
   }
 }

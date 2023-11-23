@@ -18,7 +18,6 @@ export enum EControlType {
   colorPicker = "colorPicker",
   filterMode = "filterMode",
   displayCondition = "displayCondition",
-  dimensionValues = "dimensionValues",
   eventsColor = "eventsColor",
 }
 
@@ -26,13 +25,13 @@ export enum EControlType {
 export interface IControlRecord<
   Settings extends object,
   Value,
-  ControlType = EControlType
+  ControlType = EControlType,
 > {
   key: string;
   /** Локализация заголовка настройки */
   title?: string;
   /** Тип используемого элемента управления настройкой из предложенных нашей системой */
-  type: ControlType;
+  type: ControlType | string;
   /** Объект дополнительных параметров элемента управления */
   props?: object | ((settings: Settings) => object);
   /** Описание доступа к значению настройки */

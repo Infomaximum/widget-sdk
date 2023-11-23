@@ -3,13 +3,14 @@ import type { ESimpleDataType } from "./data";
 import type { EControlType, IControlRecord } from "./controls";
 import type { EWidgetIndicatorType, IWidgetIndicator } from "./indicators";
 import type { IWidgetsContext } from "./widgetContext";
+import type { IBaseWidgetSettings } from "./settings/baseWidget";
 
 export interface ILens<T extends TNullable<object>, Value> {
   get(obj: T): TNullable<Value>;
   set(obj: T, value: Value): void;
 }
 
-export type TValuePath = string;
+export type TValuePath = string | string[];
 export type TRecordAccessor<Settings extends object, Value> =
   | TValuePath
   | ILens<Settings, Value>;
@@ -30,7 +31,7 @@ export interface IGroupSetRecord {
   groupSetKey: string;
 }
 
-type TEmptyRecord = boolean | null | undefined;
+export type TEmptyRecord = boolean | null | undefined;
 
 /** Набор конфигураций, которые могут встречаться на уровне виджета */
 export type TWidgetLevelRecord<Settings extends object> =
@@ -40,28 +41,16 @@ export type TWidgetLevelRecord<Settings extends object> =
   | TEmptyRecord;
 
 /** Набор конфигураций, которые могут встречаться на уровне группы */
-export type TGroupLevelRecord<LevelSettings extends object> =
-  | IControlRecord<LevelSettings, any, EControlType>
-  | IDividerRecord<LevelSettings>
+export type TGroupLevelRecord<LevelGroupSettings extends object> =
+  | IControlRecord<LevelGroupSettings, any, EControlType>
+  | IDividerRecord<LevelGroupSettings>
   | TEmptyRecord;
-
-/**
- * todo: widgets - использовать для указания типа IGroupSetDescription,
- * чтобы предоставлять контент по умолчанию и добавление новых сущностей.
- */
-export enum EGroupSetType {
-  VARIABLES = "variables",
-  COLUMN_INDICATORS = "columnIndicators",
-  SORTING = "sorting",
-}
 
 export interface ICustomAddButtonProps {
   options: { key: string; name: string }[];
   onSelect: (
     key: string,
-    push: <T extends Omit<IWidgetIndicator, "id" | "type">>(
-      indicator: T
-    ) => void
+    update: <T extends object>(f: (prevItems: T[]) => T[]) => void
   ) => void;
 }
 
@@ -77,6 +66,18 @@ type TAddButton =
       props: ICustomAddButtonProps;
     };
 
+interface IAutoIdentifiedArrayItem {
+  /**
+   * Идентификатор, добавляемый системой "на лету" для удобства разработки, не сохраняется на сервер.
+   * Гарантируется уникальность id в пределах settings виджета.
+   */
+  id: number;
+}
+
+export interface IGroupSettings
+  extends IAutoIdentifiedArrayItem,
+    Record<string, any> {}
+
 /** Конфигурация набора групп */
 export interface IGroupSetDescription<
   Settings extends object,
@@ -91,21 +92,23 @@ export interface IGroupSetDescription<
   /** Кнопки добавления группы в набор */
   addButtons: TAddButton[];
   /** Создать элементы управления внутри группы (для вкладки настроек данных) */
-  createDataRecords?(
-    indicator: IWidgetIndicator
-  ): TGroupLevelRecord<GroupSettings>[];
+  createDataRecords?(group: IGroupSettings): TGroupLevelRecord<GroupSettings>[];
   /** Создать элементы управления внутри группы (для вкладки настроек отображения) */
   createDisplayRecords?(
-    indicator: IWidgetIndicator
+    group: IGroupSettings
   ): TGroupLevelRecord<GroupSettings>[];
   /** Получить название для плашки */
-  getGroupTitle?(indicator: IWidgetIndicator): string;
+  getGroupTitle?(group: IGroupSettings): string;
+  /** Валидная ли группа */
+  isValid?(group: IGroupSettings): boolean;
+  /** Находится ли группа в состоянии загрузки */
+  isLoading?(group: IGroupSettings): boolean;
 }
 
 /** Конфигурация левой панели */
 export interface IPanelDescription<
   Settings extends object,
-  GroupSettings extends object = object,
+  GroupSettings extends IGroupSettings = IGroupSettings,
 > {
   /** Конфигурация настроек данных виджета */
   dataRecords?: TWidgetLevelRecord<Settings>[];
@@ -143,12 +146,12 @@ export interface IWidgetProcess {
 /** Конфигурация левой панели при погружении на уровень вниз */
 export interface IDivePanelDescription<
   Settings extends object,
-  GroupSettings extends object = object,
+  GroupSettings extends IGroupSettings = IGroupSettings,
 > extends IPanelDescription<Settings, GroupSettings> {}
 
 export interface IPanelDescriptionCreator<
-  Settings extends object,
-  GroupSettings extends object,
+  Settings extends IBaseWidgetSettings,
+  GroupSettings extends IGroupSettings,
 > {
   (
     context: IWidgetsContext,

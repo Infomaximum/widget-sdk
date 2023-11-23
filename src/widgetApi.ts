@@ -1,6 +1,7 @@
 import type { ELanguages } from "@infomaximum/localization";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
 import type {
+  IGroupSettings,
   IPanelDescriptionCreator,
   IWidgetProcess,
 } from "./metaDescription";
@@ -91,7 +92,7 @@ export interface IWidget<
 export interface IWidgetDefinition<
   Props extends ICustomWidgetProps<WidgetSettings>,
   WidgetSettings extends IBaseWidgetSettings,
-  GroupSettings extends Record<string, any>,
+  GroupSettings extends IGroupSettings,
 > {
   new (): IWidget<Props, WidgetSettings>;
 

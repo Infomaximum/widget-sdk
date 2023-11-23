@@ -1,5 +1,6 @@
 /// <reference types="@infomaximum/global-types" />
 
+import type { IGroupSettings } from "./metaDescription";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
 import type { ICustomWidgetProps, IWidgetDefinition } from "./widgetApi";
 export { ELanguages } from "@infomaximum/localization";
@@ -26,7 +27,7 @@ declare global {
     defineWidget: <
       Props extends ICustomWidgetProps<WidgetSettings>,
       WidgetSettings extends IBaseWidgetSettings,
-      GroupSettings extends Record<string, any>,
+      GroupSettings extends IGroupSettings,
     >(
       uuid: string,
       Widget: IWidgetDefinition<Props, WidgetSettings, GroupSettings>

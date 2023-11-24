@@ -79,22 +79,24 @@ export interface ICustomWidgetProps<
   getWidgetAsset: (fileName: string) => Promise<Blob | null>;
 }
 
-export interface IWidget<
-  P extends ICustomWidgetProps<WidgetSettings>,
-  WidgetSettings extends IBaseWidgetSettings,
-> {
+export interface IWidget<WidgetSettings extends IBaseWidgetSettings> {
   initialize(container: HTMLElement): void;
-  mount(container: HTMLElement, props: P): void;
-  update(container: HTMLElement, props: P): void;
+  mount(
+    container: HTMLElement,
+    props: ICustomWidgetProps<WidgetSettings>
+  ): void;
+  update(
+    container: HTMLElement,
+    props: ICustomWidgetProps<WidgetSettings>
+  ): void;
   unmount(container: HTMLElement): void;
 }
 
 export interface IWidgetDefinition<
-  Props extends ICustomWidgetProps<WidgetSettings>,
   WidgetSettings extends IBaseWidgetSettings,
   GroupSettings extends IGroupSettings,
 > {
-  new (): IWidget<Props, WidgetSettings>;
+  new (): IWidget<WidgetSettings>;
 
   createPanelDescription: IPanelDescriptionCreator<
     WidgetSettings,

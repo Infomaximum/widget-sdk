@@ -2,7 +2,7 @@
 
 import type { IGroupSettings } from "./metaDescription";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
-import type { ICustomWidgetProps, IWidgetDefinition } from "./widgetApi";
+import type { IWidgetDefinition } from "./widgetApi";
 export { ELanguages } from "@infomaximum/localization";
 export { EFilteringMethodValues } from "@infomaximum/base-filter";
 
@@ -24,12 +24,11 @@ export * from "./widgetContext";
 declare global {
   interface Infomaximum {
     defineWidget: <
-      Props extends ICustomWidgetProps<WidgetSettings>,
       WidgetSettings extends IBaseWidgetSettings,
       GroupSettings extends IGroupSettings,
     >(
       uuid: string,
-      Widget: IWidgetDefinition<Props, WidgetSettings, GroupSettings>
+      Widget: IWidgetDefinition<WidgetSettings, GroupSettings>
     ) => void;
   }
 }

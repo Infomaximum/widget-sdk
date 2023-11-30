@@ -8,3 +8,5 @@ export type {
   ICalculatorIndicatorOutput,
   ICalculatorMeasureOutput,
 } from "./calculator";
+
+export { ECalculatorFilterMethods } from "./calculator";

@@ -1,7 +1,6 @@
-import type { EFilteringMethodValues } from "@infomaximum/base-filter";
 import type { ESimpleDataType } from "../../data";
-import type { EDashboardFilteringMethodValues } from "../../filtration";
-import type { TNullable } from "../../utilityTypes";
+import type { TNullable, valueof } from "../../utilityTypes";
+import type { formulaFilterMethods } from "../../filtration";
 
 export interface ICalculator<Input, Output> {
   /** Запрос к вычислителю */
@@ -51,6 +50,25 @@ export interface ICalculatorMeasureOutput<T = any>
   additionalValues: Map<string, string[]>;
 }
 
+export enum ECalculatorFilterMethods {
+  EQUAL_TO = "EQUAL_TO",
+  NOT_EQUAL_TO = "NOT_EQUAL_TO",
+  GREATER_THAN = "GREATER_THAN",
+  LESS_THAN = "LESS_THAN",
+  GREATER_THAN_OR_EQUAL_TO = "GREATER_THAN_OR_EQUAL_TO",
+  LESS_THAN_OR_EQUAL_TO = "LESS_THAN_OR_EQUAL_TO",
+  STARTS_WITH = "STARTS_WITH",
+  ENDS_WITH = "ENDS_WITH",
+  CONTAINS = "CONTAINS",
+  NOT_CONTAINS = "NOT_CONTAINS",
+  IN_RANGE = "IN_RANGE",
+  NOT_IN_RANGE = "NOT_IN_RANGE",
+  INCLUDE = "INCLUDE",
+  EXCLUDE = "EXCLUDE",
+  NONEMPTY = "NONEMPTY",
+  EMPTY = "EMPTY",
+}
+
 export interface ICalculatorFilter {
   /** Формула фильтра */
   formula: string;
@@ -59,5 +77,5 @@ export interface ICalculatorFilter {
   /** Значения фильтра */
   values: string[];
   /** Метод фильтрации */
-  filteringMethod: EFilteringMethodValues | EDashboardFilteringMethodValues;
+  filteringMethod: valueof<typeof formulaFilterMethods>;
 }

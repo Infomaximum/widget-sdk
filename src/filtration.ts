@@ -1,24 +1,14 @@
 import type { ICalculatorFilter } from "./calculators/calculator/calculator";
 import type { ESimpleDataType } from "./data";
 import type { EFormatTypes } from "./formatting";
-import type { TNullable } from "./utilityTypes";
-import type { EFilteringMethodValues } from "@infomaximum/base-filter";
+import type { TNullable, valueof } from "./utilityTypes";
+import { ECalculatorFilterMethods } from "./calculators/calculator";
+import type { ETimeUnit } from "./calculators/utils/mapFormulaFiltersToInputs";
 
-// todo: переименовать
-export enum EDashboardFilteringMethodValues {
-  EQUAL_TO = "EQUAL_TO",
-  NOT_EQUAL_TO = "NOT_EQUAL_TO",
-  GREATER_THAN = "GREATER_THAN",
-  LESS_THAN = "LESS_THAN",
-  GREATER_THAN_OR_EQUAL_TO = "GREATER_THAN_OR_EQUAL_TO",
-  LESS_THAN_OR_EQUAL_TO = "LESS_THAN_OR_EQUAL_TO",
-  STARTS_WITH = "STARTS_WITH",
-  ENDS_WITH = "ENDS_WITH",
-  CONTAINS = "CONTAINS",
-  NOT_CONTAINS = "NOT_CONTAINS",
-  IN_RANGE = "IN_RANGE",
-  NOT_IN_RANGE = "NOT_IN_RANGE",
-}
+export const formulaFilterMethods = {
+  ...ECalculatorFilterMethods,
+  LAST_TIME: "LAST_TIME",
+} as const;
 
 export enum EProcessFilterNames {
   /** Наличие события */
@@ -121,6 +111,8 @@ export enum EFormulaFilterFieldKeys {
   number = "number",
   numberRange = "numberRange",
   string = "string",
+  lastTimeValue = "lastTimeValue",
+  lastTimeUnit = "lastTimeUnit",
 }
 
 export interface IFormulaFilterValue {
@@ -133,7 +125,7 @@ export interface IFormulaFilterValue {
   /** Формат */
   format: EFormatTypes;
   /** Метод фильтрации */
-  filteringMethod: EFilteringMethodValues | EDashboardFilteringMethodValues;
+  filteringMethod: valueof<typeof formulaFilterMethods>;
   /** Выбранные в списке значения в виде моделей */
   checkedValues: string[];
   /** Значения полей формы редактора */
@@ -144,5 +136,7 @@ export interface IFormulaFilterValue {
     [EFormulaFilterFieldKeys.number]: number;
     [EFormulaFilterFieldKeys.numberRange]: [number, number];
     [EFormulaFilterFieldKeys.string]: string;
+    [EFormulaFilterFieldKeys.lastTimeValue]: number;
+    [EFormulaFilterFieldKeys.lastTimeUnit]: ETimeUnit;
   }>;
 }

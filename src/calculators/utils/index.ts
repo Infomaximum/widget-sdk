@@ -4,6 +4,7 @@ export {
   getFormulaFilterValues,
   mapFormulaFilterToCalculatorInput,
   mapFormulaFiltersToInputs,
+  ETimeUnit,
 } from "./mapFormulaFiltersToInputs";
 export {
   checkDisplayCondition,

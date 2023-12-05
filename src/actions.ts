@@ -83,16 +83,25 @@ export const isActionValid = (
 
     const { value } = actionInput;
 
-    if (value.mode !== EWidgetActionInputMode.FROM_COLUMN) {
-      return true;
+    if (value.mode === EWidgetActionInputMode.FROM_VARIABLE && !value.guid) {
+      return false;
     }
 
-    const tableName = value.tableName;
-
-    if (tables.has(tableName)) {
-      return true;
+    if (value.mode === EWidgetActionInputMode.FORMULA && !value.formula) {
+      return false;
     }
 
-    return false;
+    if (value.mode === EWidgetActionInputMode.DYNAMIC_LIST && !value.formula) {
+      return false;
+    }
+
+    if (
+      value.mode === EWidgetActionInputMode.FROM_COLUMN &&
+      !tables.has(value.tableName)
+    ) {
+      return false;
+    }
+
+    return true;
   });
 };

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/Infomaximum/custom-widget/compare/v3.0.0...v3.1.0) (2023-12-05)
+
+
+### Features
+
+* выделен интерфейс для метода fillSettings ([66eeb9e](https://github.com/Infomaximum/custom-widget/commit/66eeb9ed5242d870a2fb3ad10a7dcc5f12f781b8))
+* Добавлена валидация для оставшихся способов ввода ([04ba720](https://github.com/Infomaximum/custom-widget/commit/04ba7202db5ff66628f33ce7e3ff063610338220))
+
+
+### Bug Fixes
+
+* исправлен тип для статического типа ([ce5adaa](https://github.com/Infomaximum/custom-widget/commit/ce5adaad97c5483ff367f837a240808ea984b92d))
+
 ## [3.0.0](https://github.com/Infomaximum/custom-widget/compare/v2.1.0...v3.0.0) (2023-11-30)
 
 

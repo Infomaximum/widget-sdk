@@ -10,11 +10,6 @@ export enum EWidgetActionInputMode {
   MANUALLY = "MANUALLY",
 }
 
-export interface IWidgetActionStaticListItem {
-  id: number;
-  name: string;
-}
-
 export type TWidgetActionInputValue =
   | {
       mode: EWidgetActionInputMode.FROM_COLUMN;
@@ -35,8 +30,8 @@ export type TWidgetActionInputValue =
     }
   | {
       mode: EWidgetActionInputMode.STATIC_LIST;
-      items: IWidgetActionStaticListItem[];
-      defaultValue: string;
+      options: string[];
+      defaultOptionIndex: number;
     }
   | {
       mode: EWidgetActionInputMode.DYNAMIC_LIST;

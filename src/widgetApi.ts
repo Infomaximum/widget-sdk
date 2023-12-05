@@ -92,6 +92,10 @@ export interface IWidget<WidgetSettings extends IBaseWidgetSettings> {
   unmount(container: HTMLElement): void;
 }
 
+export interface IFillSettings<WidgetSettings extends IBaseWidgetSettings> {
+  (settings: WidgetSettings, context: IWidgetsContext): void;
+}
+
 export interface IWidgetDefinition<
   WidgetSettings extends IBaseWidgetSettings,
   GroupSettings extends IGroupSettings,
@@ -103,7 +107,7 @@ export interface IWidgetDefinition<
     GroupSettings
   >;
 
-  fillSettings?(settings: WidgetSettings, context: IWidgetsContext): void;
+  fillSettings?: IFillSettings<WidgetSettings>;
 
   getDimensions?(
     settings: WidgetSettings

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/Infomaximum/custom-widget/compare/v3.1.0...v3.2.0) (2023-12-07)
+
+
+### Features
+
+* поддержаны открытые диапазоны чисел в фильтре по формуле ([0a26a41](https://github.com/Infomaximum/custom-widget/commit/0a26a416aa6c5b24483b4f28788eb8ef73c3cc5d))
+
 ## [3.1.0](https://github.com/Infomaximum/custom-widget/compare/v3.0.0...v3.1.0) (2023-12-05)
 
 

@@ -3,8 +3,8 @@ import {
   EFormulaFilterFieldKeys,
   type IFormulaFilterValue,
 } from "../../filtration";
-import type { ICalculatorFilter } from "../calculator/calculator";
-import { compact, compactMap } from "../../utils/functions";
+import { type ICalculatorFilter } from "../calculator/calculator";
+import { compact, compactMap, isNil } from "../../utils/functions";
 import type { TNullable, valueof } from "../../utilityTypes";
 import { ESimpleDataType } from "../../data";
 import { EFormatTypes } from "../../formatting";
@@ -58,13 +58,23 @@ const subtractDurationFromDate = (
 };
 
 // todo: покрыть тестами
-export const getFormulaFilterValues = (
-  filterValue: IFormulaFilterValue
-): string[] => {
+const getFormulaFilterValues = (filterValue: IFormulaFilterValue): string[] => {
   const { format, filteringMethod, formValues, checkedValues } = filterValue;
 
   if (checkedValues && checkedValues.length) {
     return checkedValues;
+  }
+
+  function stringifyNumbersRange<T>(
+    range: Partial<[T, T]> = [undefined, undefined]
+  ): [string, string] {
+    return range.map((value, index) => {
+      if (isNil(value)) {
+        return String(index === 0 ? -Infinity : Infinity);
+      }
+
+      return String(value);
+    }) as [string, string];
   }
 
   switch (format) {
@@ -112,11 +122,9 @@ export const getFormulaFilterValues = (
         [EFormulaFilterFieldKeys.numberRange]: numberRange,
       } = formValues;
 
-      const range = isRangeFilteringMethod(filteringMethod)
-        ? numberRange
-        : [number];
-
-      return range?.map((value) => String(value ?? 0)) || [];
+      return isRangeFilteringMethod(filteringMethod)
+        ? stringifyNumbersRange(numberRange)
+        : [String(number ?? 0)];
 
     case EFormatTypes.DURATION:
       const {
@@ -124,11 +132,9 @@ export const getFormulaFilterValues = (
         [EFormulaFilterFieldKeys.numberRange]: durationRange,
       } = formValues;
 
-      const _range = isRangeFilteringMethod(filteringMethod)
-        ? durationRange
-        : [duration];
-
-      return _range?.map((value) => String(value ?? 0)) || [];
+      return isRangeFilteringMethod(filteringMethod)
+        ? stringifyNumbersRange(durationRange)
+        : [String(duration ?? 0)];
   }
 
   return [];

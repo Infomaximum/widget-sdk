@@ -134,7 +134,7 @@ export interface IFormulaFilterValue {
     [EFormulaFilterFieldKeys.dateRange]: [string, string];
     [EFormulaFilterFieldKeys.duration]: string;
     [EFormulaFilterFieldKeys.number]: number;
-    [EFormulaFilterFieldKeys.numberRange]: [number, number];
+    [EFormulaFilterFieldKeys.numberRange]: Partial<[number, number]>;
     [EFormulaFilterFieldKeys.string]: string;
     [EFormulaFilterFieldKeys.lastTimeValue]: number;
     [EFormulaFilterFieldKeys.lastTimeUnit]: ETimeUnit;

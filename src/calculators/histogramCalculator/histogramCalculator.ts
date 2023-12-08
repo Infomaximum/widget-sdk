@@ -1,10 +1,14 @@
 import type { TNullable } from "../../utilityTypes";
-import type { ICalculator, ICalculatorFilter } from "../calculator/calculator";
+import type {
+  ICalculator,
+  ICalculatorDimensionInput,
+  ICalculatorFilter,
+} from "../calculator/calculator";
 import type { ICalculatorVariablesValues } from "../variables";
 
 export interface IHistogramCalculatorInput {
   /** Разрез */
-  dimension: string;
+  dimensions: ICalculatorDimensionInput[];
   /** Лимит корзин */
   binsLimit: number;
   /** Значения переменных */

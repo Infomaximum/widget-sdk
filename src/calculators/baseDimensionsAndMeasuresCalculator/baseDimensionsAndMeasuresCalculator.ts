@@ -24,6 +24,8 @@ export interface IBaseDimensionsAndMeasuresCalculatorInput {
   postFilters?: ICalculatorFilter[];
   /** Лимит мер (будут вычислены первые measuresLimit мер, попавшие под условие отображения) */
   measuresLimit?: number;
+  /** Лимит разрезов (будут вычислены первые dimensionsLimit разрезов, попавшие под условие отображения) */
+  dimensionsLimit?: number;
   /** Удалять ли строки, в которых значения всех мер пустые */
   isHideEmptyMeasures?: boolean;
   /**

@@ -17,6 +17,7 @@ export interface ICalculatorIndicatorInput<T> {
    */
   indicator: T;
   alias: string;
+  displayConditionFormula?: TNullable<string>;
 }
 
 export interface ICalculatorIndicatorOutput<T> {
@@ -41,7 +42,6 @@ export interface ICalculatorMeasureInput<T = any>
   extends ICalculatorIndicatorInput<T> {
   mainFormula: string;
   additionalFormulas?: { alias: string; formula: string }[];
-  displayConditionFormula?: TNullable<string>;
 }
 
 export interface ICalculatorMeasureOutput<T = any>

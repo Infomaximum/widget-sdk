@@ -117,6 +117,7 @@ export interface IWidgetColumnIndicator extends IWidgetIndicator {
   format?: EFormatTypes;
   formatting?: EFormattingPresets;
   formattingTemplate?: string;
+  displayCondition?: TDisplayCondition;
 }
 
 export interface IWidgetDimensionHierarchy<
@@ -127,6 +128,7 @@ export interface IWidgetDimensionHierarchy<
   type: EWidgetIndicatorType.DIMENSION_HIERARCHY;
   name: string;
   dimensions: D[];
+  displayCondition?: TDisplayCondition;
 }
 
 export interface IWidgetDimension extends IWidgetColumnIndicator {
@@ -136,7 +138,6 @@ export interface IWidgetDimension extends IWidgetColumnIndicator {
 
 export interface IWidgetMeasure extends IWidgetColumnIndicator {
   type: EWidgetIndicatorType.MEASURE;
-  displayCondition?: TDisplayCondition;
 }
 
 /** Тип показателя */

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/Infomaximum/custom-widget/compare/v3.2.0...v3.3.0) (2023-12-08)
+
+
+### Features
+
+* поддержано условие отображения для разрезов ([2825a4d](https://github.com/Infomaximum/custom-widget/commit/2825a4d630d50fef41f2edeffab9baa07f1f8db6))
+
 ## [3.2.0](https://github.com/Infomaximum/custom-widget/compare/v3.1.0...v3.2.0) (2023-12-07)
 
 

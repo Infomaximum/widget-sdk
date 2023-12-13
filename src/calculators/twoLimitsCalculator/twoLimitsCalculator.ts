@@ -42,9 +42,9 @@ export interface ITwoLimitsCalculatorInput {
   secondLimit?: number;
 }
 
-export interface ITwoLimitsCalculatorOutput<D = any, M = any> {
-  dimensions: Map<string, ICalculatorDimensionOutput<D>>;
-  measures: Map<string, ICalculatorMeasureOutput<M>>;
+export interface ITwoLimitsCalculatorOutput {
+  dimensions: Map<string, ICalculatorDimensionOutput>;
+  measures: Map<string, ICalculatorMeasureOutput>;
   isDisplay: boolean;
   isValuesEmpty: boolean;
 }

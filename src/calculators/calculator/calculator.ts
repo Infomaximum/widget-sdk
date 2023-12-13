@@ -10,42 +10,30 @@ export interface ICalculator<Input, Output> {
   isLoading: boolean;
 }
 
-export interface ICalculatorIndicatorInput<T> {
-  /**
-   * @deprecated Значение, которое будет связано с текущим входом для получения в соответствующем выходе
-   * (для удобства разработки)
-   */
-  indicator: T;
+export interface ICalculatorIndicatorInput {
   alias: string;
   displayConditionFormula?: TNullable<string>;
 }
 
-export interface ICalculatorIndicatorOutput<T> {
-  /**
-   * @deprecated Значение, которое было связано с соответствующим входом вычислителя
-   * (для удобства разработки)
-   */
-  indicator: T;
+export interface ICalculatorIndicatorOutput {
   values: string[];
 }
 
-export interface ICalculatorDimensionInput<T = any>
-  extends ICalculatorIndicatorInput<T> {
+export interface ICalculatorDimensionInput extends ICalculatorIndicatorInput {
   formula: string;
   hideEmpty?: boolean;
 }
 
-export interface ICalculatorDimensionOutput<T = any>
-  extends ICalculatorIndicatorOutput<T> {}
+export interface ICalculatorDimensionOutput
+  extends ICalculatorIndicatorOutput {}
 
-export interface ICalculatorMeasureInput<T = any>
-  extends ICalculatorIndicatorInput<T> {
+export interface ICalculatorMeasureInput extends ICalculatorIndicatorInput {
   mainFormula: string;
-  additionalFormulas?: { alias: string; formula: string }[];
+  /** Временно поддерживается обратная совместимость с форматом { alias: string; formula: string }[] */
+  additionalFormulas?: Map<string, string>;
 }
 
-export interface ICalculatorMeasureOutput<T = any>
-  extends ICalculatorIndicatorOutput<T> {
+export interface ICalculatorMeasureOutput extends ICalculatorIndicatorOutput {
   /** Значения, вычисленные на основе дополнительных формул */
   additionalValues: Map<string, string[]>;
 }

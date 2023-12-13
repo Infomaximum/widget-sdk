@@ -14,8 +14,8 @@ export interface IGeneralCalculatorInput
   isCalculateTotals?: boolean;
 }
 
-export interface IGeneralCalculatorOutput<D = any, M = any>
-  extends IBaseDimensionsAndMeasuresCalculatorOutput<D, M> {
+export interface IGeneralCalculatorOutput
+  extends IBaseDimensionsAndMeasuresCalculatorOutput {
   // todo: widgets - подумать нужны ли итоги для дополнительных формул
   /** Итоги по мерам */
   totals: Map<string, string>;

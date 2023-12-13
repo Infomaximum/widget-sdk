@@ -38,9 +38,9 @@ export interface IBaseDimensionsAndMeasuresCalculatorInput {
   displayConditionFormula?: TNullable<string>;
 }
 
-export interface IBaseDimensionsAndMeasuresCalculatorOutput<D = any, M = any> {
-  dimensions: Map<string, ICalculatorDimensionOutput<D>>;
-  measures: Map<string, ICalculatorMeasureOutput<M>>;
+export interface IBaseDimensionsAndMeasuresCalculatorOutput {
+  dimensions: Map<string, ICalculatorDimensionOutput>;
+  measures: Map<string, ICalculatorMeasureOutput>;
   isDisplay: boolean;
   isValuesEmpty: boolean;
 }

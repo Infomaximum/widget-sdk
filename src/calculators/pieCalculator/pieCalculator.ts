@@ -10,8 +10,8 @@ export interface IPieCalculatorInput
   limit?: number;
 }
 
-export interface IPieCalculatorOutput<D = any, M = any>
-  extends IBaseDimensionsAndMeasuresCalculatorOutput<D, M> {
+export interface IPieCalculatorOutput
+  extends IBaseDimensionsAndMeasuresCalculatorOutput {
   totals: string;
 }
 

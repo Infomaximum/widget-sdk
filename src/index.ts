@@ -20,6 +20,7 @@ export * from "./settings/baseWidget";
 export * from "./settings/values";
 export * from "./sorting";
 export * from "./widgetContext";
+export * from "./indicatorsFormulas";
 
 declare global {
   interface Infomaximum {

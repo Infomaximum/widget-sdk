@@ -23,15 +23,12 @@ export interface IEdge extends IGraphElement {
   endName: string | null;
 }
 
-export interface IProcessGraphCalculatorInput<
-  VertexMeasure extends IProcessIndicator = IProcessIndicator,
-  EdgeMeasure extends IProcessIndicator = IProcessIndicator,
-> {
+export interface IProcessGraphCalculatorInput {
   processGuid: string;
   vertexLimit: number | null;
   edgeLimit: number;
-  vertexMeasures: ICalculatorMeasureInput<VertexMeasure>[];
-  edgeMeasures: ICalculatorMeasureInput<EdgeMeasure>[];
+  vertexMeasures: ICalculatorMeasureInput[];
+  edgeMeasures: ICalculatorMeasureInput[];
   filters: ICalculatorFilter[];
   eventFilters?: ICalculatorFilter[];
   displayConditionFormula?: TNullable<string>;

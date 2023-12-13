@@ -205,3 +205,9 @@ export type TWidgetVariable =
       /** Множественный выбор */
       multipleChoice: boolean;
     };
+
+export function isHierarchy(
+  indicator: IWidgetColumnIndicator
+): indicator is IWidgetDimensionHierarchy {
+  return indicator.type === EWidgetIndicatorType.DIMENSION_HIERARCHY;
+}

@@ -9,15 +9,19 @@ import type { TNullable, valueof } from "../../utilityTypes";
 import { ESimpleDataType } from "../../data";
 import { EFormatTypes } from "../../formatting";
 
-export enum ETimeUnit {
+export enum ELastTimeUnit {
   DAYS = "DAYS",
   MONTHS = "MONTHS",
   YEARS = "YEARS",
 }
+export enum EDurationUnit {
+  DAYS = "DAYS",
+  HOURS = "HOURS",
+  MINUTES = "MINUTES",
+  SECONDS = "SECONDS",
+}
 
-const isRangeFilteringMethod = (
-  filteringMethod: valueof<typeof formulaFilterMethods>
-) =>
+const isRangeFilteringMethod = (filteringMethod: valueof<typeof formulaFilterMethods>) =>
   filteringMethod === formulaFilterMethods.IN_RANGE ||
   filteringMethod === formulaFilterMethods.NOT_IN_RANGE;
 
@@ -37,24 +41,37 @@ const convertDateToClickHouse = (date: Date, showTime: boolean) => {
   return showTime ? `${dateString} ${timeString}` : `${dateString}`;
 };
 
-const subtractDurationFromDate = (
-  date: Date,
-  value: number,
-  unitTime: ETimeUnit
-) => {
+const subtractDurationFromDate = (date: Date, value: number, unitTime: ELastTimeUnit) => {
   switch (unitTime) {
-    case ETimeUnit.DAYS:
+    case ELastTimeUnit.DAYS:
       date.setDate(date.getDate() - value);
       break;
-    case ETimeUnit.MONTHS:
+    case ELastTimeUnit.MONTHS:
       date.setMonth(date.getMonth() - value);
       break;
-    case ETimeUnit.YEARS:
+    case ELastTimeUnit.YEARS:
       date.setFullYear(date.getFullYear() - value);
       break;
   }
 
   return date;
+};
+
+const convertToSeconds = (value: number, rangeUnit?: EDurationUnit) => {
+  if (rangeUnit === undefined) {
+    return value;
+  }
+
+  switch (rangeUnit) {
+    case EDurationUnit.DAYS:
+      return value * 86400;
+    case EDurationUnit.HOURS:
+      return value * 3600;
+    case EDurationUnit.MINUTES:
+      return value * 60;
+  }
+
+  return value;
 };
 
 // todo: покрыть тестами
@@ -77,6 +94,19 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): string[] => {
     }) as [string, string];
   }
 
+  function convertDurationRangeToSecond(
+    range: [number?, number?] = [undefined, undefined],
+    rangeUnit?: EDurationUnit
+  ): [string, string] {
+    return range.map((value, index) => {
+      if (isNil(value)) {
+        return String(index === 0 ? -Infinity : Infinity);
+      }
+
+      return String(convertToSeconds(value, rangeUnit));
+    }) as [string, string];
+  }
+
   switch (format) {
     case EFormatTypes.DATE:
     case EFormatTypes.DATETIME:
@@ -96,11 +126,7 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): string[] => {
 
         return compact([
           convertDateToClickHouse(
-            subtractDurationFromDate(
-              new Date(),
-              lastTimeValue ?? 0,
-              lastTimeUnit as ETimeUnit
-            ),
+            subtractDurationFromDate(new Date(), lastTimeValue ?? 0, lastTimeUnit as ELastTimeUnit),
             showTime
           ),
           convertDateToClickHouse(new Date(), showTime),
@@ -130,10 +156,11 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): string[] => {
       const {
         [EFormulaFilterFieldKeys.duration]: duration,
         [EFormulaFilterFieldKeys.numberRange]: durationRange,
+        [EFormulaFilterFieldKeys.durationUnit]: durationUnit,
       } = formValues;
 
       return isRangeFilteringMethod(filteringMethod)
-        ? stringifyNumbersRange(durationRange)
+        ? convertDurationRangeToSecond(durationRange, durationUnit)
         : [String(duration ?? 0)];
   }
 

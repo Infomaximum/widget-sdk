@@ -3,7 +3,7 @@ import type { ESimpleDataType } from "./data";
 import type { EFormatTypes } from "./formatting";
 import type { TNullable, valueof } from "./utilityTypes";
 import { ECalculatorFilterMethods } from "./calculators/calculator";
-import type { ETimeUnit } from "./calculators/utils/mapFormulaFiltersToInputs";
+import type { EDurationUnit, ELastTimeUnit } from "./calculators/utils/mapFormulaFiltersToInputs";
 
 export const formulaFilterMethods = {
   ...ECalculatorFilterMethods,
@@ -55,31 +55,19 @@ export interface IProcessTransitionFilterValue extends IProcessFilterValue {
 }
 
 export interface IAddPresenceOfEventFilter {
-  (
-    name: EProcessFilterNames.presenceOfEvent,
-    value: IProcessEventFilterValue
-  ): void;
+  (name: EProcessFilterNames.presenceOfEvent, value: IProcessEventFilterValue): void;
 }
 
 export interface IAddRepetitionOfEventFilter {
-  (
-    name: EProcessFilterNames.repetitionOfEvent,
-    value: IProcessEventFilterValue
-  ): void;
+  (name: EProcessFilterNames.repetitionOfEvent, value: IProcessEventFilterValue): void;
 }
 
 export interface IAddPresenceOfTransitionFilter {
-  (
-    name: EProcessFilterNames.presenceOfTransition,
-    value: IProcessTransitionFilterValue
-  ): void;
+  (name: EProcessFilterNames.presenceOfTransition, value: IProcessTransitionFilterValue): void;
 }
 
 export interface IAddDurationOfTransitionFilter {
-  (
-    name: EProcessFilterNames.durationOfTransition,
-    value: IProcessTransitionFilterValue
-  ): void;
+  (name: EProcessFilterNames.durationOfTransition, value: IProcessTransitionFilterValue): void;
 }
 
 export interface IWidgetFiltration {
@@ -113,6 +101,7 @@ export enum EFormulaFilterFieldKeys {
   string = "string",
   lastTimeValue = "lastTimeValue",
   lastTimeUnit = "lastTimeUnit",
+  durationUnit = "durationUnit",
 }
 
 export interface IFormulaFilterValue {
@@ -132,11 +121,14 @@ export interface IFormulaFilterValue {
   formValues: Partial<{
     [EFormulaFilterFieldKeys.date]: string | null;
     [EFormulaFilterFieldKeys.dateRange]: [string, string];
+    // todo: пока не удаляется для обратной совместимости
     [EFormulaFilterFieldKeys.duration]: string;
+    // todo: пока не удаляется для обратной совместимости
     [EFormulaFilterFieldKeys.number]: number;
     [EFormulaFilterFieldKeys.numberRange]: Partial<[number, number]>;
     [EFormulaFilterFieldKeys.string]: string;
     [EFormulaFilterFieldKeys.lastTimeValue]: number;
-    [EFormulaFilterFieldKeys.lastTimeUnit]: ETimeUnit;
+    [EFormulaFilterFieldKeys.lastTimeUnit]: ELastTimeUnit;
+    [EFormulaFilterFieldKeys.durationUnit]: EDurationUnit;
   }>;
 }

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.5.1](https://github.com/Infomaximum/custom-widget/compare/v3.5.0...v3.5.1) (2023-12-18)
+
+
+### Bug Fixes
+
+* userLogin - deprecated ([addacb6](https://github.com/Infomaximum/custom-widget/commit/addacb682e7ff1befa3d31ac2cc516cc3fbecadd))
+
 ## [3.5.0](https://github.com/Infomaximum/custom-widget/compare/v3.3.1...v3.5.0) (2023-12-13)
 
 ## [3.4.0](https://github.com/Infomaximum/custom-widget/compare/v3.3.0...v3.4.0) (2023-12-13)

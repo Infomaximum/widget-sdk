@@ -35,6 +35,7 @@ export interface IWidgetsContext {
   statesGuids: Set<string>;
   reportName: string;
   isViewMode: boolean;
+  /** @deprecated необходимо получать из системной переменной "Login" */
   userLogin: string;
   scripts: Map<string, IActionScript>;
   tables: Map<string, IWidgetTable>;

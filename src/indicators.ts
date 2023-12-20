@@ -1,4 +1,5 @@
 import type { ESimpleDataType } from "./data";
+import type { IFormulaFilterValue } from "./filtration";
 import type { EFormatTypes, EFormattingPresets } from "./formatting";
 import type { TDisplayCondition } from "./settings/values";
 import type { TSortDirection, TWidgetSortingValue } from "./sorting";
@@ -204,6 +205,8 @@ export type TWidgetVariable =
       dataType: ESimpleDataType;
       /** Множественный выбор */
       multipleChoice: boolean;
+      /** Фильтры */
+      filters: (string | IFormulaFilterValue)[];
     };
 
 export function isHierarchy(

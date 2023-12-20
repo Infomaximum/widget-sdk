@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.6.0](https://github.com/Infomaximum/custom-widget/compare/v3.5.1...v3.6.0) (2023-12-20)
+
+
+### Features
+
+* добавлены фильтры для переменной с типом 'Динамический список' ([17c9a30](https://github.com/Infomaximum/custom-widget/commit/17c9a3028902d98d4facd8074b19c92d32193bed))
+
 ### [3.5.1](https://github.com/Infomaximum/custom-widget/compare/v3.5.0...v3.5.1) (2023-12-18)
 
 

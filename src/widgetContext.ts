@@ -26,8 +26,8 @@ export interface IWidgetTable {
 export interface IWidgetsContext {
   language: ELanguages;
   processes: Map<string, IWidgetProcess>;
-  reportMeasures: TNullable<ICommonColumnIndicator[]>;
-  workspaceMeasures: TNullable<ICommonColumnIndicator[]>;
+  reportMeasures: TNullable<Map<string, ICommonColumnIndicator>>;
+  workspaceMeasures: TNullable<Map<string, ICommonColumnIndicator>>;
   /** Переменные отчета */
   variables: Map<string, TWidgetVariable>;
   /** Метод установки значения переменной отчета */

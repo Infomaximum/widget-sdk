@@ -1,4 +1,4 @@
-import type { EWidgetIndicatorValueModes } from "./indicators";
+import type { ESortingValueModes } from "./indicators";
 
 export enum ESortDirection {
   descend = "DESC",
@@ -15,14 +15,12 @@ export interface ISortOrder {
 }
 
 export type TWidgetSortingValueRelatedWidgetMeasure = {
-  mode: EWidgetIndicatorValueModes.MEASURE_IN_WIDGET;
+  mode: ESortingValueModes.MEASURE_IN_WIDGET;
   index: number;
 };
 
 export type TWidgetSortingValueRelatedWidgetDimension = {
-  mode:
-    | EWidgetIndicatorValueModes.DIMENSION_IN_WIDGET
-    | EWidgetIndicatorValueModes.HIERARCHY;
+  mode: ESortingValueModes.DIMENSION_IN_WIDGET | ESortingValueModes.HIERARCHY;
   index: number;
 };
 
@@ -32,16 +30,12 @@ export type TWidgetSortingValueRelatedWidgetIndicator =
 
 export type TWidgetSortingValue =
   | {
-      mode:
-        | EWidgetIndicatorValueModes.FORMULA
-        | EWidgetIndicatorValueModes.QUANTITY;
+      mode: ESortingValueModes.FORMULA | ESortingValueModes.QUANTITY;
       formula: string;
     }
   | TWidgetSortingValueRelatedWidgetIndicator
   | {
-      mode:
-        | EWidgetIndicatorValueModes.IN_DASHBOARD
-        | EWidgetIndicatorValueModes.IN_WORKSPACE;
+      mode: ESortingValueModes.IN_DASHBOARD | ESortingValueModes.IN_WORKSPACE;
       guid: string;
       formula: string;
     };

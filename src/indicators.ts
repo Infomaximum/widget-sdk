@@ -68,23 +68,30 @@ export interface IWidgetSortingIndicator extends IWidgetIndicator {
   value: TWidgetSortingValue;
 }
 
+/** Режимы значения показателя (на основе чего генерируется формула) */
 export enum EWidgetIndicatorValueModes {
   /** Готовая формула (как правило, введенная пользователем через редактор формул) */
   FORMULA = "FORMULA",
   /** Шаблон формулы, предоставляемый системой */
   TEMPLATE = "TEMPLATE",
-  /** Id иерархии, необходимо для сортировки */
-  HIERARCHY = "HIERARCHY",
-  /** Id существующего в виджете меры, необходимо для сортировки */
-  MEASURE_IN_WIDGET = "MEASURE_IN_WIDGET",
-  /** Id существующего в виджете разреза, необходимо для сортировки */
-  DIMENSION_IN_WIDGET = "DIMENSION_IN_WIDGET",
-  /** Id существующего в дашборде разреза/меры, необходимо для сортировки */
-  IN_DASHBOARD = "IN_DASHBOARD",
-  /** Id существующего в пространстве разреза/меры, необходимо для сортировки */
-  IN_WORKSPACE = "IN_WORKSPACE",
-  /** Пункт количество */
+}
+
+/** Режимы сортировки (на что ссылается сортировка) */
+export enum ESortingValueModes {
+  /** Сортировка по формуле */
+  FORMULA = "FORMULA",
+  /** Пункт "Количество" */
   QUANTITY = "QUANTITY",
+  /** @deprecated Для сортировки по иерархии используется режим DIMENSION_IN_WIDGET */
+  HIERARCHY = "HIERARCHY",
+  /** Сортировка по мере виджета */
+  MEASURE_IN_WIDGET = "MEASURE_IN_WIDGET",
+  /** Сортировка по разрезу(в т.ч. по иерархии) виджета */
+  DIMENSION_IN_WIDGET = "DIMENSION_IN_WIDGET",
+  /** Сортировка по мере отчета */
+  IN_DASHBOARD = "IN_DASHBOARD",
+  /** Сортировка по мере пространства */
+  IN_WORKSPACE = "IN_WORKSPACE",
 }
 
 export interface ICommonColumnIndicator {

@@ -48,12 +48,16 @@ export type TColor =
     };
 
 export enum EDisplayConditionMode {
+  DISABLED = "DISABLED",
   FORMULA = "FORMULA",
   VARIABLE = "VARIABLE",
 }
 
 /** Условие отображения для компонента и меры */
 export type TDisplayCondition =
+  | {
+      mode: EDisplayConditionMode.DISABLED;
+    }
   | {
       mode: EDisplayConditionMode.FORMULA;
       formula: TNullable<string>;

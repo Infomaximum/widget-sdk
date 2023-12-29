@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.9.0](https://github.com/Infomaximum/custom-widget/compare/v3.8.0...v3.9.0) (2023-12-29)
+
+
+### Features
+
+* добавлен новый режим фильтрации "Отключено" ([2ff2be3](https://github.com/Infomaximum/custom-widget/commit/2ff2be377e643dc22a009f62644ff9c088b5c7db))
+* добавлены утилиты для работы с выделением значений разрезов ([996d01f](https://github.com/Infomaximum/custom-widget/commit/996d01f56f15c356e71e5826eae199927a2a8731))
+
 ## [3.8.0](https://github.com/Infomaximum/custom-widget/compare/v3.7.0...v3.8.0) (2023-12-25)
 
 

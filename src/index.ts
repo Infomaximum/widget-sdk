@@ -21,6 +21,7 @@ export * from "./settings/values";
 export * from "./sorting";
 export * from "./widgetContext";
 export * from "./indicatorsFormulas";
+export * from "./dimensionSelection";
 
 declare global {
   interface Infomaximum {

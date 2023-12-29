@@ -14,6 +14,7 @@ export enum EWidgetFilterMode {
   DEFAULT = "DEFAULT",
   SINGLE = "SINGLE",
   MULTI = "MULTI",
+  DISABLED = "DISABLED",
 }
 
 export type TWidgetFiltering =

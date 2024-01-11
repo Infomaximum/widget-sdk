@@ -17,8 +17,7 @@
   "dependencies": {
     "@infomaximum/global-types": "^1.1.2",
     "@infomaximum/localization": "^1.0.4",
-    "@infomaximum/base-filter": "^1.1.0",
-    "@types/react": "^18.0.0"
+    "@infomaximum/base-filter": "^1.1.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "25.0.7",

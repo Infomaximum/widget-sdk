@@ -80,15 +80,46 @@ export interface ICustomWidgetProps<
 }
 
 export interface IWidget<WidgetSettings extends IBaseWidgetSettings> {
+  /** метод будет вызван при добавлении виджета в отчет
+   * и после загрузки исходного кода виджета. В данном методе
+   * можно инициализировать библиотеку отображения, создать
+   * дополнительные DOM-элементы и подготовить виджет перед
+   * вызовом метода mount
+   *
+   * @param container - DOM элемент в котором будет отображаться виджет
+   * */
   initialize(container: HTMLElement): void;
+  /**
+   * метод будет вызван после добавления виджета в отчет, в тот момент
+   * когда система будет готова отобразить виджет. В данном методе можно
+   * начать визуализировать виджет
+   * @param container - DOM элемент в котором будет отображаться виджет
+   * @param props - содержит информацию которую система передаёт виджетам,
+   * например, язык используемый системой, информация об отчете, настройки,
+   * фабрику вычислителей и.др.
+   */
   mount(
     container: HTMLElement,
     props: ICustomWidgetProps<WidgetSettings>
   ): void;
+
+  /**
+   * метод будет вызываться каждый раз, когда props были обновлены и необходимо
+   * выполнить перерисовку виджета
+   * @param container - DOM элемент в котором будет отображаться виджет
+   * @param props - содержит информацию которую система передаёт виджетам,
+   * например, язык используемый системой, информация об отчете, настройки,
+   * фабрику вычислителей и.др.
+   */
   update(
     container: HTMLElement,
     props: ICustomWidgetProps<WidgetSettings>
   ): void;
+  /**
+   * метод будет вызван когда происходит размонтирование виджета, например,
+   * пользователь удаляет виджет со страницы отчета
+   * @param container - DOM элемент в котором отображался виджет
+   */
   unmount(container: HTMLElement): void;
 }
 
@@ -102,11 +133,13 @@ export interface IWidgetDefinition<
 > {
   new (): IWidget<WidgetSettings>;
 
+  /** возвращает конфигурацию настроек для отображения */
   createPanelDescription: IPanelDescriptionCreator<
     WidgetSettings,
     GroupSettings
   >;
 
+  /** заполняет настройки значениями по умолчанию */
   fillSettings?: IFillSettings<WidgetSettings>;
 
   getDimensions?(

@@ -24,6 +24,7 @@ export interface IWidgetTable {
 }
 
 export interface IWidgetsContext {
+  /** используемый язык в системе */
   language: ELanguages;
   processes: Map<string, IWidgetProcess>;
   reportMeasures: TNullable<Map<string, ICommonColumnIndicator>>;

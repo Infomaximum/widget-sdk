@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.10.0](https://github.com/Infomaximum/custom-widget/compare/v3.9.0...v3.10.0) (2024-01-15)
+
+
+### Features
+
+* добавлен EControlType ->  inputMarkdown ([0846695](https://github.com/Infomaximum/custom-widget/commit/0846695c8c69ede4cbffea49e14b1b62f2205182))
+
 ## [3.9.0](https://github.com/Infomaximum/custom-widget/compare/v3.8.0...v3.9.0) (2023-12-29)
 
 

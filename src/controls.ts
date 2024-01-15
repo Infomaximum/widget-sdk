@@ -19,6 +19,7 @@ export enum EControlType {
   filterMode = "filterMode",
   displayCondition = "displayCondition",
   eventsColor = "eventsColor",
+  inputMarkdown = "inputMarkdown",
 }
 
 /** Конфигурация элемента управления настройкой */

@@ -16,6 +16,7 @@ export enum EControlType {
   typedFormula = "typedFormula",
   inputRange = "inputRange",
   colorPicker = "colorPicker",
+  /**  @deprecated - удалится в ближайшее время */
   filterMode = "filterMode",
   displayCondition = "displayCondition",
   eventsColor = "eventsColor",

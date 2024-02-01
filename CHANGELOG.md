@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.10.1](https://github.com/Infomaximum/custom-widget/compare/v3.10.0...v3.10.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* EControlType.filterMode -> deprecated ([c6e7b6f](https://github.com/Infomaximum/custom-widget/commit/c6e7b6f765703d3b9fa16bfe78f833b95ba8a934))
+
 ## [3.10.0](https://github.com/Infomaximum/custom-widget/compare/v3.9.0...v3.10.0) (2024-01-15)
 
 

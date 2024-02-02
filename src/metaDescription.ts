@@ -46,10 +46,16 @@ export type TGroupLevelRecord<LevelGroupSettings extends object> =
   | IDividerRecord<LevelGroupSettings>
   | TEmptyRecord;
 
+export interface ISelectOption {
+  value: string;
+  label: string;
+}
+
 export interface ICustomAddButtonProps {
-  options: { key: string; name: string }[];
+  options: ISelectOption[];
+  fetchOptions?: () => Promise<ISelectOption[]>;
   onSelect: (
-    key: string,
+    value: string,
     update: <T extends object>(f: (prevItems: T[]) => T[]) => void
   ) => void;
 }

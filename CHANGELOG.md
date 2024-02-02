@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.11.0](https://github.com/Infomaximum/custom-widget/compare/v3.10.1...v3.11.0) (2024-02-02)
+
+
+### Features
+
+* добавлена поддержка запросов options ([2296030](https://github.com/Infomaximum/custom-widget/commit/22960304c57f1e104cf86575fd513f46adf80054))
+
 ### [3.10.1](https://github.com/Infomaximum/custom-widget/compare/v3.10.0...v3.10.1) (2024-02-01)
 
 

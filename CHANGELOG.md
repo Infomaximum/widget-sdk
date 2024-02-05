@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.11.1](https://github.com/Infomaximum/custom-widget/compare/v3.11.0...v3.11.1) (2024-02-05)
+
+
+### Bug Fixes
+
+* options не обязательный пропс ([2bdaa6b](https://github.com/Infomaximum/custom-widget/commit/2bdaa6b6fe0b5361ac5947499e91ea2b8df1365e))
+
 ## [3.11.0](https://github.com/Infomaximum/custom-widget/compare/v3.10.1...v3.11.0) (2024-02-02)
 
 

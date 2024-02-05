@@ -52,7 +52,7 @@ export interface ISelectOption {
 }
 
 export interface ICustomAddButtonProps {
-  options: ISelectOption[];
+  options?: ISelectOption[];
   fetchOptions?: () => Promise<ISelectOption[]>;
   onSelect: (
     value: string,

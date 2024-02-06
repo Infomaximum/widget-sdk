@@ -63,7 +63,9 @@ export interface ICustomWidgetProps<
   /** @deprecated - нужно использовать из widgetsContext */
   language: ELanguages;
 
-  /** @deprecated - режим дашборда приходит в widgetsContext */
+  /**
+   * режим дашборда
+   * @deprecated - необходимо использовать displayMode из widgetsContext */
   isViewMode: boolean;
   /** манифест виджета */
   manifest: Record<string, any>;

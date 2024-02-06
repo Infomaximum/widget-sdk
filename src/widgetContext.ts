@@ -23,6 +23,13 @@ export interface IWidgetTable {
   columns: Map<string, IWidgetTableColumn>;
 }
 
+/**
+ * preview - упрощенный
+ *
+ * full - полный
+ */
+export type TDisplayMode = "preview" | "full";
+
 export interface IWidgetsContext {
   /** используемый язык в системе */
   language: ELanguages;
@@ -35,7 +42,12 @@ export interface IWidgetsContext {
   setVariableValue(guid: string, value: TNullable<string> | string[]): void;
   statesGuids: Set<string>;
   reportName: string;
+  /**
+   * режим дашборда
+   * @deprecated необходимо использовать displayMode */
   isViewMode: boolean;
+  /** Режим отображения виджета */
+  displayMode: TDisplayMode;
   /** @deprecated необходимо получать из системной переменной "Login" */
   userLogin: string;
   scripts: Map<string, IActionScript>;

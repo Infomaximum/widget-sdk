@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.12.0](https://github.com/Infomaximum/custom-widget/compare/v3.11.1...v3.12.0) (2024-02-06)
+
+
+### Features
+
+* добавлен displayMode ([a04ae93](https://github.com/Infomaximum/custom-widget/commit/a04ae936ad79003f168c1b487f108f9651f408e3))
+
 ### [3.11.1](https://github.com/Infomaximum/custom-widget/compare/v3.11.0...v3.11.1) (2024-02-05)
 
 

@@ -65,7 +65,7 @@ export interface ICustomWidgetProps<
 
   /**
    * режим дашборда
-   * @deprecated - необходимо использовать displayMode из widgetsContext */
+   * @deprecated 2401 - необходимо использовать displayMode из widgetsContext */
   isViewMode: boolean;
   /** манифест виджета */
   manifest: Record<string, any>;

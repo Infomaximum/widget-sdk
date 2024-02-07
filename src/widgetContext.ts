@@ -44,7 +44,7 @@ export interface IWidgetsContext {
   reportName: string;
   /**
    * режим дашборда
-   * @deprecated необходимо использовать displayMode */
+   * @deprecated 2401 - необходимо использовать displayMode */
   isViewMode: boolean;
   /** Режим отображения виджета */
   displayMode: TDisplayMode;

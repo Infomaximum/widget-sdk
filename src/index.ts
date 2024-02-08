@@ -2,7 +2,7 @@
 
 import type { IGroupSettings } from "./metaDescription";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
-import type { IWidgetDefinition } from "./widgetApi";
+import type { IWidgetEntity } from "./widgetApi";
 export { ELanguages } from "@infomaximum/localization";
 export { EFilteringMethodValues } from "@infomaximum/base-filter";
 
@@ -30,7 +30,7 @@ declare global {
       GroupSettings extends IGroupSettings,
     >(
       uuid: string,
-      Widget: IWidgetDefinition<WidgetSettings, GroupSettings>
+      Widget: IWidgetEntity<WidgetSettings, GroupSettings>
     ) => void;
   }
 }

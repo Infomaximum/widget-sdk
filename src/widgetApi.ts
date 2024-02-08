@@ -129,23 +129,27 @@ export interface IFillSettings<WidgetSettings extends IBaseWidgetSettings> {
   (settings: Partial<WidgetSettings>, context: IWidgetsContext): void;
 }
 
-export interface IWidgetDefinition<
+export interface IDefinition<
   WidgetSettings extends IBaseWidgetSettings,
   GroupSettings extends IGroupSettings,
 > {
-  new (): IWidget<WidgetSettings>;
-
   /** возвращает конфигурацию настроек для отображения */
   createPanelDescription: IPanelDescriptionCreator<
     WidgetSettings,
     GroupSettings
   >;
-
   /** заполняет настройки значениями по умолчанию */
   fillSettings?: IFillSettings<WidgetSettings>;
-
   getDimensions?(
     settings: WidgetSettings
   ): (IWidgetDimension | IWidgetDimensionHierarchy)[];
   getMeasures?(settings: WidgetSettings): IWidgetMeasure[];
+}
+
+export interface IWidgetEntity<
+  WidgetSettings extends IBaseWidgetSettings,
+  GroupSettings extends IGroupSettings,
+> {
+  new (): IWidget<WidgetSettings>;
+  definition: IDefinition<WidgetSettings, GroupSettings>;
 }

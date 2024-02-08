@@ -126,7 +126,7 @@ export interface IWidget<WidgetSettings extends IBaseWidgetSettings> {
 }
 
 export interface IFillSettings<WidgetSettings extends IBaseWidgetSettings> {
-  (settings: WidgetSettings, context: IWidgetsContext): void;
+  (settings: Partial<WidgetSettings>, context: IWidgetsContext): void;
 }
 
 export interface IWidgetDefinition<

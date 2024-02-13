@@ -9,6 +9,7 @@ import type {
   ICalculatorMeasureInput,
   ICalculatorMeasureOutput,
 } from "../calculator";
+import type { IExportColumnOrder } from "../calculator/calculator";
 import type { ICalculatorVariablesValues } from "../variables";
 
 export interface ITwoLimitsCalculatorInput {
@@ -42,6 +43,12 @@ export interface ITwoLimitsCalculatorInput {
   secondLimit?: number;
 }
 
+export interface ITwoLimitsCalculatorExportInput
+  extends ITwoLimitsCalculatorInput {
+  fileName: string;
+  columnsOrder: IExportColumnOrder[];
+}
+
 export interface ITwoLimitsCalculatorOutput {
   dimensions: Map<string, ICalculatorDimensionOutput>;
   measures: Map<string, ICalculatorMeasureOutput>;
@@ -50,4 +57,6 @@ export interface ITwoLimitsCalculatorOutput {
 }
 
 export interface ITwoLimitsCalculator
-  extends ICalculator<ITwoLimitsCalculatorInput, ITwoLimitsCalculatorOutput> {}
+  extends ICalculator<ITwoLimitsCalculatorInput, ITwoLimitsCalculatorOutput> {
+  export(input: ITwoLimitsCalculatorExportInput): Promise<void>;
+}

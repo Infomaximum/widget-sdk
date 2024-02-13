@@ -3,6 +3,7 @@ import type {
   IBaseDimensionsAndMeasuresCalculatorInput,
   IBaseDimensionsAndMeasuresCalculatorOutput,
 } from "../baseDimensionsAndMeasuresCalculator/baseDimensionsAndMeasuresCalculator";
+import type { IExportColumnOrder } from "../calculator/calculator";
 
 export interface IGeneralCalculatorInput
   extends IBaseDimensionsAndMeasuresCalculatorInput {
@@ -12,6 +13,11 @@ export interface IGeneralCalculatorInput
   offset?: number;
   /** Вычислять ли итоговые значения */
   isCalculateTotals?: boolean;
+}
+
+export interface IGeneralCalculatorExportInput extends IGeneralCalculatorInput {
+  fileName: string;
+  columnsOrder: IExportColumnOrder[];
 }
 
 export interface IGeneralCalculatorOutput
@@ -25,4 +31,6 @@ export interface IGeneralCalculator
   extends IBaseDimensionsAndMeasuresCalculator<
     IGeneralCalculatorInput,
     IGeneralCalculatorOutput
-  > {}
+  > {
+  export(input: IGeneralCalculatorExportInput): Promise<void>;
+}

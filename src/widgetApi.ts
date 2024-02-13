@@ -1,23 +1,15 @@
 import type { ELanguages } from "@infomaximum/localization";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
-import type {
-  IGroupSettings,
-  IPanelDescriptionCreator,
-  IWidgetProcess,
-} from "./metaDescription";
+import type { IGroupSettings, IWidgetProcess } from "./metaDescription";
 import type { IWidgetFiltration } from "./filtration";
 import type { IWidgetPlaceholderController } from "./placeholder";
-import type {
-  IWidgetDimension,
-  IWidgetDimensionHierarchy,
-  IWidgetMeasure,
-  TWidgetVariable,
-} from "./indicators";
+import type { TWidgetVariable } from "./indicators";
 import type { IWidgetFormatting } from "./formatting";
 import type { IWidgetsContext } from "./widgetContext";
 import type { IWidgetAction } from "./actions";
 import type { ICalculatorFilter } from "./calculators/calculator/calculator";
 import type { ICalculatorFactory } from "./calculators";
+import type { IDefinition } from "./definition";
 
 export interface IWidgetProps<
   WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings,
@@ -127,23 +119,6 @@ export interface IWidget<WidgetSettings extends IBaseWidgetSettings> {
 
 export interface IFillSettings<WidgetSettings extends IBaseWidgetSettings> {
   (settings: Partial<WidgetSettings>, context: IWidgetsContext): void;
-}
-
-export interface IDefinition<
-  WidgetSettings extends IBaseWidgetSettings,
-  GroupSettings extends IGroupSettings,
-> {
-  /** возвращает конфигурацию настроек для отображения */
-  createPanelDescription: IPanelDescriptionCreator<
-    WidgetSettings,
-    GroupSettings
-  >;
-  /** заполняет настройки значениями по умолчанию */
-  fillSettings?: IFillSettings<WidgetSettings>;
-  getDimensions?(
-    settings: WidgetSettings
-  ): (IWidgetDimension | IWidgetDimensionHierarchy)[];
-  getMeasures?(settings: WidgetSettings): IWidgetMeasure[];
 }
 
 export interface IWidgetEntity<

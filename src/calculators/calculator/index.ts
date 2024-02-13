@@ -7,6 +7,7 @@ export type {
   ICalculatorDimensionOutput,
   ICalculatorIndicatorOutput,
   ICalculatorMeasureOutput,
+  IExportColumnOrder,
 } from "./calculator";
 
 export { ECalculatorFilterMethods } from "./calculator";

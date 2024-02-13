@@ -67,3 +67,8 @@ export interface ICalculatorFilter {
   /** Метод фильтрации */
   filteringMethod: valueof<typeof formulaFilterMethods>;
 }
+
+export interface IExportColumnOrder {
+  alias: string;
+  exportName: string;
+}

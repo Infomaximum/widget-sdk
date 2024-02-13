@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.13.0](https://github.com/Infomaximum/custom-widget/compare/v3.12.1...v3.13.0) (2024-02-13)
+
+
+### Features
+
+* экспорт данных для General и TwoLimits калькуляторов ([e19332a](https://github.com/Infomaximum/custom-widget/commit/e19332a72254a71ecb8f3a29c7dc5a31c06f765f))
+
+
+### Bug Fixes
+
+* изменена структура данных  для таблиц в WidgetsContext ([f32c97f](https://github.com/Infomaximum/custom-widget/commit/f32c97fff1dbb4c6fc3c9d8e88512c8afed811b1))
+* Partial<WidgetSettings> у настроек в fillSettings ([81b4631](https://github.com/Infomaximum/custom-widget/commit/81b4631beff3cc1ccae9454f7641b9d305356a69))
+
 ### [3.12.1](https://github.com/Infomaximum/custom-widget/compare/v3.12.0...v3.12.1) (2024-02-07)
 
 

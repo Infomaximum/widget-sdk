@@ -51,5 +51,5 @@ export interface IWidgetsContext {
   /** @deprecated необходимо получать из системной переменной "Login" */
   userLogin: string;
   scripts: Map<string, IActionScript>;
-  tables: Map<string, IWidgetTable>;
+  tables: Set<string>;
 }

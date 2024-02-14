@@ -1,6 +1,6 @@
 {
   "name": "@infomaximum/custom-widget",
-  "version": "3.13.0-rc2",
+  "version": "3.14.0",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",

@@ -1,5 +1,5 @@
 {
-  "name": "@infomaximum/custom-widget",
+  "name": "@infomaximum/widget-sdk",
   "version": "3.14.0",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
@@ -33,9 +33,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Infomaximum/custom-widget.git"
+    "url": "git+https://github.com/Infomaximum/widget-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/Infomaximum/custom-widget/issues"
+    "url": "https://github.com/Infomaximum/widget-sdk/issues"
   }
 }

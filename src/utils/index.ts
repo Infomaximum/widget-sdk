@@ -1,1 +1,4 @@
-export { getLocalizedText } from "./localization";
+export {
+  getLocalizedText,
+  type TLocalizationDescription,
+} from "./localization";

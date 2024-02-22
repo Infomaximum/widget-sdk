@@ -6,6 +6,8 @@ import {
   ELanguages,
 } from "@infomaximum/localization";
 
+export { type TLocalizationDescription } from "@infomaximum/localization";
+
 let localization: Localization | null = null;
 const supportedLanguages = [Localization.Language.ru, Localization.Language.en];
 

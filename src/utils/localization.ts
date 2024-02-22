@@ -9,7 +9,7 @@ import {
 let localization: Localization | null = null;
 const supportedLanguages = [Localization.Language.ru, Localization.Language.en];
 
-export const getLocalized = <
+export const getLocalizedText = <
   L extends TLocalizationDescription,
   P extends ILocalizationProps = TExtractLocalizationParams<L>,
 >(

@@ -1,1 +1,1 @@
-export { getLocalized } from "./localization";
+export { getLocalizedText } from "./localization";

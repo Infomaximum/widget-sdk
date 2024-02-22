@@ -23,6 +23,7 @@ export * from "./sorting";
 export * from "./widgetContext";
 export * from "./indicatorsFormulas";
 export * from "./dimensionSelection";
+export * from "./utils";
 
 declare global {
   interface Infomaximum {

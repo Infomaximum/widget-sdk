@@ -1,0 +1,1 @@
+export { getLocalized } from "./localization";

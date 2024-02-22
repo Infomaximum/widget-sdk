@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.15.0](https://github.com/Infomaximum/widget-sdk/compare/v3.14.0...v3.15.0) (2024-02-22)
+
+
+### Features
+
+* добавлена функция getLocalized для безопасной работы с локализацией ([62ff93c](https://github.com/Infomaximum/widget-sdk/commit/62ff93c93094063bae7dcc97b2c7f317f3d878df))
+
 ## [3.13.0](https://github.com/Infomaximum/custom-widget/compare/v3.12.1...v3.13.0) (2024-02-13)
 
 

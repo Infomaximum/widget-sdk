@@ -25,7 +25,7 @@ export const getLocalizedText = <
   language: ELanguages,
   locObj: L,
   props?: P
-) => {
+): string => {
   if (!localization || localization.getLanguage() !== language) {
     const isSupportLanguage = supportedLanguages.includes(language);
 

@@ -30,6 +30,7 @@ export interface IHistogramBin {
 export interface IHistogramCalculatorOutput {
   bins: IHistogramBin[];
   isDisplay: boolean;
+  dimensionAlias: string;
 }
 
 export interface IHistogramCalculator

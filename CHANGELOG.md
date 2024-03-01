@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.17.0](https://github.com/Infomaximum/widget-sdk/compare/v3.16.0...v3.17.0) (2024-03-01)
+
+
+### Features
+
+* поддержан новый тип данных Boolean ([6a10220](https://github.com/Infomaximum/widget-sdk/commit/6a10220cc662b24aaab4a042c3050fc70a696335))
+
 ## [3.16.0](https://github.com/Infomaximum/widget-sdk/compare/v3.15.1...v3.16.0) (2024-03-01)
 
 

@@ -4,7 +4,9 @@ export const prepareValuesForSql = (
   dataType: ESimpleDataType,
   values: string[]
 ) =>
-  dataType === ESimpleDataType.INTEGER || dataType === ESimpleDataType.FLOAT
+  dataType === ESimpleDataType.INTEGER ||
+  dataType === ESimpleDataType.FLOAT ||
+  dataType === ESimpleDataType.BOOLEAN
     ? values
     : values.map(
         (value) => `'${escapeSingularQuotes(escapeReverseSlash(value))}'`

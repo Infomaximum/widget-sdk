@@ -29,6 +29,8 @@ export enum EFormatTypes {
   DAY_OF_MONTH = "DAY_OF_MONTH",
   /** Неделя */
   WEEK = "WEEK",
+  /** Логический */
+  BOOLEAN = "BOOLEAN",
 }
 
 export enum EFormattingPresets {

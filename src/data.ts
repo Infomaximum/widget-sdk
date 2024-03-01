@@ -6,4 +6,5 @@ export enum ESimpleDataType {
   STRING = "STRING",
   INTEGER = "INTEGER",
   DATETIME64 = "DATETIME64",
+  BOOLEAN = "BOOLEAN",
 }

@@ -27,12 +27,16 @@ export * from "./utils";
 
 declare global {
   interface Infomaximum {
-    defineWidget: <
-      WidgetSettings extends IBaseWidgetSettings,
-      GroupSettings extends IGroupSettings,
-    >(
-      uuid: string,
-      Widget: IWidgetEntity<WidgetSettings, GroupSettings>
-    ) => void;
+    widget: {
+      currentSDKVersion: number;
+
+      defineWidget: <
+        WidgetSettings extends IBaseWidgetSettings,
+        GroupSettings extends IGroupSettings,
+      >(
+        uuid: string,
+        Widget: IWidgetEntity<WidgetSettings, GroupSettings>
+      ) => void;
+    };
   }
 }

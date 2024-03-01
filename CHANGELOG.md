@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.16.0](https://github.com/Infomaximum/widget-sdk/compare/v3.15.1...v3.16.0) (2024-03-01)
+
+
+### Features
+
+* добавлен alias разреза в HistogramCalculatorOutput ([b635a17](https://github.com/Infomaximum/widget-sdk/commit/b635a1761171f648edf1d840c15bf2101afa5a92))
+
+
+### Bug Fixes
+
+* реэкспорт TLocalizationDescription ([dcd4c1e](https://github.com/Infomaximum/widget-sdk/commit/dcd4c1e13ddae20d4d3186728c046f80a2e69a14))
+
 ### [3.15.1](https://github.com/Infomaximum/widget-sdk/compare/v3.15.0...v3.15.1) (2024-02-22)
 
 

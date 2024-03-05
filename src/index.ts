@@ -28,7 +28,7 @@ export * from "./utils";
 declare global {
   interface Infomaximum {
     widget: {
-      currentSDKVersion: number;
+      currentSdkVersion: number;
 
       defineWidget: <
         WidgetSettings extends IBaseWidgetSettings,

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.18.0](https://github.com/Infomaximum/widget-sdk/compare/v3.17.0...v3.18.0) (2024-03-05)
+
+
+### Features
+
+* добавлено поле currentSDKVersion, window.im.defineWidget - устарело ([11c01a2](https://github.com/Infomaximum/widget-sdk/commit/11c01a266dce54f939d270d315409f0398813194))
+
 ## [3.17.0](https://github.com/Infomaximum/widget-sdk/compare/v3.16.0...v3.17.0) (2024-03-01)
 
 

@@ -27,6 +27,7 @@ export * from "./utils";
 
 declare global {
   interface Infomaximum {
+    /** @deprecated 2402 -  необходимо использовать window.im.widget.defineWidget */
     defineWidget: <
       WidgetSettings extends IBaseWidgetSettings,
       GroupSettings extends IGroupSettings,
@@ -34,5 +35,17 @@ declare global {
       uuid: string,
       Widget: IWidgetEntity<WidgetSettings, GroupSettings>
     ) => void;
+
+    widget: {
+      currentSdkVersion: number;
+
+      defineWidget: <
+        WidgetSettings extends IBaseWidgetSettings,
+        GroupSettings extends IGroupSettings,
+      >(
+        uuid: string,
+        Widget: IWidgetEntity<WidgetSettings, GroupSettings>
+      ) => void;
+    };
   }
 }

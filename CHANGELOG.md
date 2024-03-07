@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0](https://github.com/Infomaximum/widget-sdk/compare/v3.18.0...v3.19.0) (2024-03-07)
+
+
+### Features
+
+* добавлены новые способы форматирования для дат ([13745a3](https://github.com/Infomaximum/widget-sdk/commit/13745a38ba19926f73a0692647bc9aa7aee1cc15))
+* поддержана фильтрация по null значениям ([f9990e4](https://github.com/Infomaximum/widget-sdk/commit/f9990e43d74335c38937e57b01d0300ffd46799f))
+
 ## [3.18.0](https://github.com/Infomaximum/widget-sdk/compare/v3.17.0...v3.18.0) (2024-03-05)
 
 

@@ -2,7 +2,7 @@ import type { ICalculatorFilter } from "./calculators";
 import { EWidgetFilterMode } from "./settings/values";
 
 export interface IDimensionSelection {
-  values: Set<string>;
+  values: Set<string | null>;
   replacedFilter: ICalculatorFilter | null;
 }
 
@@ -27,7 +27,7 @@ const findFilterByFormula = (filters: ICalculatorFilter[], formula: string) => {
 const getSelectionItemValues = (
   value: string,
   filterMode: EWidgetFilterMode,
-  currentSelectionItemValues?: Set<string>
+  currentSelectionItemValues?: Set<string | null>
 ) => {
   let selectionItemValues = new Set(currentSelectionItemValues);
 

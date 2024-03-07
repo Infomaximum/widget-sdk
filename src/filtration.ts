@@ -3,7 +3,10 @@ import type { ESimpleDataType } from "./data";
 import type { EFormatTypes } from "./formatting";
 import type { TNullable, valueof } from "./utilityTypes";
 import { ECalculatorFilterMethods } from "./calculators/calculator";
-import type { EDurationUnit, ELastTimeUnit } from "./calculators/utils/mapFormulaFiltersToInputs";
+import type {
+  EDurationUnit,
+  ELastTimeUnit,
+} from "./calculators/utils/mapFormulaFiltersToInputs";
 
 export const formulaFilterMethods = {
   ...ECalculatorFilterMethods,
@@ -38,7 +41,7 @@ interface IProcessFilterValue {
    * События, доступные при выборе процесса.
    * Если параметр не передан, используются все события процесса на основе запроса к вычислителю.
    */
-  eventsNamesByProcessGuidMap?: Map<string, string[]>;
+  eventsNamesByProcessGuidMap?: Map<string, (string | null)[]>;
 }
 
 export interface IProcessEventFilterValue extends IProcessFilterValue {
@@ -55,19 +58,31 @@ export interface IProcessTransitionFilterValue extends IProcessFilterValue {
 }
 
 export interface IAddPresenceOfEventFilter {
-  (name: EProcessFilterNames.presenceOfEvent, value: IProcessEventFilterValue): void;
+  (
+    name: EProcessFilterNames.presenceOfEvent,
+    value: IProcessEventFilterValue
+  ): void;
 }
 
 export interface IAddRepetitionOfEventFilter {
-  (name: EProcessFilterNames.repetitionOfEvent, value: IProcessEventFilterValue): void;
+  (
+    name: EProcessFilterNames.repetitionOfEvent,
+    value: IProcessEventFilterValue
+  ): void;
 }
 
 export interface IAddPresenceOfTransitionFilter {
-  (name: EProcessFilterNames.presenceOfTransition, value: IProcessTransitionFilterValue): void;
+  (
+    name: EProcessFilterNames.presenceOfTransition,
+    value: IProcessTransitionFilterValue
+  ): void;
 }
 
 export interface IAddDurationOfTransitionFilter {
-  (name: EProcessFilterNames.durationOfTransition, value: IProcessTransitionFilterValue): void;
+  (
+    name: EProcessFilterNames.durationOfTransition,
+    value: IProcessTransitionFilterValue
+  ): void;
 }
 
 export interface IWidgetFiltration {

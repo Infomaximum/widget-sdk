@@ -2,14 +2,16 @@ import { ESimpleDataType } from "../../data";
 
 export const prepareValuesForSql = (
   dataType: ESimpleDataType,
-  values: string[]
+  values: (string | null)[]
 ) =>
   dataType === ESimpleDataType.INTEGER ||
   dataType === ESimpleDataType.FLOAT ||
   dataType === ESimpleDataType.BOOLEAN
     ? values
-    : values.map(
-        (value) => `'${escapeSingularQuotes(escapeReverseSlash(value))}'`
+    : values.map((value) =>
+        value === null
+          ? null
+          : `'${escapeSingularQuotes(escapeReverseSlash(value))}'`
       );
 
 const escapeReverseSlash = (formula: string) => {

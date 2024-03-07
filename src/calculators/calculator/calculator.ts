@@ -16,7 +16,7 @@ export interface ICalculatorIndicatorInput {
 }
 
 export interface ICalculatorIndicatorOutput {
-  values: string[];
+  values: (string | null)[];
 }
 
 export interface ICalculatorDimensionInput extends ICalculatorIndicatorInput {
@@ -63,7 +63,7 @@ export interface ICalculatorFilter {
   /** Тип данных для формулы фильтра */
   dataType: ESimpleDataType;
   /** Значения фильтра */
-  values: string[];
+  values: (null | string)[];
   /** Метод фильтрации */
   filteringMethod: valueof<typeof formulaFilterMethods>;
 }

@@ -15,7 +15,7 @@ export interface IGraphElement {
 }
 
 export interface IVertex extends IGraphElement {
-  name: string;
+  name: string | null;
 }
 
 export interface IEdge extends IGraphElement {

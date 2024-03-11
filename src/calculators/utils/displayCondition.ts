@@ -13,11 +13,14 @@ export function checkDisplayCondition(
   if (displayCondition?.mode === EDisplayConditionMode.VARIABLE) {
     const { variableGuid, variableValue } = displayCondition;
 
-    if (
-      variableGuid &&
-      variableValue &&
-      variables.get(variableGuid)?.value !== variableValue
-    ) {
+    const currentVariableValue =
+      variableGuid && variables.get(variableGuid)?.value;
+
+    const isCurrentVariableMatch = Array.isArray(currentVariableValue)
+      ? !!variableValue && currentVariableValue?.includes(variableValue)
+      : currentVariableValue === variableValue;
+
+    if (!isCurrentVariableMatch) {
       return false;
     }
   }

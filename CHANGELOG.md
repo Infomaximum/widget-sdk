@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.19.1](https://github.com/Infomaximum/widget-sdk/compare/v3.19.0...v3.19.1) (2024-03-11)
+
+
+### Bug Fixes
+
+* исправлены условия отображения для двух и более виджетов ([0320a14](https://github.com/Infomaximum/widget-sdk/commit/0320a1432579ee6c461077530eed01a69a4085cf))
+
 ## [3.19.0](https://github.com/Infomaximum/widget-sdk/compare/v3.18.0...v3.19.0) (2024-03-07)
 
 

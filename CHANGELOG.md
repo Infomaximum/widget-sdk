@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.20.0](https://github.com/Infomaximum/widget-sdk/compare/v3.19.1...v3.20.0) (2024-03-19)
+
+
+### Features
+
+* новый тип контрола ([2f7e7a4](https://github.com/Infomaximum/widget-sdk/commit/2f7e7a43b389c7a90764045280bb5b4ef9058e99))
+
 ### [3.19.1](https://github.com/Infomaximum/widget-sdk/compare/v3.19.0...v3.19.1) (2024-03-11)
 
 

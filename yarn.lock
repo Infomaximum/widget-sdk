@@ -42,10 +42,10 @@
     "@infomaximum/localization" "^1.0.4"
     "@types/react" "^18.0.0"
 
-"@infomaximum/global-types@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@infomaximum/global-types/-/global-types-1.1.2.tgz#592ba0bccf973e3026d2ae3419590e1e5c0c1d92"
-  integrity sha512-y0xiOhWbuEgfbxdy7Ytol/v6E/dpwVD1QiFIhymBboQ+o3lb6hLHe7ygxOvlJ2EgYYBrN2rtsBa6RSw90E2Kmw==
+"@infomaximum/global-types@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@infomaximum/global-types/-/global-types-1.2.0.tgz#eb8c80445115aaf6a6ff221cf0c7b1194e802d4b"
+  integrity sha512-GceV28/5GBigWeMpSFLzXpEbjiHwRtvHfkS7QnxOaG9unQLRotvFCbglYsjLT34Ybw96GQyyG2mMUat6opbzWw==
 
 "@infomaximum/localization@^1.0.4":
   version "1.0.4"

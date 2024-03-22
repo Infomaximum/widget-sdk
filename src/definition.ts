@@ -14,6 +14,9 @@ export interface IDefinition<
   WidgetSettings extends IBaseWidgetSettings,
   GroupSettings extends IGroupSettings,
 > {
+  /** иконка виджета отображаемая в системе (в base64, svg или png) */
+  icon?: string;
+
   /** возвращает конфигурацию настроек для отображения */
   createPanelDescription: IPanelDescriptionCreator<
     WidgetSettings,

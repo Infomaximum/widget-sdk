@@ -1,6 +1,6 @@
 {
   "name": "@infomaximum/widget-sdk",
-  "version": "3.19.1",
+  "version": "3.20.1",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -15,7 +15,7 @@
     "release": "tsc --noEmit && standard-version && rollup -c"
   },
   "dependencies": {
-    "@infomaximum/global-types": "^1.1.2",
+    "@infomaximum/global-types": "^1.2.0",
     "@infomaximum/localization": "^1.0.4",
     "@infomaximum/base-filter": "^1.1.0"
   },

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.21.0](https://github.com/Infomaximum/widget-sdk/compare/v3.20.1...v3.21.0) (2024-03-25)
+
+
+### Features
+
+* добавлена возможность передать опции при объявлении виджета ([2f77623](https://github.com/Infomaximum/widget-sdk/commit/2f776235f8637d5f389983d5177855cfa9139f41))
+* добавлено поле icon в интерфейс IDefinition ([e8b191c](https://github.com/Infomaximum/widget-sdk/commit/e8b191c8adb65c1e053d6cc668f48fae875c20d4))
+
 ### [3.20.1](https://github.com/Infomaximum/widget-sdk/compare/v3.20.0...v3.20.1) (2024-03-22)
 
 ## [3.20.0](https://github.com/Infomaximum/widget-sdk/compare/v3.19.1...v3.20.0) (2024-03-19)

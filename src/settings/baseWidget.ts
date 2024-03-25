@@ -1,11 +1,7 @@
 import type { IWidgetAction } from "../actions";
 import type { IFormulaFilterValue } from "../filtration";
 import type { IWidgetSortingIndicator } from "../indicators";
-import type {
-  EWidgetFilterMode,
-  IPlacement,
-  TDisplayCondition,
-} from "./values";
+import type { EWidgetFilterMode, TDisplayCondition } from "./values";
 
 export interface IBaseWidgetSettings {
   apiVersion: string;
@@ -16,7 +12,6 @@ export interface IBaseWidgetSettings {
   filters?: (IFormulaFilterValue | string)[];
   filterMode?: EWidgetFilterMode;
   ignoreFilters?: boolean;
-  placement: IPlacement;
   sorting?: IWidgetSortingIndicator[];
   actions?: IWidgetAction[];
   displayCondition?: TDisplayCondition;

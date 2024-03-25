@@ -25,6 +25,10 @@ export * from "./indicatorsFormulas";
 export * from "./dimensionSelection";
 export * from "./utils";
 
+export type TDefineWidgetOptions = {
+  manifest?: Record<string, unknown>;
+};
+
 declare global {
   interface Infomaximum {
     /** @deprecated 2402 -  необходимо использовать window.im.widget.defineWidget */
@@ -44,7 +48,8 @@ declare global {
         GroupSettings extends IGroupSettings,
       >(
         uuid: string,
-        Widget: IWidgetEntity<WidgetSettings, GroupSettings>
+        Widget: IWidgetEntity<WidgetSettings, GroupSettings>,
+        options?: TDefineWidgetOptions
       ) => void;
     };
   }

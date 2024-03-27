@@ -25,6 +25,7 @@ function mapMeasureToInput<T extends IWidgetMeasure>(
   return {
     alias: String(measure.id),
     mainFormula,
+    dataType: measure.dataType,
     displayConditionFormula: getDisplayConditionFormula(
       measure.displayCondition
     ),

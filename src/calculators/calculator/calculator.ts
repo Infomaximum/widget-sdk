@@ -12,6 +12,12 @@ export interface ICalculator<Input, Output> {
 
 export interface ICalculatorIndicatorInput {
   alias: string;
+  /**
+   * Информация о типе данных:
+   * - Если тип не передан, не производится дополнительной обработки формулы.
+   * - Если передан тип "OTHER", формула дополнительно будет обернута в toString().
+   */
+  dataType?: ESimpleDataType;
   displayConditionFormula?: TNullable<string>;
 }
 

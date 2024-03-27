@@ -1,4 +1,4 @@
-import { escapeSpecialCharacters } from "../calculators";
+import { escapeSpecialCharacters } from "../calculators/utils/escapeSpecialCharacters";
 
 export function generateColumnFormula(tableName: string, columnName: string) {
   const preparedTableName = escapeSpecialCharacters(tableName);

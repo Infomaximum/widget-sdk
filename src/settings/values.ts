@@ -2,14 +2,6 @@
 
 import type { TNullable } from "../utilityTypes";
 
-export interface IPlacement {
-  left: number;
-  top: number;
-  width: number;
-  height: number;
-  zIndex: number;
-}
-
 export enum EWidgetFilterMode {
   DEFAULT = "DEFAULT",
   SINGLE = "SINGLE",

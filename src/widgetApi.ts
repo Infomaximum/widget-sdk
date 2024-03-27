@@ -38,7 +38,7 @@ export interface IWidgetProps<
   /** Объект для управления плейсхолдером */
   placeholder: IWidgetPlaceholderController;
 
-  /** Контекст виджета */
+  /** Контекст виджетов */
   widgetsContext: IWidgetsContext;
 
   /** Вызывает модальное окно для запуска действия */
@@ -47,6 +47,12 @@ export interface IWidgetProps<
     onSuccess: () => void;
     filters: ICalculatorFilter[];
   }): void;
+
+  /** Данные о контейнере виджета */
+  widgetContainer: {
+    /** Имеет ли контейнер виджета ограниченную максимальную высоту */
+    isMaxHeightLimited: boolean;
+  };
 }
 
 export interface ICustomWidgetProps<

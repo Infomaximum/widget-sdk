@@ -27,6 +27,7 @@ function mapTransitionMeasureToInput<T extends IProcessIndicator>(
   return {
     alias: String(indicator.id),
     mainFormula,
+    dataType: indicator.dataType,
     displayConditionFormula: getDisplayConditionFormula(
       indicator.displayCondition
     ),

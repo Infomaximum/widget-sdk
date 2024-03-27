@@ -24,6 +24,7 @@ export function mapDimensionToInput(
   return {
     alias: String(dimension.id),
     formula,
+    dataType: dimension.dataType,
     hideEmpty: dimension.hideEmptyValues,
     displayConditionFormula: getDisplayConditionFormula(
       dimension.displayCondition

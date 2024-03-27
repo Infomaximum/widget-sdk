@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.22.0](https://github.com/Infomaximum/widget-sdk/compare/v3.21.0...v3.22.0) (2024-03-27)
+
+
+### Features
+
+* в ICalculatorIndicatorInput добавлено поле dataType ([3929406](https://github.com/Infomaximum/widget-sdk/commit/3929406e2bed4c6fca9b80a70367a037b824e926))
+
+
+### Bug Fixes
+
+* добавлено экранирование специальных символов при генерации формулы колонки ([a7c9b06](https://github.com/Infomaximum/widget-sdk/commit/a7c9b061a689fcd8fad289e0b22feec23b8838d4))
+
 ## [3.21.0](https://github.com/Infomaximum/widget-sdk/compare/v3.20.1...v3.21.0) (2024-03-25)
 
 

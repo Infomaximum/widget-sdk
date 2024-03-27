@@ -1,5 +1,10 @@
+import { escapeSpecialCharacters } from "../calculators";
+
 export function generateColumnFormula(tableName: string, columnName: string) {
-  return `"${tableName}"."${columnName}"`;
+  const preparedTableName = escapeSpecialCharacters(tableName);
+  const preparedColumnName = escapeSpecialCharacters(columnName);
+
+  return `"${preparedTableName}"."${preparedColumnName}"`;
 }
 
 export function fillTemplateString(

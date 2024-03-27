@@ -23,3 +23,4 @@ export {
   bindContentsWithIndicators,
   type TBoundedContentWithIndicator,
 } from "./bindContentsWithIndicators";
+export { escapeSpecialCharacters } from "./escapeSpecialCharacters";

@@ -11,6 +11,13 @@ import type { ICalculatorFilter } from "./calculators/calculator/calculator";
 import type { ICalculatorFactory } from "./calculators";
 import type { IDefinition } from "./definition";
 
+export type TLaunchActionParams = {
+  action: IWidgetAction;
+  onSuccess: () => void;
+  filters: ICalculatorFilter[];
+  needConfirmation?: boolean;
+};
+
 export interface IWidgetProps<
   WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings,
 > {
@@ -41,12 +48,8 @@ export interface IWidgetProps<
   /** Контекст виджета */
   widgetsContext: IWidgetsContext;
 
-  /** Вызывает модальное окно для запуска действия */
-  launchAction(params: {
-    action: IWidgetAction;
-    onSuccess: () => void;
-    filters: ICalculatorFilter[];
-  }): void;
+  /** Запуск действия */
+  launchAction(params: TLaunchActionParams): void;
 }
 
 export interface ICustomWidgetProps<

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.23.0](https://github.com/Infomaximum/widget-sdk/compare/v3.22.0...v3.23.0) (2024-03-28)
+
+
+### Features
+
+* Добавлен новый EControlType ([35ccdb2](https://github.com/Infomaximum/widget-sdk/commit/35ccdb27c57b21a189eabe07c2587d99d2e21264))
+* добавлен параметр функции launchAction ([d97a8c8](https://github.com/Infomaximum/widget-sdk/commit/d97a8c895719ba1077ec6d7b9cd63570da9a4fea))
+
+
+### Bug Fixes
+
+* путь импорта ([6d945e1](https://github.com/Infomaximum/widget-sdk/commit/6d945e1c93353eefddb89a3bf86b031caf3e2eca))
+
 ## [3.22.0](https://github.com/Infomaximum/widget-sdk/compare/v3.21.0...v3.22.0) (2024-03-27)
 
 

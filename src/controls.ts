@@ -22,6 +22,7 @@ export enum EControlType {
   eventsColor = "eventsColor",
   inputMarkdown = "inputMarkdown",
   filter = "filter",
+  actionOnClick = "actionOnClick",
 }
 
 /** Конфигурация элемента управления настройкой */

@@ -75,7 +75,7 @@ const convertToSeconds = (value: number, rangeUnit?: EDurationUnit) => {
 };
 
 // todo: покрыть тестами
-const getFormulaFilterValues = (filterValue: IFormulaFilterValue): string[] => {
+const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | null)[] => {
   const { format, filteringMethod, formValues, checkedValues } = filterValue;
 
   if (checkedValues && checkedValues.length) {

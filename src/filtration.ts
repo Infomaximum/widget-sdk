@@ -3,7 +3,13 @@ import type { ESimpleDataType } from "./data";
 import type { EFormatTypes } from "./formatting";
 import type { TNullable, valueof } from "./utilityTypes";
 import { ECalculatorFilterMethods } from "./calculators/calculator";
-import type { EDurationUnit, ELastTimeUnit } from "./calculators/utils/mapFormulaFiltersToInputs";
+import type {
+  EDurationUnit,
+  ELastTimeUnit,
+} from "./calculators/utils/mapFormulaFiltersToInputs";
+
+export type TSelectivePartial<T, Keys extends keyof T> = Omit<T, Keys> &
+  Partial<Pick<T, Keys>>;
 
 export const formulaFilterMethods = {
   ...ECalculatorFilterMethods,
@@ -21,6 +27,7 @@ export enum EProcessFilterNames {
   durationOfTransition = "durationOfTransition",
 }
 
+/** @deprecated необходимо использовать @see {@link IFormulaFilterValue} */
 export interface IWidgetFormulaFilterValue extends ICalculatorFilter {
   /**
    * Название фильтра
@@ -55,40 +62,30 @@ export interface IProcessTransitionFilterValue extends IProcessFilterValue {
 }
 
 export interface IAddPresenceOfEventFilter {
-  (name: EProcessFilterNames.presenceOfEvent, value: IProcessEventFilterValue): void;
+  (
+    name: EProcessFilterNames.presenceOfEvent,
+    value: IProcessEventFilterValue
+  ): void;
 }
 
 export interface IAddRepetitionOfEventFilter {
-  (name: EProcessFilterNames.repetitionOfEvent, value: IProcessEventFilterValue): void;
+  (
+    name: EProcessFilterNames.repetitionOfEvent,
+    value: IProcessEventFilterValue
+  ): void;
 }
 
 export interface IAddPresenceOfTransitionFilter {
-  (name: EProcessFilterNames.presenceOfTransition, value: IProcessTransitionFilterValue): void;
+  (
+    name: EProcessFilterNames.presenceOfTransition,
+    value: IProcessTransitionFilterValue
+  ): void;
 }
 
 export interface IAddDurationOfTransitionFilter {
-  (name: EProcessFilterNames.durationOfTransition, value: IProcessTransitionFilterValue): void;
-}
-
-export interface IWidgetFiltration {
-  /** Значения фильтров, подготовленные для передачи в вычислитель */
-  preparedFilterValues: ICalculatorFilter[];
-
-  // Formula filters
-
-  /** Добавить фильтр по формуле */
-  addFormulaFilter(value: IWidgetFormulaFilterValue): void;
-  /** Удалить фильтр по формуле */
-  removeFormulaFilter(formula: string): void;
-
-  // Process filters
-
-  addProcessFilter(
-    ...args:
-      | Parameters<IAddPresenceOfEventFilter>
-      | Parameters<IAddRepetitionOfEventFilter>
-      | Parameters<IAddPresenceOfTransitionFilter>
-      | Parameters<IAddDurationOfTransitionFilter>
+  (
+    name: EProcessFilterNames.durationOfTransition,
+    value: IProcessTransitionFilterValue
   ): void;
 }
 
@@ -131,4 +128,67 @@ export interface IFormulaFilterValue {
     [EFormulaFilterFieldKeys.lastTimeUnit]: ELastTimeUnit;
     [EFormulaFilterFieldKeys.durationUnit]: EDurationUnit;
   }>;
+}
+
+interface IStagesFilterItem {
+  /** Название этапа */
+  name: string;
+  /** Формула фильтра этапа */
+  formula: string;
+  isSelected: boolean;
+}
+
+export interface IStagesFilterValue {
+  /** Ключ виджета */
+  widgetKey: string;
+  /** Заголовок фильтра */
+  name: TNullable<string>;
+  /** Этапы */
+  stages: IStagesFilterItem[];
+}
+
+export type TWidgetFilterValue =
+  | IFormulaFilterValue
+  | IStagesFilterValue
+  | IProcessEventFilterValue
+  | IProcessTransitionFilterValue;
+
+export interface IWidgetFilter {
+  filterValue: TWidgetFilterValue;
+  preparedFilterValue: ICalculatorFilter;
+}
+
+export interface IWidgetFiltration {
+  /** Значения фильтров, подготовленные для передачи в вычислитель */
+  preparedFilterValues: ICalculatorFilter[];
+
+  filters: IWidgetFilter[];
+
+  // Formula filters
+
+  /** Добавить фильтр по формуле */
+  addFormulaFilter(
+    value:
+      | IWidgetFormulaFilterValue
+      | TSelectivePartial<IFormulaFilterValue, "format" | "formValues">
+  ): void;
+  /** Удалить фильтр по формуле */
+  removeFormulaFilter(formula: string): void;
+
+  // Process filters
+
+  addProcessFilter(
+    ...args:
+      | Parameters<IAddPresenceOfEventFilter>
+      | Parameters<IAddRepetitionOfEventFilter>
+      | Parameters<IAddPresenceOfTransitionFilter>
+      | Parameters<IAddDurationOfTransitionFilter>
+  ): void;
+
+  // Stages filters
+
+  /** Добавить фильтр по этапам */
+  addStagesFilter(value: Omit<IStagesFilterValue, "widgetKey">): void;
+  /** Удалить фильтр по этапам */
+  removeStagesFilter(widgetKey: string): void;
 }

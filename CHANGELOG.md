@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.24.0](https://github.com/Infomaximum/widget-sdk/compare/v3.23.0...v3.24.0) (2024-04-02)
+
+
+### Features
+
+* добавлена фильтрация по этапам ([deb1d75](https://github.com/Infomaximum/widget-sdk/commit/deb1d7577b433e560713ee91a6a1d0909d295192))
+* поддержаны значения null для checkedValues в фильтре ([1c856dd](https://github.com/Infomaximum/widget-sdk/commit/1c856ddaee1d8fba2301d00be18471e91444c4ed))
+
 ## [3.23.0](https://github.com/Infomaximum/widget-sdk/compare/v3.22.0...v3.23.0) (2024-03-28)
 
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.25.0](https://github.com/Infomaximum/widget-sdk/compare/v3.24.1...v3.25.0) (2024-04-03)
+
+
+### Features
+
+* добавлен новый EControlType ([3730334](https://github.com/Infomaximum/widget-sdk/commit/3730334a3a496d671a2636d703fe74f0fb97deb5))
+
 ### [3.24.1](https://github.com/Infomaximum/widget-sdk/compare/v3.24.0...v3.24.1) (2024-04-02)
 
 ## [3.24.0](https://github.com/Infomaximum/widget-sdk/compare/v3.23.0...v3.24.0) (2024-04-02)

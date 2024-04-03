@@ -23,6 +23,7 @@ export enum EControlType {
   inputMarkdown = "inputMarkdown",
   filter = "filter",
   actionOnClick = "actionOnClick",
+  eventsPicker = "eventsPicker",
 }
 
 /** Конфигурация элемента управления настройкой */

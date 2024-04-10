@@ -7,9 +7,10 @@ import {
   getDisplayConditionFormula,
 } from "./displayCondition";
 
-export function mapDimensionToInput(
-  dimension: IWidgetDimension,
-  variables: Map<string, TWidgetVariable>
+export function mapDimensionToInput<T extends IWidgetDimension>(
+  dimension: T,
+  variables: Map<string, TWidgetVariable>,
+  addFormulas: (dimension: T) => Map<string, string> = () => new Map()
 ): ICalculatorDimensionInput | null {
   const formula = getDimensionFormula(dimension);
 
@@ -29,15 +30,17 @@ export function mapDimensionToInput(
     displayConditionFormula: getDisplayConditionFormula(
       dimension.displayCondition
     ),
+    additionalFormulas: addFormulas(dimension),
   };
 }
 
 /** Конвертировать разрезы виджета во входы для вычислителя */
-export function mapDimensionsToInputs(
-  dimensions: IWidgetDimension[],
-  variables: Map<string, TWidgetVariable>
+export function mapDimensionsToInputs<T extends IWidgetDimension>(
+  dimensions: T[],
+  variables: Map<string, TWidgetVariable>,
+  addFormulas?: (dimension: T) => Map<string, string>
 ) {
   return compactMap(dimensions, (dimension) =>
-    mapDimensionToInput(dimension, variables)
+    mapDimensionToInput(dimension, variables, addFormulas)
   );
 }

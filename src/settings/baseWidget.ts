@@ -8,7 +8,7 @@ export interface IBaseWidgetSettings {
   type: string;
   header?: string;
   headerSize?: number;
-  stateGuid?: string | null;
+  stateName?: string | null;
   filters?: (IFormulaFilterValue | string)[];
   filterMode?: EWidgetFilterMode;
   ignoreFilters?: boolean;

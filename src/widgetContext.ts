@@ -12,8 +12,8 @@ export interface IWidgetTableColumn {
 }
 
 export interface IActionScript {
-  guid: string | undefined;
-  fieldsGuids: Set<string>;
+  name: string | undefined;
+  fieldsNames: Set<string>;
 }
 
 export interface IWidgetTable {
@@ -39,8 +39,8 @@ export interface IWidgetsContext {
   /** Переменные отчета */
   variables: Map<string, TWidgetVariable>;
   /** Метод установки значения переменной отчета */
-  setVariableValue(guid: string, value: TNullable<string> | string[]): void;
-  statesGuids: Set<string>;
+  setVariableValue(name: string, value: TNullable<string> | string[]): void;
+  statesNames: Set<string>;
   reportName: string;
   /**
    * режим дашборда

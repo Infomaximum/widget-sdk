@@ -36,6 +36,6 @@ export type TWidgetSortingValue =
   | TWidgetSortingValueRelatedWidgetIndicator
   | {
       mode: ESortingValueModes.IN_DASHBOARD | ESortingValueModes.IN_WORKSPACE;
-      guid: string;
+      name: string;
       formula: string;
     };

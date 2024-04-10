@@ -95,7 +95,6 @@ export enum ESortingValueModes {
 }
 
 export interface ICommonColumnIndicator {
-  guid: string;
   name: string;
   formula: string;
 }

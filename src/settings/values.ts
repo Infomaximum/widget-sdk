@@ -57,7 +57,7 @@ export type TDisplayCondition =
     }
   | {
       mode: EDisplayConditionMode.VARIABLE;
-      variableGuid: TNullable<string>;
+      variableName: TNullable<string>;
       variableValue: TNullable<string>;
     };
 

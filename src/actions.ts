@@ -18,7 +18,7 @@ export type TWidgetActionInputValue =
     }
   | {
       mode: EWidgetActionInputMode.FROM_VARIABLE;
-      guid: string;
+      name: string;
     }
   | {
       mode: EWidgetActionInputMode.FORMULA;
@@ -40,7 +40,7 @@ export type TWidgetActionInputValue =
     };
 
 export interface IWidgetActionInput {
-  guid: string;
+  name: string;
   value: TWidgetActionInputValue;
 }
 
@@ -49,7 +49,6 @@ export interface IWidgetAction {
   name: string;
   description: string;
   filters: (IFormulaFilterValue | string)[];
-  scriptGuid?: string;
   /**  Поле name необходимо, чтобы показать название скрипта, который был удален */
   scriptName?: string;
   inputs: IWidgetActionInput[];
@@ -60,22 +59,22 @@ export const isActionValid = (
   action: IWidgetAction,
   { scripts, tables }: IWidgetsContext
 ) => {
-  const currentScript = scripts.get(action.scriptGuid ?? "");
+  const currentScript = scripts.get(action.scriptName ?? "");
 
   if (!currentScript) {
     return false;
   }
 
   const actionInputsMap = new Map(
-    action.inputs.map((input) => [input.guid, input])
+    action.inputs.map((input) => [input.name, input])
   );
 
-  if (actionInputsMap.size < currentScript.fieldsGuids.size) {
+  if (actionInputsMap.size < currentScript.fieldsNames.size) {
     return false;
   }
 
-  return [...currentScript.fieldsGuids].every((guid) => {
-    const actionInput = actionInputsMap.get(guid ?? "");
+  return [...currentScript.fieldsNames].every((name) => {
+    const actionInput = actionInputsMap.get(name ?? "");
 
     if (!actionInput) {
       return false;
@@ -83,7 +82,7 @@ export const isActionValid = (
 
     const { value } = actionInput;
 
-    if (value.mode === EWidgetActionInputMode.FROM_VARIABLE && !value.guid) {
+    if (value.mode === EWidgetActionInputMode.FROM_VARIABLE && !value.name) {
       return false;
     }
 

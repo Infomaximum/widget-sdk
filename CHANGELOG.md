@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.25.1](https://github.com/Infomaximum/widget-sdk/compare/v3.25.0...v3.25.1) (2024-04-11)
+
+
+### Bug Fixes
+
+* изменена вилидация запуска скрипта со способом ввода "Из переменной" ([53b8cfb](https://github.com/Infomaximum/widget-sdk/commit/53b8cfbc23898a52d8944e87bb0542b6d571439f))
+
 ## [3.25.0](https://github.com/Infomaximum/widget-sdk/compare/v3.24.1...v3.25.0) (2024-04-03)
 
 

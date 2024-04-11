@@ -57,7 +57,7 @@ export interface IWidgetAction {
 
 export const isActionValid = (
   action: IWidgetAction,
-  { scripts, tables }: IWidgetsContext
+  { scripts, tables, variables }: IWidgetsContext
 ) => {
   const currentScript = scripts.get(action.scriptName ?? "");
 
@@ -82,7 +82,10 @@ export const isActionValid = (
 
     const { value } = actionInput;
 
-    if (value.mode === EWidgetActionInputMode.FROM_VARIABLE && !value.name) {
+    if (
+      value.mode === EWidgetActionInputMode.FROM_VARIABLE &&
+      !variables.has(value.name)
+    ) {
       return false;
     }
 

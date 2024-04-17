@@ -1,13 +1,7 @@
-import type {
-  IWidgetDimension,
-  IWidgetDimensionHierarchy,
-} from "../../indicators";
+import type { IWidgetDimension, IWidgetDimensionHierarchy } from "../../indicators";
 import { getDimensionFormula } from "../../indicatorsFormulas";
 import type { TNullable } from "../../utilityTypes";
-import {
-  ECalculatorFilterMethods,
-  type ICalculatorFilter,
-} from "../calculator";
+import { ECalculatorFilterMethods, type ICalculatorFilter } from "../calculator";
 
 /**
  * Выбрать активный разрез иерархии на основе активных фильтров.
@@ -34,9 +28,7 @@ export function selectDimensionFromHierarchy<
     }
 
     const selectionIndex =
-      matchedFilter.values.length > 1
-        ? i
-        : Math.min(i + 1, dimensions.length - 1);
+      matchedFilter.values.length > 1 ? i : Math.min(i + 1, dimensions.length - 1);
 
     return dimensions[selectionIndex];
   }

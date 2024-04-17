@@ -1,8 +1,4 @@
-import type {
-  IDisplayPredicate,
-  IDivePanelDescription,
-  TRecordAccessor,
-} from "./metaDescription";
+import type { IDisplayPredicate, IDivePanelDescription, TRecordAccessor } from "./metaDescription";
 
 export enum EControlType {
   inputNumber = "inputNumber",
@@ -27,11 +23,7 @@ export enum EControlType {
 }
 
 /** Конфигурация элемента управления настройкой */
-export interface IControlRecord<
-  Settings extends object,
-  Value,
-  ControlType = EControlType,
-> {
+export interface IControlRecord<Settings extends object, Value, ControlType = EControlType> {
   key: string;
   /** Локализация заголовка настройки */
   title?: string;

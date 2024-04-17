@@ -7,9 +7,6 @@ export function generateColumnFormula(tableName: string, columnName: string) {
   return `"${preparedTableName}"."${preparedColumnName}"`;
 }
 
-export function fillTemplateString(
-  templateString: string,
-  params: Record<string, any>
-) {
+export function fillTemplateString(templateString: string, params: Record<string, any>) {
   return templateString.replace(/\{(.*?)\}/g, (_, key) => params[key] ?? "");
 }

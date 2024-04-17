@@ -1,7 +1,4 @@
-import {
-  EWidgetIndicatorValueModes,
-  type IWidgetDimension,
-} from "../indicators";
+import { EWidgetIndicatorValueModes, type IWidgetDimension } from "../indicators";
 import { fillTemplateString, generateColumnFormula } from "./common";
 
 export enum EDimensionTemplateNames {
@@ -44,8 +41,7 @@ export function getDimensionFormula({ value }: IWidgetDimension): string {
   if (value.mode === EWidgetIndicatorValueModes.TEMPLATE) {
     const { templateName, tableName, columnName } = value;
 
-    const templateFormula =
-      dimensionTemplateFormulas[templateName as EDimensionTemplateNames];
+    const templateFormula = dimensionTemplateFormulas[templateName as EDimensionTemplateNames];
 
     if (!templateFormula) {
       return "";

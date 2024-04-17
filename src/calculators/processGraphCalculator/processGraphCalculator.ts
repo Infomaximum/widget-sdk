@@ -53,7 +53,4 @@ export interface IProcessGraphCalculatorOutput {
 }
 
 export interface IProcessGraphCalculator
-  extends ICalculator<
-    IProcessGraphCalculatorInput,
-    IProcessGraphCalculatorOutput
-  > {}
+  extends ICalculator<IProcessGraphCalculatorInput, IProcessGraphCalculatorOutput> {}

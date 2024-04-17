@@ -29,7 +29,5 @@ export function bindContentsWithIndicators<
   Output extends ICalculatorIndicatorOutput,
   Indicator extends IWidgetIndicator,
 >(outputs: Map<string, Output>, indicators: Indicator[]) {
-  return compactMap(indicators, (indicator) =>
-    bindContentWithIndicator(outputs, indicator)
-  );
+  return compactMap(indicators, (indicator) => bindContentWithIndicator(outputs, indicator));
 }

@@ -2,10 +2,7 @@ import type { IWidgetMeasure, TWidgetVariable } from "../../indicators";
 import { getMeasureFormula } from "../../indicatorsFormulas";
 import { compactMap } from "../../utils/functions";
 import type { ICalculatorMeasureInput } from "../calculator";
-import {
-  checkDisplayCondition,
-  getDisplayConditionFormula,
-} from "./displayCondition";
+import { checkDisplayCondition, getDisplayConditionFormula } from "./displayCondition";
 
 function mapMeasureToInput<T extends IWidgetMeasure>(
   measure: T,
@@ -26,9 +23,7 @@ function mapMeasureToInput<T extends IWidgetMeasure>(
     alias: String(measure.id),
     mainFormula,
     dataType: measure.dataType,
-    displayConditionFormula: getDisplayConditionFormula(
-      measure.displayCondition
-    ),
+    displayConditionFormula: getDisplayConditionFormula(measure.displayCondition),
     additionalFormulas: addFormulas(measure),
   };
 }
@@ -39,7 +34,5 @@ export function mapMeasuresToInputs<T extends IWidgetMeasure>(
   variables: Map<string, TWidgetVariable>,
   addFormulas?: (measure: T) => Map<string, string>
 ) {
-  return compactMap(measures, (measure) =>
-    mapMeasureToInput(measure, variables, addFormulas)
-  );
+  return compactMap(measures, (measure) => mapMeasureToInput(measure, variables, addFormulas));
 }

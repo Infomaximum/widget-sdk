@@ -4,10 +4,7 @@ import {
   type IWidgetMeasure,
   type IWidgetSortingIndicator,
 } from "../../indicators";
-import {
-  getDimensionFormula,
-  getMeasureFormula,
-} from "../../indicatorsFormulas";
+import { getDimensionFormula, getMeasureFormula } from "../../indicatorsFormulas";
 import type { ISortOrder } from "../../sorting";
 import { compactMap } from "../../utils/functions";
 
@@ -39,9 +36,7 @@ export function mapSortingToInputs(
     ) {
       const dimension = dimensionsInOriginalOrder[value.index];
 
-      return (
-        dimension && { formula: getDimensionFormula(dimension), direction }
-      );
+      return dimension && { formula: getDimensionFormula(dimension), direction };
     }
 
     if (value.mode === ESortingValueModes.MEASURE_IN_WIDGET) {

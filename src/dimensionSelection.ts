@@ -6,8 +6,7 @@ export interface IDimensionSelection {
   replacedFilter: ICalculatorFilter | null;
 }
 
-export interface IDimensionSelectionByFormula
-  extends Map<string, IDimensionSelection> {}
+export interface IDimensionSelectionByFormula extends Map<string, IDimensionSelection> {}
 
 export type TUpdateSelection = (
   selection: IDimensionSelectionByFormula,

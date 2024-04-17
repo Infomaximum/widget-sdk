@@ -30,8 +30,7 @@ export interface ICalculatorDimensionInput extends ICalculatorIndicatorInput {
   hideEmpty?: boolean;
 }
 
-export interface ICalculatorDimensionOutput
-  extends ICalculatorIndicatorOutput {}
+export interface ICalculatorDimensionOutput extends ICalculatorIndicatorOutput {}
 
 export interface ICalculatorMeasureInput extends ICalculatorIndicatorInput {
   mainFormula: string;

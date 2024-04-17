@@ -1,7 +1,4 @@
-import {
-  EWidgetIndicatorValueModes,
-  type IProcessIndicator,
-} from "../indicators";
+import { EWidgetIndicatorValueModes, type IProcessIndicator } from "../indicators";
 import type { IWidgetProcess } from "../metaDescription";
 import { fillTemplateString } from "./common";
 
@@ -29,9 +26,7 @@ export function getTransitionMeasureFormula(
 
   if (value.mode === EWidgetIndicatorValueModes.TEMPLATE) {
     const templateFormula =
-      transitionMeasureTemplateFormulas[
-        value.templateName as ETransitionMeasureTemplateNames
-      ];
+      transitionMeasureTemplateFormulas[value.templateName as ETransitionMeasureTemplateNames];
 
     return templateFormula && fillTemplateString(templateFormula, process);
   }

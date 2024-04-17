@@ -1,5 +1,1 @@
-export type {
-  IPieCalculator,
-  IPieCalculatorInput,
-  IPieCalculatorOutput,
-} from "./pieCalculator";
+export type { IPieCalculator, IPieCalculatorInput, IPieCalculatorOutput } from "./pieCalculator";

@@ -23,9 +23,7 @@ export type TWidgetContainer = {
   isMaxHeightLimited: boolean;
 };
 
-export interface IWidgetProps<
-  WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings,
-> {
+export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings> {
   /** guid виджета */
   guid: string;
   /** Настройки виджета */
@@ -102,10 +100,7 @@ export interface IWidget<WidgetSettings extends IBaseWidgetSettings> {
    * например, язык используемый системой, информация об отчете, настройки,
    * фабрику вычислителей и.др.
    */
-  mount(
-    container: HTMLElement,
-    props: ICustomWidgetProps<WidgetSettings>
-  ): void;
+  mount(container: HTMLElement, props: ICustomWidgetProps<WidgetSettings>): void;
 
   /**
    * метод будет вызываться каждый раз, когда props были обновлены и необходимо
@@ -115,10 +110,7 @@ export interface IWidget<WidgetSettings extends IBaseWidgetSettings> {
    * например, язык используемый системой, информация об отчете, настройки,
    * фабрику вычислителей и.др.
    */
-  update(
-    container: HTMLElement,
-    props: ICustomWidgetProps<WidgetSettings>
-  ): void;
+  update(container: HTMLElement, props: ICustomWidgetProps<WidgetSettings>): void;
   /**
    * метод будет вызван когда происходит размонтирование виджета, например,
    * пользователь удаляет виджет со страницы отчета

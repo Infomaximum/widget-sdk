@@ -11,5 +11,4 @@ export interface ITypeCalculatorOutput {
   type: ESimpleDataType;
 }
 
-export interface ITypeCalculator
-  extends ICalculator<ITypeCalculatorInput, ITypeCalculatorOutput> {}
+export interface ITypeCalculator extends ICalculator<ITypeCalculatorInput, ITypeCalculatorOutput> {}

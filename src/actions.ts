@@ -129,9 +129,7 @@ export const isActionValid = (
     return false;
   }
 
-  const actionInputsMap = new Map(
-    action.inputs.map((input) => [input.name, input])
-  );
+  const actionInputsMap = new Map(action.inputs.map((input) => [input.name, input]));
 
   if (actionInputsMap.size < currentScript.fieldsNames.size) {
     return false;
@@ -146,10 +144,7 @@ export const isActionValid = (
 
     const { value } = actionInput;
 
-    if (
-      value.mode === EWidgetActionInputMode.FROM_VARIABLE &&
-      !variables.has(value.name)
-    ) {
+    if (value.mode === EWidgetActionInputMode.FROM_VARIABLE && !variables.has(value.name)) {
       return false;
     }
 
@@ -161,10 +156,7 @@ export const isActionValid = (
       return false;
     }
 
-    if (
-      value.mode === EWidgetActionInputMode.FROM_COLUMN &&
-      !tables.has(value.tableName)
-    ) {
+    if (value.mode === EWidgetActionInputMode.FROM_COLUMN && !tables.has(value.tableName)) {
       return false;
     }
 

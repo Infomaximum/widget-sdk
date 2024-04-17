@@ -7,5 +7,4 @@ export interface ICalculatorVariable {
 }
 
 /** Коллекция значений переменных по их имени */
-export interface ICalculatorVariablesValues
-  extends Map<string, ICalculatorVariable> {}
+export interface ICalculatorVariablesValues extends Map<string, ICalculatorVariable> {}

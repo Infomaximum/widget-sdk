@@ -33,8 +33,7 @@ export function getMeasureFormula({ value }: IWidgetMeasure): string {
   if (value.mode === EWidgetIndicatorValueModes.TEMPLATE) {
     const { templateName, tableName, columnName } = value;
 
-    const templateFormula =
-      measureTemplateFormulas[templateName as EMeasureTemplateNames];
+    const templateFormula = measureTemplateFormulas[templateName as EMeasureTemplateNames];
 
     if (!templateFormula) {
       return "";

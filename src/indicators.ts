@@ -127,9 +127,7 @@ export interface IWidgetColumnIndicator extends IWidgetIndicator {
   displayCondition?: TDisplayCondition;
 }
 
-export interface IWidgetDimensionHierarchy<
-  D extends IWidgetDimension = IWidgetDimension,
-> {
+export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetDimension> {
   /** Идентификатор, генерируемый на основе текущего времени */
   id: number;
   type: EWidgetIndicatorType.DIMENSION_HIERARCHY;

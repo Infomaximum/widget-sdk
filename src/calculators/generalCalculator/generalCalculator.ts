@@ -5,8 +5,7 @@ import type {
 } from "../baseDimensionsAndMeasuresCalculator/baseDimensionsAndMeasuresCalculator";
 import type { IExportColumnOrder } from "../calculator/calculator";
 
-export interface IGeneralCalculatorInput
-  extends IBaseDimensionsAndMeasuresCalculatorInput {
+export interface IGeneralCalculatorInput extends IBaseDimensionsAndMeasuresCalculatorInput {
   /** Лимит строк */
   limit?: number;
   /** Смещение при выборе строк */
@@ -20,17 +19,13 @@ export interface IGeneralCalculatorExportInput extends IGeneralCalculatorInput {
   columnsOrder: IExportColumnOrder[];
 }
 
-export interface IGeneralCalculatorOutput
-  extends IBaseDimensionsAndMeasuresCalculatorOutput {
+export interface IGeneralCalculatorOutput extends IBaseDimensionsAndMeasuresCalculatorOutput {
   // todo: widgets - подумать нужны ли итоги для дополнительных формул
   /** Итоги по мерам */
   totals: Map<string, string>;
 }
 
 export interface IGeneralCalculator
-  extends IBaseDimensionsAndMeasuresCalculator<
-    IGeneralCalculatorInput,
-    IGeneralCalculatorOutput
-  > {
+  extends IBaseDimensionsAndMeasuresCalculator<IGeneralCalculatorInput, IGeneralCalculatorOutput> {
   export(input: IGeneralCalculatorExportInput): Promise<void>;
 }

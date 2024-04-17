@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": ".",
+    },
+  ],
+  "settings": {
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.formatOnSave": true,
+    "[html][json][jsonc][typescript][typescriptreact][javascriptreact][javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+  },
+}

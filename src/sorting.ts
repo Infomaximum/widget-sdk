@@ -1,4 +1,5 @@
 import type { ESortingValueModes } from "./indicators";
+import type { TNullable } from "./utilityTypes";
 
 export enum ESortDirection {
   descend = "DESC",
@@ -12,6 +13,7 @@ export type TSortDirection = ESortDirection.ascend | ESortDirection.descend;
 export interface ISortOrder {
   formula: string;
   direction: TSortDirection;
+  displayCondition?: TNullable<string>;
 }
 
 export type TWidgetSortingValueRelatedWidgetMeasure = {

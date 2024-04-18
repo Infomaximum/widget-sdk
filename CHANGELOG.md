@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.27.0](https://github.com/Infomaximum/widget-sdk/compare/v3.26.0...v3.27.0) (2024-04-18)
+
+
+### Features
+
+* добавлена типизация для markdown виджетов ([b1de8e0](https://github.com/Infomaximum/widget-sdk/commit/b1de8e0c0cde294d0f8c1b4dcc5b61357d9f7b4e))
+* Добавлены типы для правил отображения ([dcfe405](https://github.com/Infomaximum/widget-sdk/commit/dcfe405ee4072fad25df24d66f74e1ef01b2377c))
+* повышена версия пакета ([382d51b](https://github.com/Infomaximum/widget-sdk/commit/382d51b34d4cb0e21e89e9e0b1864e77b174d1e9))
+
+## [3.26.0](https://github.com/Infomaximum/widget-sdk/compare/v3.24.1...v3.26.0) (2024-04-18)
+
+
+### Features
+
+* добавлен новый EControlType ([3730334](https://github.com/Infomaximum/widget-sdk/commit/3730334a3a496d671a2636d703fe74f0fb97deb5))
+* поддержано условие отображения сортировок для пункта "в компоненте" ([4289043](https://github.com/Infomaximum/widget-sdk/commit/4289043b5aa9388a7611e20ab6f1c84c4e9fe2ff))
+
+
+### Bug Fixes
+
+* изменена вилидация запуска скрипта со способом ввода "Из переменной" ([53b8cfb](https://github.com/Infomaximum/widget-sdk/commit/53b8cfbc23898a52d8944e87bb0542b6d571439f))
+
 ### [3.25.1](https://github.com/Infomaximum/widget-sdk/compare/v3.25.0...v3.25.1) (2024-04-11)
 
 

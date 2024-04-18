@@ -3,7 +3,6 @@ import type { IWidgetProcess } from "./metaDescription";
 import type { TNullable } from "./utilityTypes";
 import type { ICommonColumnIndicator, TWidgetVariable } from "./indicators";
 import type { ESimpleDataType } from "./data";
-import type { TColor } from "./settings/values";
 
 export interface IWidgetTableColumn {
   /** Имя колонки */
@@ -31,10 +30,6 @@ export interface IWidgetTable {
  */
 export type TDisplayMode = "preview" | "full";
 
-export interface IDisplayRule {
-  color: TColor;
-}
-
 export interface IWidgetsContext {
   /** используемый язык в системе */
   language: ELanguages;
@@ -57,6 +52,4 @@ export interface IWidgetsContext {
   userLogin: string;
   scripts: Map<string, IActionScript>;
   tables: Set<string>;
-  reportDisplayRules: Map<string, IDisplayRule>;
-  workspaceDisplayRules: Map<number, Map<string, IDisplayRule>>;
 }

@@ -3,10 +3,13 @@ import {
   type IWidgetDimension,
   type IWidgetMeasure,
   type IWidgetSortingIndicator,
+  type TWidgetVariable,
 } from "../../indicators";
 import { getDimensionFormula, getMeasureFormula } from "../../indicatorsFormulas";
+import { EDisplayConditionMode } from "../../settings/values";
 import type { ISortOrder } from "../../sorting";
 import { compactMap } from "../../utils/functions";
+import { checkDisplayCondition } from "./displayCondition";
 
 /**
  * Преобразовать объекты сортировок из settings виджета в sortOrders вычислителя
@@ -18,7 +21,8 @@ import { compactMap } from "../../utils/functions";
 export function mapSortingToInputs(
   sortingIndicators: IWidgetSortingIndicator[] = [],
   dimensionsInOriginalOrder: IWidgetDimension[] = [],
-  measuresInOriginalOrder: IWidgetMeasure[] = []
+  measuresInOriginalOrder: IWidgetMeasure[] = [],
+  variables: Map<string, TWidgetVariable>
 ): ISortOrder[] {
   return compactMap(sortingIndicators, ({ value, direction }) => {
     if (
@@ -36,7 +40,24 @@ export function mapSortingToInputs(
     ) {
       const dimension = dimensionsInOriginalOrder[value.index];
 
-      return dimension && { formula: getDimensionFormula(dimension), direction };
+      if (!dimension) {
+        return;
+      }
+
+      const formula = getDimensionFormula(dimension);
+
+      if (!formula || !checkDisplayCondition(dimension.displayCondition, variables)) {
+        return;
+      }
+
+      return {
+        formula: getDimensionFormula(dimension),
+        direction,
+        displayCondition:
+          dimension.displayCondition?.mode === EDisplayConditionMode.FORMULA
+            ? dimension.displayCondition.formula
+            : undefined,
+      };
     }
 
     if (value.mode === ESortingValueModes.MEASURE_IN_WIDGET) {

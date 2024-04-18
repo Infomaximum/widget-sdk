@@ -1,10 +1,7 @@
 import type { ESimpleDataType } from "./data";
 import type { IFormulaFilterValue } from "./filtration";
 import type { EFormatTypes, EFormattingPresets } from "./formatting";
-import type {
-  EMarkdownDisplayMode,
-  TDisplayCondition,
-} from "./settings/values";
+import type { EMarkdownDisplayMode, TDisplayCondition } from "./settings/values";
 import type { TSortDirection, TWidgetSortingValue } from "./sorting";
 import type { TNullable } from "./utilityTypes";
 

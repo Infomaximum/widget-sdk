@@ -104,6 +104,10 @@ export interface IPanelDescription<
   Settings extends object,
   GroupSettings extends IGroupSettings = IGroupSettings,
 > {
+  /** Добавить заголовок для виджета */
+  useHeader?: boolean;
+  /** Добавить описание для виджета */
+  useMarkdown?: boolean;
   /** Конфигурация настроек данных виджета */
   dataRecords?: TWidgetLevelRecord<Settings>[];
   /** Конфигурация настроек отображения виджета */

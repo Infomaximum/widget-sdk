@@ -28,6 +28,11 @@ export enum EColorMode {
   AUTO = "AUTO",
 }
 
+export enum EMarkdownDisplayMode {
+  NONE = "NONE",
+  INDICATOR = "INDICATOR",
+}
+
 /** Настройка цвета */
 export type TColor =
   | {

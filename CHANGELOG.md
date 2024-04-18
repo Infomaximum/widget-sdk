@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.27.0](https://github.com/Infomaximum/widget-sdk/compare/v3.26.0...v3.27.0) (2024-04-18)
+
+
+### Features
+
+* добавлена типизация для markdown виджетов ([b1de8e0](https://github.com/Infomaximum/widget-sdk/commit/b1de8e0c0cde294d0f8c1b4dcc5b61357d9f7b4e))
+* Добавлены типы для правил отображения ([dcfe405](https://github.com/Infomaximum/widget-sdk/commit/dcfe405ee4072fad25df24d66f74e1ef01b2377c))
+* повышена версия пакета ([382d51b](https://github.com/Infomaximum/widget-sdk/commit/382d51b34d4cb0e21e89e9e0b1864e77b174d1e9))
+
 ## [3.26.0](https://github.com/Infomaximum/widget-sdk/compare/v3.24.1...v3.26.0) (2024-04-18)
 
 

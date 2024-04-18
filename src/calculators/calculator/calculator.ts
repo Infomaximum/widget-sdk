@@ -33,8 +33,7 @@ export interface ICalculatorDimensionInput extends ICalculatorIndicatorInput {
   additionalFormulas?: Map<string, string>;
 }
 
-export interface ICalculatorDimensionOutput
-  extends ICalculatorIndicatorOutput {}
+export interface ICalculatorDimensionOutput extends ICalculatorIndicatorOutput {}
 
 export interface ICalculatorMeasureInput extends ICalculatorIndicatorInput {
   mainFormula: string;

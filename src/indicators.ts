@@ -1,7 +1,10 @@
 import type { ESimpleDataType } from "./data";
 import type { IFormulaFilterValue } from "./filtration";
 import type { EFormatTypes, EFormattingPresets } from "./formatting";
-import type { TDisplayCondition } from "./settings/values";
+import type {
+  EMarkdownDisplayMode,
+  TDisplayCondition,
+} from "./settings/values";
 import type { TSortDirection, TWidgetSortingValue } from "./sorting";
 import type { TNullable } from "./utilityTypes";
 
@@ -128,9 +131,7 @@ export interface IWidgetColumnIndicator extends IWidgetIndicator {
   displayCondition?: TDisplayCondition;
 }
 
-export interface IWidgetDimensionHierarchy<
-  D extends IWidgetDimension = IWidgetDimension,
-> {
+export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetDimension> {
   /** Идентификатор, генерируемый на основе текущего времени */
   id: number;
   type: EWidgetIndicatorType.DIMENSION_HIERARCHY;
@@ -146,6 +147,11 @@ export interface IWidgetDimension extends IWidgetColumnIndicator {
 
 export interface IWidgetMeasure extends IWidgetColumnIndicator {
   type: EWidgetIndicatorType.MEASURE;
+}
+
+export interface IMarkdownMeasure extends IWidgetMeasure {
+  format: EFormatTypes;
+  displayMode: EMarkdownDisplayMode;
 }
 
 /** Тип показателя */

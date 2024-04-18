@@ -58,7 +58,7 @@ export interface IWidgetAction {
 
 export const isActionValid = (
   action: IWidgetAction,
-  { scripts, tables }: IWidgetsContext
+  { scripts, tables, variables }: IWidgetsContext
 ) => {
   const currentScript = scripts.get(action.scriptGuid ?? "");
 
@@ -66,9 +66,7 @@ export const isActionValid = (
     return false;
   }
 
-  const actionInputsMap = new Map(
-    action.inputs.map((input) => [input.guid, input])
-  );
+  const actionInputsMap = new Map(action.inputs.map((input) => [input.guid, input]));
 
   if (actionInputsMap.size < currentScript.fieldsGuids.size) {
     return false;
@@ -83,7 +81,7 @@ export const isActionValid = (
 
     const { value } = actionInput;
 
-    if (value.mode === EWidgetActionInputMode.FROM_VARIABLE && !value.guid) {
+    if (value.mode === EWidgetActionInputMode.FROM_VARIABLE && !variables.has(value.guid)) {
       return false;
     }
 
@@ -95,10 +93,7 @@ export const isActionValid = (
       return false;
     }
 
-    if (
-      value.mode === EWidgetActionInputMode.FROM_COLUMN &&
-      !tables.has(value.tableName)
-    ) {
+    if (value.mode === EWidgetActionInputMode.FROM_COLUMN && !tables.has(value.tableName)) {
       return false;
     }
 

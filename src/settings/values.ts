@@ -64,6 +64,11 @@ export interface IColoredValue {
   color: TColorBase | TColorRule;
 }
 
+export enum EMarkdownDisplayMode {
+  NONE = "NONE",
+  INDICATOR = "INDICATOR",
+}
+
 /** Настройка цвета */
 export type TColor =
   | {

@@ -11,9 +11,7 @@ export interface ILens<T extends TNullable<object>, Value> {
 }
 
 export type TValuePath = string | string[];
-export type TRecordAccessor<Settings extends object, Value> =
-  | TValuePath
-  | ILens<Settings, Value>;
+export type TRecordAccessor<Settings extends object, Value> = TValuePath | ILens<Settings, Value>;
 
 export interface IDisplayPredicate<Settings> {
   (s: Settings): boolean;
@@ -54,10 +52,7 @@ export interface ISelectOption {
 export interface ICustomAddButtonProps {
   options?: ISelectOption[];
   fetchOptions?: () => Promise<ISelectOption[]>;
-  onSelect: (
-    value: string,
-    update: <T extends object>(f: (prevItems: T[]) => T[]) => void
-  ) => void;
+  onSelect: (value: string, update: <T extends object>(f: (prevItems: T[]) => T[]) => void) => void;
 }
 
 /** Кнопка добавления группы в набор */
@@ -80,15 +75,10 @@ interface IAutoIdentifiedArrayItem {
   id: number;
 }
 
-export interface IGroupSettings
-  extends IAutoIdentifiedArrayItem,
-    Record<string, any> {}
+export interface IGroupSettings extends IAutoIdentifiedArrayItem, Record<string, any> {}
 
 /** Конфигурация набора групп */
-export interface IGroupSetDescription<
-  Settings extends object,
-  GroupSettings extends object,
-> {
+export interface IGroupSetDescription<Settings extends object, GroupSettings extends object> {
   /** Заголовок */
   title: string;
   /** Максимальное количество групп в наборе  */
@@ -100,9 +90,7 @@ export interface IGroupSetDescription<
   /** Создать элементы управления внутри группы (для вкладки настроек данных) */
   createDataRecords?(group: IGroupSettings): TGroupLevelRecord<GroupSettings>[];
   /** Создать элементы управления внутри группы (для вкладки настроек отображения) */
-  createDisplayRecords?(
-    group: IGroupSettings
-  ): TGroupLevelRecord<GroupSettings>[];
+  createDisplayRecords?(group: IGroupSettings): TGroupLevelRecord<GroupSettings>[];
   /** Получить название для плашки */
   getGroupTitle?(group: IGroupSettings): string;
   /** Валидная ли группа */
@@ -116,15 +104,16 @@ export interface IPanelDescription<
   Settings extends object,
   GroupSettings extends IGroupSettings = IGroupSettings,
 > {
+  /** Добавить заголовок для виджета */
+  useHeader?: boolean;
+  /** Добавить описание для виджета */
+  useMarkdown?: boolean;
   /** Конфигурация настроек данных виджета */
   dataRecords?: TWidgetLevelRecord<Settings>[];
   /** Конфигурация настроек отображения виджета */
   displayRecords?: TWidgetLevelRecord<Settings>[];
   /** Конфигурации наборов групп  */
-  groupSetDescriptions?: Record<
-    string,
-    IGroupSetDescription<Settings, GroupSettings>
-  >;
+  groupSetDescriptions?: Record<string, IGroupSetDescription<Settings, GroupSettings>>;
 }
 
 export interface IWidgetProcess {
@@ -159,8 +148,5 @@ export interface IPanelDescriptionCreator<
   Settings extends IBaseWidgetSettings,
   GroupSettings extends IGroupSettings,
 > {
-  (
-    context: IWidgetsContext,
-    panelSettings: Settings
-  ): IPanelDescription<Settings, GroupSettings>;
+  (context: IWidgetsContext, panelSettings: Settings): IPanelDescription<Settings, GroupSettings>;
 }

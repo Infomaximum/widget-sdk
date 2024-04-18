@@ -1,6 +1,6 @@
 {
   "name": "@infomaximum/widget-sdk",
-  "version": "3.26.0-beta",
+  "version": "3.26.0",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -12,24 +12,26 @@
   "scripts": {
     "build": "rollup -c",
     "lint": "tsc --noEmit",
-    "release": "tsc --noEmit && standard-version && rollup -c"
+    "release": "tsc --noEmit && standard-version && rollup -c",
+    "format": "prettier --find-config-path --write 'src/**/*'"
   },
   "dependencies": {
+    "@infomaximum/base-filter": "^1.1.0",
     "@infomaximum/global-types": "^1.2.0",
-    "@infomaximum/localization": "^1.0.4",
-    "@infomaximum/base-filter": "^1.1.0"
+    "@infomaximum/localization": "^1.0.4"
   },
   "devDependencies": {
+    "@infomaximum/config": "^2.6.0",
     "@rollup/plugin-commonjs": "25.0.7",
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-typescript": "11.1.5",
-    "prettier": "3.0.3",
-    "rollup": "4.4.1",
+    "prettier": "3.2.5",
+    "rollup": "4.14.3",
     "rollup-plugin-delete": "2.0.0",
     "rollup-plugin-dts": "6.1.0",
     "standard-version": "9.5.0",
     "tslib": "^2.4.1",
-    "typescript": "5.2.2"
+    "typescript": "5.4.5"
   },
   "repository": {
     "type": "git",

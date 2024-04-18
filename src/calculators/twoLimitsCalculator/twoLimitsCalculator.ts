@@ -43,8 +43,7 @@ export interface ITwoLimitsCalculatorInput {
   secondLimit?: number;
 }
 
-export interface ITwoLimitsCalculatorExportInput
-  extends ITwoLimitsCalculatorInput {
+export interface ITwoLimitsCalculatorExportInput extends ITwoLimitsCalculatorInput {
   fileName: string;
   columnsOrder: IExportColumnOrder[];
 }

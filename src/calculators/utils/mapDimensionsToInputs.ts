@@ -2,10 +2,7 @@ import type { IWidgetDimension, TWidgetVariable } from "../../indicators";
 import { getDimensionFormula } from "../../indicatorsFormulas";
 import { compactMap } from "../../utils/functions";
 import type { ICalculatorDimensionInput } from "../calculator";
-import {
-  checkDisplayCondition,
-  getDisplayConditionFormula,
-} from "./displayCondition";
+import { checkDisplayCondition, getDisplayConditionFormula } from "./displayCondition";
 
 export function mapDimensionToInput<T extends IWidgetDimension>(
   dimension: T,
@@ -27,9 +24,7 @@ export function mapDimensionToInput<T extends IWidgetDimension>(
     formula,
     dataType: dimension.dataType,
     hideEmpty: dimension.hideEmptyValues,
-    displayConditionFormula: getDisplayConditionFormula(
-      dimension.displayCondition
-    ),
+    displayConditionFormula: getDisplayConditionFormula(dimension.displayCondition),
     additionalFormulas: addFormulas(dimension),
   };
 }

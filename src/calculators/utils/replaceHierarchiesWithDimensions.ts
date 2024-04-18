@@ -8,22 +8,19 @@ import type { ICalculatorFilter } from "../calculator";
 import { replaceDisplayCondition } from "./displayCondition";
 import { selectDimensionFromHierarchy } from "./selectDimensionFromHierarchy";
 
-export const replaceHierarchiesWithDimensions = <
-  D extends IWidgetDimension = IWidgetDimension,
->(
+export const replaceHierarchiesWithDimensions = <D extends IWidgetDimension = IWidgetDimension>(
   dimensions: (D | IWidgetDimensionHierarchy<D>)[],
   filters: ICalculatorFilter[]
 ) =>
   compactMap(dimensions, (indicator) => {
     if (isHierarchy(indicator)) {
-      const selectedDimension = selectDimensionFromHierarchy<
-        IWidgetDimensionHierarchy<D>,
-        D
-      >(indicator, filters);
+      const selectedDimension = selectDimensionFromHierarchy<IWidgetDimensionHierarchy<D>, D>(
+        indicator,
+        filters
+      );
 
       return (
-        selectedDimension &&
-        replaceDisplayCondition(selectedDimension, indicator.displayCondition)
+        selectedDimension && replaceDisplayCondition(selectedDimension, indicator.displayCondition)
       );
     }
 

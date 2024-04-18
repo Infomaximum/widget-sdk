@@ -3,10 +3,7 @@ import { getEventMeasureFormula } from "../../indicatorsFormulas";
 import type { IWidgetProcess } from "../../metaDescription";
 import { compactMap } from "../../utils/functions";
 import type { ICalculatorMeasureInput } from "../calculator";
-import {
-  checkDisplayCondition,
-  getDisplayConditionFormula,
-} from "./displayCondition";
+import { checkDisplayCondition, getDisplayConditionFormula } from "./displayCondition";
 
 function mapEventMeasureToInput<T extends IProcessIndicator>(
   indicator: T,
@@ -28,9 +25,7 @@ function mapEventMeasureToInput<T extends IProcessIndicator>(
     alias: String(indicator.id),
     mainFormula,
     dataType: indicator.dataType,
-    displayConditionFormula: getDisplayConditionFormula(
-      indicator.displayCondition
-    ),
+    displayConditionFormula: getDisplayConditionFormula(indicator.displayCondition),
     additionalFormulas: addFormulas(indicator),
   };
 }

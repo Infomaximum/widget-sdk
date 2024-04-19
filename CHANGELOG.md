@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.28.0](https://github.com/Infomaximum/widget-sdk/compare/v3.27.1...v3.28.0) (2024-04-19)
+
+
+### Features
+
+* Добавлены типы для правил отображения ([fd1198f](https://github.com/Infomaximum/widget-sdk/commit/fd1198f73815ec5309468cbbaf806a76908af2e3))
+
 ### [3.27.1](https://github.com/Infomaximum/widget-sdk/compare/v3.27.0...v3.27.1) (2024-04-18)
 
 ## [3.27.0](https://github.com/Infomaximum/widget-sdk/compare/v3.26.0...v3.27.0) (2024-04-18)

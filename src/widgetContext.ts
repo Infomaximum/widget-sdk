@@ -59,4 +59,5 @@ export interface IWidgetsContext {
   tables: Set<string>;
   reportDisplayRules: Map<string, IDisplayRule>;
   workspaceDisplayRules: Map<number, Map<string, IDisplayRule>>;
+  viewKeyByName: Map<string, string>;
 }

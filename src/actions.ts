@@ -73,6 +73,7 @@ export interface IActionOpenView extends IActionCommon {
   viewType: EViewType;
   drawerPlacement: EDrawerPlacement;
   placeholderName: string;
+  isOpenInCurrentWindow?: boolean;
 }
 
 export type TActionsOnClick =

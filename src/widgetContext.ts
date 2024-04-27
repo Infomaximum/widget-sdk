@@ -25,6 +25,13 @@ export interface IWidgetTable {
 }
 
 /**
+ * simplified - упрощенный для работы фильтрации в образах открытых в дровере/модальном окне
+ *
+ * full - полный
+ */
+export type TFiltrationMode = "simplified" | "full";
+
+/**
  * preview - упрощенный
  *
  * full - полный
@@ -57,6 +64,7 @@ export interface IWidgetsContext {
   userLogin: string;
   scripts: Map<string, IActionScript>;
   tables: Set<string>;
+  filtrationMode: TFiltrationMode;
   reportDisplayRules: Map<string, IDisplayRule>;
   workspaceDisplayRules: Map<number, Map<string, IDisplayRule>>;
   viewKeyByName: Map<string, string>;

@@ -55,16 +55,39 @@ export interface ICustomAddButtonProps {
   onSelect: (value: string, update: <T extends object>(f: (prevItems: T[]) => T[]) => void) => void;
 }
 
+export interface IWidgetIndicatorMenuConfig {
+  hideTablesColumnsOptions?: boolean;
+  hideCommonOptions?: boolean;
+  hideQuantityOption?: boolean;
+}
+
+export interface IMeasureMenuConfig extends IWidgetIndicatorMenuConfig {}
+
+export interface ISortingMenuConfig extends IWidgetIndicatorMenuConfig {}
+
 /** Кнопка добавления группы в набор */
 type TAddButton =
   | {
       title: string;
-      indicatorType: Exclude<EWidgetIndicatorType, EWidgetIndicatorType.CUSTOM>;
+      indicatorType: Exclude<
+        EWidgetIndicatorType,
+        EWidgetIndicatorType.CUSTOM | EWidgetIndicatorType.MEASURE | EWidgetIndicatorType.SORTING
+      >;
     }
   | {
       title: string;
       indicatorType: EWidgetIndicatorType.CUSTOM;
       props: ICustomAddButtonProps;
+    }
+  | {
+      title: string;
+      indicatorType: EWidgetIndicatorType.MEASURE;
+      menuConfig?: IMeasureMenuConfig;
+    }
+  | {
+      title: string;
+      indicatorType: EWidgetIndicatorType.SORTING;
+      menuConfig?: ISortingMenuConfig;
     };
 
 interface IAutoIdentifiedArrayItem {

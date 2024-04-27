@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.29.0](https://github.com/Infomaximum/widget-sdk/compare/v3.28.0...v3.29.0) (2024-04-27)
+
+
+### Features
+
+* убрано экранирование тире в функции escapeSpecialCharacters ([b8864a1](https://github.com/Infomaximum/widget-sdk/commit/b8864a16f62cae7ebc494d0a5204fb3b3d727809))
+
 ## [3.28.0](https://github.com/Infomaximum/widget-sdk/compare/v3.27.1...v3.28.0) (2024-04-19)
 
 

@@ -3,4 +3,3 @@ export const escapeSpecialCharacters = (formula: string) =>
     .replaceAll("\\", "\\\\")
     .replaceAll('"', '\\"')
     .replaceAll("`", "\\`")
-    .replaceAll("-", "\\-");

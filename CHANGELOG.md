@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.30.0](https://github.com/Infomaximum/widget-sdk/compare/v3.29.0...v3.30.0) (2024-04-27)
+
+
+### Features
+
+* добавлен параметр для конфигурации выпадающего меню ([369660e](https://github.com/Infomaximum/widget-sdk/commit/369660e5ca4ff05fdb2ce2eee161c6693361c0db))
+
 ## [3.29.0](https://github.com/Infomaximum/widget-sdk/compare/v3.28.0...v3.29.0) (2024-04-27)
 
 

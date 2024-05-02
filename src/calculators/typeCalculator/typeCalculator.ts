@@ -3,12 +3,13 @@ import type { ICalculator } from "../calculator";
 import type { ICalculatorVariablesValues } from "../variables";
 
 export interface ITypeCalculatorInput {
-  formula: string;
+  dimensions: {alias: string, formula: string}[];
+  measures: {alias: string, formula: string}[];
   variablesValues: ICalculatorVariablesValues;
 }
 
 export interface ITypeCalculatorOutput {
-  type: ESimpleDataType;
+  types: Map<string, ESimpleDataType>
 }
 
 export interface ITypeCalculator extends ICalculator<ITypeCalculatorInput, ITypeCalculatorOutput> {}

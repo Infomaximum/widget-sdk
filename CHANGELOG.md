@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.31.0](https://github.com/Infomaximum/widget-sdk/compare/v3.30.0...v3.31.0) (2024-05-02)
+
+
+### Features
+
+* изменен интерфейс для вычислителя типа ([f6462f2](https://github.com/Infomaximum/widget-sdk/commit/f6462f2c24f970e7e194244a8af467b622e9f56a))
+
 ## [3.30.0](https://github.com/Infomaximum/widget-sdk/compare/v3.29.0...v3.30.0) (2024-04-27)
 
 

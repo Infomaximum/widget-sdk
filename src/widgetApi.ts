@@ -21,6 +21,8 @@ export type TLaunchActionParams = {
 export type TWidgetContainer = {
   /** Имеет ли контейнер виджета ограниченную максимальную высоту */
   isMaxHeightLimited: boolean;
+  /** Установить минимальную высоту рабочей области виджета */
+  setContentMinHeight(value: number): void;
 };
 
 export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings> {

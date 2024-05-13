@@ -1,11 +1,9 @@
-import type { IProcessIndicator } from "../../indicators";
 import type { TNullable } from "../../utilityTypes";
 import type {
   ICalculator,
   ICalculatorFilter,
   ICalculatorMeasureInput,
 } from "../calculator/calculator";
-import type { ICalculatorVariablesValues } from "../variables";
 
 export interface IGraphElement {
   /** Значения мер по alias */
@@ -32,8 +30,6 @@ export interface IProcessGraphCalculatorInput {
   filters: ICalculatorFilter[];
   eventFilters?: ICalculatorFilter[];
   displayConditionFormula?: TNullable<string>;
-  /** Значения переменных */
-  variablesValues?: ICalculatorVariablesValues;
 }
 
 export interface IProcessGraphCalculatorOutput {

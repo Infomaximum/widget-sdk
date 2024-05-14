@@ -73,6 +73,7 @@ export interface IActionOpenView extends IActionCommon {
   viewType: EViewType;
   drawerPlacement: EDrawerPlacement;
   placeholderName: string;
+  inputs: IActionScriptField[];
   isOpenInCurrentWindow?: boolean;
 }
 

@@ -25,6 +25,11 @@ export type TWidgetContainer = {
   setContentMinHeight(value: number): void;
 };
 
+export interface IWidgetPersistValue<T extends object = object> {
+  get(): T | null;
+  set(value: T | null): void;
+}
+
 export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings> {
   /** guid виджета */
   guid: string;
@@ -57,6 +62,8 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
   widgetContainer: TWidgetContainer;
   /** Запуск действия */
   launchAction(params: TLaunchActionParams): void;
+  /** Значение, сохраняемое в localStorage и URL */
+  persistValue: IWidgetPersistValue;
 }
 
 export interface ICustomWidgetProps<

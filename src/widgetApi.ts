@@ -18,6 +18,11 @@ export type TLaunchActionParams = {
   needConfirmation?: boolean;
 };
 
+export interface IWidgetPersistValue<T extends object = object> {
+  get(): T | null;
+  set(value: T | null): void;
+}
+
 export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings> {
   /** guid виджета */
   guid: string;
@@ -48,6 +53,8 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
 
   /** Запуск действия */
   launchAction(params: TLaunchActionParams): void;
+/** Значение, сохраняемое в localStorage и URL */
+  persistValue: IWidgetPersistValue;
 }
 
 export interface ICustomWidgetProps<

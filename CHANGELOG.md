@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.32.0](https://github.com/Infomaximum/widget-sdk/compare/v3.31.0...v3.32.0) (2024-05-15)
+
+
+### Features
+
+* в props виджета добавлен persistValue ([50b4704](https://github.com/Infomaximum/widget-sdk/commit/50b4704cfca20d40419f6d056fab4588547cc0bf))
+
 ## [3.31.0](https://github.com/Infomaximum/widget-sdk/compare/v3.30.0...v3.31.0) (2024-05-02)
 
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.33.0](https://github.com/Infomaximum/widget-sdk/compare/v3.32.0...v3.33.0) (2024-05-16)
+
+
+### Features
+
+* в ISelectOption добавлено поле disabled ([8920d7a](https://github.com/Infomaximum/widget-sdk/commit/8920d7a5edfa968d264f3d322361ab8fecb4ddb2))
+
 ## [3.32.0](https://github.com/Infomaximum/widget-sdk/compare/v3.31.0...v3.32.0) (2024-05-15)
 
 

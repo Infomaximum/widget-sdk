@@ -47,6 +47,7 @@ export type TGroupLevelRecord<LevelGroupSettings extends object> =
 export interface ISelectOption {
   value: string;
   label: string;
+  disabled?: boolean;
 }
 
 export interface ICustomAddButtonProps {

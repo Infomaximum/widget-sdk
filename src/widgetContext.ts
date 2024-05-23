@@ -68,4 +68,5 @@ export interface IWidgetsContext {
   reportDisplayRules: Map<string, IDisplayRule>;
   workspaceDisplayRules: Map<number, Map<string, IDisplayRule>>;
   viewKeyByName: Map<string, string>;
+  fetchColumnsByTableName(tableName: string): Promise<IWidgetTableColumn[] | undefined>;
 }

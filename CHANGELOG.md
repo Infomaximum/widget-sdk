@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.34.0](https://github.com/Infomaximum/widget-sdk/compare/v3.33.0...v3.34.0) (2024-05-23)
+
+
+### Features
+
+* добавлен метод для запроса колонок по имени таблицы в widgetsContext ([dac9cd1](https://github.com/Infomaximum/widget-sdk/commit/dac9cd1a9713d9f995f98149e7111180eae4c240))
+
 ## [3.33.0](https://github.com/Infomaximum/widget-sdk/compare/v3.32.0...v3.33.0) (2024-05-16)
 
 

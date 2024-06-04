@@ -10,6 +10,7 @@ import type { TActionsOnClick } from "./actions";
 import type { ICalculatorFilter } from "./calculators/calculator/calculator";
 import type { ICalculatorFactory } from "./calculators";
 import type { IDefinition } from "./definition";
+import type { TContextMenu } from "./contextMenu";
 
 export type TLaunchActionParams = {
   action: TActionsOnClick;
@@ -68,6 +69,8 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
   launchAction(params: TLaunchActionParams): ILaunchActionSubscribers;
   /** Значение, сохраняемое в localStorage и URL */
   persistValue: IWidgetPersistValue;
+  /** функция для управления контекстными меню */
+  setContextMenu: (key: string, value: TContextMenu | null) => void;
 }
 
 export interface ICustomWidgetProps<

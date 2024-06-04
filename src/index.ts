@@ -11,6 +11,7 @@ export * from "./definition";
 export * from "./actions";
 export * from "./calculators";
 export * from "./controls";
+export * from "./contextMenu";
 export * from "./data";
 export * from "./filtration";
 export * from "./formatting";

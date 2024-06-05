@@ -2,7 +2,7 @@ import type { ELanguages } from "@infomaximum/localization";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
 import type { IGroupSettings, IWidgetProcess } from "./metaDescription";
 import type { IWidgetFiltration } from "./filtration";
-import type { IWidgetPlaceholderController } from "./placeholder";
+import type { IWidgetPlaceholderController, IWidgetPlaceholderValues } from "./placeholder";
 import type { TWidgetVariable } from "./indicators";
 import type { IWidgetFormatting } from "./formatting";
 import type { IWidgetsContext } from "./widgetContext";
@@ -60,7 +60,10 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
   /** Объект для управления плейсхолдером */
   placeholder: IWidgetPlaceholderController;
 
-  /** Контекст виджетов */
+  /** Объект для получения значений плейсхолдера */
+  placeholderValues?: IWidgetPlaceholderValues;
+
+  /** Контекст виджета */
   widgetsContext: IWidgetsContext;
 
   /** Данные о контейнере виджета */

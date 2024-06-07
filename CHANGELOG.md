@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.36.0](https://github.com/Infomaximum/widget-sdk/compare/v3.35.0...v3.36.0) (2024-06-07)
+
+
+### Features
+
+* добавлены фильтры для ввода из динамического списка, наименование полей действия и возможность их скрывать ([377df22](https://github.com/Infomaximum/widget-sdk/commit/377df22605c12a144e6729f21d6b3422563cf276))
+
 ## [3.35.0](https://github.com/Infomaximum/widget-sdk/compare/v3.34.2...v3.35.0) (2024-06-05)
 
 

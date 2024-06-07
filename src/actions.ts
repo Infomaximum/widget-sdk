@@ -83,34 +83,42 @@ export type TActionsOnClick =
   | IActionUpdateVariable
   | IActionOpenView;
 
-export type TWidgetActionInputValue =
-  | {
-      mode: EWidgetActionInputMode.FROM_COLUMN;
-      tableName: string;
-      columnName: string;
-    }
-  | {
-      mode: EWidgetActionInputMode.FROM_VARIABLE;
-      name: string;
-    }
-  | {
-      mode: EWidgetActionInputMode.FORMULA;
-      formula: string;
-    }
-  | {
-      mode: EWidgetActionInputMode.MANUALLY;
-      description: string;
-    }
-  | {
-      mode: EWidgetActionInputMode.STATIC_LIST;
-      options: string[];
-      defaultOptionIndex: number;
-    }
-  | {
-      mode: EWidgetActionInputMode.DYNAMIC_LIST;
-      formula: string;
-      defaultValue: string;
-    };
+export type TWidgetActionCommonInputValue = {
+  name: string;
+  isHidden: boolean;
+};
+
+export type TWidgetActionInputValue = TWidgetActionCommonInputValue &
+  (
+    | {
+        mode: EWidgetActionInputMode.FROM_COLUMN;
+        tableName: string;
+        columnName: string;
+      }
+    | {
+        mode: EWidgetActionInputMode.FROM_VARIABLE;
+        name: string;
+      }
+    | {
+        mode: EWidgetActionInputMode.FORMULA;
+        formula: string;
+      }
+    | {
+        mode: EWidgetActionInputMode.MANUALLY;
+        description: string;
+      }
+    | {
+        mode: EWidgetActionInputMode.STATIC_LIST;
+        options: string[];
+        defaultOptionIndex: number;
+      }
+    | {
+        mode: EWidgetActionInputMode.DYNAMIC_LIST;
+        formula: string;
+        defaultValue: string;
+        filters: (IFormulaFilterValue | string)[];
+      }
+  );
 
 export interface IWidgetActionInput {
   name: string;

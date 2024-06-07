@@ -10,8 +10,12 @@ export enum EWidgetActionInputMode {
   MANUALLY = "MANUALLY",
 }
 
-export type TWidgetActionInputValue =
-  | {
+export type TWidgetActionCommonInputValue = {
+  name: string
+  isHidden: boolean
+}
+
+export type TWidgetActionInputValue = TWidgetActionCommonInputValue & ({
       mode: EWidgetActionInputMode.FROM_COLUMN;
       tableName: string;
       columnName: string;
@@ -37,7 +41,8 @@ export type TWidgetActionInputValue =
       mode: EWidgetActionInputMode.DYNAMIC_LIST;
       formula: string;
       defaultValue: string;
-    };
+      filters: (IFormulaFilterValue | string)[]
+    });
 
 export interface IWidgetActionInput {
   guid: string;

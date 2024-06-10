@@ -115,6 +115,7 @@ export interface IFormulaFilterValue {
 }
 
 interface IStagesFilterItem {
+  id: number;
   /** Название этапа */
   name: string;
   /** Формула фильтра этапа */

@@ -97,7 +97,7 @@ export type TWidgetActionInputValue = TWidgetActionCommonInputValue &
       }
     | {
         mode: EWidgetActionInputMode.FROM_VARIABLE;
-        name: string;
+        sourceVariable: string;
       }
     | {
         mode: EWidgetActionInputMode.FORMULA;
@@ -154,7 +154,7 @@ export const isActionValid = (
 
     const { value } = actionInput;
 
-    if (value.mode === EWidgetActionInputMode.FROM_VARIABLE && !variables.has(value.name)) {
+    if (value.mode === EWidgetActionInputMode.FROM_VARIABLE && !variables.has(value.sourceVariable)) {
       return false;
     }
 

@@ -50,10 +50,68 @@ export interface ISelectOption {
   disabled?: boolean;
 }
 
+export enum ECustomSelectOptionTypes {
+  DIVIDER = "DIVIDER",
+  SYSTEM = "SYSTEM",
+  GROUP = "GROUP",
+  BRANCH = "BRANCH",
+  LEAF = "LEAF",
+}
+export enum ECustomSelectTemplates {
+  FORMULA = "FORMULA",
+  DIMENSION_GROUPS = "DIMENSION_GROUPS",
+}
+
+export interface ICustomSelectDividerOption {
+  type: ECustomSelectOptionTypes.DIVIDER;
+}
+
+export interface ICustomSelectSystemOption {
+  type: ECustomSelectOptionTypes.SYSTEM;
+  template: ECustomSelectTemplates;
+}
+
+export interface ICustomSelectGroupOption {
+  type: ECustomSelectOptionTypes.GROUP;
+  label: string;
+  options: ICustomSelectOption[];
+  icon: string;
+}
+
+export type TCustomSelectFetchOptions = () => Promise<ICustomSelectOption[]>;
+export type TCustomSelectChildOptions = ICustomSelectOption[] | TCustomSelectFetchOptions;
+
+export interface ICustomSelectBranchOption {
+  type: ECustomSelectOptionTypes.BRANCH;
+  label: string;
+  options: TCustomSelectChildOptions;
+  icon?: string;
+  disabled?: boolean;
+}
+
+export interface ICustomSelectLeafOption {
+  type: ECustomSelectOptionTypes.LEAF;
+  label: string;
+  value: string;
+  onSelect: <T = object>(
+    value: string,
+    update: <R extends object>(f: (prevItems: (T | R)[]) => (T | R)[]) => void
+  ) => void;
+  icon?: string;
+  disabled?: boolean;
+}
+
+export type ICustomSelectOption =
+  | ICustomSelectDividerOption
+  | ICustomSelectSystemOption
+  | ICustomSelectGroupOption
+  | ICustomSelectBranchOption
+  | ICustomSelectLeafOption;
+
 export interface ICustomAddButtonProps {
-  options?: ISelectOption[];
-  fetchOptions?: () => Promise<ISelectOption[]>;
-  onSelect: (value: string, update: <T extends object>(f: (prevItems: T[]) => T[]) => void) => void;
+  options: TCustomSelectChildOptions;
+  hasDropdown?: boolean;
+  onClick?: ICustomSelectLeafOption["onSelect"];
 }
 
 export interface IWidgetIndicatorMenuConfig {

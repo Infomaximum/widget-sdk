@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.37.0](https://github.com/Infomaximum/widget-sdk/compare/v3.36.0...v3.37.0) (2024-06-11)
+
+
+### Features
+
+* Добавлена типизация для кастомного показателя ([09f8a29](https://github.com/Infomaximum/widget-sdk/commit/09f8a293afdea68e28d277e733a54bf2d35ded75))
+
 ## [3.36.0](https://github.com/Infomaximum/widget-sdk/compare/v3.35.0...v3.36.0) (2024-06-07)
 
 

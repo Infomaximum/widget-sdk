@@ -61,7 +61,7 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
   placeholder: IWidgetPlaceholderController;
 
   /** Объект для получения значений плейсхолдера */
-  placeholderValues?: IWidgetPlaceholderValues;
+  placeholderValues: IWidgetPlaceholderValues;
 
   /** Контекст виджета */
   widgetsContext: IWidgetsContext;

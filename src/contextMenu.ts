@@ -10,7 +10,6 @@ export type TContextMenu = (TContextMenuList | TContextMenuButtonGroup) & {
     x?: number;
     y?: number;
   };
-  onClose?: () => void;
 };
 
 export type TContextMenuPositionUnit = "%" | "px";
@@ -46,6 +45,7 @@ export type TContextMenuButtonActions = {
 
 export type TContextMenuButtonClose = {
   type: "close";
+  onClick?: () => void;
 };
 
 export type TContextMenuButtonApply = {

@@ -1,3 +1,4 @@
+import type { TActionsOnClick } from "./actions";
 import type { ESimpleDataType } from "./data";
 import type { IFormulaFilterValue } from "./filtration";
 import type { EFormatTypes, EFormattingPresets } from "./formatting";
@@ -125,6 +126,7 @@ export interface IWidgetColumnIndicator extends IWidgetIndicator {
   formatting?: EFormattingPresets;
   formattingTemplate?: string;
   displayCondition?: TDisplayCondition;
+  onclick?: TActionsOnClick[];
 }
 
 export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetDimension> {

@@ -49,14 +49,14 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
   placeholder: IWidgetPlaceholderController;
 
   /** Объект для получения значений плейсхолдера */
-  placeholderValues?: IWidgetPlaceholderValues;
+  placeholderValues: IWidgetPlaceholderValues;
 
   /** Контекст виджета */
   widgetsContext: IWidgetsContext;
 
   /** Запуск действия */
   launchAction(params: TLaunchActionParams): void;
-/** Значение, сохраняемое в localStorage и URL */
+  /** Значение, сохраняемое в localStorage и URL */
   persistValue: IWidgetPersistValue;
 }
 

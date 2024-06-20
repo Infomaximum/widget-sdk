@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.37.1](https://github.com/Infomaximum/widget-sdk/compare/v3.37.0...v3.37.1) (2024-06-20)
+
+
+### Bug Fixes
+
+* поле placeholderValues сделано обязательным ([f66884b](https://github.com/Infomaximum/widget-sdk/commit/f66884bcb0be309038e48c59faa8d6bda36c6663))
+
 ## [3.37.0](https://github.com/Infomaximum/widget-sdk/compare/v3.36.0...v3.37.0) (2024-06-11)
 
 

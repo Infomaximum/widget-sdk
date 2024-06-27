@@ -186,6 +186,12 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
   isValid?(group: IGroupSettings): boolean;
   /** Находится ли группа в состоянии загрузки */
   isLoading?(group: IGroupSettings): boolean;
+  /** Можно ли удалять группу по умолчанию true */
+  isRemovable?(group: IGroupSettings): boolean;
+  /** Можно ли сортировать группу по умолчанию true */
+  isDraggable?: boolean;
+  /** Опциональный верхний отступ для группы */
+  marginTop?: number;
 }
 
 /** Конфигурация левой панели */

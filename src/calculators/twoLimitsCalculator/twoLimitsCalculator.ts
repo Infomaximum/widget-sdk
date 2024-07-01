@@ -10,7 +10,6 @@ import type {
   ICalculatorMeasureOutput,
 } from "../calculator";
 import type { IExportColumnOrder } from "../calculator/calculator";
-import type { ICalculatorVariablesValues } from "../variables";
 
 export interface ITwoLimitsCalculatorInput {
   /** Разрезы первой группы*/
@@ -19,8 +18,6 @@ export interface ITwoLimitsCalculatorInput {
   dimensionsSecondGroup: ICalculatorDimensionInput[];
   /** Меры */
   measures: ICalculatorMeasureInput[];
-  /** Значения переменных */
-  variablesValues?: ICalculatorVariablesValues;
   /** Фильтры, использующие WHERE */
   filters: ICalculatorFilter[];
   /** Фильтры, использующие HAVING */

@@ -98,6 +98,7 @@ export interface ISelectLeafOption {
     value: string,
     update: <R extends object>(f: (prevItems: (T | R)[]) => (T | R)[]) => void
   ) => void;
+  /** Строка в формате base64 */
   icon?: string;
   disabled?: boolean;
 }
@@ -126,7 +127,7 @@ export interface IWidgetIndicatorMenuConfig {
 }
 
 export interface IMeasureMenuConfig extends IWidgetIndicatorMenuConfig {
-  options?: TMeasureAddButtonSelectOption;
+  options?: TMeasureAddButtonSelectOption[];
 }
 
 export interface ISortingMenuConfig extends IWidgetIndicatorMenuConfig {}

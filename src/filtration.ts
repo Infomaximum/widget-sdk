@@ -57,20 +57,47 @@ export interface IProcessTransitionFilterValue extends IProcessFilterValue {
   endEventName: string;
 }
 
+interface IClickPosition {
+  x: number;
+  y: number;
+  elementWidth: number;
+  elementHeight: number;
+}
+
+interface IPositionConfig extends IClickPosition {
+  type: string;
+}
+
 export interface IAddPresenceOfEventFilter {
-  (name: EProcessFilterNames.presenceOfEvent, value: IProcessEventFilterValue): void;
+  (
+    name: EProcessFilterNames.presenceOfEvent,
+    value: IProcessEventFilterValue,
+    positionConfig?: IPositionConfig
+  ): void;
 }
 
 export interface IAddRepetitionOfEventFilter {
-  (name: EProcessFilterNames.repetitionOfEvent, value: IProcessEventFilterValue): void;
+  (
+    name: EProcessFilterNames.repetitionOfEvent,
+    value: IProcessEventFilterValue,
+    positionConfig?: IPositionConfig
+  ): void;
 }
 
 export interface IAddPresenceOfTransitionFilter {
-  (name: EProcessFilterNames.presenceOfTransition, value: IProcessTransitionFilterValue): void;
+  (
+    name: EProcessFilterNames.presenceOfTransition,
+    value: IProcessTransitionFilterValue,
+    positionConfig?: IPositionConfig
+  ): void;
 }
 
 export interface IAddDurationOfTransitionFilter {
-  (name: EProcessFilterNames.durationOfTransition, value: IProcessTransitionFilterValue): void;
+  (
+    name: EProcessFilterNames.durationOfTransition,
+    value: IProcessTransitionFilterValue,
+    positionConfig?: IPositionConfig
+  ): void;
 }
 
 export enum EFormulaFilterFieldKeys {

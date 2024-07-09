@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.38.0](https://github.com/Infomaximum/widget-sdk/compare/v3.37.1...v3.38.0) (2024-07-09)
+
+
+### Features
+
+* расширены интерфейсы процессных фильтров ([5d40ffe](https://github.com/Infomaximum/widget-sdk/commit/5d40ffe21fd474d39a21119722218976c5e21749))
+
 ### [3.37.1](https://github.com/Infomaximum/widget-sdk/compare/v3.37.0...v3.37.1) (2024-06-20)
 
 

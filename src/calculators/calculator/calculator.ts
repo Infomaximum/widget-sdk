@@ -23,6 +23,8 @@ export interface ICalculatorIndicatorInput {
 
 export interface ICalculatorIndicatorOutput {
   values: (string | null)[];
+  dataType: ESimpleDataType;
+  isArrayDataType: boolean;
 }
 
 export interface ICalculatorDimensionInput extends ICalculatorIndicatorInput {

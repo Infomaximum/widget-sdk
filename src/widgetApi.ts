@@ -6,14 +6,14 @@ import type { IWidgetPlaceholderController, IWidgetPlaceholderValues } from "./p
 import type { TWidgetVariable } from "./indicators";
 import type { IWidgetFormatting } from "./formatting";
 import type { IWidgetsContext } from "./widgetContext";
-import type { TActionsOnClick } from "./actions";
+import type { TAction } from "./actions";
 import type { ICalculatorFilter } from "./calculators/calculator/calculator";
 import type { ICalculatorFactory } from "./calculators";
 import type { IDefinition } from "./definition";
 import type { TContextMenu } from "./contextMenu";
 
 export type TLaunchActionParams = {
-  action: TActionsOnClick;
+  action: TAction;
   onSuccess: () => void;
   filters: ICalculatorFilter[];
   needConfirmation?: boolean;

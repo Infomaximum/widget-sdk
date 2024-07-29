@@ -1,4 +1,4 @@
-import type { IWidgetAction } from "../actions";
+import type { TActionsOnClick } from "../actions";
 import type { IFormulaFilterValue } from "../filtration";
 import type { EWidgetFilterMode, TDisplayCondition } from "./values";
 import type { IMarkdownMeasure, IWidgetSortingIndicator } from "../indicators";
@@ -14,7 +14,7 @@ export interface IBaseWidgetSettings {
   filterMode?: EWidgetFilterMode;
   ignoreFilters?: boolean;
   sorting?: IWidgetSortingIndicator[];
-  actions?: IWidgetAction[];
+  actions?: TActionsOnClick[];
   displayCondition?: TDisplayCondition;
   displayConditionComment?: string;
 }

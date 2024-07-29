@@ -1,31 +1,60 @@
-import type { ESimpleDataType } from "./data";
 import type { IFormulaFilterValue } from "./filtration";
 import type { IWidgetsContext } from "./widgetContext";
 
-export enum EWidgetActionInputMethod {
-  COLUMN = "COLUMN",
-  VARIABLE = "VARIABLE",
+export enum EWidgetActionInputMode {
+  FROM_COLUMN = "FROM_COLUMN",
+  FROM_VARIABLE = "FROM_VARIABLE",
   STATIC_LIST = "STATIC_LIST",
   DYNAMIC_LIST = "DYNAMIC_LIST",
   FORMULA = "FORMULA",
   MANUALLY = "MANUALLY",
 }
 
+export interface IActionCommon {
+  id: number;
+  name: string;
+}
+
 export enum EActionTypes {
-  OPEN_URL = "OPEN_URL",
+  URL = "URL",
   UPDATE_VARIABLE = "UPDATE_VARIABLE",
-  EXECUTE_SCRIPT = "EXECUTE_SCRIPT",
+  RUN_SCRIPT = "RUN_SCRIPT",
   OPEN_VIEW = "OPEN_VIEW",
 }
 
-export enum EViewMode {
-  EXISTED_VIEW = "EXISTED_VIEW",
+export interface IActionGoToUrl extends IActionCommon {
+  type: EActionTypes.URL;
+  url: string;
+  targetBlank: boolean;
+}
+
+export interface IActionScriptField {
+  name: string;
+  id: number;
+  value: TWidgetActionInputValue;
+}
+
+export interface IActionRunScript extends IActionCommon {
+  description: string;
+  type: EActionTypes.RUN_SCRIPT;
+  filters: (IFormulaFilterValue | string)[];
+  inputs: IActionScriptField[];
+  scriptName: string;
+  shouldRefreshWidgetsAfterExecution: boolean;
+}
+
+export interface IActionUpdateVariable extends IActionCommon {
+  type: EActionTypes.UPDATE_VARIABLE;
+  variables: Array<string>;
+}
+
+export enum EViewType {
+  CREATED_VIEW = "CREATED_VIEW",
   GENERATED_BY_SCRIPT = "GENERATED_BY_SCRIPT",
 }
 
-export enum EViewOpenIn {
+export enum EOpenViewMode {
   NEW_WINDOW = "NEW_WINDOW",
-  CURRENT_WINDOW = "CURRENT_WINDOW",
   PLACEHOLDER = "PLACEHOLDER",
   MODAL = "MODAL",
   DRAWER = "DRAWER",
@@ -36,162 +65,81 @@ export enum EDrawerPlacement {
   RIGHT = "RIGHT",
 }
 
-interface IActionCommon {
-  /**  @deprecated - удалится в ближайшее время [BI-13546] */
-  id: number;
-  name: string;
-}
-
-export interface IActionGoToUrl extends IActionCommon {
-  type: EActionTypes.OPEN_URL;
-  url: string;
-  newWindow: boolean;
-}
-
-export interface IActionRunScript extends IActionCommon {
-  type: EActionTypes.EXECUTE_SCRIPT;
-  parameters: TActionOnClickParameter[];
-  scriptKey: string;
-  updateDashboard: boolean;
-}
-
-export interface IActionUpdateVariable extends IActionCommon {
-  type: EActionTypes.UPDATE_VARIABLE;
-  variables: TActionOnClickParameter[];
-}
-
-export type TActionOnClickParameter = (
-  | IParameterInputColumn
-  | IParameterInputVariable
-  | IParameterInputFormula
-) & {
-  name: string;
-  /**  @deprecated - удалится в ближайшее время [BI-13546] */
-  id: number;
-};
-
-interface IParameterInputColumn {
-  inputMethod: EWidgetActionInputMethod.COLUMN;
-  tableName: string;
-  columnName: string;
-}
-
-interface IParameterInputVariable {
-  inputMethod: EWidgetActionInputMethod.VARIABLE;
-  sourceVariable: string;
-}
-
-interface IParameterInputFormula {
-  inputMethod: EWidgetActionInputMethod.FORMULA;
-  formula: string;
-}
-
-type TActionOpenViewMode =
-  | {
-      mode: EViewMode.GENERATED_BY_SCRIPT;
-      scriptKey: string;
-      parameters: TActionOnClickParameter[];
-    }
-  | {
-      mode: EViewMode.EXISTED_VIEW;
-      viewKey: string;
-      parameters: TActionOnClickParameter[];
-    };
-
-type TActionOpenIn =
-  | {
-      openIn: EViewOpenIn.DRAWER;
-      alignment: EDrawerPlacement;
-    }
-  | {
-      openIn: EViewOpenIn.PLACEHOLDER;
-      placeholderName: string;
-    }
-  | {
-      openIn: EViewOpenIn.NEW_WINDOW;
-    }
-  | {
-      openIn: EViewOpenIn.MODAL;
-    }
-  | {
-      openIn: EViewOpenIn.CURRENT_WINDOW;
-    };
-
-export type TActionOpenView = {
+export interface IActionOpenView extends IActionCommon {
   type: EActionTypes.OPEN_VIEW;
-} & TActionOpenViewMode &
-  TActionOpenIn &
-  IActionCommon;
+  viewName: string;
+  viewKey: string;
+  openMode: EOpenViewMode;
+  viewType: EViewType;
+  drawerPlacement: EDrawerPlacement;
+  placeholderName: string;
+  inputs: IActionScriptField[];
+  isOpenInCurrentWindow?: boolean;
+}
 
 export type TActionsOnClick =
   | IActionGoToUrl
   | IActionRunScript
   | IActionUpdateVariable
-  | TActionOpenView;
+  | IActionOpenView;
 
-export interface IWidgetAction {
-  /**  @deprecated - удалится в ближайшее время [BI-13546] */
-  id: number;
+export type TWidgetActionCommonInputValue = {
   name: string;
-  filters: (IFormulaFilterValue | string)[];
-  parameters: TWidgetActionParameter[];
-  type: EActionTypes.EXECUTE_SCRIPT;
-  scriptKey: string;
-  updateDashboard: boolean;
-  description: string;
-}
+  isHidden: boolean;
+};
 
-export type TWidgetActionParameter = IWidgetActionCommonInputParameter &
+export type TWidgetActionInputValue = TWidgetActionCommonInputValue &
   (
-    | IParameterInputColumn
-    | IParameterInputVariable
-    | IParameterInputFormula
-    | IWidgetActionParameterInputManually
-    | IWidgetActionParameterInputStaticList
-    | IWidgetActionParameterInputDynamicList
+    | {
+        mode: EWidgetActionInputMode.FROM_COLUMN;
+        tableName: string;
+        columnName: string;
+      }
+    | {
+        mode: EWidgetActionInputMode.FROM_VARIABLE;
+        sourceVariable: string;
+      }
+    | {
+        mode: EWidgetActionInputMode.FORMULA;
+        formula: string;
+      }
+    | {
+        mode: EWidgetActionInputMode.MANUALLY;
+        description: string;
+      }
+    | {
+        mode: EWidgetActionInputMode.STATIC_LIST;
+        options: string[];
+        defaultOptionIndex: number;
+      }
+    | {
+        mode: EWidgetActionInputMode.DYNAMIC_LIST;
+        formula: string;
+        defaultValue: string;
+        filters: (IFormulaFilterValue | string)[];
+      }
   );
 
-interface IWidgetActionCommonInputParameter {
+export interface IWidgetActionInput {
   name: string;
-  displayName: string;
-  isHidden: boolean;
+  value: TWidgetActionInputValue;
 }
 
-interface IWidgetActionParameterInputManually {
-  inputMethod: EWidgetActionInputMethod.MANUALLY;
-  description: string;
-}
-
-interface IWidgetActionParameterInputStaticList {
-  inputMethod: EWidgetActionInputMethod.STATIC_LIST;
-  options: string[];
-  defaultOptionIndex: number;
-}
-
-interface IWidgetActionParameterInputDynamicList {
-  inputMethod: EWidgetActionInputMethod.DYNAMIC_LIST;
-  formula: string;
-  dataType: ESimpleDataType;
-  defaultValue: string;
-  filters: (IFormulaFilterValue | string)[];
-}
-
-export type TAction = TActionsOnClick | IWidgetAction;
-
-export const isActionValid = (action: TAction, { scripts, tables, variables }: IWidgetsContext) => {
-  if (action.type !== EActionTypes.EXECUTE_SCRIPT) {
+export const isActionValid = (
+  action: TActionsOnClick,
+  { scripts, tables, variables }: IWidgetsContext
+) => {
+  if (action.type !== EActionTypes.RUN_SCRIPT) {
     return false;
   }
 
-  const currentScript = scripts.get(action.scriptKey ?? "");
+  const currentScript = scripts.get(action.scriptName ?? "");
 
   if (!currentScript) {
     return false;
   }
 
-  const actionInputsMap = new Map(
-    action.parameters.map((parameter) => [parameter.name, parameter])
-  );
+  const actionInputsMap = new Map(action.inputs.map((input) => [input.name, input]));
 
   if (actionInputsMap.size < currentScript.fieldsNames.size) {
     return false;
@@ -204,25 +152,21 @@ export const isActionValid = (action: TAction, { scripts, tables, variables }: I
       return false;
     }
 
-    if (
-      actionInput.inputMethod === EWidgetActionInputMethod.VARIABLE &&
-      !variables.has(actionInput.sourceVariable)
-    ) {
+    const { value } = actionInput;
+
+    if (value.mode === EWidgetActionInputMode.FROM_VARIABLE && !variables.has(value.sourceVariable)) {
       return false;
     }
 
-    if (actionInput.inputMethod === EWidgetActionInputMethod.FORMULA && !actionInput.formula) {
+    if (value.mode === EWidgetActionInputMode.FORMULA && !value.formula) {
       return false;
     }
 
-    if (actionInput.inputMethod === EWidgetActionInputMethod.DYNAMIC_LIST && !actionInput.formula) {
+    if (value.mode === EWidgetActionInputMode.DYNAMIC_LIST && !value.formula) {
       return false;
     }
 
-    if (
-      actionInput.inputMethod === EWidgetActionInputMethod.COLUMN &&
-      !tables.has(actionInput.tableName)
-    ) {
+    if (value.mode === EWidgetActionInputMode.FROM_COLUMN && !tables.has(value.tableName)) {
       return false;
     }
 

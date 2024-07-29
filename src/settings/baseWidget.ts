@@ -4,8 +4,8 @@ import type { EWidgetFilterMode, TDisplayCondition } from "./values";
 import type { IMarkdownMeasure, IWidgetSortingIndicator } from "../indicators";
 
 export interface IBaseWidgetSettings {
-  title?: string;
-  titleSize?: number;
+  header?: string;
+  headerSize?: number;
   stateName?: string | null;
   showMarkdown?: boolean;
   markdownMeasures?: IMarkdownMeasure[];

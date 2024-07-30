@@ -28,6 +28,10 @@ export type TContextMenuRow = {
   key: string;
   label: string;
   onClick: () => void;
+    tooltip?: {
+    title: string;
+    offset?: [number | `${number}%`, number | `${number}%`];
+  };
 };
 
 export type TContextMenuButton =

@@ -67,6 +67,6 @@ export interface IWidgetsContext {
   filtrationMode: TFiltrationMode;
   reportDisplayRules: Map<string, IDisplayRule>;
   workspaceDisplayRules: Map<number, Map<string, IDisplayRule>>;
-  viewKeyByName: Map<string, string>;
+  viewNameByKey: Map<string, string>;
   fetchColumnsByTableName(tableName: string): Promise<IWidgetTableColumn[] | undefined>;
 }

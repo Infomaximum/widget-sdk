@@ -57,6 +57,10 @@ export type TContextMenuButtonCustom = {
   key: string;
   type: "custom";
   icon: string;
+  tooltip?: {
+    title: string;
+    offset?: [number | `${number}%`, number | `${number}%`];
+  };
   onClick: () => void;
 };
 

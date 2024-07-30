@@ -19,10 +19,6 @@ export type TLaunchActionParams = {
   needConfirmation?: boolean;
 };
 
-export interface ILaunchActionSubscribers {
-  onActionSuccess(callback: () => void): void;
-}
-
 export type TWidgetContainer = {
   /** Имеет ли контейнер виджета ограниченную максимальную высоту */
   isMaxHeightLimited: boolean;
@@ -69,7 +65,7 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
   /** Данные о контейнере виджета */
   widgetContainer: TWidgetContainer;
   /** Запуск действия */
-  launchAction(params: TLaunchActionParams): ILaunchActionSubscribers;
+  launchAction(params: TLaunchActionParams): void;
   /** Значение, сохраняемое в localStorage и URL */
   persistValue: IWidgetPersistValue;
   /** функция для управления контекстными меню */

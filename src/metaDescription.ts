@@ -4,6 +4,7 @@ import type { EControlType, IControlRecord } from "./controls";
 import type { EWidgetIndicatorType, IWidgetIndicator } from "./indicators";
 import type { IWidgetsContext } from "./widgetContext";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
+import type { ICalculatorFactory } from "./calculators";
 
 export interface ILens<T extends TNullable<object>, Value> {
   get(obj: T): TNullable<Value>;
@@ -230,5 +231,9 @@ export interface IPanelDescriptionCreator<
   Settings extends IBaseWidgetSettings,
   GroupSettings extends IGroupSettings,
 > {
-  (context: IWidgetsContext, panelSettings: Settings): IPanelDescription<Settings, GroupSettings>;
+  (
+    context: IWidgetsContext,
+    panelSettings: Settings,
+    calculatorFactory: ICalculatorFactory
+  ): IPanelDescription<Settings, GroupSettings>;
 }

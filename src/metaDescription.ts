@@ -94,7 +94,7 @@ export interface ICustomSelectLeafOption {
   type: ECustomSelectOptionTypes.LEAF;
   label: string;
   value: string;
-  onSelect: <T = object>(
+  onSelect: <T extends object>(
     value: string,
     update: <R extends object>(f: (prevItems: (T | R)[]) => (T | R)[]) => void
   ) => void;

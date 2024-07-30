@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.39.0](https://github.com/Infomaximum/widget-sdk/compare/v3.38.0...v3.39.0) (2024-07-30)
+
+
+### Features
+
+* добавлен 3-й параметр в createPanelDescription ([4fa7485](https://github.com/Infomaximum/widget-sdk/commit/4fa74856814200d30fc0d62a3775230920280504))
+
+
+### Bug Fixes
+
+* изменен тип onSelect ([bbcba71](https://github.com/Infomaximum/widget-sdk/commit/bbcba71f1ebef5ab90a54dfb8c36d1e0e05fcf8f))
+
 ## [3.38.0](https://github.com/Infomaximum/widget-sdk/compare/v3.37.1...v3.38.0) (2024-07-09)
 
 

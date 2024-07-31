@@ -29,6 +29,7 @@ export interface IControlRecord<Settings extends object, Value, ControlType = EC
   title?: string;
   /** Тип используемого элемента управления настройкой из предложенных нашей системой */
   type: ControlType | string;
+  marginTop?: number;
   /** Объект дополнительных параметров элемента управления */
   props?: object | ((settings: Settings) => object);
   /** Описание доступа к значению настройки */

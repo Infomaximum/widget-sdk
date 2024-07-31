@@ -13,8 +13,8 @@ export interface IWidgetTableColumn {
 }
 
 export interface IActionScript {
-  guid: string | undefined;
-  fieldsGuids: Set<string>;
+  name: string | undefined;
+  fieldsNames: Set<string>;
 }
 
 export interface IWidgetTable {
@@ -23,6 +23,13 @@ export interface IWidgetTable {
   /** Колонки таблицы */
   columns: Map<string, IWidgetTableColumn>;
 }
+
+/**
+ * simplified - упрощенный для работы фильтрации в образах открытых в дровере/модальном окне
+ *
+ * full - полный
+ */
+export type TFiltrationMode = "simplified" | "full";
 
 /**
  * preview - упрощенный
@@ -44,8 +51,8 @@ export interface IWidgetsContext {
   /** Переменные отчета */
   variables: Map<string, TWidgetVariable>;
   /** Метод установки значения переменной отчета */
-  setVariableValue(guid: string, value: TNullable<string> | string[]): void;
-  statesGuids: Set<string>;
+  setVariableValue(name: string, value: TNullable<string> | string[]): void;
+  statesNames: Set<string>;
   reportName: string;
   /**
    * режим дашборда
@@ -57,7 +64,9 @@ export interface IWidgetsContext {
   userLogin: string;
   scripts: Map<string, IActionScript>;
   tables: Set<string>;
+  filtrationMode: TFiltrationMode;
   reportDisplayRules: Map<string, IDisplayRule>;
   workspaceDisplayRules: Map<number, Map<string, IDisplayRule>>;
-  fetchColumnsByTableName(tableName: string): Promise<IWidgetTableColumn[] | undefined>
+  viewNameByKey: Map<string, string>;
+  fetchColumnsByTableName(tableName: string): Promise<IWidgetTableColumn[] | undefined>;
 }

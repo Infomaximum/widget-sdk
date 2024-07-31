@@ -10,75 +10,143 @@ export enum EWidgetActionInputMode {
   MANUALLY = "MANUALLY",
 }
 
-export type TWidgetActionCommonInputValue = {
-  name: string
-  isHidden: boolean
+export interface IActionCommon {
+  id: number;
+  name: string;
 }
 
-export type TWidgetActionInputValue = TWidgetActionCommonInputValue & ({
-      mode: EWidgetActionInputMode.FROM_COLUMN;
-      tableName: string;
-      columnName: string;
-    }
-  | {
-      mode: EWidgetActionInputMode.FROM_VARIABLE;
-      guid: string;
-    }
-  | {
-      mode: EWidgetActionInputMode.FORMULA;
-      formula: string;
-    }
-  | {
-      mode: EWidgetActionInputMode.MANUALLY;
-      description: string;
-    }
-  | {
-      mode: EWidgetActionInputMode.STATIC_LIST;
-      options: string[];
-      defaultOptionIndex: number;
-    }
-  | {
-      mode: EWidgetActionInputMode.DYNAMIC_LIST;
-      formula: string;
-      defaultValue: string;
-      filters: (IFormulaFilterValue | string)[]
-    });
+export enum EActionTypes {
+  URL = "URL",
+  UPDATE_VARIABLE = "UPDATE_VARIABLE",
+  RUN_SCRIPT = "RUN_SCRIPT",
+  OPEN_VIEW = "OPEN_VIEW",
+}
 
-export interface IWidgetActionInput {
-  guid: string;
+export interface IActionGoToUrl extends IActionCommon {
+  type: EActionTypes.URL;
+  url: string;
+  targetBlank: boolean;
+}
+
+export interface IActionScriptField {
+  name: string;
+  id: number;
   value: TWidgetActionInputValue;
 }
 
-export interface IWidgetAction {
-  id: number;
-  name: string;
+export interface IActionRunScript extends IActionCommon {
   description: string;
+  type: EActionTypes.RUN_SCRIPT;
   filters: (IFormulaFilterValue | string)[];
-  scriptGuid?: string;
-  /**  Поле name необходимо, чтобы показать название скрипта, который был удален */
-  scriptName?: string;
-  inputs: IWidgetActionInput[];
+  inputs: IActionScriptField[];
+  scriptName: string;
   shouldRefreshWidgetsAfterExecution: boolean;
 }
 
+export interface IActionUpdateVariable extends IActionCommon {
+  type: EActionTypes.UPDATE_VARIABLE;
+  variables: Array<string>;
+}
+
+export enum EViewType {
+  CREATED_VIEW = "CREATED_VIEW",
+  GENERATED_BY_SCRIPT = "GENERATED_BY_SCRIPT",
+}
+
+export enum EOpenViewMode {
+  NEW_WINDOW = "NEW_WINDOW",
+  PLACEHOLDER = "PLACEHOLDER",
+  MODAL = "MODAL",
+  DRAWER = "DRAWER",
+}
+
+export enum EDrawerPlacement {
+  LEFT = "LEFT",
+  RIGHT = "RIGHT",
+}
+
+export interface IActionOpenView extends IActionCommon {
+  type: EActionTypes.OPEN_VIEW;
+  viewName: string;
+  viewKey: string;
+  openMode: EOpenViewMode;
+  viewType: EViewType;
+  drawerPlacement: EDrawerPlacement;
+  placeholderName: string;
+  inputs: IActionScriptField[];
+  isOpenInCurrentWindow?: boolean;
+}
+
+export type TActionsOnClick =
+  | IActionGoToUrl
+  | IActionRunScript
+  | IActionUpdateVariable
+  | IActionOpenView;
+
+export type TWidgetActionCommonInputValue = {
+  name: string;
+  isHidden: boolean;
+};
+
+export type TWidgetActionInputValue = TWidgetActionCommonInputValue &
+  (
+    | {
+        mode: EWidgetActionInputMode.FROM_COLUMN;
+        tableName: string;
+        columnName: string;
+      }
+    | {
+        mode: EWidgetActionInputMode.FROM_VARIABLE;
+        sourceVariable: string;
+      }
+    | {
+        mode: EWidgetActionInputMode.FORMULA;
+        formula: string;
+      }
+    | {
+        mode: EWidgetActionInputMode.MANUALLY;
+        description: string;
+      }
+    | {
+        mode: EWidgetActionInputMode.STATIC_LIST;
+        options: string[];
+        defaultOptionIndex: number;
+      }
+    | {
+        mode: EWidgetActionInputMode.DYNAMIC_LIST;
+        formula: string;
+        defaultValue: string;
+        filters: (IFormulaFilterValue | string)[];
+      }
+  );
+
+export interface IWidgetActionInput {
+  name: string;
+  value: TWidgetActionInputValue;
+}
+
 export const isActionValid = (
-  action: IWidgetAction,
+  action: TActionsOnClick,
   { scripts, tables, variables }: IWidgetsContext
 ) => {
-  const currentScript = scripts.get(action.scriptGuid ?? "");
+  if (action.type !== EActionTypes.RUN_SCRIPT) {
+    return false;
+  }
+
+  const currentScript = scripts.get(action.scriptName ?? "");
 
   if (!currentScript) {
     return false;
   }
 
-  const actionInputsMap = new Map(action.inputs.map((input) => [input.guid, input]));
+  const actionInputsMap = new Map(action.inputs.map((input) => [input.name, input]));
 
-  if (actionInputsMap.size < currentScript.fieldsGuids.size) {
+  if (actionInputsMap.size < currentScript.fieldsNames.size) {
     return false;
   }
 
-  return [...currentScript.fieldsGuids].every((guid) => {
-    const actionInput = actionInputsMap.get(guid ?? "");
+  return [...currentScript.fieldsNames].every((name) => {
+    const actionInput = actionInputsMap.get(name ?? "");
 
     if (!actionInput) {
       return false;
@@ -86,7 +154,7 @@ export const isActionValid = (
 
     const { value } = actionInput;
 
-    if (value.mode === EWidgetActionInputMode.FROM_VARIABLE && !variables.has(value.guid)) {
+    if (value.mode === EWidgetActionInputMode.FROM_VARIABLE && !variables.has(value.sourceVariable)) {
       return false;
     }
 

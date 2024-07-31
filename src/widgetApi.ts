@@ -6,16 +6,24 @@ import type { IWidgetPlaceholderController, IWidgetPlaceholderValues } from "./p
 import type { TWidgetVariable } from "./indicators";
 import type { IWidgetFormatting } from "./formatting";
 import type { IWidgetsContext } from "./widgetContext";
-import type { IWidgetAction } from "./actions";
+import type { TActionsOnClick } from "./actions";
 import type { ICalculatorFilter } from "./calculators/calculator/calculator";
 import type { ICalculatorFactory } from "./calculators";
 import type { IDefinition } from "./definition";
+import type { TContextMenu } from "./contextMenu";
 
 export type TLaunchActionParams = {
-  action: IWidgetAction;
+  action: TActionsOnClick;
   onSuccess: () => void;
   filters: ICalculatorFilter[];
   needConfirmation?: boolean;
+};
+
+export type TWidgetContainer = {
+  /** Имеет ли контейнер виджета ограниченную максимальную высоту */
+  isMaxHeightLimited: boolean;
+  /** Установить минимальную высоту рабочей области виджета */
+  setContentMinHeight(value: number): void;
 };
 
 export interface IWidgetPersistValue<T extends object = object> {
@@ -54,10 +62,14 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
   /** Контекст виджета */
   widgetsContext: IWidgetsContext;
 
+  /** Данные о контейнере виджета */
+  widgetContainer: TWidgetContainer;
   /** Запуск действия */
   launchAction(params: TLaunchActionParams): void;
   /** Значение, сохраняемое в localStorage и URL */
   persistValue: IWidgetPersistValue;
+  /** функция для управления контекстными меню */
+  setContextMenu: (key: string, value: TContextMenu | null) => void;
 }
 
 export interface ICustomWidgetProps<

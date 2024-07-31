@@ -1,6 +1,5 @@
 import type { ISortOrder, TSortDirection } from "../../sorting";
 import type { TNullable } from "../../utilityTypes";
-import type { ICalculatorVariablesValues } from "../variables";
 import type {
   ICalculator,
   ICalculatorDimensionInput,
@@ -16,8 +15,6 @@ export interface IBaseDimensionsAndMeasuresCalculatorInput {
   dimensions: ICalculatorDimensionInput[];
   /** Меры */
   measures: ICalculatorMeasureInput[];
-  /** Значения переменных */
-  variablesValues?: ICalculatorVariablesValues;
   /** Фильтры, использующие WHERE */
   filters: ICalculatorFilter[];
   /** Фильтры, использующие HAVING */

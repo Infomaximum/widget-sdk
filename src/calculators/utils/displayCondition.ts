@@ -8,9 +8,9 @@ export function checkDisplayCondition(
   variables: Map<string, TWidgetVariable>
 ) {
   if (displayCondition?.mode === EDisplayConditionMode.VARIABLE) {
-    const { variableGuid, variableValue } = displayCondition;
+    const { variableName, variableValue } = displayCondition;
 
-    const currentVariableValue = variableGuid && variables.get(variableGuid)?.value;
+    const currentVariableValue = variableName && variables.get(variableName)?.value;
 
     const isCurrentVariableMatch = Array.isArray(currentVariableValue)
       ? !!variableValue && currentVariableValue?.includes(variableValue)

@@ -41,19 +41,19 @@ interface IProcessFilterValue {
    * События, доступные при выборе процесса.
    * Если параметр не передан, используются все события процесса на основе запроса к вычислителю.
    */
-  eventsNamesByProcessGuidMap?: Map<string, (string | null)[]>;
+  eventsNamesByProcessNameMap?: Map<string, (string | null)[]>;
 }
 
 export interface IProcessEventFilterValue extends IProcessFilterValue {
-  processGuid: string;
+  processName: string;
   eventName: string;
 }
 
 export interface IProcessTransitionFilterValue extends IProcessFilterValue {
-  startEventProcessGuid: string;
+  startEventProcessName: string;
   startEventName: string;
 
-  endEventProcessGuid: string;
+  endEventProcessName: string;
   endEventName: string;
 }
 
@@ -142,6 +142,7 @@ export interface IFormulaFilterValue {
 }
 
 interface IStagesFilterItem {
+  id: number;
   /** Название этапа */
   name: string;
   /** Формула фильтра этапа */

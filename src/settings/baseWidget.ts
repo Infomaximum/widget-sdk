@@ -1,23 +1,20 @@
-import type { IWidgetAction } from "../actions";
+import type { TActionsOnClick } from "../actions";
 import type { IFormulaFilterValue } from "../filtration";
-import type { EWidgetFilterMode, IPlacement, TDisplayCondition } from "./values";
+import type { EWidgetFilterMode, TDisplayCondition } from "./values";
 import type { IMarkdownMeasure, IWidgetSortingIndicator } from "../indicators";
 
 export interface IBaseWidgetSettings {
-  apiVersion: string;
-  type: string;
   header?: string;
   headerSize?: number;
+  stateName?: string | null;
   showMarkdown?: boolean;
   markdownMeasures?: IMarkdownMeasure[];
   markdownText?: string;
-  stateGuid?: string | null;
   filters?: (IFormulaFilterValue | string)[];
   filterMode?: EWidgetFilterMode;
   ignoreFilters?: boolean;
-  placement: IPlacement;
   sorting?: IWidgetSortingIndicator[];
-  actions?: IWidgetAction[];
+  actions?: TActionsOnClick[];
   displayCondition?: TDisplayCondition;
   displayConditionComment?: string;
 }

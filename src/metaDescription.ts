@@ -49,9 +49,10 @@ export interface ISelectOption {
   value: string;
   label: string;
   disabled?: boolean;
+  rightIcon?: "fx" | string;
 }
 
-export enum ECustomSelectOptionTypes {
+export enum ESelectOptionTypes {
   DIVIDER = "DIVIDER",
   SYSTEM = "SYSTEM",
   GROUP = "GROUP",
@@ -63,56 +64,61 @@ export enum ECustomSelectTemplates {
   DIMENSION_GROUPS = "DIMENSION_GROUPS",
 }
 
-export interface ICustomSelectDividerOption {
-  type: ECustomSelectOptionTypes.DIVIDER;
+export interface ISelectDividerOption {
+  type: ESelectOptionTypes.DIVIDER;
 }
 
-export interface ICustomSelectSystemOption {
-  type: ECustomSelectOptionTypes.SYSTEM;
-  template: ECustomSelectTemplates;
+export interface ISelectSystemOption<T extends string = string> {
+  type: ESelectOptionTypes.SYSTEM;
+  template: T;
 }
 
-export interface ICustomSelectGroupOption {
-  type: ECustomSelectOptionTypes.GROUP;
+export interface ISelectGroupOption {
+  type: ESelectOptionTypes.GROUP;
   label: string;
-  options: ICustomSelectOption[];
+  options: IAddButtonSelectOption[];
   icon: string;
 }
 
-export type TCustomSelectFetchOptions = () => Promise<ICustomSelectOption[]>;
-export type TCustomSelectChildOptions = ICustomSelectOption[] | TCustomSelectFetchOptions;
+export type TSelectFetchOptions = () => Promise<IAddButtonSelectOption[]>;
+export type TSelectChildOptions = IAddButtonSelectOption[] | TSelectFetchOptions;
 
-export interface ICustomSelectBranchOption {
-  type: ECustomSelectOptionTypes.BRANCH;
+export interface ISelectBranchOption {
+  type: ESelectOptionTypes.BRANCH;
   label: string;
-  options: TCustomSelectChildOptions;
+  options: TSelectChildOptions;
   icon?: string;
   disabled?: boolean;
 }
 
-export interface ICustomSelectLeafOption {
-  type: ECustomSelectOptionTypes.LEAF;
+export interface ISelectLeafOption {
+  type: ESelectOptionTypes.LEAF;
   label: string;
   value: string;
   onSelect: <T extends object>(
     value: string,
     update: <R extends object>(f: (prevItems: (T | R)[]) => (T | R)[]) => void
   ) => void;
+  /** Строка в формате base64 */
   icon?: string;
   disabled?: boolean;
 }
 
-export type ICustomSelectOption =
-  | ICustomSelectDividerOption
-  | ICustomSelectSystemOption
-  | ICustomSelectGroupOption
-  | ICustomSelectBranchOption
-  | ICustomSelectLeafOption;
+export type IAddButtonSelectOption =
+  | ISelectDividerOption
+  | ISelectGroupOption
+  | ISelectBranchOption
+  | ISelectLeafOption;
 
+export type TCustomAddButtonSelectOption =
+  | ISelectSystemOption<ECustomSelectTemplates>
+  | IAddButtonSelectOption;
+
+export type TMeasureAddButtonSelectOption = IAddButtonSelectOption;
 export interface ICustomAddButtonProps {
-  options: TCustomSelectChildOptions;
+  options: TSelectChildOptions;
   hasDropdown?: boolean;
-  onClick?: ICustomSelectLeafOption["onSelect"];
+  onClick?: ISelectLeafOption["onSelect"];
 }
 
 export interface IWidgetIndicatorMenuConfig {
@@ -121,7 +127,9 @@ export interface IWidgetIndicatorMenuConfig {
   hideQuantityOption?: boolean;
 }
 
-export interface IMeasureMenuConfig extends IWidgetIndicatorMenuConfig {}
+export interface IMeasureMenuConfig extends IWidgetIndicatorMenuConfig {
+  options?: TMeasureAddButtonSelectOption[];
+}
 
 export interface ISortingMenuConfig extends IWidgetIndicatorMenuConfig {}
 
@@ -180,6 +188,12 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
   isValid?(group: IGroupSettings): boolean;
   /** Находится ли группа в состоянии загрузки */
   isLoading?(group: IGroupSettings): boolean;
+  /** Можно ли удалять группу по умолчанию true */
+  isRemovable?(group: IGroupSettings): boolean;
+  /** Можно ли сортировать группу по умолчанию true */
+  isDraggable?: boolean;
+  /** Опциональный верхний отступ для группы */
+  marginTop?: number;
 }
 
 /** Конфигурация левой панели */

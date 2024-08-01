@@ -72,6 +72,7 @@ export type TColor =
       mode: EColorMode.GRADIENT;
       startValue: string;
       endValue: string;
+      classCount?: TNullable<number>;
     }
   | {
       mode: EColorMode.AUTO;

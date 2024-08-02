@@ -136,6 +136,7 @@ export interface IWidgetFormatting {
   getFormattedValue: (
     value: string,
     formatType: EFormatTypes,
+    formatting: EFormattingPresets,
     formatTemplate: TNullable<string>
   ) => string;
 }

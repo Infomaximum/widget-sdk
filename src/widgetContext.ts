@@ -12,9 +12,16 @@ export interface IWidgetTableColumn {
   dataType: ESimpleDataType;
 }
 
+interface IScripField {
+  guid: string;
+  name: string;
+  dataType: ESimpleDataType;
+}
+
 export interface IActionScript {
-  name: string | undefined;
-  fieldsNames: Set<string>;
+  key: string;
+  name: string;
+  fields: IScripField[];
 }
 
 export interface IWidgetTable {

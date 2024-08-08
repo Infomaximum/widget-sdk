@@ -1,4 +1,4 @@
-import type { IFormulaFilterValue } from "./filtration";
+import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { IWidgetsContext } from "./widgetContext";
 
 export enum EWidgetActionInputMethod {
@@ -81,7 +81,7 @@ interface IParameterFromDynamicList {
   inputMethod: EWidgetActionInputMethod.DYNAMIC_LIST;
   formula: string;
   defaultValue: string;
-  filters: (IFormulaFilterValue | string)[];
+  filters: TExtendedFormulaFilterValue[];
 }
 
 interface IWidgetActionParameterCommon {
@@ -182,7 +182,7 @@ export type TActionsOnClick =
   | TActionOpenView;
 
 export interface IWidgetAction extends IActionCommon {
-  filters: (IFormulaFilterValue | string)[];
+  filters: TExtendedFormulaFilterValue[];
   parameters: TWidgetActionParameter[];
   type: EActionTypes.EXECUTE_SCRIPT;
   scriptKey: string;

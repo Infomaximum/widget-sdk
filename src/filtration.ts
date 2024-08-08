@@ -141,6 +141,8 @@ export interface IFormulaFilterValue {
   }>;
 }
 
+export type TExtendedFormulaFilterValue = { formula: string } | IFormulaFilterValue;
+
 interface IStagesFilterItem {
   id: number;
   /** Название этапа */
@@ -204,3 +206,9 @@ export interface IWidgetFiltration {
   /** Удалить фильтр по этапам */
   removeStagesFilter(widgetKey: string): void;
 }
+
+export const isFormulaFilterValue = (
+  value: TExtendedFormulaFilterValue
+): value is IFormulaFilterValue => {
+  return "filteringMethod" in value;
+};

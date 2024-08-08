@@ -2,6 +2,8 @@ import {
   formulaFilterMethods,
   EFormulaFilterFieldKeys,
   type IFormulaFilterValue,
+  type TExtendedFormulaFilterValue,
+  isFormulaFilterValue,
 } from "../../filtration";
 import { type ICalculatorFilter } from "../calculator/calculator";
 import { compact, compactMap, isNil } from "../../utils/functions";
@@ -168,16 +170,16 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
 };
 
 export const mapFormulaFilterToCalculatorInput = (
-  filterValue: IFormulaFilterValue | string
+  filterValue: TExtendedFormulaFilterValue
 ): TNullable<ICalculatorFilter> => {
   if (!filterValue) {
     return null;
   }
 
-  if (typeof filterValue === "string") {
+  if (!isFormulaFilterValue(filterValue)) {
     return {
       dataType: ESimpleDataType.OTHER,
-      formula: filterValue,
+      formula: filterValue.formula,
       values: ["1"],
       filteringMethod: formulaFilterMethods.EQUAL_TO,
     };
@@ -194,7 +196,7 @@ export const mapFormulaFilterToCalculatorInput = (
 };
 
 export const mapFormulaFiltersToInputs = (
-  filters: (string | IFormulaFilterValue)[]
+  filters: TExtendedFormulaFilterValue[]
 ): ICalculatorFilter[] => {
   return compactMap(filters, mapFormulaFilterToCalculatorInput);
 };

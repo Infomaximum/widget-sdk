@@ -1,6 +1,6 @@
 import type { TActionsOnClick } from "./actions";
 import type { ESimpleDataType } from "./data";
-import type { IFormulaFilterValue } from "./filtration";
+import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormatTypes, EFormattingPresets } from "./formatting";
 import type { EMarkdownDisplayMode, TDisplayCondition } from "./settings/values";
 import type { TSortDirection, TWidgetSortingValue } from "./sorting";
@@ -184,6 +184,8 @@ export type TWidgetVariable =
       defaultValue: string;
       /** Тип данных */
       dataType: ESimpleDataType;
+      /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
+      guid: string;
     }
   | {
       /** Тип переменной */
@@ -200,6 +202,8 @@ export type TWidgetVariable =
       dataType: ESimpleDataType.STRING;
       /** Множественный выбор */
       multipleChoice: boolean;
+      /** @deprecated удалить после выполнения BI-13602, задача BI-13650  */
+      guid: string;
     }
   | {
       /** Тип переменной */
@@ -217,7 +221,9 @@ export type TWidgetVariable =
       /** Множественный выбор */
       multipleChoice: boolean;
       /** Фильтры */
-      filters: (string | IFormulaFilterValue)[];
+      filters: TExtendedFormulaFilterValue[];
+      /** @deprecated удалить после выполнения BI-13602, задача BI-13650  */
+      guid: string;
     };
 
 export function isHierarchy(

@@ -202,7 +202,7 @@ export interface IPanelDescription<
   GroupSettings extends IGroupSettings = IGroupSettings,
 > {
   /** Добавить заголовок для виджета */
-  useHeader?: boolean;
+  useTitle?: boolean;
   /** Добавить описание для виджета */
   useMarkdown?: boolean;
   /** Конфигурация настроек данных виджета */

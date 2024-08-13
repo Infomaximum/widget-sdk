@@ -1,7 +1,7 @@
 import type { ELanguages } from "@infomaximum/localization";
 import type { IWidgetProcess } from "./metaDescription";
 import type { TNullable } from "./utilityTypes";
-import type { ICommonColumnIndicator, TWidgetVariable } from "./indicators";
+import type { ICommonColumnIndicator, ICommonState, TWidgetVariable } from "./indicators";
 import type { ESimpleDataType } from "./data";
 import type { TColor } from "./settings/values";
 
@@ -59,7 +59,7 @@ export interface IWidgetsContext {
   variables: Map<string, TWidgetVariable>;
   /** Метод установки значения переменной отчета */
   setVariableValue(name: string, value: TNullable<string> | string[]): void;
-  statesNames: Set<string>;
+  states:  Map<string, ICommonState>;
   reportName: string;
   /**
    * режим дашборда

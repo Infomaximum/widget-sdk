@@ -95,8 +95,16 @@ export enum ESortingValueModes {
   IN_WORKSPACE = "IN_WORKSPACE",
 }
 
+export interface ICommonState {
+  name: string;
+  /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
+  guid: string;
+}
+
 export interface ICommonColumnIndicator {
   name: string;
+  /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
+  guid: string;
   formula: string;
 }
 export type TColumnIndicatorValue =

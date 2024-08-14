@@ -20,6 +20,7 @@ export enum EControlType {
   filter = "filter",
   actionOnClick = "actionOnClick",
   eventsPicker = "eventsPicker",
+  size = "size",
 }
 
 /** Конфигурация элемента управления настройкой */

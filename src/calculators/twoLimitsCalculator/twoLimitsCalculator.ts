@@ -38,6 +38,8 @@ export interface ITwoLimitsCalculatorInput {
   limit?: number;
   /** Второй лимит */
   secondLimit?: number;
+  /** Смещение при выборе строк */
+  offset?: number;
 }
 
 export interface ITwoLimitsCalculatorExportInput extends ITwoLimitsCalculatorInput {

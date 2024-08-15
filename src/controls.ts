@@ -1,5 +1,10 @@
 import type { IDisplayPredicate, IDivePanelDescription, TRecordAccessor } from "./metaDescription";
 
+export enum EUnitMode {
+  PIXEL = "PIXEL",
+  PERCENT = "PERCENT",
+}
+
 export enum EControlType {
   inputNumber = "inputNumber",
   switch = "switch",

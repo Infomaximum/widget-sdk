@@ -23,6 +23,7 @@ export enum EActionTypes {
 export enum EViewMode {
   EXISTED_VIEW = "EXISTED_VIEW",
   GENERATED_BY_SCRIPT = "GENERATED_BY_SCRIPT",
+  EMPTY = "EMPTY",
 }
 
 export enum EViewOpenIn {
@@ -106,14 +107,15 @@ interface IActionOnClickParameterCommon {
   name: string;
 }
 
-export type TActionOnClickParameter = IActionOnClickParameterCommon & (
-  | IParameterFromColumn
-  | IParameterFromVariable
-  | IParameterFromFormula
-  | IParameterFromEvent
-  | IParameterFromStartEvent
-  | IParameterFromEndEvent
-);
+export type TActionOnClickParameter = IActionOnClickParameterCommon &
+  (
+    | IParameterFromColumn
+    | IParameterFromVariable
+    | IParameterFromFormula
+    | IParameterFromEvent
+    | IParameterFromStartEvent
+    | IParameterFromEndEvent
+  );
 
 interface IActionCommon {
   /** @deprecated удалить [BI-13546] */
@@ -173,7 +175,9 @@ type TActionOpenIn =
 
 export type TActionOpenView = {
   type: EActionTypes.OPEN_VIEW;
-} & TActionOpenViewMode & TActionOpenIn & IActionCommon;
+} & TActionOpenViewMode &
+  TActionOpenIn &
+  IActionCommon;
 
 export type TActionsOnClick =
   | IActionGoToUrl

@@ -20,6 +20,8 @@ interface IScripField {
 
 export interface IActionScript {
   key: string;
+  /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
+  guid: string;
   name: string;
   fields: IScripField[];
 }
@@ -59,7 +61,7 @@ export interface IWidgetsContext {
   variables: Map<string, TWidgetVariable>;
   /** Метод установки значения переменной отчета */
   setVariableValue(name: string, value: TNullable<string> | string[]): void;
-  states:  Map<string, ICommonState>;
+  states: Map<string, ICommonState>;
   reportName: string;
   /**
    * режим дашборда

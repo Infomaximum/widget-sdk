@@ -81,8 +81,8 @@ export interface ISelectGroupOption {
   icon: string;
 }
 
-export type TSelectFetchOptions = () => Promise<IAddButtonSelectOption[]>;
-export type TSelectChildOptions = IAddButtonSelectOption[] | TSelectFetchOptions;
+export type TSelectFetchOptions = () => Promise<TCustomAddButtonSelectOption[]>;
+export type TSelectChildOptions = TCustomAddButtonSelectOption[] | TSelectFetchOptions;
 
 export interface ISelectBranchOption {
   type: ESelectOptionTypes.BRANCH;

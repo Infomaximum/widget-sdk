@@ -5,6 +5,7 @@ import type { EWidgetIndicatorType, IWidgetIndicator } from "./indicators";
 import type { IWidgetsContext } from "./widgetContext";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
 import type { ICalculatorFactory } from "./calculators";
+import type { EWidgetFilterMode } from "./settings/values";
 
 export interface ILens<T extends TNullable<object>, Value> {
   get(obj: T): TNullable<Value>;
@@ -211,6 +212,10 @@ export interface IPanelDescription<
   displayRecords?: TWidgetLevelRecord<Settings>[];
   /** Конфигурации наборов групп  */
   groupSetDescriptions?: Record<string, IGroupSetDescription<Settings, GroupSettings>>;
+  /** Конфигурация настроек фильтров */
+  filtrationRecords?: Exclude<TWidgetLevelRecord<Settings>, IGroupSetRecord>[];
+  /** Режимы фильтрации */
+  filtrationModes?: EWidgetFilterMode[];
 }
 
 export interface IWidgetProcess {

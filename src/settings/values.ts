@@ -118,3 +118,8 @@ export interface IRange {
   min?: number;
   max?: number;
 }
+
+export enum EFontWeight {
+  NORMAL = "NORMAL",
+  BOLD = "BOLD",
+}

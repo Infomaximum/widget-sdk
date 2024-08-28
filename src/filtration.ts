@@ -168,6 +168,7 @@ export type TWidgetFilterValue =
   | IProcessTransitionFilterValue;
 
 export interface IWidgetFilter {
+  isReadonly: boolean;
   filterValue: TWidgetFilterValue;
   preparedFilterValue: ICalculatorFilter;
 }

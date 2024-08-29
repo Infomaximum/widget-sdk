@@ -100,12 +100,18 @@ export interface ICommonState {
   guid: string;
 }
 
-export interface ICommonColumnIndicator {
+export interface ICommonMeasures {
   name: string;
   /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
   guid: string;
   formula: string;
 }
+
+export interface ICommonDimensions {
+  name: string;
+  formula: string;
+}
+
 export type TColumnIndicatorValue =
   | { mode: EWidgetIndicatorValueModes.FORMULA; formula: string }
   | {

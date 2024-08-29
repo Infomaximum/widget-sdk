@@ -1,7 +1,12 @@
 import type { ELanguages } from "@infomaximum/localization";
 import type { IWidgetProcess } from "./metaDescription";
 import type { TNullable } from "./utilityTypes";
-import type { ICommonColumnIndicator, ICommonState, TWidgetVariable } from "./indicators";
+import type {
+  ICommonDimensions,
+  ICommonMeasures,
+  ICommonState,
+  TWidgetVariable,
+} from "./indicators";
 import type { ESimpleDataType } from "./data";
 import type { TColor } from "./settings/values";
 
@@ -51,12 +56,18 @@ export interface IDisplayRule {
   color: TColor;
 }
 
+export interface IWorkspaceDisplayRule extends IDisplayRule {
+  groupName: string;
+}
+
 export interface IWidgetsContext {
   /** используемый язык в системе */
   language: ELanguages;
   processes: Map<string, IWidgetProcess>;
-  reportMeasures: TNullable<Map<string, ICommonColumnIndicator>>;
-  workspaceMeasures: TNullable<Map<string, ICommonColumnIndicator>>;
+  reportMeasures: TNullable<Map<string, ICommonMeasures>>;
+  workspaceMeasures: TNullable<Map<string, ICommonMeasures>>;
+  reportDimensions: TNullable<Map<string, ICommonDimensions>>;
+  workspaceDimensions: TNullable<Map<string, Map<string, ICommonDimensions>>>;
   /** Переменные отчета */
   variables: Map<string, TWidgetVariable>;
   /** Метод установки значения переменной отчета */
@@ -75,7 +86,7 @@ export interface IWidgetsContext {
   tables: Set<string>;
   filtrationMode: TFiltrationMode;
   reportDisplayRules: Map<string, IDisplayRule>;
-  workspaceDisplayRules: Map<number, Map<string, IDisplayRule>>;
+  workspaceDisplayRules: Map<number, Map<string, IWorkspaceDisplayRule>>;
   viewNameByKey: Map<string, string>;
   fetchColumnsByTableName(tableName: string): Promise<IWidgetTableColumn[] | undefined>;
 }

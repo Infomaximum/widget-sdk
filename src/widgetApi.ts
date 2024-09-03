@@ -11,6 +11,7 @@ import type { ICalculatorFilter } from "./calculators/calculator/calculator";
 import type { ICalculatorFactory } from "./calculators";
 import type { IDefinition } from "./definition";
 import type { TContextMenu } from "./contextMenu";
+import type { IViewContext } from "./viewContext";
 
 export type TLaunchActionParams = {
   action: TAction;
@@ -62,6 +63,9 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
 
   /** Контекст виджета */
   widgetsContext: IWidgetsContext;
+
+  /**Контекст образа */
+  viewContext: IViewContext;
 
   /** Данные о контейнере виджета */
   widgetContainer: TWidgetContainer;

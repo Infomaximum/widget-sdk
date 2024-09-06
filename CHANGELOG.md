@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.40.0](https://github.com/Infomaximum/widget-sdk/compare/v3.39.0...v3.40.0) (2024-09-06)
+
+
+### Features
+
+* добавлен core-js для запуска тестов при линковке к проекту ([1d29cf7](https://github.com/Infomaximum/widget-sdk/commit/1d29cf7dab9e478a91c6f553c2a474a609ddd016))
+* добавлена логика по автосортировкам ([934123d](https://github.com/Infomaximum/widget-sdk/commit/934123d13ce57c41ed3bc9bdc846960e8055cd8a))
+
 ## [3.39.0](https://github.com/Infomaximum/widget-sdk/compare/v3.38.0...v3.39.0) (2024-07-30)
 
 

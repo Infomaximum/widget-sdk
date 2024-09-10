@@ -162,7 +162,7 @@ export interface IWidgetMeasure extends IWidgetColumnIndicator {
 
 export interface IMarkdownMeasure extends IWidgetMeasure {
   format: EFormatTypes;
-  displayMode: EMarkdownDisplayMode;
+  displaySign: EMarkdownDisplayMode;
 }
 
 /** Тип показателя */

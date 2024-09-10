@@ -1,7 +1,8 @@
 import type { IWidgetAction } from "../actions";
 import type { TExtendedFormulaFilterValue } from "../filtration";
-import type { EFontWeight, EWidgetFilterMode, TColor, TDisplayCondition } from "./values";
+import type { EFontWeight, EWidgetFilterMode, TDisplayCondition } from "./values";
 import type { IMarkdownMeasure, IWidgetSortingIndicator } from "../indicators";
+import type { TColor } from "../color";
 
 export interface IBaseWidgetSettings {
   title?: string;

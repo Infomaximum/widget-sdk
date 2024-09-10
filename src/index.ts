@@ -26,6 +26,7 @@ export * from "./indicatorsFormulas";
 export * from "./dimensionSelection";
 export * from "./utils";
 export * from "./viewContext";
+export * from "./color";
 
 export type TDefineWidgetOptions = {
   manifest?: Record<string, unknown>;

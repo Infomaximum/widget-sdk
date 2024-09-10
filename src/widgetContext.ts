@@ -8,7 +8,7 @@ import type {
   TWidgetVariable,
 } from "./indicators";
 import type { ESimpleDataType } from "./data";
-import type { TColor } from "./settings/values";
+import type { TColor } from "./color";
 
 export interface IWidgetTableColumn {
   /** Имя колонки */
@@ -56,10 +56,6 @@ export interface IDisplayRule {
   color: TColor;
 }
 
-export interface IWorkspaceDisplayRule extends IDisplayRule {
-  groupName: string;
-}
-
 export interface IWidgetsContext {
   /** используемый язык в системе */
   language: ELanguages;
@@ -68,6 +64,8 @@ export interface IWidgetsContext {
   workspaceMeasures: TNullable<Map<string, ICommonMeasures>>;
   reportDimensions: TNullable<Map<string, ICommonDimensions>>;
   workspaceDimensions: TNullable<Map<string, Map<string, ICommonDimensions>>>;
+  /** @deprecated удалить после окончания поддержки миграций BI-13650 */
+  workspaceGroupNameById: Map<number, string>;
   /** Переменные отчета */
   variables: Map<string, TWidgetVariable>;
   /** Метод установки значения переменной отчета */
@@ -86,7 +84,7 @@ export interface IWidgetsContext {
   tables: Set<string>;
   filtrationMode: TFiltrationMode;
   reportDisplayRules: Map<string, IDisplayRule>;
-  workspaceDisplayRules: Map<number, Map<string, IWorkspaceDisplayRule>>;
+  workspaceDisplayRules: Map<string, Map<string, IDisplayRule>>;
   viewNameByKey: Map<string, string>;
   fetchColumnsByTableName(tableName: string): Promise<IWidgetTableColumn[] | undefined>;
 }

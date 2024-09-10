@@ -13,7 +13,6 @@ export enum EWidgetIndicatorType {
   DIMENSION = "DIMENSION",
   DIMENSION_HIERARCHY = "DIMENSION_HIERARCHY",
   SORTING = "SORTING",
-  CUSTOM = "CUSTOM",
 }
 
 export enum EDbType {
@@ -24,7 +23,6 @@ export enum EDbType {
 export interface IWidgetIndicator {
   /** Идентификатор, генерируемый на основе текущего времени */
   id: number;
-  type: EWidgetIndicatorType;
   name: string;
 }
 
@@ -54,13 +52,9 @@ export interface IProcessIndicator extends IWidgetIndicator {
   displayCondition?: TDisplayCondition;
 }
 
-export interface IProcessEventIndicator extends IProcessIndicator {
-  type: EWidgetIndicatorType.EVENT_INDICATOR;
-}
+export interface IProcessEventIndicator extends IProcessIndicator {}
 
-export interface IProcessTransitionIndicator extends IProcessIndicator {
-  type: EWidgetIndicatorType.TRANSITION_INDICATOR;
-}
+export interface IProcessTransitionIndicator extends IProcessIndicator {}
 
 /** Индикатор для сортировки */
 export interface IWidgetSortingIndicator extends IWidgetIndicator {
@@ -145,20 +139,16 @@ export interface IWidgetColumnIndicator extends IWidgetIndicator {
 export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetDimension> {
   /** Идентификатор, генерируемый на основе текущего времени */
   id: number;
-  type: EWidgetIndicatorType.DIMENSION_HIERARCHY;
   name: string;
-  dimensions: D[];
+  hierarchyDimensions: D[];
   displayCondition?: TDisplayCondition;
 }
 
 export interface IWidgetDimension extends IWidgetColumnIndicator {
-  type: EWidgetIndicatorType.DIMENSION;
   hideEmptyValues: boolean;
 }
 
-export interface IWidgetMeasure extends IWidgetColumnIndicator {
-  type: EWidgetIndicatorType.MEASURE;
-}
+export interface IWidgetMeasure extends IWidgetColumnIndicator {}
 
 export interface IMarkdownMeasure extends IWidgetMeasure {
   format: EFormatTypes;
@@ -239,8 +229,8 @@ export type TWidgetVariable =
       guid: string;
     };
 
-export function isHierarchy(
+export function isDimensionsHierarchy(
   indicator: IWidgetColumnIndicator
 ): indicator is IWidgetDimensionHierarchy {
-  return indicator.type === EWidgetIndicatorType.DIMENSION_HIERARCHY;
+  return "hierarchyDimensions" in indicator;
 }

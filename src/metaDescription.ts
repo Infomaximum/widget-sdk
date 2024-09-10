@@ -1,7 +1,7 @@
 import type { TNullable } from "./utilityTypes";
 import type { ESimpleDataType } from "./data";
 import type { EControlType, IControlRecord } from "./controls";
-import type { EWidgetIndicatorType, IWidgetIndicator } from "./indicators";
+import type { EWidgetIndicatorType } from "./indicators";
 import type { IWidgetsContext } from "./widgetContext";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
 import type { ICalculatorFactory } from "./calculators";
@@ -134,29 +134,23 @@ export interface IMeasureMenuConfig extends IWidgetIndicatorMenuConfig {
 
 export interface ISortingMenuConfig extends IWidgetIndicatorMenuConfig {}
 
+export interface IInitialSettings extends Record<string, any> {}
+
 /** Кнопка добавления группы в набор */
-type TAddButton =
+export type TAddButton =
   | {
       title: string;
-      indicatorType: Exclude<
-        EWidgetIndicatorType,
-        EWidgetIndicatorType.CUSTOM | EWidgetIndicatorType.MEASURE | EWidgetIndicatorType.SORTING
-      >;
+      initialSettings?: IInitialSettings;
     }
   | {
       title: string;
-      indicatorType: EWidgetIndicatorType.CUSTOM;
       props: ICustomAddButtonProps;
+      initialSettings?: IInitialSettings;
     }
   | {
       title: string;
-      indicatorType: EWidgetIndicatorType.MEASURE;
-      menuConfig?: IMeasureMenuConfig;
-    }
-  | {
-      title: string;
-      indicatorType: EWidgetIndicatorType.SORTING;
-      menuConfig?: ISortingMenuConfig;
+      menuConfig?: IMeasureMenuConfig | ISortingMenuConfig;
+      initialSettings?: IInitialSettings;
     };
 
 interface IAutoIdentifiedArrayItem {
@@ -177,6 +171,8 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
   maxCount: number;
   /** Описание доступа к настройкам групп */
   accessor: TRecordAccessor<Settings, GroupSettings[]>;
+  /** Получить тип индикатора */
+  getType?: (settings: IInitialSettings) => EWidgetIndicatorType;
   /** Кнопки добавления группы в набор */
   addButtons: TAddButton[];
   /** Создать элементы управления внутри группы (для вкладки настроек данных) */

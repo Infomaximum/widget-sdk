@@ -12,9 +12,9 @@ import { ECalculatorFilterMethods, type ICalculatorFilter } from "../calculator"
 export function selectDimensionFromHierarchy<
   H extends IWidgetDimensionHierarchy<D>,
   D extends IWidgetDimension,
->({ dimensions }: H, filters: ICalculatorFilter[]): TNullable<D> {
-  for (let i = dimensions.length - 1; i >= 0; i--) {
-    const dimension = dimensions[i]!;
+>({ hierarchyDimensions }: H, filters: ICalculatorFilter[]): TNullable<D> {
+  for (let i = hierarchyDimensions.length - 1; i >= 0; i--) {
+    const dimension = hierarchyDimensions[i]!;
 
     // todo: widgets - возможно, стоит использовать Map фильтров для быстрого поиска
     const matchedFilter = filters.find(
@@ -28,10 +28,10 @@ export function selectDimensionFromHierarchy<
     }
 
     const selectionIndex =
-      matchedFilter.values.length > 1 ? i : Math.min(i + 1, dimensions.length - 1);
+      matchedFilter.values.length > 1 ? i : Math.min(i + 1, hierarchyDimensions.length - 1);
 
-    return dimensions[selectionIndex];
+    return hierarchyDimensions[selectionIndex];
   }
 
-  return dimensions[0];
+  return hierarchyDimensions[0];
 }

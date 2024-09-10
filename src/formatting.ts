@@ -36,7 +36,7 @@ export enum EFormatTypes {
 export enum EFormattingPresets {
   //Общая группа шаблонов
   "AUTO" = "AUTO",
-  "TUNE" = "TUNE",
+  "CUSTOM" = "CUSTOM",
   //Группа шаблонов для формата DATE
   "DD/M/YYYY" = "DD/M/YYYY",
   "DD-MM-YYYY" = "DD-MM-YYYY",

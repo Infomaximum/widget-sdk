@@ -2,8 +2,8 @@ import type { TNullable } from "./utilityTypes";
 import type { ESimpleDataType } from "./data";
 import type { EControlType, IControlRecord } from "./controls";
 import type { EWidgetIndicatorType } from "./indicators";
-import type { IWidgetsContext } from "./widgetContext";
-import type { IBaseWidgetSettings } from "./settings/baseWidget";
+import type { IGlobalContext } from "./widgetContext";
+import type { IAutoIdentifiedArrayItem, IBaseWidgetSettings } from "./settings/baseWidget";
 import type { ICalculatorFactory } from "./calculators";
 import type { EWidgetFilterMode } from "./settings/values";
 
@@ -122,44 +122,33 @@ export interface ICustomAddButtonProps {
   onClick?: ISelectLeafOption["onSelect"];
 }
 
-export interface IWidgetIndicatorMenuConfig {
+export interface IWidgetIndicatorAddButtonProps {
   hideTablesColumnsOptions?: boolean;
   hideCommonOptions?: boolean;
   hideQuantityOption?: boolean;
 }
 
-export interface IMeasureMenuConfig extends IWidgetIndicatorMenuConfig {
+export interface IMeasureAddButtonProps extends IWidgetIndicatorAddButtonProps {
   options?: TMeasureAddButtonSelectOption[];
 }
 
-export interface ISortingMenuConfig extends IWidgetIndicatorMenuConfig {}
+export interface ISortingAddButtonProps extends IWidgetIndicatorAddButtonProps {}
 
 export interface IInitialSettings extends Record<string, any> {}
 
 /** Кнопка добавления группы в набор */
-export type TAddButton =
-  | {
-      title: string;
-      initialSettings?: IInitialSettings;
-    }
-  | {
-      title: string;
-      props: ICustomAddButtonProps;
-      initialSettings?: IInitialSettings;
-    }
-  | {
-      title: string;
-      menuConfig?: IMeasureMenuConfig | ISortingMenuConfig;
-      initialSettings?: IInitialSettings;
-    };
-
-interface IAutoIdentifiedArrayItem {
+export type TAddButton = {
+  title: string;
+  props?: ICustomAddButtonProps | IMeasureAddButtonProps | ISortingAddButtonProps;
   /**
-   * Идентификатор, добавляемый системой "на лету" для удобства разработки, не сохраняется на сервер.
-   * Гарантируется уникальность id в пределах settings виджета.
+   * Начальные настройки, которые получит показатель при создании через кнопку добавления.
+   * Возможность не поддерживается для иерархии разрезов.
+   *
+   * Кейс использования:
+   * - Добавление поля type разрезам и мерам виджета "Таблица", т.к. разрезы и меры хранятся в одном массиве.
    */
-  id: number;
-}
+  initialSettings?: IInitialSettings;
+};
 
 export interface IGroupSettings extends IAutoIdentifiedArrayItem, Record<string, any> {}
 
@@ -208,6 +197,10 @@ export interface IPanelDescription<
   displayRecords?: TWidgetLevelRecord<Settings>[];
   /** Конфигурации наборов групп  */
   groupSetDescriptions?: Record<string, IGroupSetDescription<Settings, GroupSettings>>;
+  /** Добавить вкладку с действиями (по умолчанию false) */
+  useActions?: boolean;
+  /** Добавить вкладку с фильтрацией (по умолчанию true) */
+  useFiltration?: boolean;
   /** Конфигурация настроек фильтров */
   filtrationRecords?: Exclude<TWidgetLevelRecord<Settings>, IGroupSetRecord>[];
   /** Режимы фильтрации */
@@ -247,7 +240,7 @@ export interface IPanelDescriptionCreator<
   GroupSettings extends IGroupSettings,
 > {
   (
-    context: IWidgetsContext,
+    context: IGlobalContext,
     panelSettings: Settings,
     calculatorFactory: ICalculatorFactory
   ): IPanelDescription<Settings, GroupSettings>;

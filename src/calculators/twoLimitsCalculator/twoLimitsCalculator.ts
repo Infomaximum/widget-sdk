@@ -1,4 +1,4 @@
-import type { ISortOrder, TSortDirection } from "../../sorting";
+import type { ISortOrder } from "../../sorting";
 import type { TNullable } from "../../utilityTypes";
 
 import type {
@@ -26,12 +26,8 @@ export interface ITwoLimitsCalculatorInput {
   measuresLimit?: number;
   /** Удалять ли строки, в которых значения всех мер пустые */
   isHideEmptyMeasures?: boolean;
-  /**
-   * Направления сортировки (в качестве ключа - формула показателя)
-   * todo: widgets - удалить вариант с Map, т.к. при сортировке важен порядок элементов,
-   * правильнее будет указывать его явно через массив.
-   */
-  sortOrders?: ISortOrder[] | Map<string, TSortDirection>;
+  /** Сортировка */
+  sortOrders?: ISortOrder[];
   /** Формула условия отображения */
   displayConditionFormula?: TNullable<string>;
   /** Лимит строк */

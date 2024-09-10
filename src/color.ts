@@ -1,7 +1,7 @@
 import { parseIndicatorLink } from "./indicatorsFormulas";
 import type { TNullable } from "./utilityTypes";
 import { isNil } from "./utils/functions";
-import type { IWidgetsContext } from "./widgetContext";
+import type { IGlobalContext } from "./widgetContext";
 
 export enum EColorMode {
   /** Окрашивание отключено */
@@ -70,7 +70,7 @@ export type TColor =
 
 export const getRuleColor = (
   ruleFormula: string,
-  widgetsContext: Pick<IWidgetsContext, "reportDisplayRules" | "workspaceDisplayRules">
+  globalContext: Pick<IGlobalContext, "reportDisplayRules" | "workspaceDisplayRules">
 ): TColor | undefined => {
   const link = parseIndicatorLink(ruleFormula);
 
@@ -81,22 +81,22 @@ export const getRuleColor = (
   const { scopeName = null, indicatorName: ruleName } = link;
 
   const rulesByScope = isNil(scopeName)
-    ? widgetsContext.reportDisplayRules
-    : widgetsContext.workspaceDisplayRules?.get(scopeName);
+    ? globalContext.reportDisplayRules
+    : globalContext.workspaceDisplayRules?.get(scopeName);
 
   return rulesByScope?.get(ruleName)?.color;
 };
 
 export const isValidColor = (
   color: TColor,
-  widgetsContext: Pick<IWidgetsContext, "reportDisplayRules" | "workspaceDisplayRules">
+  globalContext: Pick<IGlobalContext, "reportDisplayRules" | "workspaceDisplayRules">
 ): boolean => {
   if (color.mode === EColorMode.RULE) {
-    return !color.formula || Boolean(getRuleColor(color.formula, widgetsContext));
+    return !color.formula || Boolean(getRuleColor(color.formula, globalContext));
   }
 
   if (color.mode === EColorMode.VALUES) {
-    return color.items.every((item) => isValidColor(item.color, widgetsContext));
+    return color.items.every((item) => isValidColor(item.color, globalContext));
   }
 
   return true;

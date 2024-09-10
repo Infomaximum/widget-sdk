@@ -34,15 +34,6 @@ export type TDefineWidgetOptions = {
 
 declare global {
   interface Infomaximum {
-    /** @deprecated 2402 -  необходимо использовать window.im.widget.defineWidget */
-    defineWidget: <
-      WidgetSettings extends IBaseWidgetSettings,
-      GroupSettings extends IGroupSettings,
-    >(
-      uuid: string,
-      Widget: IWidgetEntity<WidgetSettings, GroupSettings>
-    ) => void;
-
     widget: {
       currentSdkVersion: number;
 

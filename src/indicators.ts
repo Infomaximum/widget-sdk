@@ -2,6 +2,7 @@ import type { TActionsOnClick } from "./actions";
 import type { ESimpleDataType } from "./data";
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormatTypes, EFormattingPresets } from "./formatting";
+import type { IAutoIdentifiedArrayItem } from "./settings/baseWidget";
 import type { EMarkdownDisplayMode, TDisplayCondition } from "./settings/values";
 import type { TSortDirection, TWidgetSortingValue } from "./sorting";
 import type { TNullable } from "./utilityTypes";
@@ -19,9 +20,7 @@ export enum EDbType {
   HADOOP = "HADOOP",
 }
 
-export interface IWidgetIndicator {
-  /** Идентификатор, генерируемый на основе текущего времени */
-  id: number;
+export interface IWidgetIndicator extends IAutoIdentifiedArrayItem {
   name: string;
 }
 
@@ -125,9 +124,8 @@ export interface IWidgetColumnIndicator extends IWidgetIndicator {
   onclick?: TActionsOnClick[];
 }
 
-export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetDimension> {
-  /** Идентификатор, генерируемый на основе текущего времени */
-  id: number;
+export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetDimension>
+  extends IAutoIdentifiedArrayItem {
   name: string;
   hierarchyDimensions: D[];
   displayCondition?: TDisplayCondition;

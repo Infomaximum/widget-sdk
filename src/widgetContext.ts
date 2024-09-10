@@ -56,7 +56,7 @@ export interface IDisplayRule {
   color: TColor;
 }
 
-export interface IWidgetsContext {
+export interface IGlobalContext {
   /** используемый язык в системе */
   language: ELanguages;
   processes: Map<string, IWidgetProcess>;
@@ -72,14 +72,8 @@ export interface IWidgetsContext {
   setVariableValue(name: string, value: TNullable<string> | string[]): void;
   states: Map<string, ICommonState>;
   reportName: string;
-  /**
-   * режим дашборда
-   * @deprecated 2401 - необходимо использовать displayMode */
-  isViewMode: boolean;
   /** Режим отображения виджета */
   displayMode: TDisplayMode;
-  /** @deprecated необходимо получать из системной переменной "Login" */
-  userLogin: string;
   scripts: Map<string, IActionScript>;
   tables: Set<string>;
   filtrationMode: TFiltrationMode;

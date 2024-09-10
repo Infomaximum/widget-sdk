@@ -1,5 +1,6 @@
 import type { TExtendedFormulaFilterValue } from "./filtration";
-import type { IWidgetsContext } from "./widgetContext";
+import type { IAutoIdentifiedArrayItem } from "./settings/baseWidget";
+import type { IGlobalContext } from "./widgetContext";
 
 export enum EWidgetActionInputMethod {
   COLUMN = "COLUMN",
@@ -101,9 +102,7 @@ export type TWidgetActionParameter = IWidgetActionParameterCommon &
     | IParameterFromDynamicList
   );
 
-interface IActionOnClickParameterCommon {
-  /** @deprecated удалить [BI-13546] */
-  id: number;
+interface IActionOnClickParameterCommon extends IAutoIdentifiedArrayItem {
   name: string;
 }
 
@@ -117,9 +116,7 @@ export type TActionOnClickParameter = IActionOnClickParameterCommon &
     | IParameterFromEndEvent
   );
 
-interface IActionCommon {
-  /** @deprecated удалить [BI-13546] */
-  id: number;
+interface IActionCommon extends IAutoIdentifiedArrayItem {
   name: string;
 }
 
@@ -198,7 +195,7 @@ export type TAction = TActionsOnClick | IWidgetAction;
 
 export const isExecuteScriptActionValid = (
   action: Extract<TAction, { type: EActionTypes.EXECUTE_SCRIPT }>,
-  { scripts, tables, variables }: IWidgetsContext
+  { scripts, tables, variables }: Pick<IGlobalContext, "scripts" | "tables" | "variables">
 ) => {
   const currentScript = scripts.get(action.scriptKey ?? "");
 

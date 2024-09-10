@@ -23,19 +23,6 @@ export enum EProcessFilterNames {
   durationOfTransition = "durationOfTransition",
 }
 
-/** @deprecated необходимо использовать @see {@link IFormulaFilterValue} */
-export interface IWidgetFormulaFilterValue extends ICalculatorFilter {
-  /**
-   * Название фильтра
-   * @deprecated необходимо использовать @see {@link IWidgetFormulaFilterValue.name}
-   */
-  caption?: TNullable<string>;
-  /** Название фильтра */
-  name: TNullable<string>;
-  /** Формат */
-  format?: EFormatTypes;
-}
-
 interface IProcessFilterValue {
   /**
    * События, доступные при выборе процесса.
@@ -182,11 +169,7 @@ export interface IWidgetFiltration {
   // Formula filters
 
   /** Добавить фильтр по формуле */
-  addFormulaFilter(
-    value:
-      | IWidgetFormulaFilterValue
-      | TSelectivePartial<IFormulaFilterValue, "format" | "formValues">
-  ): void;
+  addFormulaFilter(value: TSelectivePartial<IFormulaFilterValue, "format" | "formValues">): void;
   /** Удалить фильтр по формуле */
   removeFormulaFilter(formula: string): void;
 

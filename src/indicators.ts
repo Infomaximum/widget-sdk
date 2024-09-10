@@ -11,7 +11,6 @@ export enum EWidgetIndicatorType {
   EVENT_INDICATOR = "EVENT_INDICATOR",
   TRANSITION_INDICATOR = "TRANSITION_INDICATOR",
   DIMENSION = "DIMENSION",
-  DIMENSION_HIERARCHY = "DIMENSION_HIERARCHY",
   SORTING = "SORTING",
 }
 
@@ -74,18 +73,8 @@ export enum EWidgetIndicatorValueModes {
 export enum ESortingValueModes {
   /** Сортировка по формуле */
   FORMULA = "FORMULA",
-  /** Пункт "Количество" */
-  QUANTITY = "QUANTITY",
-  /** @deprecated Для сортировки по иерархии используется режим DIMENSION_IN_WIDGET */
-  HIERARCHY = "HIERARCHY",
-  /** Сортировка по мере виджета */
-  MEASURE_IN_WIDGET = "MEASURE_IN_WIDGET",
-  /** Сортировка по разрезу(в т.ч. по иерархии) виджета */
-  DIMENSION_IN_WIDGET = "DIMENSION_IN_WIDGET",
-  /** Сортировка по мере отчета */
-  IN_DASHBOARD = "IN_DASHBOARD",
-  /** Сортировка по мере пространства */
-  IN_WORKSPACE = "IN_WORKSPACE",
+  /** Сортировка по показателю(разрезу или мере) виджета */
+  IN_WIDGET = "IN_WIDGET",
 }
 
 export interface ICommonState {

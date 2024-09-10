@@ -3,12 +3,12 @@ import type { IWidgetProcess } from "../metaDescription";
 import { fillTemplateString } from "./common";
 
 export enum ETransitionMeasureTemplateNames {
-  count = "count",
+  transitionsCount = "transitionsCount",
   medianTime = "medianTime",
 }
 
 export const transitionMeasureTemplateFormulas = {
-  [ETransitionMeasureTemplateNames.count]: `count()`,
+  [ETransitionMeasureTemplateNames.transitionsCount]: `count()`,
   [ETransitionMeasureTemplateNames.medianTime]: `medianExact(date_diff(second, begin({eventTimeFormula}), end({eventTimeFormula})))`,
 } as const;
 

@@ -121,7 +121,7 @@ export interface IWidgetColumnIndicator extends IWidgetIndicator {
   formatting?: EFormattingPresets;
   formattingTemplate?: string;
   displayCondition?: TDisplayCondition;
-  onclick?: TActionsOnClick[];
+  onClick?: TActionsOnClick[];
 }
 
 export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetDimension>

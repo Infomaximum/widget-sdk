@@ -1,3 +1,5 @@
+import { unescapeSpecialCharacters } from "../calculators";
+
 /**
  * Регулярное выражение для поиска имени ссылки внутри формулы.
  * Учитывает, что имя внутри формулы содержит экраны.
@@ -36,7 +38,10 @@ export const parseIndicatorLink = (formula: string): IIndicatorLink | null => {
   const workspaceMatch = formula.match(workspaceLinkRegExp.source);
 
   if (workspaceMatch) {
-    return { scopeName: workspaceMatch[1]!, indicatorName: workspaceMatch[2]! };
+    return {
+      scopeName: unescapeSpecialCharacters(workspaceMatch[1]!),
+      indicatorName: unescapeSpecialCharacters(workspaceMatch[2]!),
+    };
   }
 
   return null;

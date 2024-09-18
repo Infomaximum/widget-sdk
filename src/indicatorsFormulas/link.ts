@@ -1,4 +1,4 @@
-import { unescapeSpecialCharacters } from "../calculators";
+import { unescapeSpecialCharacters } from "../calculators/utils/unescapeSpecialCharacters";
 
 /**
  * Регулярное выражение для поиска имени ссылки внутри формулы.

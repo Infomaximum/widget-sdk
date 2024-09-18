@@ -61,7 +61,7 @@ export interface IGlobalContext {
   language: ELanguages;
   processes: Map<string, IWidgetProcess>;
   reportMeasures: TNullable<Map<string, ICommonMeasures>>;
-  workspaceMeasures: TNullable<Map<string, ICommonMeasures>>;
+  workspaceMeasures: TNullable<Map<string, Map<string, ICommonMeasures>>>;
   reportDimensions: TNullable<Map<string, ICommonDimensions>>;
   workspaceDimensions: TNullable<Map<string, Map<string, ICommonDimensions>>>;
   /** @deprecated удалить после окончания поддержки миграций BI-13650 */

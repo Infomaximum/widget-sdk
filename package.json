@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@infomaximum/base-filter": "^1.1.0",
-    "@infomaximum/global-types": "^1.2.0",
+    "@infomaximum/global-types": "^1.3.0",
     "@infomaximum/localization": "^1.0.4"
   },
   "devDependencies": {

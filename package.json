@@ -12,8 +12,9 @@
   "scripts": {
     "build": "rollup -c",
     "lint": "tsc --noEmit",
-    "release": "tsc --noEmit && standard-version && rollup -c",
-    "format": "prettier --find-config-path --write 'src/**/*'"
+    "release": "npm run lint && standard-version && rollup -c",
+    "format": "prettier --find-config-path --write 'src/**/*'",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@infomaximum/base-filter": "^1.1.0",

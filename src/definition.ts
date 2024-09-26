@@ -15,5 +15,5 @@ export interface IDefinition<
   /** заполняет настройки значениями по умолчанию */
   fillSettings: IFillSettings<WidgetSettings>;
   /** возвращает ключи показателей(разрезов или мер), для которых должна работать системная сортировка */
-  getSortableIndicatorsKeys(): Readonly<StringKeyOf<WidgetSettings>[]>;
+  getSortableIndicatorsKeys?(): Readonly<StringKeyOf<WidgetSettings>[]>;
 }

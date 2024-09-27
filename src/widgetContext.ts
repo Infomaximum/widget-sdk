@@ -18,9 +18,11 @@ export interface IWidgetTableColumn {
 }
 
 interface IScripField {
+  /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
   guid: string;
   name: string;
   dataType: ESimpleDataType;
+  isRequired: boolean;
 }
 
 export interface IActionScript {

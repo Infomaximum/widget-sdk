@@ -6,7 +6,6 @@ import type { ITwoLimitsCalculator } from "./twoLimitsCalculator/twoLimitsCalcul
 import type { ITypeCalculator } from "./typeCalculator/typeCalculator";
 
 export * from "./utils";
-export * from "./variables";
 export * from "./calculator";
 export * from "./generalCalculator";
 export * from "./baseDimensionsAndMeasuresCalculator";

@@ -162,6 +162,15 @@ export enum EIndicatorType {
   USER_SORTING = "USER_SORTING",
 }
 
+export type TSystemVariable = {
+  /** Имя переменной */
+  name: string;
+  /** Значение */
+  value: string;
+  /** Тип данных */
+  dataType: ESimpleDataType;
+};
+
 export type TWidgetVariable =
   | {
       /** Тип переменной */

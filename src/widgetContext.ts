@@ -5,6 +5,7 @@ import type {
   ICommonDimensions,
   ICommonMeasures,
   ICommonState,
+  TSystemVariable,
   TWidgetVariable,
 } from "./indicators";
 import type { ESimpleDataType } from "./data";
@@ -68,6 +69,8 @@ export interface IGlobalContext {
   workspaceGroupNameById: Map<number, string>;
   /** Переменные отчета */
   variables: Map<string, TWidgetVariable>;
+  /** Системные переменные */
+  systemVariables: Map<string, TSystemVariable>;
   /** Метод установки значения переменной отчета */
   setVariableValue(name: string, value: TNullable<string> | string[]): void;
   states: Map<string, ICommonState>;

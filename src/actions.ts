@@ -195,7 +195,12 @@ export type TAction = TActionsOnClick | IWidgetAction;
 
 export const isExecuteScriptActionValid = (
   action: Extract<TAction, { type: EActionTypes.EXECUTE_SCRIPT }>,
-  { scripts, tables, variables }: Pick<IGlobalContext, "scripts" | "tables" | "variables">
+  {
+    scripts,
+    tables,
+    variables,
+    systemVariables,
+  }: Pick<IGlobalContext, "scripts" | "tables" | "variables" | "systemVariables">
 ) => {
   const currentScript = scripts.get(action.scriptKey ?? "");
 
@@ -220,7 +225,8 @@ export const isExecuteScriptActionValid = (
 
     if (
       actionInput.inputMethod === EWidgetActionInputMethod.VARIABLE &&
-      !variables.has(actionInput.sourceVariable)
+      !variables.has(actionInput.sourceVariable) &&
+      !systemVariables.has(actionInput.sourceVariable)
     ) {
       return false;
     }

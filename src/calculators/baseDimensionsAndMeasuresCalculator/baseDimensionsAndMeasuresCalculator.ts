@@ -1,6 +1,5 @@
-import type { ISortOrder, TSortDirection } from "../../sorting";
+import type { ISortOrder } from "../../sorting";
 import type { TNullable } from "../../utilityTypes";
-import type { ICalculatorVariablesValues } from "../variables";
 import type {
   ICalculator,
   ICalculatorDimensionInput,
@@ -16,8 +15,6 @@ export interface IBaseDimensionsAndMeasuresCalculatorInput {
   dimensions: ICalculatorDimensionInput[];
   /** Меры */
   measures: ICalculatorMeasureInput[];
-  /** Значения переменных */
-  variablesValues?: ICalculatorVariablesValues;
   /** Фильтры, использующие WHERE */
   filters: ICalculatorFilter[];
   /** Фильтры, использующие HAVING */
@@ -28,12 +25,8 @@ export interface IBaseDimensionsAndMeasuresCalculatorInput {
   dimensionsLimit?: number;
   /** Удалять ли строки, в которых значения всех мер пустые */
   isHideEmptyMeasures?: boolean;
-  /**
-   * Направления сортировки (в качестве ключа - формула показателя)
-   * todo: widgets - удалить вариант с Map, т.к. при сортировке важен порядок элементов,
-   * правильнее будет указывать его явно через массив.
-   */
-  sortOrders?: ISortOrder[] | Map<string, TSortDirection>;
+  /** Сортировка */
+  sortOrders?: ISortOrder[];
   /** Формула условия отображения */
   displayConditionFormula?: TNullable<string>;
 }

@@ -1,5 +1,4 @@
 export { prepareValuesForSql } from "./prepareValuesForSql";
-export { mapVariablesToInputs } from "./mapVariablesToInputs";
 export {
   mapFormulaFilterToCalculatorInput,
   mapFormulaFiltersToInputs,
@@ -24,3 +23,4 @@ export {
   type TBoundedContentWithIndicator,
 } from "./bindContentsWithIndicators";
 export { escapeSpecialCharacters } from "./escapeSpecialCharacters";
+export { unescapeSpecialCharacters } from "./unescapeSpecialCharacters";

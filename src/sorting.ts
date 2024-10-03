@@ -16,28 +16,13 @@ export interface ISortOrder {
   displayCondition?: TNullable<string>;
 }
 
-export type TWidgetSortingValueRelatedWidgetMeasure = {
-  mode: ESortingValueModes.MEASURE_IN_WIDGET;
-  index: number;
-};
-
-export type TWidgetSortingValueRelatedWidgetDimension = {
-  mode: ESortingValueModes.DIMENSION_IN_WIDGET | ESortingValueModes.HIERARCHY;
-  index: number;
-};
-
-export type TWidgetSortingValueRelatedWidgetIndicator =
-  | TWidgetSortingValueRelatedWidgetMeasure
-  | TWidgetSortingValueRelatedWidgetDimension;
-
 export type TWidgetSortingValue =
   | {
-      mode: ESortingValueModes.FORMULA | ESortingValueModes.QUANTITY;
+      mode: ESortingValueModes.FORMULA;
       formula: string;
     }
-  | TWidgetSortingValueRelatedWidgetIndicator
   | {
-      mode: ESortingValueModes.IN_DASHBOARD | ESortingValueModes.IN_WORKSPACE;
-      guid: string;
-      formula: string;
+      mode: ESortingValueModes.IN_WIDGET;
+      group: string;
+      index: number;
     };

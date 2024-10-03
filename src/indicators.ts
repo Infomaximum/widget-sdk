@@ -1,6 +1,8 @@
+import type { TActionsOnClick } from "./actions";
 import type { ESimpleDataType } from "./data";
-import type { IFormulaFilterValue } from "./filtration";
+import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormatTypes, EFormattingPresets } from "./formatting";
+import type { IAutoIdentifiedArrayItem } from "./settings/baseWidget";
 import type { EMarkdownDisplayMode, TDisplayCondition } from "./settings/values";
 import type { TSortDirection, TWidgetSortingValue } from "./sorting";
 import type { TNullable } from "./utilityTypes";
@@ -10,10 +12,7 @@ export enum EWidgetIndicatorType {
   EVENT_INDICATOR = "EVENT_INDICATOR",
   TRANSITION_INDICATOR = "TRANSITION_INDICATOR",
   DIMENSION = "DIMENSION",
-  DIMENSION_HIERARCHY = "DIMENSION_HIERARCHY",
-  VARIABLE = "VARIABLE",
   SORTING = "SORTING",
-  CUSTOM = "CUSTOM",
 }
 
 export enum EDbType {
@@ -21,10 +20,7 @@ export enum EDbType {
   HADOOP = "HADOOP",
 }
 
-export interface IWidgetIndicator {
-  /** Идентификатор, генерируемый на основе текущего времени */
-  id: number;
-  type: EWidgetIndicatorType;
+export interface IWidgetIndicator extends IAutoIdentifiedArrayItem {
   name: string;
 }
 
@@ -54,13 +50,9 @@ export interface IProcessIndicator extends IWidgetIndicator {
   displayCondition?: TDisplayCondition;
 }
 
-export interface IProcessEventIndicator extends IProcessIndicator {
-  type: EWidgetIndicatorType.EVENT_INDICATOR;
-}
+export interface IProcessEventIndicator extends IProcessIndicator {}
 
-export interface IProcessTransitionIndicator extends IProcessIndicator {
-  type: EWidgetIndicatorType.TRANSITION_INDICATOR;
-}
+export interface IProcessTransitionIndicator extends IProcessIndicator {}
 
 /** Индикатор для сортировки */
 export interface IWidgetSortingIndicator extends IWidgetIndicator {
@@ -80,25 +72,28 @@ export enum EWidgetIndicatorValueModes {
 export enum ESortingValueModes {
   /** Сортировка по формуле */
   FORMULA = "FORMULA",
-  /** Пункт "Количество" */
-  QUANTITY = "QUANTITY",
-  /** @deprecated Для сортировки по иерархии используется режим DIMENSION_IN_WIDGET */
-  HIERARCHY = "HIERARCHY",
-  /** Сортировка по мере виджета */
-  MEASURE_IN_WIDGET = "MEASURE_IN_WIDGET",
-  /** Сортировка по разрезу(в т.ч. по иерархии) виджета */
-  DIMENSION_IN_WIDGET = "DIMENSION_IN_WIDGET",
-  /** Сортировка по мере отчета */
-  IN_DASHBOARD = "IN_DASHBOARD",
-  /** Сортировка по мере пространства */
-  IN_WORKSPACE = "IN_WORKSPACE",
+  /** Сортировка по показателю(разрезу или мере) виджета */
+  IN_WIDGET = "IN_WIDGET",
 }
 
-export interface ICommonColumnIndicator {
+export interface ICommonState {
+  name: string;
+  /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
   guid: string;
+}
+
+export interface ICommonMeasures {
+  name: string;
+  /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
+  guid: string;
+  formula: string;
+}
+
+export interface ICommonDimensions {
   name: string;
   formula: string;
 }
+
 export type TColumnIndicatorValue =
   | { mode: EWidgetIndicatorValueModes.FORMULA; formula: string }
   | {
@@ -126,29 +121,25 @@ export interface IWidgetColumnIndicator extends IWidgetIndicator {
   formatting?: EFormattingPresets;
   formattingTemplate?: string;
   displayCondition?: TDisplayCondition;
+  onClick?: TActionsOnClick[];
 }
 
-export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetDimension> {
-  /** Идентификатор, генерируемый на основе текущего времени */
-  id: number;
-  type: EWidgetIndicatorType.DIMENSION_HIERARCHY;
+export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetDimension>
+  extends IAutoIdentifiedArrayItem {
   name: string;
-  dimensions: D[];
+  hierarchyDimensions: D[];
   displayCondition?: TDisplayCondition;
 }
 
 export interface IWidgetDimension extends IWidgetColumnIndicator {
-  type: EWidgetIndicatorType.DIMENSION;
   hideEmptyValues: boolean;
 }
 
-export interface IWidgetMeasure extends IWidgetColumnIndicator {
-  type: EWidgetIndicatorType.MEASURE;
-}
+export interface IWidgetMeasure extends IWidgetColumnIndicator {}
 
 export interface IMarkdownMeasure extends IWidgetMeasure {
   format: EFormatTypes;
-  displayMode: EMarkdownDisplayMode;
+  displaySign: EMarkdownDisplayMode;
 }
 
 /** Тип показателя */
@@ -171,6 +162,15 @@ export enum EIndicatorType {
   USER_SORTING = "USER_SORTING",
 }
 
+export type TSystemVariable = {
+  /** Имя переменной */
+  name: string;
+  /** Значение */
+  value: string;
+  /** Тип данных */
+  dataType: ESimpleDataType;
+};
+
 export type TWidgetVariable =
   | {
       /** Тип переменной */
@@ -183,6 +183,8 @@ export type TWidgetVariable =
       defaultValue: string;
       /** Тип данных */
       dataType: ESimpleDataType;
+      /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
+      guid: string;
     }
   | {
       /** Тип переменной */
@@ -199,6 +201,8 @@ export type TWidgetVariable =
       dataType: ESimpleDataType.STRING;
       /** Множественный выбор */
       multipleChoice: boolean;
+      /** @deprecated удалить после выполнения BI-13602, задача BI-13650  */
+      guid: string;
     }
   | {
       /** Тип переменной */
@@ -216,11 +220,13 @@ export type TWidgetVariable =
       /** Множественный выбор */
       multipleChoice: boolean;
       /** Фильтры */
-      filters: (string | IFormulaFilterValue)[];
+      filters: TExtendedFormulaFilterValue[];
+      /** @deprecated удалить после выполнения BI-13602, задача BI-13650  */
+      guid: string;
     };
 
-export function isHierarchy(
+export function isDimensionsHierarchy(
   indicator: IWidgetColumnIndicator
 ): indicator is IWidgetDimensionHierarchy {
-  return indicator.type === EWidgetIndicatorType.DIMENSION_HIERARCHY;
+  return "hierarchyDimensions" in indicator;
 }

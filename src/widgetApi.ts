@@ -1,21 +1,29 @@
-import type { ELanguages } from "@infomaximum/localization";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
-import type { IGroupSettings, IWidgetProcess } from "./metaDescription";
+import type { IGroupSettings } from "./metaDescription";
 import type { IWidgetFiltration } from "./filtration";
 import type { IWidgetPlaceholderController, IWidgetPlaceholderValues } from "./placeholder";
-import type { TWidgetVariable } from "./indicators";
 import type { IWidgetFormatting } from "./formatting";
-import type { IWidgetsContext } from "./widgetContext";
-import type { IWidgetAction } from "./actions";
+import type { IGlobalContext } from "./widgetContext";
+import type { TAction } from "./actions";
 import type { ICalculatorFilter } from "./calculators/calculator/calculator";
 import type { ICalculatorFactory } from "./calculators";
 import type { IDefinition } from "./definition";
+import type { TContextMenu } from "./contextMenu";
+import type { IViewContext } from "./viewContext";
 
 export type TLaunchActionParams = {
-  action: IWidgetAction;
+  action: TAction;
   onSuccess: () => void;
   filters: ICalculatorFilter[];
   needConfirmation?: boolean;
+  eventNames?: [string] | [string, string];
+};
+
+export type TWidgetContainer = {
+  /** Имеет ли контейнер виджета ограниченную максимальную высоту */
+  isMaxHeightLimited: boolean;
+  /** Установить минимальную высоту рабочей области виджета */
+  setContentMinHeight(value: number): void;
 };
 
 export interface IWidgetPersistValue<T extends object = object> {
@@ -51,33 +59,29 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
   /** Объект для получения значений плейсхолдера */
   placeholderValues: IWidgetPlaceholderValues;
 
-  /** Контекст виджета */
-  widgetsContext: IWidgetsContext;
+  /** Глобальный контекст. Содержит информацию из отчета, пространства и платформы системы */
+  globalContext: IGlobalContext;
 
+  /** Контекст образа */
+  viewContext: IViewContext;
+
+  /** Данные о контейнере виджета */
+  widgetContainer: TWidgetContainer;
   /** Запуск действия */
   launchAction(params: TLaunchActionParams): void;
   /** Значение, сохраняемое в localStorage и URL */
   persistValue: IWidgetPersistValue;
+  /** функция для управления контекстными меню */
+  setContextMenu: (key: string, value: TContextMenu | null) => void;
 }
 
 export interface ICustomWidgetProps<
   WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings,
 > extends IWidgetProps<WidgetSettings> {
-  /** @deprecated - нужно использовать из widgetsContext */
-  language: ELanguages;
-
-  /**
-   * режим дашборда
-   * @deprecated 2401 - необходимо использовать displayMode из widgetsContext */
-  isViewMode: boolean;
   /** манифест виджета */
   manifest: Record<string, any>;
-  /** @deprecated - процессы приходят в widgetsContext */
-  processes: Map<string, IWidgetProcess>;
   /** body DOM элемент родительского приложения */
   bodyElement: HTMLBodyElement;
-  /** @deprecated - значения переменных на дашборде нужно использовать из widgetsContext */
-  variables: Map<string, TWidgetVariable>;
   /** Форматирование */
   formatting: IWidgetFormatting;
   /** Получить ресурс виджета по имени файла */
@@ -123,7 +127,7 @@ export interface IWidget<WidgetSettings extends IBaseWidgetSettings> {
 }
 
 export interface IFillSettings<WidgetSettings extends IBaseWidgetSettings> {
-  (settings: Partial<WidgetSettings>, context: IWidgetsContext): void;
+  (settings: Partial<WidgetSettings>, context: IGlobalContext): void;
 }
 
 export interface IWidgetEntity<

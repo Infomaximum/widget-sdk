@@ -23,37 +23,24 @@ export enum EProcessFilterNames {
   durationOfTransition = "durationOfTransition",
 }
 
-/** @deprecated необходимо использовать @see {@link IFormulaFilterValue} */
-export interface IWidgetFormulaFilterValue extends ICalculatorFilter {
-  /**
-   * Название фильтра
-   * @deprecated необходимо использовать @see {@link IWidgetFormulaFilterValue.name}
-   */
-  caption?: TNullable<string>;
-  /** Название фильтра */
-  name: TNullable<string>;
-  /** Формат */
-  format?: EFormatTypes;
-}
-
 interface IProcessFilterValue {
   /**
    * События, доступные при выборе процесса.
    * Если параметр не передан, используются все события процесса на основе запроса к вычислителю.
    */
-  eventsNamesByProcessGuidMap?: Map<string, (string | null)[]>;
+  eventsNamesByProcessNameMap?: Map<string, (string | null)[]>;
 }
 
 export interface IProcessEventFilterValue extends IProcessFilterValue {
-  processGuid: string;
+  processName: string;
   eventName: string;
 }
 
 export interface IProcessTransitionFilterValue extends IProcessFilterValue {
-  startEventProcessGuid: string;
+  startEventProcessName: string;
   startEventName: string;
 
-  endEventProcessGuid: string;
+  endEventProcessName: string;
   endEventName: string;
 }
 
@@ -141,7 +128,10 @@ export interface IFormulaFilterValue {
   }>;
 }
 
+export type TExtendedFormulaFilterValue = { formula: string } | IFormulaFilterValue;
+
 interface IStagesFilterItem {
+  id: number;
   /** Название этапа */
   name: string;
   /** Формула фильтра этапа */
@@ -165,6 +155,7 @@ export type TWidgetFilterValue =
   | IProcessTransitionFilterValue;
 
 export interface IWidgetFilter {
+  isReadonly: boolean;
   filterValue: TWidgetFilterValue;
   preparedFilterValue: ICalculatorFilter;
 }
@@ -178,11 +169,7 @@ export interface IWidgetFiltration {
   // Formula filters
 
   /** Добавить фильтр по формуле */
-  addFormulaFilter(
-    value:
-      | IWidgetFormulaFilterValue
-      | TSelectivePartial<IFormulaFilterValue, "format" | "formValues">
-  ): void;
+  addFormulaFilter(value: TSelectivePartial<IFormulaFilterValue, "format" | "formValues">): void;
   /** Удалить фильтр по формуле */
   removeFormulaFilter(formula: string): void;
 
@@ -203,3 +190,9 @@ export interface IWidgetFiltration {
   /** Удалить фильтр по этапам */
   removeStagesFilter(widgetKey: string): void;
 }
+
+export const isFormulaFilterValue = (
+  value: TExtendedFormulaFilterValue
+): value is IFormulaFilterValue => {
+  return "filteringMethod" in value;
+};

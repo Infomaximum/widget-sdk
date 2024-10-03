@@ -1,10 +1,11 @@
 import type { TNullable } from "./utilityTypes";
 import type { ESimpleDataType } from "./data";
 import type { EControlType, IControlRecord } from "./controls";
-import type { EWidgetIndicatorType, IWidgetIndicator } from "./indicators";
-import type { IWidgetsContext } from "./widgetContext";
-import type { IBaseWidgetSettings } from "./settings/baseWidget";
+import type { EWidgetIndicatorType } from "./indicators";
+import type { IGlobalContext } from "./widgetContext";
+import type { IAutoIdentifiedArrayItem, IBaseWidgetSettings } from "./settings/baseWidget";
 import type { ICalculatorFactory } from "./calculators";
+import type { EWidgetFilterMode } from "./settings/values";
 
 export interface ILens<T extends TNullable<object>, Value> {
   get(obj: T): TNullable<Value>;
@@ -49,9 +50,10 @@ export interface ISelectOption {
   value: string;
   label: string;
   disabled?: boolean;
+  rightIcon?: "fx" | string;
 }
 
-export enum ECustomSelectOptionTypes {
+export enum ESelectOptionTypes {
   DIVIDER = "DIVIDER",
   SYSTEM = "SYSTEM",
   GROUP = "GROUP",
@@ -63,100 +65,90 @@ export enum ECustomSelectTemplates {
   DIMENSION_GROUPS = "DIMENSION_GROUPS",
 }
 
-export interface ICustomSelectDividerOption {
-  type: ECustomSelectOptionTypes.DIVIDER;
+export interface ISelectDividerOption {
+  type: ESelectOptionTypes.DIVIDER;
 }
 
-export interface ICustomSelectSystemOption {
-  type: ECustomSelectOptionTypes.SYSTEM;
-  template: ECustomSelectTemplates;
+export interface ISelectSystemOption<T extends string = string> {
+  type: ESelectOptionTypes.SYSTEM;
+  template: T;
 }
 
-export interface ICustomSelectGroupOption {
-  type: ECustomSelectOptionTypes.GROUP;
+export interface ISelectGroupOption {
+  type: ESelectOptionTypes.GROUP;
   label: string;
-  options: ICustomSelectOption[];
+  options: IAddButtonSelectOption[];
   icon: string;
 }
 
-export type TCustomSelectFetchOptions = () => Promise<ICustomSelectOption[]>;
-export type TCustomSelectChildOptions = ICustomSelectOption[] | TCustomSelectFetchOptions;
+export type TSelectFetchOptions = () => Promise<TCustomAddButtonSelectOption[]>;
+export type TSelectChildOptions = TCustomAddButtonSelectOption[] | TSelectFetchOptions;
 
-export interface ICustomSelectBranchOption {
-  type: ECustomSelectOptionTypes.BRANCH;
+export interface ISelectBranchOption {
+  type: ESelectOptionTypes.BRANCH;
   label: string;
-  options: TCustomSelectChildOptions;
+  options: TSelectChildOptions;
   icon?: string;
   disabled?: boolean;
 }
 
-export interface ICustomSelectLeafOption {
-  type: ECustomSelectOptionTypes.LEAF;
+export interface ISelectLeafOption {
+  type: ESelectOptionTypes.LEAF;
   label: string;
   value: string;
   onSelect: <T extends object>(
     value: string,
     update: <R extends object>(f: (prevItems: (T | R)[]) => (T | R)[]) => void
   ) => void;
+  /** Строка в формате base64 */
   icon?: string;
   disabled?: boolean;
 }
 
-export type ICustomSelectOption =
-  | ICustomSelectDividerOption
-  | ICustomSelectSystemOption
-  | ICustomSelectGroupOption
-  | ICustomSelectBranchOption
-  | ICustomSelectLeafOption;
+export type IAddButtonSelectOption =
+  | ISelectDividerOption
+  | ISelectGroupOption
+  | ISelectBranchOption
+  | ISelectLeafOption;
 
+export type TCustomAddButtonSelectOption =
+  | ISelectSystemOption<ECustomSelectTemplates>
+  | IAddButtonSelectOption;
+
+export type TMeasureAddButtonSelectOption = IAddButtonSelectOption;
 export interface ICustomAddButtonProps {
-  options: TCustomSelectChildOptions;
+  options: TSelectChildOptions;
   hasDropdown?: boolean;
-  onClick?: ICustomSelectLeafOption["onSelect"];
+  onClick?: ISelectLeafOption["onSelect"];
 }
 
-export interface IWidgetIndicatorMenuConfig {
+export interface IWidgetIndicatorAddButtonProps {
   hideTablesColumnsOptions?: boolean;
   hideCommonOptions?: boolean;
   hideQuantityOption?: boolean;
 }
 
-export interface IMeasureMenuConfig extends IWidgetIndicatorMenuConfig {}
+export interface IMeasureAddButtonProps extends IWidgetIndicatorAddButtonProps {
+  options?: TMeasureAddButtonSelectOption[];
+}
 
-export interface ISortingMenuConfig extends IWidgetIndicatorMenuConfig {}
+export interface ISortingAddButtonProps extends IWidgetIndicatorAddButtonProps {}
+
+export interface IInitialSettings extends Record<string, any> {}
 
 /** Кнопка добавления группы в набор */
-type TAddButton =
-  | {
-      title: string;
-      indicatorType: Exclude<
-        EWidgetIndicatorType,
-        EWidgetIndicatorType.CUSTOM | EWidgetIndicatorType.MEASURE | EWidgetIndicatorType.SORTING
-      >;
-    }
-  | {
-      title: string;
-      indicatorType: EWidgetIndicatorType.CUSTOM;
-      props: ICustomAddButtonProps;
-    }
-  | {
-      title: string;
-      indicatorType: EWidgetIndicatorType.MEASURE;
-      menuConfig?: IMeasureMenuConfig;
-    }
-  | {
-      title: string;
-      indicatorType: EWidgetIndicatorType.SORTING;
-      menuConfig?: ISortingMenuConfig;
-    };
-
-interface IAutoIdentifiedArrayItem {
+export type TAddButton = {
+  title: string;
+  props?: ICustomAddButtonProps | IMeasureAddButtonProps | ISortingAddButtonProps;
   /**
-   * Идентификатор, добавляемый системой "на лету" для удобства разработки, не сохраняется на сервер.
-   * Гарантируется уникальность id в пределах settings виджета.
+   * Начальные настройки, которые получит показатель при создании через кнопку добавления.
+   * Возможность не поддерживается для иерархии разрезов.
+   *
+   * Кейс использования:
+   * - Добавление поля type разрезам и мерам виджета "Таблица", т.к. разрезы и меры хранятся в одном массиве.
    */
-  id: number;
-}
+  initialSettings?: IInitialSettings;
+};
 
 export interface IGroupSettings extends IAutoIdentifiedArrayItem, Record<string, any> {}
 
@@ -168,6 +160,8 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
   maxCount: number;
   /** Описание доступа к настройкам групп */
   accessor: TRecordAccessor<Settings, GroupSettings[]>;
+  /** Получить тип индикатора */
+  getType?: (settings: IInitialSettings) => EWidgetIndicatorType;
   /** Кнопки добавления группы в набор */
   addButtons: TAddButton[];
   /** Создать элементы управления внутри группы (для вкладки настроек данных) */
@@ -180,6 +174,12 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
   isValid?(group: IGroupSettings): boolean;
   /** Находится ли группа в состоянии загрузки */
   isLoading?(group: IGroupSettings): boolean;
+  /** Можно ли удалять группу по умолчанию true */
+  isRemovable?(group: IGroupSettings): boolean;
+  /** Можно ли сортировать группу по умолчанию true */
+  isDraggable?: boolean;
+  /** Опциональный верхний отступ для группы */
+  marginTop?: number;
 }
 
 /** Конфигурация левой панели */
@@ -188,7 +188,7 @@ export interface IPanelDescription<
   GroupSettings extends IGroupSettings = IGroupSettings,
 > {
   /** Добавить заголовок для виджета */
-  useHeader?: boolean;
+  useTitle?: boolean;
   /** Добавить описание для виджета */
   useMarkdown?: boolean;
   /** Конфигурация настроек данных виджета */
@@ -197,6 +197,14 @@ export interface IPanelDescription<
   displayRecords?: TWidgetLevelRecord<Settings>[];
   /** Конфигурации наборов групп  */
   groupSetDescriptions?: Record<string, IGroupSetDescription<Settings, GroupSettings>>;
+  /** Добавить вкладку с действиями (по умолчанию false) */
+  useActions?: boolean;
+  /** Добавить вкладку с фильтрацией (по умолчанию true) */
+  useFiltration?: boolean;
+  /** Конфигурация настроек фильтров */
+  filtrationRecords?: Exclude<TWidgetLevelRecord<Settings>, IGroupSetRecord>[];
+  /** Режимы фильтрации */
+  filtrationModes?: EWidgetFilterMode[];
 }
 
 export interface IWidgetProcess {
@@ -232,7 +240,7 @@ export interface IPanelDescriptionCreator<
   GroupSettings extends IGroupSettings,
 > {
   (
-    context: IWidgetsContext,
+    context: IGlobalContext,
     panelSettings: Settings,
     calculatorFactory: ICalculatorFactory
   ): IPanelDescription<Settings, GroupSettings>;

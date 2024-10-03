@@ -1,5 +1,5 @@
 import {
-  isHierarchy,
+  isDimensionsHierarchy,
   type IWidgetDimension,
   type IWidgetDimensionHierarchy,
 } from "../../indicators";
@@ -13,7 +13,7 @@ export const replaceHierarchiesWithDimensions = <D extends IWidgetDimension = IW
   filters: ICalculatorFilter[]
 ) =>
   compactMap(dimensions, (indicator) => {
-    if (isHierarchy(indicator)) {
+    if (isDimensionsHierarchy(indicator)) {
       const selectedDimension = selectDimensionFromHierarchy<IWidgetDimensionHierarchy<D>, D>(
         indicator,
         filters

@@ -1,23 +1,28 @@
 import { EFormatTypes } from "../../formatting";
 import {
   ESortingValueModes,
-  EWidgetIndicatorValueModes,
+  EWidgetIndicatorType,
+  isDimensionsHierarchy,
+  type IWidgetColumnIndicator,
   type IWidgetDimension,
-  type IWidgetMeasure,
-  type IWidgetSortingIndicator,
   type TWidgetVariable,
+  type IWidgetMeasure,
 } from "../../indicators";
 import { getDimensionFormula, getMeasureFormula } from "../../indicatorsFormulas";
+import type { IBaseWidgetSettings } from "../../settings/baseWidget";
 import { EDisplayConditionMode } from "../../settings/values";
 import { ESortDirection, type ISortOrder } from "../../sorting";
+import type { StringKeyOf } from "../../utilityTypes";
 import { compactMap } from "../../utils/functions";
+import type { ICalculatorFilter } from "../calculator";
 import { checkDisplayCondition } from "./displayCondition";
+import { selectDimensionFromHierarchy } from "./selectDimensionFromHierarchy";
 
 const getDefaultSortOrder = (
   dimensions: IWidgetDimension[],
   measures: IWidgetMeasure[]
 ): ISortOrder[] => {
-  /** Если есть условие отображения, то не делаем автосортировку */
+  /** Если есть условие отображения, то не делаем авто-сортировку */
   if (
     dimensions.some(
       (dimension: IWidgetDimension) =>
@@ -28,7 +33,7 @@ const getDefaultSortOrder = (
     return [];
   }
 
-  /** Если есть временной разрез, то автосортировка по первому такому разрезу (по возрастанию) */
+  /** Если есть временной разрез, то авто-сортировка по первому такому разрезу (по возрастанию) */
   const timeDimension = dimensions.find(
     (dimension) =>
       dimension.format &&
@@ -67,64 +72,96 @@ const getDefaultSortOrder = (
   return [];
 };
 
-/**
- * Преобразовать объекты сортировок из settings виджета в sortOrders вычислителя
- * @param sortingIndicators объекты сортировок из settings виджета
- * @param dimensionsInOriginalOrder разрезы виджета (конкретный разрез будет браться по индексу)
- * @param measuresInOriginalOrder меры виджета (конкретная мера будет браться по индексу)
- * @returns
- */
-export function mapSortingToInputs(
-  sortingIndicators: IWidgetSortingIndicator[] = [],
-  dimensionsInOriginalOrder: IWidgetDimension[] = [],
-  measuresInOriginalOrder: IWidgetMeasure[] = [],
-  variables: Map<string, TWidgetVariable>,
-  withDefaultSortOrder = true
-): ISortOrder[] {
-  const sortOrder = compactMap(sortingIndicators, ({ value, direction }) => {
-    if (
-      value.mode === ESortingValueModes.FORMULA ||
-      value.mode === ESortingValueModes.QUANTITY ||
-      value.mode === ESortingValueModes.IN_DASHBOARD ||
-      value.mode === ESortingValueModes.IN_WORKSPACE
-    ) {
+/** Преобразовать объекты сортировок из settings виджета в sortOrders вычислителя */
+interface IMapSortingToInputsParams<Settings, Indicator> {
+  settings: Settings;
+  variables: Map<string, TWidgetVariable>;
+  filters: ICalculatorFilter[];
+  getIndicatorType(
+    key: string,
+    indicator: Indicator
+  ): EWidgetIndicatorType.DIMENSION | EWidgetIndicatorType.MEASURE;
+  /** При отсутствии сортировки использовать предустановленную сортировку(на основе sortableIndicatorsKeys) */
+  withDefaultSortOrder?: boolean;
+  sortableIndicatorsKeys?: Readonly<StringKeyOf<Settings>[]>;
+}
+
+export function mapSortingToInputs<
+  Settings extends IBaseWidgetSettings = IBaseWidgetSettings,
+  Indicator extends IWidgetColumnIndicator = IWidgetColumnIndicator,
+>({
+  settings,
+  variables,
+  filters,
+  getIndicatorType,
+  withDefaultSortOrder = true,
+  sortableIndicatorsKeys = [],
+}: IMapSortingToInputsParams<Settings, Indicator>): ISortOrder[] {
+  const sortOrder = compactMap(settings["sorting"] ?? [], ({ direction, value }) => {
+    if (value.mode === ESortingValueModes.FORMULA) {
       return value.formula ? { formula: value.formula, direction } : undefined;
     }
 
-    if (
-      value.mode === ESortingValueModes.DIMENSION_IN_WIDGET ||
-      value.mode === ESortingValueModes.HIERARCHY
-    ) {
-      const dimension = dimensionsInOriginalOrder[value.index];
+    const indicatorsGroup = settings[value.group as keyof Settings] as Array<Indicator> | undefined;
+    const indicator = indicatorsGroup?.[value.index];
 
-      if (!dimension) {
-        return;
-      }
+    if (!indicator) {
+      return;
+    }
 
-      const formula = getDimensionFormula(dimension);
+    if (getIndicatorType(value.group, indicator) === EWidgetIndicatorType.DIMENSION) {
+      const activeDimensions = isDimensionsHierarchy(indicator)
+        ? selectDimensionFromHierarchy(indicator, filters)
+        : indicator;
 
-      if (!formula || !checkDisplayCondition(dimension.displayCondition, variables)) {
+      const formula = activeDimensions && getDimensionFormula(activeDimensions as IWidgetDimension);
+
+      if (!formula || !checkDisplayCondition(indicator.displayCondition, variables)) {
         return;
       }
 
       return {
-        formula: getDimensionFormula(dimension),
+        formula,
         direction,
         displayCondition:
-          dimension.displayCondition?.mode === EDisplayConditionMode.FORMULA
-            ? dimension.displayCondition.formula
+          indicator.displayCondition?.mode === EDisplayConditionMode.FORMULA
+            ? indicator.displayCondition.formula
             : undefined,
       };
     }
 
-    if (value.mode === ESortingValueModes.MEASURE_IN_WIDGET) {
-      const measure = measuresInOriginalOrder[value.index];
-
-      return measure && { formula: getMeasureFormula(measure), direction };
-    }
+    return {
+      formula: getMeasureFormula(indicator),
+      direction,
+    };
   });
 
-  return withDefaultSortOrder && sortOrder.length === 0
-    ? getDefaultSortOrder(dimensionsInOriginalOrder, measuresInOriginalOrder)
-    : sortOrder;
+  if (sortOrder.length > 0) {
+    return sortOrder;
+  }
+
+  if (sortableIndicatorsKeys.length === 0 || withDefaultSortOrder === false) {
+    return [];
+  }
+
+  const dimensions: IWidgetDimension[] = [];
+  const measures: IWidgetMeasure[] = [];
+
+  sortableIndicatorsKeys.forEach((key) => {
+    const indicatorsGroup = settings[key as keyof Settings] as Array<Indicator> | undefined;
+
+    indicatorsGroup?.forEach((indicator) => {
+      if (getIndicatorType(key, indicator) === EWidgetIndicatorType.DIMENSION) {
+        const activeDimensions = isDimensionsHierarchy(indicator)
+          ? selectDimensionFromHierarchy(indicator, filters)
+          : indicator;
+
+        activeDimensions && dimensions.push(activeDimensions as IWidgetDimension);
+      } else {
+        measures.push(indicator as IWidgetMeasure);
+      }
+    });
+  });
+
+  return getDefaultSortOrder(dimensions, measures);
 }

@@ -6,8 +6,7 @@ import { checkDisplayCondition, getDisplayConditionFormula } from "./displayCond
 
 export function mapDimensionToInput<T extends IWidgetDimension>(
   dimension: T,
-  variables: Map<string, TWidgetVariable>,
-  addFormulas: (dimension: T) => Map<string, string> = () => new Map()
+  variables: Map<string, TWidgetVariable>
 ): ICalculatorDimensionInput | null {
   const formula = getDimensionFormula(dimension);
 
@@ -25,17 +24,13 @@ export function mapDimensionToInput<T extends IWidgetDimension>(
     dataType: dimension.dataType,
     hideEmpty: dimension.hideEmptyValues,
     displayConditionFormula: getDisplayConditionFormula(dimension.displayCondition),
-    additionalFormulas: addFormulas(dimension),
   };
 }
 
 /** Конвертировать разрезы виджета во входы для вычислителя */
 export function mapDimensionsToInputs<T extends IWidgetDimension>(
   dimensions: T[],
-  variables: Map<string, TWidgetVariable>,
-  addFormulas?: (dimension: T) => Map<string, string>
+  variables: Map<string, TWidgetVariable>
 ) {
-  return compactMap(dimensions, (dimension) =>
-    mapDimensionToInput(dimension, variables, addFormulas)
-  );
+  return compactMap(dimensions, (dimension) => mapDimensionToInput(dimension, variables));
 }

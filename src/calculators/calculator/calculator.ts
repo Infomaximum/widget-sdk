@@ -28,16 +28,12 @@ export interface ICalculatorIndicatorOutput {
 export interface ICalculatorDimensionInput extends ICalculatorIndicatorInput {
   formula: string;
   hideEmpty?: boolean;
-  /** Временно поддерживается обратная совместимость с форматом { alias: string; formula: string }[] */
-  /** Появилась необходимость в ленточном графике, т.к. разрез длительность используется, как мера */
-  additionalFormulas?: Map<string, string>;
 }
 
 export interface ICalculatorDimensionOutput extends ICalculatorIndicatorOutput {}
 
 export interface ICalculatorMeasureInput extends ICalculatorIndicatorInput {
   mainFormula: string;
-  /** Временно поддерживается обратная совместимость с форматом { alias: string; formula: string }[] */
   additionalFormulas?: Map<string, string>;
 }
 

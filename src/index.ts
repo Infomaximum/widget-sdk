@@ -11,6 +11,7 @@ export * from "./definition";
 export * from "./actions";
 export * from "./calculators";
 export * from "./controls";
+export * from "./contextMenu";
 export * from "./data";
 export * from "./filtration";
 export * from "./formatting";
@@ -24,6 +25,8 @@ export * from "./widgetContext";
 export * from "./indicatorsFormulas";
 export * from "./dimensionSelection";
 export * from "./utils";
+export * from "./viewContext";
+export * from "./color";
 
 export type TDefineWidgetOptions = {
   manifest?: Record<string, unknown>;
@@ -31,15 +34,6 @@ export type TDefineWidgetOptions = {
 
 declare global {
   interface Infomaximum {
-    /** @deprecated 2402 -  необходимо использовать window.im.widget.defineWidget */
-    defineWidget: <
-      WidgetSettings extends IBaseWidgetSettings,
-      GroupSettings extends IGroupSettings,
-    >(
-      uuid: string,
-      Widget: IWidgetEntity<WidgetSettings, GroupSettings>
-    ) => void;
-
     widget: {
       currentSdkVersion: number;
 

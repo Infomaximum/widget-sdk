@@ -1,5 +1,10 @@
 import type { IDisplayPredicate, IDivePanelDescription, TRecordAccessor } from "./metaDescription";
 
+export enum EUnitMode {
+  PIXEL = "PIXEL",
+  PERCENT = "PERCENT",
+}
+
 export enum EControlType {
   inputNumber = "inputNumber",
   switch = "switch",
@@ -12,14 +17,13 @@ export enum EControlType {
   typedFormula = "typedFormula",
   inputRange = "inputRange",
   colorPicker = "colorPicker",
-  /**  @deprecated - удалится в ближайшее время */
-  filterMode = "filterMode",
   displayCondition = "displayCondition",
   eventsColor = "eventsColor",
   inputMarkdown = "inputMarkdown",
   filter = "filter",
   actionOnClick = "actionOnClick",
   eventsPicker = "eventsPicker",
+  size = "size",
 }
 
 /** Конфигурация элемента управления настройкой */
@@ -29,6 +33,7 @@ export interface IControlRecord<Settings extends object, Value, ControlType = EC
   title?: string;
   /** Тип используемого элемента управления настройкой из предложенных нашей системой */
   type: ControlType | string;
+  marginTop?: number;
   /** Объект дополнительных параметров элемента управления */
   props?: object | ((settings: Settings) => object);
   /** Описание доступа к значению настройки */

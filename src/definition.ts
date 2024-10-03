@@ -1,6 +1,6 @@
-import type { IWidgetDimension, IWidgetDimensionHierarchy, IWidgetMeasure } from "./indicators";
 import type { IGroupSettings, IPanelDescriptionCreator } from "./metaDescription";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
+import type { StringKeyOf } from "./utilityTypes";
 import type { IFillSettings } from "./widgetApi";
 
 export interface IDefinition<
@@ -14,6 +14,6 @@ export interface IDefinition<
   createPanelDescription: IPanelDescriptionCreator<WidgetSettings, GroupSettings>;
   /** заполняет настройки значениями по умолчанию */
   fillSettings: IFillSettings<WidgetSettings>;
-  getDimensions?(settings: WidgetSettings): (IWidgetDimension | IWidgetDimensionHierarchy)[];
-  getMeasures?(settings: WidgetSettings): IWidgetMeasure[];
+  /** возвращает ключи показателей(разрезов или мер), для которых должна работать системная сортировка */
+  getSortableIndicatorsKeys?(): Readonly<StringKeyOf<WidgetSettings>[]>;
 }

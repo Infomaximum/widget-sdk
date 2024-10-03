@@ -3,12 +3,12 @@ import type { IWidgetProcess } from "../metaDescription";
 import { fillTemplateString } from "./common";
 
 export enum EEventMeasureTemplateNames {
-  count = "count",
+  eventsCount = "eventsCount",
   reworksCount = "reworksCount",
 }
 
 export const eventMeasureTemplateFormulas = {
-  [EEventMeasureTemplateNames.count]: `count()`,
+  [EEventMeasureTemplateNames.eventsCount]: `count()`,
   [EEventMeasureTemplateNames.reworksCount]: `count() - uniqExact({caseCaseIdFormula})`,
 } as const;
 

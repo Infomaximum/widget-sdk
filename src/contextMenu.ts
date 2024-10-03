@@ -3,7 +3,8 @@ import type { TActionsOnClick } from "./actions";
 export type TContextMenu = (TContextMenuList | TContextMenuButtonGroup) & {
   event?: MouseEvent;
   placement?: "topRight" | "topLeft" | "bottomRight" | "bottomLeft";
-  positionOrigin?: "frame" | "workArea";
+  positionOrigin?: "frame" | "workArea" | HTMLElement;
+  boundingContainer?: HTMLElement;
   position?: {
     unitX?: TContextMenuPositionUnit;
     unitY?: TContextMenuPositionUnit;

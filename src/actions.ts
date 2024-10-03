@@ -216,11 +216,15 @@ export const isExecuteScriptActionValid = (
     return false;
   }
 
-  return currentScript.fields.every(({ name }) => {
+  return currentScript.fields.every(({ name, isRequired }) => {
     const actionInput = actionInputsMap.get(name ?? "");
 
     if (!actionInput) {
       return false;
+    }
+
+    if (!isRequired) {
+      return true;
     }
 
     if (

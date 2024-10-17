@@ -245,3 +245,8 @@ export interface IPanelDescriptionCreator<
     calculatorFactory: ICalculatorFactory
   ): IPanelDescription<Settings, GroupSettings>;
 }
+
+//todo: заполнить в рамках BI-13985
+export enum ESystemRecordKey {
+  formatting = "formatting",
+}

@@ -24,6 +24,7 @@ export enum EControlType {
   actionOnClick = "actionOnClick",
   eventsPicker = "eventsPicker",
   size = "size",
+  formatting = "formatting",
 }
 
 /** Конфигурация элемента управления настройкой */

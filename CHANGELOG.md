@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/Infomaximum/widget-sdk/compare/v4.0.0...v4.1.0) (2024-10-17)
+
+
+### Features
+
+*  добавлен новый контрол "formatting", добавлен конфиг с форматированием "formattingConfig", вынесен ключ системного поля "formatting" в ESystemRecordKey ([89ee974](https://github.com/Infomaximum/widget-sdk/commit/89ee974f786232ad30b0bf73b6f13289c153afdf))
+
 ## [4.0.0](https://github.com/Infomaximum/widget-sdk/compare/v3.40.2...v4.0.0) (2024-10-03)
 
 

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/Infomaximum/widget-sdk/compare/v4.1.0...v4.2.0) (2024-10-29)
+
+
+### Features
+
+* добавлен новый mode "EMPTY" для открытия образа в плейсхолдере ([acfbe2d](https://github.com/Infomaximum/widget-sdk/commit/acfbe2dd63f508652ae5069572cf5207c87c5156))
+* isExecuteScriptActionValid вынесена в систему. Функция валидации действий по клику добавлена в пропсы виджет ([0edc460](https://github.com/Infomaximum/widget-sdk/commit/0edc46014f65a4637bb7fac49f62f996f9ed4f5e))
+
 ## [4.1.0](https://github.com/Infomaximum/widget-sdk/compare/v4.0.0...v4.1.0) (2024-10-17)
 
 

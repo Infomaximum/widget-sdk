@@ -138,19 +138,6 @@ export interface IActionUpdateVariable extends IActionCommon {
   variables: TActionOnClickParameter[];
 }
 
-type TActionOpenViewMode =
-  | {
-      mode: EViewMode.GENERATED_BY_SCRIPT;
-      scriptKey: string;
-      parameters: TActionOnClickParameter[];
-      displayName: string;
-    }
-  | {
-      mode: EViewMode.EXISTED_VIEW;
-      viewKey: string;
-      parameters: TActionOnClickParameter[];
-    };
-
 type TActionOpenIn =
   | {
       openIn: EViewOpenIn.DRAWER_WINDOW;
@@ -170,11 +157,25 @@ type TActionOpenIn =
       openIn: EViewOpenIn.CURRENT_WINDOW;
     };
 
-export type TActionOpenView = {
+export type TActionOpenView = IActionCommon & {
   type: EActionTypes.OPEN_VIEW;
-} & TActionOpenViewMode &
-  TActionOpenIn &
-  IActionCommon;
+} & (
+    | ({
+        mode: EViewMode.GENERATED_BY_SCRIPT;
+        scriptKey: string;
+        parameters: TActionOnClickParameter[];
+        displayName: string;
+      } & TActionOpenIn)
+    | ({
+        mode: EViewMode.EXISTED_VIEW;
+        viewKey: string;
+        parameters: TActionOnClickParameter[];
+      } & TActionOpenIn)
+    | ({
+        mode: EViewMode.EMPTY;
+        placeholderName: string;
+      } & Extract<TActionOpenIn, { openIn: EViewOpenIn.PLACEHOLDER }>)
+  );
 
 export type TActionsOnClick =
   | IActionGoToUrl

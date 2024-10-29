@@ -1,5 +1,6 @@
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { IAutoIdentifiedArrayItem } from "./settings/baseWidget";
+import type { IWidgetProps } from "./widgetApi";
 import type { IGlobalContext } from "./widgetContext";
 
 export enum EWidgetActionInputMethod {
@@ -194,6 +195,12 @@ export interface IWidgetAction extends IActionCommon {
 
 export type TAction = TActionsOnClick | IWidgetAction;
 
+export type TActionValidator = (action: TAction) => boolean;
+
+/**
+ * @deprecated Функция может работать некорректно и будет удалена в будущих версиях.
+ *  Необходимо использовать {@link IWidgetProps.actionValidator }.
+ */
 export const isExecuteScriptActionValid = (
   action: Extract<TAction, { type: EActionTypes.EXECUTE_SCRIPT }>,
   {

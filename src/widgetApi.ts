@@ -4,7 +4,7 @@ import type { IWidgetFiltration } from "./filtration";
 import type { IWidgetPlaceholderController, IWidgetPlaceholderValues } from "./placeholder";
 import type { IWidgetFormatting } from "./formatting";
 import type { IGlobalContext } from "./widgetContext";
-import type { TAction } from "./actions";
+import type { TAction, TActionValidator } from "./actions";
 import type { ICalculatorFilter } from "./calculators/calculator/calculator";
 import type { ICalculatorFactory } from "./calculators";
 import type { IDefinition } from "./definition";
@@ -73,6 +73,8 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
   persistValue: IWidgetPersistValue;
   /** функция для управления контекстными меню */
   setContextMenu: (key: string, value: TContextMenu | null) => void;
+  /** метод валидации действий по клику */
+  actionValidator: TActionValidator;
 }
 
 export interface ICustomWidgetProps<

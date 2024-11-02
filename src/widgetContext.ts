@@ -18,8 +18,9 @@ export interface IWidgetTableColumn {
   dataType: ESimpleDataType;
 }
 
-interface IScripField {
-  /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
+interface IScriptField {
+  // todo: удалить после окончания поддержки миграций [BI-13650]
+  /** @deprecated */
   guid: string;
   name: string;
   dataType: ESimpleDataType;
@@ -28,10 +29,11 @@ interface IScripField {
 
 export interface IActionScript {
   key: string;
-  /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
+  // todo: удалить после окончания поддержки миграций [BI-13650]
+  /** @deprecated */
   guid: string;
   name: string;
-  fields: IScripField[];
+  fields: IScriptField[];
 }
 
 export interface IWidgetTable {
@@ -42,7 +44,7 @@ export interface IWidgetTable {
 }
 
 /**
- * simplified - упрощенный для работы фильтрации в образах открытых в дровере/модальном окне
+ * simplified - упрощенный (для работы фильтрации в образах, открытых в модальном/боковом окне)
  *
  * full - полный
  */
@@ -60,30 +62,52 @@ export interface IDisplayRule {
 }
 
 export interface IGlobalContext {
-  /** используемый язык в системе */
+  /** Используемый язык системы */
   language: ELanguages;
-  processes: Map<string, IWidgetProcess>;
-  reportMeasures: TNullable<Map<string, ICommonMeasures>>;
-  workspaceMeasures: TNullable<Map<string, Map<string, ICommonMeasures>>>;
-  reportDimensions: TNullable<Map<string, ICommonDimensions>>;
-  workspaceDimensions: TNullable<Map<string, Map<string, ICommonDimensions>>>;
-  /** @deprecated удалить после окончания поддержки миграций BI-13650 */
+  /** Имя отчета */
+  reportName: string;
+  /** Имена образов по их ключу(в текущем отчете) */
+  viewNameByKey: Map<string, string>;
+
+  /** Режим отображения виджетов */
+  displayMode: TDisplayMode;
+  /** Режим фильтрации виджетов */
+  filtrationMode: TFiltrationMode;
+
+  // todo: удалить после окончания поддержки миграций [BI-13650]
+  /** @deprecated имя группы пространства по ее id */
   workspaceGroupNameById: Map<number, string>;
-  /** Переменные отчета */
+
+  /** Меры уровня отчета */
+  reportMeasures: TNullable<Map<string, ICommonMeasures>>;
+  /** Меры уровня пространства(из модели данных) */
+  workspaceMeasures: TNullable<Map<string, Map<string, ICommonMeasures>>>;
+
+  /** Разрезы уровня отчета */
+  reportDimensions: TNullable<Map<string, ICommonDimensions>>;
+  /** Разрезы уровня пространства(из модели данных) */
+  workspaceDimensions: TNullable<Map<string, Map<string, ICommonDimensions>>>;
+
+  /** Правила отображения уровня */
+  reportDisplayRules: Map<string, IDisplayRule>;
+  /** Правила отображения уровня пространства(из модели данных) */
+  workspaceDisplayRules: Map<string, Map<string, IDisplayRule>>;
+
+  /** Пользовательские переменные уровня отчета */
   variables: Map<string, TWidgetVariable>;
+  /** Метод установки значения пользовательской переменной уровня отчета */
+  setVariableValue(name: string, value: TNullable<string> | string[]): void;
   /** Системные переменные */
   systemVariables: Map<string, TSystemVariable>;
-  /** Метод установки значения переменной отчета */
-  setVariableValue(name: string, value: TNullable<string> | string[]): void;
+
+  /** Состояния(название сущности) отчета */
   states: Map<string, ICommonState>;
-  reportName: string;
-  /** Режим отображения виджета */
-  displayMode: TDisplayMode;
-  scripts: Map<string, IActionScript>;
+  /** Процессы из модели данных */
+  processes: Map<string, IWidgetProcess>;
+  /** Имена таблиц из модели данных */
   tables: Set<string>;
-  filtrationMode: TFiltrationMode;
-  reportDisplayRules: Map<string, IDisplayRule>;
-  workspaceDisplayRules: Map<string, Map<string, IDisplayRule>>;
-  viewNameByKey: Map<string, string>;
+  /** Функция для запроса информации о колонках таблицы из модели данных */
   fetchColumnsByTableName(tableName: string): Promise<IWidgetTableColumn[] | undefined>;
+  /** Скрипты, доступные для запуска из отчета */
+  scripts: Map<string, IActionScript>;
 }

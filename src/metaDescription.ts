@@ -152,7 +152,14 @@ export type TAddButton = {
 
 export interface IGroupSettings extends IAutoIdentifiedArrayItem, Record<string, any> {}
 
-/** Конфигурация набора групп */
+/**
+ * Конфигурация набора групп настроек.
+ *
+ * Набор групп, как правило, представлен в настройках виджета в виде массива объектов.
+ * Каждый объект в массиве - это группа настроек.
+ *
+ * Группа отображается в виде раскрываемой плашки, может представлять из себя разрез, меру, процесс и др.
+ */
 export interface IGroupSetDescription<Settings extends object, GroupSettings extends object> {
   /** Заголовок */
   title: string;
@@ -160,54 +167,74 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
   maxCount: number;
   /** Описание доступа к настройкам групп */
   accessor: TRecordAccessor<Settings, GroupSettings[]>;
-  /** Получить тип индикатора */
-  getType?: (settings: IInitialSettings) => EWidgetIndicatorType;
-  /** Кнопки добавления группы в набор */
+
+  /** Конфигурация кнопок добавления группы в набор */
   addButtons: TAddButton[];
-  /** Создать элементы управления внутри группы (для вкладки настроек данных) */
-  createDataRecords?(group: IGroupSettings): TGroupLevelRecord<GroupSettings>[];
-  /** Создать элементы управления внутри группы (для вкладки настроек отображения) */
-  createDisplayRecords?(group: IGroupSettings): TGroupLevelRecord<GroupSettings>[];
-  /** Получить название для плашки */
+
+  /** Получить название, отображаемое на плашке (по умолчанию используется поле name из группы) */
   getGroupTitle?(group: IGroupSettings): string;
-  /** Валидная ли группа */
-  isValid?(group: IGroupSettings): boolean;
-  /** Находится ли группа в состоянии загрузки */
+  /**
+   * Получить тип показателя для группы, если группа описывает системный показатель.
+   *
+   * Тип будет использоваться для:
+   * - отображения иконки показателя на плашке.
+   * - предустановленного мета-описания показателя.
+   */
+  getType?: (settings: IInitialSettings) => EWidgetIndicatorType;
+
+  /** Создать конфигурацию группы для вкладки настроек данных */
+  createDataRecords?(group: IGroupSettings): TGroupLevelRecord<GroupSettings>[];
+  /** Создать конфигурацию группы для вкладки настроек отображения */
+  createDisplayRecords?(group: IGroupSettings): TGroupLevelRecord<GroupSettings>[];
+
+  /** Находится ли группа в состоянии загрузки (по умолчанию false) */
   isLoading?(group: IGroupSettings): boolean;
-  /** Можно ли удалять группу по умолчанию true */
+  /** Является ли группа валидной (по умолчанию true) */
+  isValid?(group: IGroupSettings): boolean;
+  /** Можно ли удалить группу (по умолчанию true) */
   isRemovable?(group: IGroupSettings): boolean;
-  /** Можно ли сортировать группу по умолчанию true */
+  /** Можно ли менять порядок групп (по умолчанию true) */
   isDraggable?: boolean;
-  /** Опциональный верхний отступ для группы */
+
+  /** Кастомный верхний отступ для набора групп */
   marginTop?: number;
 }
 
-/** Конфигурация левой панели */
+/** Конфигурация панели настроек виджета */
 export interface IPanelDescription<
   Settings extends object,
   GroupSettings extends IGroupSettings = IGroupSettings,
 > {
-  /** Добавить заголовок для виджета */
+  /** Добавить поле настройки заголовка */
   useTitle?: boolean;
-  /** Добавить описание для виджета */
+  /** Добавить поле настройки описания */
   useMarkdown?: boolean;
-  /** Конфигурация настроек данных виджета */
+
+  /** Конфигурация вкладки настроек данных */
   dataRecords?: TWidgetLevelRecord<Settings>[];
-  /** Конфигурация настроек отображения виджета */
+  /** Конфигурация вкладки настроек отображения */
   displayRecords?: TWidgetLevelRecord<Settings>[];
-  /** Конфигурации наборов групп  */
+
+  /**
+   * Конфигурация наборов(каждый набор по своему ключу) с группами настроек.
+   * Описанный набор групп можно вставить по ключу в нужное место внутри dataRecords и displayRecords.
+   */
   groupSetDescriptions?: Record<string, IGroupSetDescription<Settings, GroupSettings>>;
-  /** Добавить вкладку с действиями (по умолчанию false) */
+
+  /** Добавить вкладку с настройками действий (по умолчанию false) */
   useActions?: boolean;
-  /** Добавить вкладку с фильтрацией (по умолчанию true) */
+
+  /** Добавить вкладку с настройками фильтрации (по умолчанию true) */
   useFiltration?: boolean;
-  /** Конфигурация настроек фильтров */
+  /** Конфигурация вкладки настроек фильтрации */
   filtrationRecords?: Exclude<TWidgetLevelRecord<Settings>, IGroupSetRecord>[];
-  /** Режимы фильтрации */
+  /** Доступные для выбора режимы фильтрации (во вкладке настроек фильтрации) */
   filtrationModes?: EWidgetFilterMode[];
 }
 
 export interface IWidgetProcess {
+  // todo: удалить после окончания поддержки миграций [BI-13650]
+  /** @deprecated */
   guid: string;
   /** Имя процесса */
   name: string;
@@ -240,8 +267,11 @@ export interface IPanelDescriptionCreator<
   GroupSettings extends IGroupSettings,
 > {
   (
+    /** Глобальный контекст */
     context: IGlobalContext,
-    panelSettings: Settings,
+    /** Настройки виджета */
+    settings: Settings,
+    /** Фабрика вычислителей */
     calculatorFactory: ICalculatorFactory
   ): IPanelDescription<Settings, GroupSettings>;
 }

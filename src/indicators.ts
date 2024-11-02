@@ -78,13 +78,15 @@ export enum ESortingValueModes {
 
 export interface ICommonState {
   name: string;
-  /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
+  // todo: удалить после окончания поддержки миграций [BI-13650]
+  /** @deprecated */
   guid: string;
 }
 
 export interface ICommonMeasures {
   name: string;
-  /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
+  // todo: удалить после окончания поддержки миграций [BI-13650]
+  /** @deprecated */
   guid: string;
   formula: string;
 }
@@ -183,7 +185,8 @@ export type TWidgetVariable =
       defaultValue: string;
       /** Тип данных */
       dataType: ESimpleDataType;
-      /** @deprecated удалить после выполнения BI-13602, задача BI-13650 */
+      // todo: удалить после окончания поддержки миграций [BI-13650]
+      /** @deprecated */
       guid: string;
     }
   | {
@@ -201,7 +204,8 @@ export type TWidgetVariable =
       dataType: ESimpleDataType.STRING;
       /** Множественный выбор */
       multipleChoice: boolean;
-      /** @deprecated удалить после выполнения BI-13602, задача BI-13650  */
+      // todo: удалить после окончания поддержки миграций [BI-13650]
+      /** @deprecated */
       guid: string;
     }
   | {
@@ -221,7 +225,8 @@ export type TWidgetVariable =
       multipleChoice: boolean;
       /** Фильтры */
       filters: TExtendedFormulaFilterValue[];
-      /** @deprecated удалить после выполнения BI-13602, задача BI-13650  */
+      // todo: удалить после окончания поддержки миграций [BI-13650]
+      /** @deprecated */
       guid: string;
     };
 

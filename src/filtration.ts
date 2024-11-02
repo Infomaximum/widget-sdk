@@ -155,16 +155,22 @@ export type TWidgetFilterValue =
   | IProcessTransitionFilterValue;
 
 export interface IWidgetFilter {
-  isReadonly: boolean;
+  /** Значение фильтра */
   filterValue: TWidgetFilterValue;
+  /** Значение фильтра, подготовленное для передачи в вычислитель */
   preparedFilterValue: ICalculatorFilter;
+  /** Информация о возможности менять фильтр из виджета */
+  isReadonly: boolean;
 }
 
 export interface IWidgetFiltration {
-  /** Значения фильтров, подготовленные для передачи в вычислитель */
-  preparedFilterValues: ICalculatorFilter[];
-
+  /** Информация о внешних фильтрах виджета */
   filters: IWidgetFilter[];
+  /**
+   * Значения внешних фильтров виджета, подготовленные для передачи в вычислитель.
+   * Использует данные из filters, но предоставлено отдельным полем для удобства разработки.
+   */
+  preparedFilterValues: ICalculatorFilter[];
 
   // Formula filters
 
@@ -175,6 +181,7 @@ export interface IWidgetFiltration {
 
   // Process filters
 
+  /** Добавить процессный фильтр */
   addProcessFilter(
     ...args:
       | Parameters<IAddPresenceOfEventFilter>

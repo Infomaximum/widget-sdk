@@ -1,16 +1,24 @@
 import type { TActionsOnClick } from "./actions";
 
 export type TContextMenu = (TContextMenuList | TContextMenuButtonGroup) & {
+  /**
+   * Событие мыши, по которому пользователь открыл меню.
+   * Используется для автоматического определения позиции меню.
+   */
   event?: MouseEvent;
-  placement?: "topRight" | "topLeft" | "bottomRight" | "bottomLeft";
-  positionOrigin?: "frame" | "workArea" | HTMLElement;
-  boundingContainer?: HTMLElement;
+  /** Явно указанная позиция меню */
   position?: {
     unitX?: TContextMenuPositionUnit;
     unitY?: TContextMenuPositionUnit;
     x?: number;
     y?: number;
   };
+  /** Относительно чего позиционируется меню */
+  positionOrigin?: "frame" | "workArea" | HTMLElement;
+  /** Каким элементом ограничено расположение меню */
+  boundingContainer?: HTMLElement;
+  /** Положение меню относительно его позиции */
+  placement?: "topRight" | "topLeft" | "bottomRight" | "bottomLeft";
 };
 
 export type TContextMenuPositionUnit = "%" | "px";

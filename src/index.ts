@@ -2,7 +2,7 @@
 
 import type { IGroupSettings } from "./metaDescription";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
-import type { IWidgetEntity } from "./widgetApi";
+import type { IWidgetEntity, IWidgetManifest } from "./widgetApi";
 export { ELanguages } from "@infomaximum/localization";
 export { EFilteringMethodValues } from "@infomaximum/base-filter";
 
@@ -29,7 +29,7 @@ export * from "./viewContext";
 export * from "./color";
 
 export type TDefineWidgetOptions = {
-  manifest?: Record<string, unknown>;
+  manifest?: IWidgetManifest;
 };
 
 declare global {

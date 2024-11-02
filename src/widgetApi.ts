@@ -12,10 +12,17 @@ import type { TContextMenu } from "./contextMenu";
 import type { IViewContext } from "./viewContext";
 
 export type TLaunchActionParams = {
+  /** Запускаемое действие */
   action: TAction;
+  /** Callback, вызываемый при успешном запуске действия */
   onSuccess: () => void;
-  filters: ICalculatorFilter[];
+
+  /** Требуется ли подтверждение о запуске (откроется модальное окно) */
   needConfirmation?: boolean;
+
+  /** Фильтрация для способов ввода COLUMN и FORMULA */
+  filters: ICalculatorFilter[];
+  /** Выбранные имена событий для способа ввода EVENT, START_EVENT и FINISH_EVENT */
   eventNames?: [string] | [string, string];
 };
 
@@ -32,61 +39,81 @@ export interface IWidgetPersistValue<T extends object = object> {
 }
 
 export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings> {
-  /** guid виджета */
+  // todo: удалить при переходе на 5 мажорную версию [BI-14040]
+  /** @deprecated в качестве guid используется ключ виджета(уникален в рамках образа для каждого экземпляра виджета) */
   guid: string;
   /** Настройки виджета */
   settings: WidgetSettings;
 
+  /** Фабрика для создания вычислителей */
+  calculatorFactory: ICalculatorFactory;
+
   /** Объект для взаимодействия с фильтрацией */
   filtration: IWidgetFiltration;
 
-  /** Функция для подписки на расфокусировку виджета */
-  subscribeOnFocusOut(subscriber: () => void): void;
-  /** Захватить фокус: остальные виджеты будут оповещены о расфокусировке */
-  captureFocus(): void;
-
-  /** Фабрика вычислителей. */
-  calculatorFactory: ICalculatorFactory;
+  /** Объект для работы с контейнером виджета */
+  widgetContainer: TWidgetContainer;
   /**
-   * Корневой контейнер отчета.
-   * Служит для возможности использования портала внутри виджетов.
+   * Прокручиваемая область, отображающая образ с виджетами.
+   * Служит пространством для размещения и просмотра виджетов как единого документа.
    */
   rootViewContainer: HTMLDivElement;
+  /** Функция для управления контекстными меню */
+  setContextMenu: (key: string, value: TContextMenu | null) => void;
 
   /** Объект для управления плейсхолдером */
   placeholder: IWidgetPlaceholderController;
-
   /** Объект для получения значений плейсхолдера */
   placeholderValues: IWidgetPlaceholderValues;
 
+  /** Функция для подписки на расфокусировку виджета (например, при фокусировке на другом виджете) */
+  subscribeOnFocusOut(subscriber: () => void): void;
+  /** Функция для захвата фокуса виджетом: остальные виджеты будут оповещены о расфокусировке */
+  captureFocus(): void;
+
   /** Глобальный контекст. Содержит информацию из отчета, пространства и платформы системы */
   globalContext: IGlobalContext;
-
   /** Контекст образа */
   viewContext: IViewContext;
 
-  /** Данные о контейнере виджета */
-  widgetContainer: TWidgetContainer;
-  /** Запуск действия */
+  /** Функция для запуска действия */
   launchAction(params: TLaunchActionParams): void;
-  /** Значение, сохраняемое в localStorage и URL */
-  persistValue: IWidgetPersistValue;
-  /** функция для управления контекстными меню */
-  setContextMenu: (key: string, value: TContextMenu | null) => void;
-  /** метод валидации действий по клику */
+  /** Функция валидации действия */
   actionValidator: TActionValidator;
+
+  /** Аксессор для persist-значения виджета, хранимого в localStorage и URL */
+  persistValue: IWidgetPersistValue;
+}
+
+/** Манифест виджета */
+export interface IWidgetManifest {
+  /** Уникальный идентификатор формата uuid */
+  uuid: string;
+  /** Локализация названия */
+  name: Partial<{
+    ru: string;
+    en: string;
+  }>;
+  /** Мажорная версия widget-sdk, использованная при разработке виджета */
+  sdk_version: number;
+  /** Путь до js-файла, который является входной точкой виджета */
+  entry: string;
+  /** Путь до иконки(svg или png) */
+  icon?: string;
+  /** Находится ли виджет на beta-стадии разработки */
+  is_beta?: boolean;
 }
 
 export interface ICustomWidgetProps<
   WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings,
 > extends IWidgetProps<WidgetSettings> {
-  /** манифест виджета */
-  manifest: Record<string, any>;
+  /** Манифест виджета */
+  manifest: Partial<IWidgetManifest>;
   /** body DOM элемент родительского приложения */
   bodyElement: HTMLBodyElement;
-  /** Форматирование */
+  /** Объект для форматирования значений */
   formatting: IWidgetFormatting;
-  /** Получить ресурс виджета по имени файла */
+  /** Функция для получения ресурса виджета по имени файла */
   getWidgetAsset: (fileName: string) => Promise<Blob | null>;
 }
 

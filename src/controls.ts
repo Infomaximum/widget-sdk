@@ -29,11 +29,13 @@ export enum EControlType {
 
 /** Конфигурация элемента управления настройкой */
 export interface IControlRecord<Settings extends object, Value, ControlType = EControlType> {
+  /** Ключ, должен быть уникальным в рамках одного уровня вложенности */
   key: string;
-  /** Локализация заголовка настройки */
+  /** Локализация заголовка */
   title?: string;
-  /** Тип используемого элемента управления настройкой из предложенных нашей системой */
+  /** Тип используемого элемента управления из предложенных системой */
   type: ControlType | string;
+  /** Кастомный верхний отступ */
   marginTop?: number;
   /** Объект дополнительных параметров элемента управления */
   props?: object | ((settings: Settings) => object);
@@ -41,8 +43,14 @@ export interface IControlRecord<Settings extends object, Value, ControlType = EC
   accessor: TRecordAccessor<Settings, Value>;
   /**
    * Рекурсивное определение мета-описания, в элемент управления будет передана функция dive
-   * для погружения на уровень ниже.
+   * для перехода в указанное мета-описание.
+   *
+   * Возможность работает только для элемента управления EControlType.tagSet.
    */
   description?: IDivePanelDescription<Settings>;
+  /**
+   * Предикат, позволяющий скрыть элемент управления.
+   * Предоставлен для удобства разработки. Скрыть элемент можно и условно добавляя его в мета-описание.
+   */
   shouldDisplay?: IDisplayPredicate<Settings>;
 }

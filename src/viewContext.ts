@@ -7,5 +7,6 @@ export interface IViewInputValue {
 }
 
 export interface IViewContext {
+  /** Пользовательские переменные уровня образа */
   variables: Map<string, IViewInputValue>;
 }

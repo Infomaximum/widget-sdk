@@ -185,6 +185,8 @@ export type TWidgetVariable =
       defaultValue: string;
       /** Тип данных */
       dataType: ESimpleDataType;
+      /** Общее значения */
+      isValueShared: boolean;
       // todo: удалить после окончания поддержки миграций [BI-13650]
       /** @deprecated */
       guid: string;
@@ -204,6 +206,8 @@ export type TWidgetVariable =
       dataType: ESimpleDataType.STRING;
       /** Множественный выбор */
       multipleChoice: boolean;
+      /** Общее значения */
+      isValueShared: boolean;
       // todo: удалить после окончания поддержки миграций [BI-13650]
       /** @deprecated */
       guid: string;
@@ -223,6 +227,8 @@ export type TWidgetVariable =
       dataType: ESimpleDataType;
       /** Множественный выбор */
       multipleChoice: boolean;
+      /** Общее значения */
+      isValueShared: boolean;
       /** Фильтры */
       filters: TExtendedFormulaFilterValue[];
       // todo: удалить после окончания поддержки миграций [BI-13650]

@@ -12,25 +12,32 @@ import { getDimensionFormula, getMeasureFormula } from "../../indicatorsFormulas
 import type { IBaseWidgetSettings } from "../../settings/baseWidget";
 import { EDisplayConditionMode } from "../../settings/values";
 import { ESortDirection, type ISortOrder } from "../../sorting";
-import type { StringKeyOf } from "../../utilityTypes";
 import { compactMap } from "../../utils/functions";
 import type { ICalculatorFilter } from "../calculator";
 import { checkDisplayCondition } from "./displayCondition";
 import { selectDimensionFromHierarchy } from "./selectDimensionFromHierarchy";
 
-const getDefaultSortOrder = (
-  dimensions: IWidgetDimension[],
-  measures: IWidgetMeasure[]
-): ISortOrder[] => {
-  /** Если есть условие отображения, то не делаем авто-сортировку */
+interface IGetDefaultSortOrders {
+  sortOrders: ISortOrder[];
+  dimensions: IWidgetDimension[];
+  measures: IWidgetMeasure[];
+}
+
+export const getDefaultSortOrders = ({
+  sortOrders,
+  dimensions,
+  measures,
+}: IGetDefaultSortOrders): ISortOrder[] => {
+  /** Если есть условие отображения или пользовательские сортировки, то не делаем авто-сортировку */
   if (
+    sortOrders.length > 0 ||
     dimensions.some(
-      (dimension: IWidgetDimension) =>
+      (dimension) =>
         dimension.displayCondition &&
         dimension.displayCondition.mode !== EDisplayConditionMode.DISABLED
     )
   ) {
-    return [];
+    return sortOrders;
   }
 
   /** Если есть временной разрез, то авто-сортировка по первому такому разрезу (по возрастанию) */
@@ -81,9 +88,6 @@ interface IMapSortingToInputsParams<Settings, Indicator> {
     key: string,
     indicator: Indicator
   ): EWidgetIndicatorType.DIMENSION | EWidgetIndicatorType.MEASURE;
-  /** При отсутствии сортировки использовать предустановленную сортировку(на основе sortableIndicatorsKeys) */
-  withDefaultSortOrder?: boolean;
-  sortableIndicatorsKeys?: Readonly<StringKeyOf<Settings>[]>;
 }
 
 export function mapSortingToInputs<
@@ -94,8 +98,6 @@ export function mapSortingToInputs<
   variables,
   filters,
   getIndicatorType,
-  withDefaultSortOrder = true,
-  sortableIndicatorsKeys = [],
 }: IMapSortingToInputsParams<Settings, Indicator>): ISortOrder[] {
   const sortOrder = compactMap(settings["sorting"] ?? [], ({ direction, value }) => {
     if (value.mode === ESortingValueModes.FORMULA) {
@@ -136,32 +138,18 @@ export function mapSortingToInputs<
     };
   });
 
-  if (sortOrder.length > 0) {
-    return sortOrder;
-  }
+  return sortOrder;
+}
 
-  if (sortableIndicatorsKeys.length === 0 || withDefaultSortOrder === false) {
-    return [];
-  }
+interface IPrepareSortOrdersParams<Settings, Indicator>
+  extends IMapSortingToInputsParams<Settings, Indicator>,
+    Pick<IGetDefaultSortOrders, "dimensions" | "measures"> {}
 
-  const dimensions: IWidgetDimension[] = [];
-  const measures: IWidgetMeasure[] = [];
+export function prepareSortOrders<
+  Settings extends IBaseWidgetSettings = IBaseWidgetSettings,
+  Indicator extends IWidgetColumnIndicator = IWidgetColumnIndicator,
+>({ dimensions, measures, ...rest }: IPrepareSortOrdersParams<Settings, Indicator>) {
+  const sortOrders = mapSortingToInputs(rest);
 
-  sortableIndicatorsKeys.forEach((key) => {
-    const indicatorsGroup = settings[key as keyof Settings] as Array<Indicator> | undefined;
-
-    indicatorsGroup?.forEach((indicator) => {
-      if (getIndicatorType(key, indicator) === EWidgetIndicatorType.DIMENSION) {
-        const activeDimensions = isDimensionsHierarchy(indicator)
-          ? selectDimensionFromHierarchy(indicator, filters)
-          : indicator;
-
-        activeDimensions && dimensions.push(activeDimensions as IWidgetDimension);
-      } else {
-        measures.push(indicator as IWidgetMeasure);
-      }
-    });
-  });
-
-  return getDefaultSortOrder(dimensions, measures);
+  return getDefaultSortOrders({ sortOrders, dimensions, measures });
 }

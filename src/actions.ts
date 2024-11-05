@@ -191,6 +191,9 @@ export interface IWidgetAction extends IActionCommon {
   scriptKey: string;
   updateDashboard: boolean;
   description: string;
+  blockingCondition: {
+    formula: string;
+  };
 }
 
 export type TAction = TActionsOnClick | IWidgetAction;

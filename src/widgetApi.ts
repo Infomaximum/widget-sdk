@@ -95,7 +95,7 @@ export interface IWidgetManifest {
     en: string;
   }>;
   /** Мажорная версия widget-sdk, использованная при разработке виджета */
-  sdk_version: number;
+  sdk_version?: number;
   /** Путь до js-файла, который является входной точкой виджета */
   entry: string;
   /** Путь до иконки(svg или png) */

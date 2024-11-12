@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.4.0](https://github.com/Infomaximum/widget-sdk/compare/v4.3.1...v4.4.0) (2024-11-12)
+
+
+### Features
+
+* переработан интерфейс расширенных настроек виджетов ([cd82b1f](https://github.com/Infomaximum/widget-sdk/commit/cd82b1f17ac56bf39eb04e43f98c531c8eeaf083))
+
 ### [4.3.1](https://github.com/Infomaximum/widget-sdk/compare/v4.3.0...v4.3.1) (2024-11-05)
 
 

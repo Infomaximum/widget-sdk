@@ -3,7 +3,7 @@ import type { TExtendedFormulaFilterValue } from "../filtration";
 import type {
   EFontWeight,
   EWidgetFilterMode,
-  IAppearanceSettings,
+  TAppearanceSettings,
   TDisplayCondition,
 } from "./values";
 import type { IMarkdownMeasure, IWidgetSortingIndicator } from "../indicators";
@@ -33,5 +33,5 @@ export interface IBaseWidgetSettings {
   actions?: IWidgetAction[];
   displayCondition?: TDisplayCondition;
   displayConditionComment?: string;
-  appearance?: IAppearanceSettings;
+  appearance?: TAppearanceSettings;
 }

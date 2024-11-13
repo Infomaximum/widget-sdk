@@ -102,6 +102,22 @@ export interface IWidgetManifest {
   icon?: string;
   /** Находится ли виджет на beta-стадии разработки */
   is_beta?: boolean;
+  /** Размер колонки с виджетом */
+  default_size?: {
+    /** Минимальная высота колонки с виджетом (по умолчанию 70) */
+    min_height?: number;
+    /** Минимальная ширина колонки с виджетом (по умолчанию 180) */
+    min_width?: number;
+  };
+  /** Параметры контейнера виджета */
+  container_params?: {
+    /** @deprecated необходимо использовать show_title */
+    show_header?: boolean;
+    /** Отображать ли системный заголовок виджета (по умолчанию false) */
+    show_title?: boolean;
+    /** Отображать ли markdown "описание" виджета (по умолчанию false) */
+    show_markdown?: boolean;
+  };
 }
 
 export interface ICustomWidgetProps<

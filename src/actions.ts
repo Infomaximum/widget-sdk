@@ -2,6 +2,7 @@ import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { IAutoIdentifiedArrayItem } from "./settings/baseWidget";
 import type { IWidgetProps } from "./widgetApi";
 import type { IGlobalContext } from "./widgetContext";
+import type { TColor } from "./color";
 
 export enum EWidgetActionInputMethod {
   COLUMN = "COLUMN",
@@ -194,6 +195,10 @@ export interface IWidgetAction extends IActionCommon {
   blockingCondition: {
     formula: string;
   };
+  buttonType: EActionButtonsTypes;
+  backgroundColor?: TColor;
+  borderColor?: TColor;
+  color: TColor;
 }
 
 export type TAction = TActionsOnClick | IWidgetAction;
@@ -264,3 +269,9 @@ export const isExecuteScriptActionValid = (
     return true;
   });
 };
+
+export enum EActionButtonsTypes {
+  LINK = "link",
+  BASE = "primary",
+  SECONDARY = "primary-outlined",
+}

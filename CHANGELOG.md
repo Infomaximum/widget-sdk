@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.6.0](https://github.com/Infomaximum/widget-sdk/compare/v4.5.0...v4.6.0) (2024-11-20)
+
+
+### Features
+
+* Добавлено поле isValueShared для типа пользовательских переменных ([6e9137d](https://github.com/Infomaximum/widget-sdk/commit/6e9137d1962e60b573e86f9ae49ec0183fefa58f))
+
 ## [4.5.0](https://github.com/Infomaximum/widget-sdk/compare/v4.4.1...v4.5.0) (2024-11-14)
 
 

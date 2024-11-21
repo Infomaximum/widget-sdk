@@ -6,6 +6,7 @@ import type { IGlobalContext } from "./widgetContext";
 import type { IAutoIdentifiedArrayItem, IBaseWidgetSettings } from "./settings/baseWidget";
 import type { ICalculatorFactory } from "./calculators";
 import type { EWidgetFilterMode } from "./settings/values";
+import type { EDimensionTemplateNames } from "./indicatorsFormulas";
 
 export interface ILens<T extends TNullable<object>, Value> {
   get(obj: T): TNullable<Value>;
@@ -152,6 +153,18 @@ export type TAddButton = {
 
 export interface IGroupSettings extends IAutoIdentifiedArrayItem, Record<string, any> {}
 
+/** Конфигурация разреза */
+export type TWidgetDimensionData = {
+  type: EWidgetIndicatorType.DIMENSION;
+  /** Типы данных, поддерживаемые разрезом */
+  dataTypes?: ESimpleDataType[];
+  /** Шаблоны формул, доступные для выбора в разрезе */
+  templates?: Partial<Record<ESimpleDataType, EDimensionTemplateNames[]>>;
+};
+
+/** Конфигурация показателя */
+export type TWidgetIndicatorData = TWidgetDimensionData;
+
 /**
  * Конфигурация набора групп настроек.
  *
@@ -173,15 +186,20 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
 
   /** Получить название, отображаемое на плашке (по умолчанию используется поле name из группы) */
   getGroupTitle?(group: IGroupSettings): string;
+
   /**
-   * Получить тип показателя для группы, если группа описывает системный показатель.
-   *
-   * Тип будет использоваться для:
-   * - отображения иконки показателя на плашке.
-   * - предустановленного мета-описания показателя.
+   * @deprecated Необходимо использовать {@link IGroupSetDescription.getIndicatorData }.
    */
   getType?: (settings: IInitialSettings) => EWidgetIndicatorType;
-
+  /**
+   * Получить описание показателя для группы, если группа описывает системный показатель.
+   *
+   * Описание может использоваться для:
+   * - отображения иконки показателя на плашке.
+   * - предустановленного мета-описания показателя.
+   * - содержимого выпадающего списка.
+   */
+  getIndicatorData?: (settings: IInitialSettings) => EWidgetIndicatorType | TWidgetIndicatorData;
   /** Создать конфигурацию группы для вкладки настроек данных */
   createDataRecords?(group: IGroupSettings): TGroupLevelRecord<GroupSettings>[];
   /** Создать конфигурацию группы для вкладки настроек отображения */

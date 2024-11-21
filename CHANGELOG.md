@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.7.0](https://github.com/Infomaximum/widget-sdk/compare/v4.6.0...v4.7.0) (2024-11-21)
+
+
+### Features
+
+* добавлена возможность фильтровать разрезы и их шаблоны по типу данных ([aa83999](https://github.com/Infomaximum/widget-sdk/commit/aa839990eb02367b7a8382c2d6ba8e2992b68d9c))
+
 ## [4.6.0](https://github.com/Infomaximum/widget-sdk/compare/v4.5.0...v4.6.0) (2024-11-20)
 
 

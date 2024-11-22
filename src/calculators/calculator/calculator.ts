@@ -1,4 +1,3 @@
-import type { ESimpleDataType } from "../../data";
 import type { TNullable, valueof } from "../../utilityTypes";
 import type { formulaFilterMethods } from "../../filtration";
 
@@ -15,9 +14,9 @@ export interface ICalculatorIndicatorInput {
   /**
    * Информация о типе данных:
    * - Если тип не передан, не производится дополнительной обработки формулы.
-   * - Если передан тип "OTHER", формула дополнительно будет обернута в toString().
+   * - Если передан тип, соответствующий "OTHER", формула дополнительно будет обернута в toString().
    */
-  dataType?: ESimpleDataType;
+  dbDataType?: string;
   displayConditionFormula?: TNullable<string>;
 }
 
@@ -64,8 +63,8 @@ export enum ECalculatorFilterMethods {
 export interface ICalculatorFilter {
   /** Формула фильтра */
   formula: string;
-  /** Тип данных для формулы фильтра */
-  dataType: ESimpleDataType;
+  /** Тип данных для formula и values */
+  dbDataType: string;
   /** Значения фильтра */
   values: (null | string)[];
   /** Метод фильтрации */

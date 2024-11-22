@@ -143,7 +143,7 @@ export interface IWidgetFormatting {
 }
 
 export const formattingConfig = {
-  get availableFormatsByDataType() {
+  get availableFormatsBySimpleType() {
     return {
       [ESimpleDataType.OTHER]: [EFormatTypes.STRING],
       [ESimpleDataType.STRING]: [EFormatTypes.STRING],

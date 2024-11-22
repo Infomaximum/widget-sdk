@@ -8,7 +8,7 @@ import {
 import { type ICalculatorFilter } from "../calculator/calculator";
 import { compact, compactMap, isNil } from "../../utils/functions";
 import type { TNullable, valueof } from "../../utilityTypes";
-import { ESimpleDataType } from "../../data";
+import { EClickHouseBaseTypes } from "../../clickHouseTypes";
 import { EFormatTypes } from "../../formatting";
 
 export enum ELastTimeUnit {
@@ -178,19 +178,19 @@ export const mapFormulaFilterToCalculatorInput = (
 
   if (!isFormulaFilterValue(filterValue)) {
     return {
-      dataType: ESimpleDataType.OTHER,
+      dbDataType: EClickHouseBaseTypes.Bool,
       formula: filterValue.formula,
       values: ["1"],
       filteringMethod: formulaFilterMethods.EQUAL_TO,
     };
   }
 
-  const { formula, filteringMethod, dataType } = filterValue;
+  const { formula, filteringMethod, dbDataType } = filterValue;
 
   return {
     formula,
     filteringMethod,
-    dataType,
+    dbDataType,
     values: getFormulaFilterValues(filterValue),
   };
 };

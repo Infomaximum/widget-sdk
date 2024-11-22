@@ -12,7 +12,7 @@ export * from "./actions";
 export * from "./calculators";
 export * from "./controls";
 export * from "./contextMenu";
-export * from "./data";
+export { ESimpleDataType } from "./data";
 export * from "./filtration";
 export * from "./formatting";
 export * from "./indicators";
@@ -27,6 +27,7 @@ export * from "./dimensionSelection";
 export * from "./utils";
 export * from "./viewContext";
 export * from "./color";
+export { parseClickHouseType, EClickHouseBaseTypes } from "./clickHouseTypes";
 
 export type TDefineWidgetOptions = {
   manifest?: IWidgetManifest;

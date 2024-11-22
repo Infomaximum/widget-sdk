@@ -15,11 +15,6 @@ export enum EWidgetIndicatorType {
   SORTING = "SORTING",
 }
 
-export enum EDbType {
-  CH = "CH",
-  HADOOP = "HADOOP",
-}
-
 export interface IWidgetIndicator extends IAutoIdentifiedArrayItem {
   name: string;
 }
@@ -28,20 +23,13 @@ export type TProcessIndicatorValue =
   | { mode: EWidgetIndicatorValueModes.FORMULA; formula: string }
   | {
       mode: EWidgetIndicatorValueModes.TEMPLATE;
-      /** Тип базы данных */
-      dbType: EDbType;
       /** Имя шаблонной формулы, использующей колонку таблицы */
       templateName: string;
     };
 
-/** Общий интерфейс разреза и меры */
 export interface IProcessIndicator extends IWidgetIndicator {
   value?: TProcessIndicatorValue;
-  /**
-   * Тип данных. Добавляется в показатель автоматически
-   * (нужен только для определения доступных форматов)
-   */
-  dataType?: ESimpleDataType;
+  dbDataType?: string;
 
   format?: EFormatTypes;
   formatting?: EFormattingPresets;
@@ -100,8 +88,6 @@ export type TColumnIndicatorValue =
   | { mode: EWidgetIndicatorValueModes.FORMULA; formula: string }
   | {
       mode: EWidgetIndicatorValueModes.TEMPLATE;
-      /** Тип базы данных */
-      dbType: EDbType;
       /** Имя шаблонной формулы, использующей колонку таблицы */
       templateName: string;
       /** Имя таблицы */
@@ -113,11 +99,7 @@ export type TColumnIndicatorValue =
 /** Общий интерфейс разреза и меры */
 export interface IWidgetColumnIndicator extends IWidgetIndicator {
   value?: TColumnIndicatorValue;
-  /**
-   * Тип данных. Добавляется в показатель автоматически
-   * (нужен только для определения доступных форматов)
-   */
-  dataType?: ESimpleDataType;
+  dbDataType?: string;
 
   format?: EFormatTypes;
   formatting?: EFormattingPresets;
@@ -148,7 +130,7 @@ export interface IMarkdownMeasure extends IWidgetMeasure {
 export enum EIndicatorType {
   /** Показатели процесса */
   PROCESS_MEASURE = "PROCESS_MEASURE",
-  /** Статичное значение */
+  /** Вводимое значение */
   STATIC = "STATIC",
   /** Статический список */
   STATIC_LIST = "STATIC_LIST",
@@ -164,77 +146,67 @@ export enum EIndicatorType {
   USER_SORTING = "USER_SORTING",
 }
 
-export type TSystemVariable = {
+interface IBaseWidgetVariable {
   /** Имя переменной */
   name: string;
+  // todo: удалить после окончания поддержки миграций [BI-13650]
+  /** @deprecated */
+  guid: string;
+}
+
+/** Обобщенные типы значений переменных */
+export enum ESimpleInputType {
+  /** Число (точность Float64) */
+  NUMBER = "FLOAT",
+  /** Целое число (точность Int64) */
+  INTEGER_NUMBER = "INTEGER",
+  /** Текст */
+  TEXT = "STRING",
+  /** Дата (точность Date) */
+  DATE = "DATE",
+  /** Дата и время (точность DateTime64) */
+  DATE_AND_TIME = "DATETIME",
+}
+
+export interface IWidgetStaticVariable extends IBaseWidgetVariable {
+  /** Тип переменной */
+  type: EIndicatorType.STATIC;
   /** Значение */
   value: string;
+  /** Обобщенный тип данных */
+  simpleInputType: ESimpleInputType;
+}
+
+export interface IWidgetStaticListVariable extends IBaseWidgetVariable {
+  /** Тип переменной */
+  type: EIndicatorType.STATIC_LIST;
+  /** Значение */
+  value: string | string[];
+  /** Элементы статического списка */
+  options: string[];
+  /** Множественный выбор */
+  multipleChoice: boolean;
+}
+
+export interface IWidgetDynamicListVariable extends IBaseWidgetVariable {
+  /** Тип переменной */
+  type: EIndicatorType.DYNAMIC_LIST;
+  /** Значение */
+  value: string | string[];
+  /** Формула для отображения списка */
+  listFormula: TNullable<string>;
   /** Тип данных */
-  dataType: ESimpleDataType;
-};
+  dbDataType: string;
+  /** Множественный выбор */
+  multipleChoice: boolean;
+  /** Фильтры */
+  filters: TExtendedFormulaFilterValue[];
+}
 
 export type TWidgetVariable =
-  | {
-      /** Тип переменной */
-      type: EIndicatorType.STATIC;
-      /** Имя переменной */
-      name: string;
-      /** Значение */
-      value: string;
-      /** Дефолтное значение */
-      defaultValue: string;
-      /** Тип данных */
-      dataType: ESimpleDataType;
-      /** Общее значения */
-      isValueShared: boolean;
-      // todo: удалить после окончания поддержки миграций [BI-13650]
-      /** @deprecated */
-      guid: string;
-    }
-  | {
-      /** Тип переменной */
-      type: EIndicatorType.STATIC_LIST;
-      /** Имя переменной */
-      name: string;
-      /** Значение */
-      value: TNullable<string> | string[];
-      /** Дефолтное значение */
-      defaultValue: TNullable<string>;
-      /** Элементы статического списка */
-      options: TNullable<string>[];
-      /** Тип данных */
-      dataType: ESimpleDataType.STRING;
-      /** Множественный выбор */
-      multipleChoice: boolean;
-      /** Общее значения */
-      isValueShared: boolean;
-      // todo: удалить после окончания поддержки миграций [BI-13650]
-      /** @deprecated */
-      guid: string;
-    }
-  | {
-      /** Тип переменной */
-      type: EIndicatorType.DYNAMIC_LIST;
-      /** Имя переменной */
-      name: string;
-      /** Значение */
-      value: string | string[];
-      /** Дефолтное значение */
-      defaultValue: string;
-      /** Формула для отображения списка */
-      listFormula: TNullable<string>;
-      /** Тип данных */
-      dataType: ESimpleDataType;
-      /** Множественный выбор */
-      multipleChoice: boolean;
-      /** Общее значения */
-      isValueShared: boolean;
-      /** Фильтры */
-      filters: TExtendedFormulaFilterValue[];
-      // todo: удалить после окончания поддержки миграций [BI-13650]
-      /** @deprecated */
-      guid: string;
-    };
+  | IWidgetStaticVariable
+  | IWidgetStaticListVariable
+  | IWidgetDynamicListVariable;
 
 export function isDimensionsHierarchy(
   indicator: IWidgetColumnIndicator

@@ -1,7 +1,5 @@
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { IAutoIdentifiedArrayItem } from "./settings/baseWidget";
-import type { IWidgetProps } from "./widgetApi";
-import type { IGlobalContext } from "./widgetContext";
 import type { TColor } from "./color";
 
 export enum EWidgetActionInputMethod {
@@ -204,71 +202,6 @@ export interface IWidgetAction extends IActionCommon {
 export type TAction = TActionsOnClick | IWidgetAction;
 
 export type TActionValidator = (action: TAction) => boolean;
-
-/**
- * @deprecated Функция может работать некорректно и будет удалена в будущих версиях.
- *  Необходимо использовать {@link IWidgetProps.actionValidator }.
- */
-export const isExecuteScriptActionValid = (
-  action: Extract<TAction, { type: EActionTypes.EXECUTE_SCRIPT }>,
-  {
-    scripts,
-    tables,
-    variables,
-    systemVariables,
-  }: Pick<IGlobalContext, "scripts" | "tables" | "variables" | "systemVariables">
-) => {
-  const currentScript = scripts.get(action.scriptKey ?? "");
-
-  if (!currentScript) {
-    return false;
-  }
-
-  const actionInputsMap = new Map(
-    action.parameters.map((parameter) => [parameter.name, parameter])
-  );
-
-  if (actionInputsMap.size < currentScript.fields.length) {
-    return false;
-  }
-
-  return currentScript.fields.every(({ name, isRequired }) => {
-    const actionInput = actionInputsMap.get(name ?? "");
-
-    if (!actionInput) {
-      return false;
-    }
-
-    if (!isRequired) {
-      return true;
-    }
-
-    if (
-      actionInput.inputMethod === EWidgetActionInputMethod.VARIABLE &&
-      !variables.has(actionInput.sourceVariable) &&
-      !systemVariables.has(actionInput.sourceVariable)
-    ) {
-      return false;
-    }
-
-    if (actionInput.inputMethod === EWidgetActionInputMethod.FORMULA && !actionInput.formula) {
-      return false;
-    }
-
-    if (actionInput.inputMethod === EWidgetActionInputMethod.DYNAMIC_LIST && !actionInput.formula) {
-      return false;
-    }
-
-    if (
-      actionInput.inputMethod === EWidgetActionInputMethod.COLUMN &&
-      !tables.has(actionInput.tableName)
-    ) {
-      return false;
-    }
-
-    return true;
-  });
-};
 
 export enum EActionButtonsTypes {
   LINK = "link",

@@ -5,17 +5,15 @@ import type {
   ICommonDimensions,
   ICommonMeasures,
   ICommonState,
-  TSystemVariable,
   TWidgetVariable,
 } from "./indicators";
-import type { ESimpleDataType } from "./data";
 import type { TColor } from "./color";
 
 export interface IWidgetTableColumn {
   /** Имя колонки */
   name: string;
   /** Тип данных колонки */
-  dataType: ESimpleDataType;
+  dbDataType: string;
 }
 
 interface IScriptField {
@@ -23,7 +21,6 @@ interface IScriptField {
   /** @deprecated */
   guid: string;
   name: string;
-  dataType: ESimpleDataType;
   isRequired: boolean;
 }
 
@@ -96,9 +93,9 @@ export interface IGlobalContext {
   /** Пользовательские переменные уровня отчета */
   variables: Map<string, TWidgetVariable>;
   /** Метод установки значения пользовательской переменной уровня отчета */
-  setVariableValue(name: string, value: TNullable<string> | string[]): void;
-  /** Системные переменные */
-  systemVariables: Map<string, TSystemVariable>;
+  setVariableValue(name: string, value: TWidgetVariable["value"]): TWidgetVariable["value"];
+  /** Метод очистки значения пользовательской переменной уровня отчета */
+  unsetVariableValue(name: string): TWidgetVariable["value"];
 
   /** Состояния(название сущности) отчета */
   states: Map<string, ICommonState>;

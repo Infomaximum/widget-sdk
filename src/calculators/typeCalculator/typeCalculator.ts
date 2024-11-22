@@ -1,4 +1,3 @@
-import type { ESimpleDataType } from "../../data";
 import type { ICalculator } from "../calculator";
 
 export interface ITypeCalculatorInput {
@@ -7,9 +6,7 @@ export interface ITypeCalculatorInput {
 }
 
 export interface ITypeCalculatorOutputItem {
-  simpleType: ESimpleDataType;
-  dataType: ESimpleDataType;
-  isArrayDataType: boolean;
+  dbDataType: string;
 }
 
 export interface ITypeCalculatorOutput {

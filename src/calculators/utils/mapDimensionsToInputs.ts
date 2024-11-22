@@ -21,7 +21,7 @@ export function mapDimensionToInput<T extends IWidgetDimension>(
   return {
     alias: String(dimension.id),
     formula,
-    dataType: dimension.dataType,
+    dbDataType: dimension.dbDataType,
     hideEmpty: dimension.hideEmptyValues,
     displayConditionFormula: getDisplayConditionFormula(dimension.displayCondition),
   };

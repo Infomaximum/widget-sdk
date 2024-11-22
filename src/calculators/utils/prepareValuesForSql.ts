@@ -1,9 +1,9 @@
 import { ESimpleDataType } from "../../data";
 
-export const prepareValuesForSql = (dataType: ESimpleDataType, values: (string | null)[]) =>
-  dataType === ESimpleDataType.INTEGER ||
-  dataType === ESimpleDataType.FLOAT ||
-  dataType === ESimpleDataType.BOOLEAN
+export const prepareValuesForSql = (simpleType: ESimpleDataType, values: (string | null)[]) =>
+  simpleType === ESimpleDataType.INTEGER ||
+  simpleType === ESimpleDataType.FLOAT ||
+  simpleType === ESimpleDataType.BOOLEAN
     ? values
     : values.map((value) =>
         value === null ? null : `'${escapeSingularQuotes(escapeReverseSlash(value))}'`

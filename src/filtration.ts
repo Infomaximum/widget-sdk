@@ -1,5 +1,4 @@
 import type { ICalculatorFilter } from "./calculators/calculator/calculator";
-import type { ESimpleDataType } from "./data";
 import type { EFormatTypes } from "./formatting";
 import type { TNullable, valueof } from "./utilityTypes";
 import { ECalculatorFilterMethods } from "./calculators/calculator";
@@ -105,7 +104,7 @@ export interface IFormulaFilterValue {
   /** Формула */
   formula: string;
   /** Тип данных формулы */
-  dataType: ESimpleDataType;
+  dbDataType: string;
   /** Формат */
   format: EFormatTypes;
   /** Метод фильтрации */

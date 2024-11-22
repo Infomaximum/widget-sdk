@@ -1,5 +1,4 @@
 import type { TNullable } from "./utilityTypes";
-import type { ESimpleDataType } from "./data";
 import type { EControlType, IControlRecord } from "./controls";
 import type { EWidgetIndicatorType } from "./indicators";
 import type { IGlobalContext } from "./widgetContext";
@@ -7,6 +6,7 @@ import type { IAutoIdentifiedArrayItem, IBaseWidgetSettings } from "./settings/b
 import type { ICalculatorFactory } from "./calculators";
 import type { EWidgetFilterMode } from "./settings/values";
 import type { EDimensionTemplateNames } from "./indicatorsFormulas";
+import type { ESimpleDataType } from "./data";
 
 export interface ILens<T extends TNullable<object>, Value> {
   get(obj: T): TNullable<Value>;
@@ -166,8 +166,8 @@ export interface IGroupSettings extends IAutoIdentifiedArrayItem, Record<string,
 /** Конфигурация разреза */
 export type TWidgetDimensionData = {
   type: EWidgetIndicatorType.DIMENSION;
-  /** Типы данных, поддерживаемые разрезом */
-  dataTypes?: ESimpleDataType[];
+  /** Обобщенные типы данных, поддерживаемые разрезом */
+  simpleTypes?: ESimpleDataType[];
   /** Шаблоны формул, доступные для выбора в разрезе */
   templates?: Partial<Record<ESimpleDataType, EDimensionTemplateNames[]>>;
 };
@@ -197,10 +197,6 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
   /** Получить название, отображаемое на плашке (по умолчанию используется поле name из группы) */
   getGroupTitle?(group: IGroupSettings): string;
 
-  /**
-   * @deprecated Необходимо использовать {@link IGroupSetDescription.getIndicatorData }.
-   */
-  getType?: (settings: IInitialSettings) => EWidgetIndicatorType;
   /**
    * Получить описание показателя для группы, если группа описывает системный показатель.
    *
@@ -277,9 +273,9 @@ export interface IWidgetProcess {
   /** Имя колонки CaseId события */
   eventCaseIdColumnName: string;
   /** Тип данных CaseId */
-  caseIdDataType: ESimpleDataType;
+  caseIdDbDataType: string;
   /** Тип данных времени события */
-  eventTimeDataType: ESimpleDataType;
+  eventTimeDbDataType: string;
   /** Является ли процесс валидным */
   isValid: boolean;
 }

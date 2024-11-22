@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.8.0](https://github.com/Infomaximum/widget-sdk/compare/v4.7.0...v4.8.0) (2024-11-22)
+
+
+### Features
+
+* добавлена возможность поиска по опциям селекта ([fa2f8d2](https://github.com/Infomaximum/widget-sdk/commit/fa2f8d2def24c8b177769a7da3b4b2f59fd0aabd))
+
 ## [4.7.0](https://github.com/Infomaximum/widget-sdk/compare/v4.6.0...v4.7.0) (2024-11-21)
 
 

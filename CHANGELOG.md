@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.10.0](https://github.com/Infomaximum/widget-sdk/compare/v4.9.0...v4.10.0) (2024-11-27)
+
+
+### Features
+
+* TLaunchActionParams расширен методом resetAndHandleModalData ([9ef080e](https://github.com/Infomaximum/widget-sdk/commit/9ef080e1c33829ce1e593ca8b2d44bdd74e176a5))
+
 ## [4.9.0](https://github.com/Infomaximum/widget-sdk/compare/v4.8.0...v4.9.0) (2024-11-27)
 
 

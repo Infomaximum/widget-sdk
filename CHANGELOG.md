@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.9.0](https://github.com/Infomaximum/widget-sdk/compare/v4.8.0...v4.9.0) (2024-11-27)
+
+
+### Features
+
+* добавлено значение по умолчанию для способа ввода "Ввести вручную", переделано формирование Статического списка на yaml, добавлено поле "Отображаемый список" для способа ввода "Динамический список" ([79dda0e](https://github.com/Infomaximum/widget-sdk/commit/79dda0e7bb2269fa1390a7366cf66b2ac35f4772))
+
 ## [4.8.0](https://github.com/Infomaximum/widget-sdk/compare/v4.7.0...v4.8.0) (2024-11-22)
 
 

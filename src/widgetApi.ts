@@ -24,6 +24,10 @@ export type TLaunchActionParams = {
   filters: ICalculatorFilter[];
   /** Выбранные имена событий для способа ввода EVENT, START_EVENT и FINISH_EVENT */
   eventNames?: [string] | [string, string];
+  /** Callback, вызывается при успешном получении данных модального окна запуска действия,
+   * а так же при клике на другое действие, вызовется для предыдущего действия
+   */
+  resetAndHandleModalData?: () => void;
 };
 
 export type TWidgetContainer = {

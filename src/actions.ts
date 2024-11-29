@@ -71,18 +71,20 @@ interface IParameterFromEndEvent {
 interface IParameterFromManualInput {
   inputMethod: EWidgetActionInputMethod.MANUALLY;
   description: string;
+  defaultValue?: string;
 }
 
 interface IParameterFromStaticList {
   inputMethod: EWidgetActionInputMethod.STATIC_LIST;
-  options: string[];
-  defaultOptionIndex: number;
+  options: string;
+  defaultOptionIndexes: number[];
 }
 
 interface IParameterFromDynamicList {
   inputMethod: EWidgetActionInputMethod.DYNAMIC_LIST;
-  formula: string;
+  options: string;
   defaultValue: string;
+  displayOptions: string;
   filters: TExtendedFormulaFilterValue[];
 }
 

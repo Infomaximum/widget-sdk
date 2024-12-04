@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.11.0](https://github.com/Infomaximum/widget-sdk/compare/v4.10.0...v4.11.0) (2024-12-04)
+
+
+### Features
+
+* formValues и checkedValues сделаны не обязательными параметрами, убрано поле filters из настроек actions ([82e4757](https://github.com/Infomaximum/widget-sdk/commit/82e4757e68389e669e9d7afe71f32c66766966c4))
+
 ## [4.10.0](https://github.com/Infomaximum/widget-sdk/compare/v4.9.0...v4.10.0) (2024-11-27)
 
 

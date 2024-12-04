@@ -110,9 +110,9 @@ export interface IFormulaFilterValue {
   /** Метод фильтрации */
   filteringMethod: valueof<typeof formulaFilterMethods>;
   /** Выбранные в списке значения в виде моделей */
-  checkedValues: (string | null)[];
+  checkedValues?: (string | null)[];
   /** Значения полей формы редактора */
-  formValues: Partial<{
+  formValues?: Partial<{
     [EFormulaFilterFieldKeys.date]: string | null;
     [EFormulaFilterFieldKeys.dateRange]: [string, string];
     // todo: пока не удаляется для обратной совместимости

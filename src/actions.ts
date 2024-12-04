@@ -186,7 +186,6 @@ export type TActionsOnClick =
   | TActionOpenView;
 
 export interface IWidgetAction extends IActionCommon {
-  filters: TExtendedFormulaFilterValue[];
   parameters: TWidgetActionParameter[];
   type: EActionTypes.EXECUTE_SCRIPT;
   scriptKey: string;

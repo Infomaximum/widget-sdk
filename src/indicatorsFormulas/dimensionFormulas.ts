@@ -35,7 +35,7 @@ export function getDimensionFormula({ value }: IWidgetDimension): string {
   }
 
   if (value.mode === EWidgetIndicatorValueModes.FORMULA) {
-    return value.formula;
+    return value.formula ?? "";
   }
 
   if (value.mode === EWidgetIndicatorValueModes.TEMPLATE) {
@@ -43,7 +43,7 @@ export function getDimensionFormula({ value }: IWidgetDimension): string {
 
     const templateFormula = dimensionTemplateFormulas[templateName as EDimensionTemplateNames];
 
-    if (!templateFormula) {
+    if (!templateFormula || !tableName || !columnName) {
       return "";
     }
 

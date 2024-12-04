@@ -85,15 +85,15 @@ export interface ICommonDimensions {
 }
 
 export type TColumnIndicatorValue =
-  | { mode: EWidgetIndicatorValueModes.FORMULA; formula: string }
+  | { mode: EWidgetIndicatorValueModes.FORMULA; formula?: string }
   | {
       mode: EWidgetIndicatorValueModes.TEMPLATE;
       /** Имя шаблонной формулы, использующей колонку таблицы */
-      templateName: string;
+      templateName?: string;
       /** Имя таблицы */
-      tableName: string;
+      tableName?: string;
       /** Имя колонки */
-      columnName: string;
+      columnName?: string;
     };
 
 /** Общий интерфейс разреза и меры */

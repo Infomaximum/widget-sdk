@@ -84,6 +84,10 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
     return checkedValues;
   }
 
+  if (!formValues) {
+    return [];
+  }
+
   function stringifyNumbersRange<T>(
     range: Partial<[T, T]> = [undefined, undefined]
   ): [string, string] {
@@ -138,7 +142,7 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
       return compact([datePickerValue]);
 
     case EFormatTypes.STRING:
-      return compact([formValues?.[EFormulaFilterFieldKeys.string] ?? null]);
+      return compact([formValues[EFormulaFilterFieldKeys.string] ?? null]);
 
     case EFormatTypes.NUMBER:
     case EFormatTypes.YEAR:

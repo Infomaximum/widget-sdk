@@ -11,8 +11,13 @@ export enum ESortDirection {
 export type TSortDirection = ESortDirection.ascend | ESortDirection.descend;
 
 export interface ISortOrder {
+  /** Формула сортировки */
   formula: string;
+  /** Тип данных формулы */
+  dbDataType: TNullable<string>;
+  /** Направление сортировки */
   direction: TSortDirection;
+  /** Условие применения сортировки */
   displayCondition?: TNullable<string>;
 }
 
@@ -20,6 +25,7 @@ export type TWidgetSortingValue =
   | {
       mode: ESortingValueModes.FORMULA;
       formula: string;
+      dbDataType: string;
     }
   | {
       mode: ESortingValueModes.IN_WIDGET;

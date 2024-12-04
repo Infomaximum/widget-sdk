@@ -60,7 +60,13 @@ export const getDefaultSortOrders = ({
   );
 
   if (timeDimension) {
-    return [{ formula: getDimensionFormula(timeDimension), direction: ESortDirection.ascend }];
+    return [
+      {
+        formula: getDimensionFormula(timeDimension),
+        dbDataType: timeDimension.dbDataType,
+        direction: ESortDirection.ascend,
+      },
+    ];
   }
 
   if (measures.length > 0) {
@@ -71,6 +77,7 @@ export const getDefaultSortOrders = ({
         {
           direction: ESortDirection.descend,
           formula: getMeasureFormula(firstMeasure),
+          dbDataType: firstMeasure.dbDataType,
         },
       ];
     }
@@ -101,7 +108,9 @@ export function mapSortingToInputs<
 }: IMapSortingToInputsParams<Settings, Indicator>): ISortOrder[] {
   const sortOrder = compactMap(settings["sorting"] ?? [], ({ direction, value }) => {
     if (value.mode === ESortingValueModes.FORMULA) {
-      return value.formula ? { formula: value.formula, direction } : undefined;
+      return value.formula
+        ? { formula: value.formula, direction, dbDataType: value.dbDataType }
+        : undefined;
     }
 
     const indicatorsGroup = settings[value.group as keyof Settings] as Array<Indicator> | undefined;
@@ -125,6 +134,7 @@ export function mapSortingToInputs<
       return {
         formula,
         direction,
+        dbDataType: activeDimensions.dbDataType,
         displayCondition:
           indicator.displayCondition?.mode === EDisplayConditionMode.FORMULA
             ? indicator.displayCondition.formula
@@ -135,6 +145,7 @@ export function mapSortingToInputs<
     return {
       formula: getMeasureFormula(indicator),
       direction,
+      dbDataType: indicator.dbDataType,
     };
   });
 

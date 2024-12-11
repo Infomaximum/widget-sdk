@@ -148,7 +148,7 @@ export interface IStagesFilterValue {
 }
 
 export type TWidgetFilterValue =
-  | IFormulaFilterValue
+  | TExtendedFormulaFilterValue
   | IStagesFilterValue
   | IProcessEventFilterValue
   | IProcessTransitionFilterValue;

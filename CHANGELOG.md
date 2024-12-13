@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.12.0](https://github.com/Infomaximum/widget-sdk/compare/v4.11.0...v4.12.0) (2024-12-12)
+
+
+### Features
+
+* добавлены системные и локальные миграции виджетов ([6f2a1ec](https://github.com/Infomaximum/widget-sdk/commit/6f2a1ecd4bb04a425454699af05363e49e56f68f))
+
 ## [4.11.0](https://github.com/Infomaximum/widget-sdk/compare/v4.10.0...v4.11.0) (2024-12-04)
 
 

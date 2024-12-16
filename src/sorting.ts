@@ -1,3 +1,4 @@
+import type { ESimpleDataType } from "./data";
 import type { ESortingValueModes } from "./indicators";
 import type { TNullable } from "./utilityTypes";
 

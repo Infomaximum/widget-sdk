@@ -72,6 +72,7 @@ interface IParameterFromManualInput {
   inputMethod: EWidgetActionInputMethod.MANUALLY;
   description: string;
   defaultValue?: string;
+  filterByRows?: boolean;
 }
 
 interface IParameterFromStaticList {
@@ -86,6 +87,7 @@ interface IParameterFromDynamicList {
   defaultValue: string;
   displayOptions: string;
   filters: TExtendedFormulaFilterValue[];
+  filterByRows?: boolean;
 }
 
 interface IWidgetActionParameterCommon {

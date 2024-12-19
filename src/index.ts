@@ -28,6 +28,7 @@ export * from "./dimensionSelection";
 export * from "./utils";
 export * from "./viewContext";
 export * from "./color";
+export * from "./preset";
 export { parseClickHouseType, EClickHouseBaseTypes } from "./clickHouseTypes";
 
 export type TDefineWidgetOptions = {

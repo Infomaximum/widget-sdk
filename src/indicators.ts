@@ -136,6 +136,8 @@ export enum EIndicatorType {
   STATIC_LIST = "STATIC_LIST",
   /** Динамический список */
   DYNAMIC_LIST = "DYNAMIC_LIST",
+  /** Список колонок */
+  COLUMN_LIST = "COLUMN_LIST",
   /** Разрез */
   DIMENSION = "DIMENSION",
   /** Мера */
@@ -203,10 +205,20 @@ export interface IWidgetDynamicListVariable extends IBaseWidgetVariable {
   filters: TExtendedFormulaFilterValue[];
 }
 
+export interface IWidgetColumnListVariable extends IBaseWidgetVariable {
+  /** Тип переменной */
+  type: EIndicatorType.COLUMN_LIST;
+  /** Имя таблицы */
+  tableName: string;
+  /** Значение (имя колонки) */
+  value: string;
+}
+
 export type TWidgetVariable =
   | IWidgetStaticVariable
   | IWidgetStaticListVariable
-  | IWidgetDynamicListVariable;
+  | IWidgetDynamicListVariable
+  | IWidgetColumnListVariable;
 
 export function isDimensionsHierarchy(
   indicator: IWidgetColumnIndicator

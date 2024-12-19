@@ -9,6 +9,7 @@
     "dist/",
     "LICENSE"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
     "lint": "tsc --noEmit",

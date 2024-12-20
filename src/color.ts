@@ -22,7 +22,7 @@ export enum EColorMode {
   BY_DIMENSION = "BY_DIMENSION",
 }
 
-type TColorBase = {
+export type TColorBase = {
   mode: EColorMode.BASE;
   value?: string;
 };

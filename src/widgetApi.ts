@@ -174,7 +174,11 @@ export interface IWidget<WidgetSettings extends IBaseWidgetSettings> {
 }
 
 export interface IFillSettings<WidgetSettings extends IBaseWidgetSettings> {
-  (settings: Partial<WidgetSettings>, context: IGlobalContext): void;
+  (
+    settings: Partial<WidgetSettings>,
+    context: IGlobalContext,
+    prevSettings: Partial<WidgetSettings> | undefined
+  ): void;
 }
 
 export interface IWidgetEntity<

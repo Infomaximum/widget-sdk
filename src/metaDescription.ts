@@ -103,14 +103,11 @@ export interface ISelectBranchOption {
   disabled?: boolean;
 }
 
-export interface ISelectLeafOption {
+export interface ISelectLeafOption<U extends object> {
   type: ESelectOptionTypes.LEAF;
   label: string;
   value: string;
-  onSelect: <T extends object>(
-    value: string,
-    update: <R extends object>(f: (prevItems: (T | R)[]) => (T | R)[]) => void
-  ) => void;
+  onSelect: (value: string, update: (f: (prevItems: U) => U) => void) => void;
   /** Строка в формате base64 */
   icon?: string;
   disabled?: boolean;
@@ -120,7 +117,7 @@ export type IAddButtonSelectOption =
   | ISelectDividerOption
   | ISelectGroupOption
   | ISelectBranchOption
-  | ISelectLeafOption;
+  | ISelectLeafOption<object[]>;
 
 export type TCustomAddButtonSelectOption =
   | ISelectSystemOption<ECustomSelectTemplates>
@@ -130,7 +127,7 @@ export type TMeasureAddButtonSelectOption = IAddButtonSelectOption;
 export interface ICustomAddButtonProps {
   options: TSelectChildOptions;
   hasDropdown?: boolean;
-  onClick?: ISelectLeafOption["onSelect"];
+  onClick?: ISelectLeafOption<object[]>["onSelect"];
 }
 
 export interface IWidgetIndicatorAddButtonProps {

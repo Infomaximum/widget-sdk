@@ -192,7 +192,7 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
   addButtons: TAddButton[];
 
   /** Получить название, отображаемое на плашке (по умолчанию используется поле name из группы) */
-  getGroupTitle?(group: IGroupSettings): string;
+  getGroupTitle?(group: IGroupSettings, index: number): string;
 
   /**
    * Получить описание показателя для группы, если группа описывает системный показатель.
@@ -204,9 +204,9 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
    */
   getIndicatorData?: (settings: IInitialSettings) => EWidgetIndicatorType | TWidgetIndicatorData;
   /** Создать конфигурацию группы для вкладки настроек данных */
-  createDataRecords?(group: IGroupSettings): TGroupLevelRecord<GroupSettings>[];
+  createDataRecords?(group: IGroupSettings, index: number): TGroupLevelRecord<GroupSettings>[];
   /** Создать конфигурацию группы для вкладки настроек отображения */
-  createDisplayRecords?(group: IGroupSettings): TGroupLevelRecord<GroupSettings>[];
+  createDisplayRecords?(group: IGroupSettings, index: number): TGroupLevelRecord<GroupSettings>[];
 
   /** Находится ли группа в состоянии загрузки (по умолчанию false) */
   isLoading?(group: IGroupSettings): boolean;

@@ -1,5 +1,4 @@
 import type { ISortOrder } from "../../sorting";
-import type { TNullable } from "../../utilityTypes";
 import type {
   ICalculator,
   ICalculatorDimensionInput,
@@ -27,14 +26,11 @@ export interface IBaseDimensionsAndMeasuresCalculatorInput {
   isHideEmptyMeasures?: boolean;
   /** Сортировка */
   sortOrders?: ISortOrder[];
-  /** Формула условия отображения */
-  displayConditionFormula?: TNullable<string>;
 }
 
 export interface IBaseDimensionsAndMeasuresCalculatorOutput {
   dimensions: Map<string, ICalculatorDimensionOutput>;
   measures: Map<string, ICalculatorMeasureOutput>;
-  isDisplay: boolean;
   isValuesEmpty: boolean;
 }
 

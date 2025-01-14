@@ -1,4 +1,3 @@
-import type { TNullable } from "../../utilityTypes";
 import type {
   ICalculator,
   ICalculatorDimensionInput,
@@ -10,8 +9,6 @@ export interface IHistogramCalculatorInput {
   dimensions: ICalculatorDimensionInput[];
   /** Лимит корзин */
   binsLimit: number;
-  /** Формула условия отображения */
-  displayConditionFormula?: TNullable<string>;
   /** Фильтры, использующие WHERE */
   filters: ICalculatorFilter[];
   /** Имя таблицы */
@@ -26,7 +23,6 @@ export interface IHistogramBin {
 
 export interface IHistogramCalculatorOutput {
   bins: IHistogramBin[];
-  isDisplay: boolean;
   dimensionAlias: string;
 }
 

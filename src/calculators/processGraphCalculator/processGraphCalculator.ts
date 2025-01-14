@@ -1,4 +1,3 @@
-import type { TNullable } from "../../utilityTypes";
 import type {
   ICalculator,
   ICalculatorFilter,
@@ -29,7 +28,6 @@ export interface IProcessGraphCalculatorInput {
   edgeMeasures: ICalculatorMeasureInput[];
   filters: ICalculatorFilter[];
   eventFilters?: ICalculatorFilter[];
-  displayConditionFormula?: TNullable<string>;
 }
 
 export interface IProcessGraphCalculatorOutput {
@@ -44,8 +42,6 @@ export interface IProcessGraphCalculatorOutput {
   /** alias'ы мер, попавших под условие отображения */
   edgeMeasuresAliases: Set<string>;
   edges: IEdge[];
-
-  isDisplay: boolean;
 }
 
 export interface IProcessGraphCalculator

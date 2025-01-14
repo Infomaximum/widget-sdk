@@ -1,5 +1,4 @@
 import type { ISortOrder } from "../../sorting";
-import type { TNullable } from "../../utilityTypes";
 
 import type {
   ICalculator,
@@ -28,8 +27,6 @@ export interface ITwoLimitsCalculatorInput {
   isHideEmptyMeasures?: boolean;
   /** Сортировка */
   sortOrders?: ISortOrder[];
-  /** Формула условия отображения */
-  displayConditionFormula?: TNullable<string>;
   /** Лимит строк */
   limit?: number;
   /** Второй лимит */
@@ -46,7 +43,6 @@ export interface ITwoLimitsCalculatorExportInput extends ITwoLimitsCalculatorInp
 export interface ITwoLimitsCalculatorOutput {
   dimensions: Map<string, ICalculatorDimensionOutput>;
   measures: Map<string, ICalculatorMeasureOutput>;
-  isDisplay: boolean;
   isValuesEmpty: boolean;
 }
 

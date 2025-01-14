@@ -1,10 +1,8 @@
 export interface IWidgetPlaceholderController {
   setError(value: Error | null): void;
-  setConfigured(value: boolean): void;
   /**
-   * Устанавливает состояние видимости виджета.
+   * Сообщает о готовности виджета к отображению.
    *
-   * После вызова данного метода виджет станет доступен для отображения.
    * Это предотвращает мерцание при первом появлении виджета на экране.
    * Метод должен быть вызван после полной готовности виджета: все необходимые данные загружены, высота установлена.
    */
@@ -15,7 +13,6 @@ export interface IWidgetPlaceholderController {
 
 export interface IWidgetPlaceholderValues {
   error: Error | null;
-  isConfigured: boolean;
   isDisplay: boolean | undefined;
   isEmpty: boolean;
   isOverlay: boolean;

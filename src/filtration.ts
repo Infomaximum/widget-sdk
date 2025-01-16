@@ -89,8 +89,6 @@ export interface IAddDurationOfTransitionFilter {
 export enum EFormulaFilterFieldKeys {
   date = "date",
   dateRange = "dateRange",
-  duration = "duration",
-  number = "number",
   numberRange = "numberRange",
   string = "string",
   lastTimeValue = "lastTimeValue",
@@ -115,10 +113,6 @@ export interface IFormulaFilterValue {
   formValues?: Partial<{
     [EFormulaFilterFieldKeys.date]: string | null;
     [EFormulaFilterFieldKeys.dateRange]: [string, string];
-    // todo: пока не удаляется для обратной совместимости
-    [EFormulaFilterFieldKeys.duration]: string;
-    // todo: пока не удаляется для обратной совместимости
-    [EFormulaFilterFieldKeys.number]: number;
     [EFormulaFilterFieldKeys.numberRange]: Partial<[number, number]>;
     [EFormulaFilterFieldKeys.string]: string;
     [EFormulaFilterFieldKeys.lastTimeValue]: number;

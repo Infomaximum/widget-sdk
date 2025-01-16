@@ -149,25 +149,19 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
     case EFormatTypes.DAY_OF_MONTH:
     case EFormatTypes.WEEK:
     case EFormatTypes.HOUR:
-      const {
-        [EFormulaFilterFieldKeys.number]: number,
-        [EFormulaFilterFieldKeys.numberRange]: numberRange,
-      } = formValues;
+      const { [EFormulaFilterFieldKeys.numberRange]: numberRange } = formValues;
 
-      return isRangeFilteringMethod(filteringMethod)
-        ? stringifyNumbersRange(numberRange)
-        : [String(number ?? 0)];
+      return isRangeFilteringMethod(filteringMethod) ? stringifyNumbersRange(numberRange) : [];
 
     case EFormatTypes.DURATION:
       const {
-        [EFormulaFilterFieldKeys.duration]: duration,
         [EFormulaFilterFieldKeys.numberRange]: durationRange,
         [EFormulaFilterFieldKeys.durationUnit]: durationUnit,
       } = formValues;
 
       return isRangeFilteringMethod(filteringMethod)
         ? convertDurationRangeToSecond(durationRange, durationUnit)
-        : [String(duration ?? 0)];
+        : [];
   }
 
   return [];

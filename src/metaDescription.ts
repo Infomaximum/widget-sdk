@@ -81,8 +81,6 @@ export interface ISelectGroupOption {
   options: IAddButtonSelectOption[];
   icon: string;
 }
-/** @deprecated  необходимо использовать TSelectFetchNodes*/
-export type TSelectFetchOptions = (searchText?: string) => Promise<TCustomAddButtonSelectOption[]>;
 
 export interface ISelectNode {
   options: TCustomAddButtonSelectOption[];
@@ -90,10 +88,7 @@ export interface ISelectNode {
 }
 
 export type TSelectFetchNodes = (searchText?: string) => Promise<ISelectNode>;
-export type TSelectChildOptions =
-  | TCustomAddButtonSelectOption[]
-  | TSelectFetchNodes
-  | TSelectFetchOptions;
+export type TSelectChildOptions = TCustomAddButtonSelectOption[] | TSelectFetchNodes;
 
 export interface ISelectBranchOption {
   type: ESelectOptionTypes.BRANCH;

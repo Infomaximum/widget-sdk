@@ -40,10 +40,24 @@ export interface IWidgetPersistValue<T extends object = object> {
   set(value: T | null): void;
 }
 
+/**
+ * simplified - упрощенный (для работы фильтрации в образах, открытых в модальном/боковом окне)
+ *
+ * full - полный
+ */
+export type TFiltrationAccessibility = "simplified" | "full";
+
+/**
+ * preview - упрощенный
+ *
+ * full - полный
+ */
+export type TDisplayMode = "preview" | "full";
+
 export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings> {
-  // todo: удалить при переходе на 5 мажорную версию [BI-14040]
-  /** @deprecated в качестве guid используется ключ виджета(уникален в рамках образа для каждого экземпляра виджета) */
-  guid: string;
+  /** Ключ виджета */
+  widgetKey: string;
+
   /** Настройки виджета */
   settings: WidgetSettings;
 
@@ -85,6 +99,11 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
 
   /** Аксессор для persist-значения виджета, хранимого в localStorage и URL */
   persistValue: IWidgetPersistValue;
+
+  /** Режим отображения виджета */
+  displayMode: TDisplayMode;
+  /** Доступность фильтрации */
+  filtrationAccessibility: TFiltrationAccessibility;
 }
 
 /** Манифест виджета */
@@ -113,8 +132,6 @@ export interface IWidgetManifest {
   };
   /** Параметры контейнера виджета */
   container_params?: {
-    /** @deprecated необходимо использовать show_title */
-    show_header?: boolean;
     /** Отображать ли системный заголовок виджета (по умолчанию false) */
     show_title?: boolean;
     /** Отображать ли markdown "описание" виджета (по умолчанию false) */

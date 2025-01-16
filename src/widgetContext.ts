@@ -40,20 +40,6 @@ export interface IWidgetTable {
   columns: Map<string, IWidgetTableColumn>;
 }
 
-/**
- * simplified - упрощенный (для работы фильтрации в образах, открытых в модальном/боковом окне)
- *
- * full - полный
- */
-export type TFiltrationMode = "simplified" | "full";
-
-/**
- * preview - упрощенный
- *
- * full - полный
- */
-export type TDisplayMode = "preview" | "full";
-
 export interface IDisplayRule {
   color: TColor;
 }
@@ -65,11 +51,6 @@ export interface IGlobalContext {
   reportName: string;
   /** Имена образов по их ключу(в текущем отчете) */
   viewNameByKey: Map<string, string>;
-
-  /** Режим отображения виджетов */
-  displayMode: TDisplayMode;
-  /** Режим фильтрации виджетов */
-  filtrationMode: TFiltrationMode;
 
   // todo: удалить после окончания поддержки миграций [BI-13650]
   /** @deprecated имя группы пространства по ее id */

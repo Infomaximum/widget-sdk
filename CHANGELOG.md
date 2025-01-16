@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/Infomaximum/widget-sdk/compare/v4.13.0...v5.0.0) (2025-01-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* перемещены поля displayMode и filtrationMode из IGlobalContext на уровень IWidgetProps и переименованы filtrationMode в filtrationAccessibility, т.к. именование filtrationMode внутри IGlobalContext и внутри IPanelDescription обозначает разные вещи
+* удален deprecated интерфейс TSelectFetchOptions
+* удалены из EFormulaFilterFieldKeys поля number и duration
+* удалены isConfigured и setConfigured из плейсхолдера виджета, вместо него нужно использовать isDisplay
+* удалены условия отображения
+* типы ESimpleDataType заменены на точные типы ClickHouse
+
+### Features
+
+* добавлен 3-й аргумент в IFillSettings с предыдущими настройками ([4e3c966](https://github.com/Infomaximum/widget-sdk/commit/4e3c966ff1c639fa3fe450c852cf1501b35cf5d5))
+* добавлен необязательный метод getInitialSettings в интерфейс IDefinition, позволяющий получить шаблон настроек виджета, заданный пользователем ([81dba40](https://github.com/Infomaximum/widget-sdk/commit/81dba40b0eb731c1fa484e8852628356d5250838))
+* добавлен новый тип переменной отчета "Список колонок" ([1feed0d](https://github.com/Infomaximum/widget-sdk/commit/1feed0df64570d10f2f724f48ae88dd71ce42844))
+* добавлен экспорт типа TColorBase ([8603d04](https://github.com/Infomaximum/widget-sdk/commit/8603d047f2aee955a5a636e20d26f140f040c696))
+* добавлено 2-й параметр с индексом индикатора ([ca23b79](https://github.com/Infomaximum/widget-sdk/commit/ca23b79307b5a973939f00f426e165c098bcc1e3))
+* добавлено поле dbDataType в сортировки ([9ae797e](https://github.com/Infomaximum/widget-sdk/commit/9ae797e16af0caa40cc138fa5c8c4bba3fbbd74c))
+* значения в TColumnIndicatorValue сделаны не обязательными ([a765774](https://github.com/Infomaximum/widget-sdk/commit/a765774ad0ee3e42ea4bc787ca286cf08bef6060))
+* изменена типизация ISelectLeafOption.onSelect ([61bfbab](https://github.com/Infomaximum/widget-sdk/commit/61bfbabb4595039c05b5a196fd940cd41a773cf3))
+* обобщенные типы ESimpleDataType заменены на точные типы ClickHouse ([8a8dc85](https://github.com/Infomaximum/widget-sdk/commit/8a8dc8547002c6562e6bb31bc92b142a6b60b93a))
+* перемещены поля в IWidgetProps ([eba535d](https://github.com/Infomaximum/widget-sdk/commit/eba535df7545998b39c0fe4eb4442e30e17c0675))
+* произведен отказ от условия отображения виджетов ([dc80e70](https://github.com/Infomaximum/widget-sdk/commit/dc80e701dc772388f664f07567d43a849f2368d6))
+* расширен тип значения фильтров по формуле, получаемых виджетом, с IFormulaFilterValue до TExtendedFormulaFilterValue ([56608d3](https://github.com/Infomaximum/widget-sdk/commit/56608d3a534adc561bad77ce814d7123769c4f96))
+* удален deprecated интерфейс ([f5d1d04](https://github.com/Infomaximum/widget-sdk/commit/f5d1d043768603c84fd70e3a511ffcd61c017b31))
+* удалено ставшее избыточным состояние isConfigured из плейсхолдера виджета ([e105b8b](https://github.com/Infomaximum/widget-sdk/commit/e105b8b74892100d40d80745aacd3077801e7350))
+* удалены number и duration ([8fca4cc](https://github.com/Infomaximum/widget-sdk/commit/8fca4ccd041e86ae9f64394122b903e3980ab33b))
+
 ## [4.13.0](https://github.com/Infomaximum/widget-sdk/compare/v4.11.1...v4.13.0) (2024-12-16)
 
 ## [4.12.0](https://github.com/Infomaximum/widget-sdk/compare/v4.11.0...v4.12.0) (2024-12-12)

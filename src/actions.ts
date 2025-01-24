@@ -12,6 +12,7 @@ export enum EWidgetActionInputMethod {
   EVENT = "EVENT",
   START_EVENT = "START_EVENT",
   FINISH_EVENT = "FINISH_EVENT",
+  AGGREGATION = "AGGREGATION",
 }
 
 export enum EActionTypes {
@@ -53,6 +54,11 @@ interface IParameterFromVariable {
 
 interface IParameterFromFormula {
   inputMethod: EWidgetActionInputMethod.FORMULA;
+  formula: string;
+}
+
+interface IParameterFromAggregation {
+  inputMethod: EWidgetActionInputMethod.AGGREGATION;
   formula: string;
 }
 
@@ -104,6 +110,7 @@ export type TWidgetActionParameter = IWidgetActionParameterCommon &
     | IParameterFromManualInput
     | IParameterFromStaticList
     | IParameterFromDynamicList
+    | IParameterFromAggregation
   );
 
 interface IActionOnClickParameterCommon extends IAutoIdentifiedArrayItem {
@@ -118,6 +125,7 @@ export type TActionOnClickParameter = IActionOnClickParameterCommon &
     | IParameterFromEvent
     | IParameterFromStartEvent
     | IParameterFromEndEvent
+    | IParameterFromAggregation
   );
 
 interface IActionCommon extends IAutoIdentifiedArrayItem {

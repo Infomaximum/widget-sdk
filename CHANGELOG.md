@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/Infomaximum/widget-sdk/compare/v5.0.0...v5.1.0) (2025-01-24)
+
+
+### Features
+
+* Добавлен новый способ ввода по агрегации ([b4bffeb](https://github.com/Infomaximum/widget-sdk/commit/b4bffeb1a43029daac1d957781ee97ec83a8f578))
+
+
+### Bug Fixes
+
+* исправлено соответствие версии sdk и версии системы ([a2fc9e7](https://github.com/Infomaximum/widget-sdk/commit/a2fc9e78398f5abb4515cbeb311f44f682c6c233))
+
 ## [5.0.0](https://github.com/Infomaximum/widget-sdk/compare/v4.13.0...v5.0.0) (2025-01-16)
 
 

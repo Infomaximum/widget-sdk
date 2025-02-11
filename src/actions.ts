@@ -126,6 +126,9 @@ export type TActionOnClickParameter = IActionOnClickParameterCommon &
     | IParameterFromStartEvent
     | IParameterFromEndEvent
     | IParameterFromAggregation
+    | IParameterFromManualInput
+    | IParameterFromStaticList
+    | IParameterFromDynamicList
   );
 
 interface IActionCommon extends IAutoIdentifiedArrayItem {

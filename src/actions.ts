@@ -198,15 +198,27 @@ export type TActionsOnClick =
   | IActionUpdateVariable
   | TActionOpenView;
 
+export enum EBlockingConditionMode {
+  FORMULA = "FORMULA",
+  VARIABLE = "VARIABLE",
+}
+
 export interface IWidgetAction extends IActionCommon {
   parameters: TWidgetActionParameter[];
   type: EActionTypes.EXECUTE_SCRIPT;
   scriptKey: string;
   updateDashboard: boolean;
   description: string;
-  blockingCondition: {
-    formula: string;
-  };
+  blockingCondition:
+    | {
+        mode: EBlockingConditionMode.FORMULA;
+        formula: string;
+      }
+    | {
+        mode: EBlockingConditionMode.VARIABLE;
+        variableName: string;
+        variableValue: string;
+      };
   buttonType: EActionButtonsTypes;
   backgroundColor?: TColor;
   borderColor?: TColor;

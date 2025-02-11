@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.0](https://github.com/Infomaximum/widget-sdk/compare/v5.1.0...v5.2.0) (2025-02-11)
+
+
+### Features
+
+* поле blockingCondition расширено модом по формуле и по переменной ([47fee53](https://github.com/Infomaximum/widget-sdk/commit/47fee53602c5c14efd5a3caeebeec1673aedce9d))
+* TActionOnClickParameter расширен новыми способами ввода ([3216938](https://github.com/Infomaximum/widget-sdk/commit/3216938ebd29a35e59ae83688e1829d94a7236b3))
+
 ## [5.1.0](https://github.com/Infomaximum/widget-sdk/compare/v5.0.0...v5.1.0) (2025-01-24)
 
 

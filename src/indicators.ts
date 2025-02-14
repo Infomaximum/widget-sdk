@@ -178,6 +178,10 @@ export interface IWidgetStaticVariable extends IBaseWidgetVariable {
   /** Обобщенный тип данных */
   simpleInputType: ESimpleInputType;
 }
+export interface IStaticListLabeledOption {
+  value: string;
+  label: string;
+}
 
 export interface IWidgetStaticListVariable extends IBaseWidgetVariable {
   /** Тип переменной */
@@ -185,7 +189,10 @@ export interface IWidgetStaticListVariable extends IBaseWidgetVariable {
   /** Значение */
   value: string | string[];
   /** Элементы статического списка */
+  /** @deprecated поле будет удалено, необходимо использовать labeledOptions */
   options: string[];
+  /** Объект ключ значение для статического списка  */
+  labeledOptions: IStaticListLabeledOption[];
   /** Множественный выбор */
   multipleChoice: boolean;
 }

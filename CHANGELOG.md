@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.3.0](https://github.com/Infomaximum/widget-sdk/compare/v5.2.0...v5.3.0) (2025-02-14)
+
+
+### Features
+
+* поле options переменной статический список помечено deprecated, добавлено поле labeledOptions ([264cff2](https://github.com/Infomaximum/widget-sdk/commit/264cff22c42819ff5829d6f53484d9df58993443))
+
 ## [5.2.0](https://github.com/Infomaximum/widget-sdk/compare/v5.1.0...v5.2.0) (2025-02-11)
 
 

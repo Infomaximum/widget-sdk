@@ -25,3 +25,9 @@ export {
 } from "./bindContentsWithIndicators";
 export { escapeSpecialCharacters } from "./escapeSpecialCharacters";
 export { unescapeSpecialCharacters } from "./unescapeSpecialCharacters";
+export {
+  prepareFormulaForSql,
+  clearMultiLineComments,
+  clearSingleLineComments,
+} from "./prepareFormulaForSql";
+export { convertFiltersToFormula, convertToFormulasChain } from "./filters";

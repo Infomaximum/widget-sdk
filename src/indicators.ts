@@ -1,5 +1,4 @@
 import type { TActionsOnClick } from "./actions";
-import type { ESimpleDataType } from "./data";
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormatTypes, EFormattingPresets } from "./formatting";
 import type { IAutoIdentifiedArrayItem } from "./settings/baseWidget";
@@ -13,6 +12,16 @@ export enum EWidgetIndicatorType {
   TRANSITION_INDICATOR = "TRANSITION_INDICATOR",
   DIMENSION = "DIMENSION",
   SORTING = "SORTING",
+}
+
+export enum EOuterAggregation {
+  avg = "avg",
+  median = "median",
+  count = "count",
+  countDistinct = "countDistinct",
+  min = "min",
+  max = "max",
+  sum = "sum",
 }
 
 export interface IWidgetIndicator extends IAutoIdentifiedArrayItem {
@@ -54,6 +63,9 @@ export enum EWidgetIndicatorValueModes {
   FORMULA = "FORMULA",
   /** Шаблон формулы, предоставляемый системой */
   TEMPLATE = "TEMPLATE",
+  AGGREGATION = "AGGREGATION",
+  DURATION = "DURATION",
+  CONVERSION = "CONVERSION",
 }
 
 /** Режимы сортировки (на что ссылается сортировка) */
@@ -98,7 +110,6 @@ export type TColumnIndicatorValue =
 
 /** Общий интерфейс разреза и меры */
 export interface IWidgetColumnIndicator extends IWidgetIndicator {
-  value?: TColumnIndicatorValue;
   dbDataType?: string;
 
   format?: EFormatTypes;
@@ -115,11 +126,20 @@ export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetD
   displayCondition?: TDisplayCondition;
 }
 
-export interface IWidgetDimension extends IWidgetColumnIndicator {
+export interface IWidgetDimension extends Omit<IWidgetColumnIndicator, "value"> {
+  value?: TColumnIndicatorValue;
   hideEmptyValues: boolean;
 }
 
-export interface IWidgetMeasure extends IWidgetColumnIndicator {}
+export interface IWidgetMeasure extends Omit<IWidgetColumnIndicator, "value"> {
+  value?:
+    | TColumnIndicatorValue
+    | (TWidgetIndicatorAggregationValue & {
+        outerAggregation: EOuterAggregation;
+      })
+    | TWidgetIndicatorConversionValue
+    | TWidgetIndicatorDurationValue;
+}
 
 export interface IMarkdownMeasure extends IWidgetMeasure {
   format: EFormatTypes;
@@ -232,3 +252,61 @@ export function isDimensionsHierarchy(
 ): indicator is IWidgetDimensionHierarchy {
   return "hierarchyDimensions" in indicator;
 }
+
+export enum OuterAggregation {
+  avg = "avgIf",
+  median = "medianIf",
+  count = "countIf",
+  countDistinct = "countIfDistinct",
+  min = "minIf",
+  max = "maxIf",
+  sum = "sumIf",
+}
+
+export enum EDurationTemplateName {
+  avg = "avg",
+  median = "median",
+}
+
+export type TWidgetIndicatorAggregationValue = {
+  mode: EWidgetIndicatorValueModes.AGGREGATION;
+  templateName: string;
+  processName: string | null;
+  eventName: string | null;
+  caseIdFormula: string | null;
+  eventNameFormula: string | null;
+  filters: TExtendedFormulaFilterValue[];
+
+  tableName?: string;
+  columnName?: string;
+  eventTimeFormula?: string | null;
+};
+
+export enum EEventAppearances {
+  FIRST = "FIRST",
+  LAST = "LAST",
+}
+
+export type TWidgetIndicatorConversionValue = {
+  mode: EWidgetIndicatorValueModes.CONVERSION;
+
+  startEventNameFormula: string | null;
+  startEventProcessName: string | null;
+  startEventName: string | null;
+  startEventFilters: TExtendedFormulaFilterValue[];
+  startEventTimeFormula: string | null;
+
+  endEventNameFormula: string | null;
+  endEventProcessName: string | null;
+  endEventName: string | null;
+  endEventFilters: TExtendedFormulaFilterValue[];
+  endCaseCaseIdFormula: string | null;
+  endEventTimeFormula: string | null;
+};
+
+export type TWidgetIndicatorDurationValue = {
+  mode: EWidgetIndicatorValueModes.DURATION;
+  templateName: string;
+  startEventAppearances: EEventAppearances;
+  endEventAppearances: EEventAppearances;
+} & Omit<TWidgetIndicatorConversionValue, "mode">;

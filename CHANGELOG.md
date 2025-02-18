@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.0](https://github.com/Infomaximum/widget-sdk/compare/v5.3.0...v5.4.0) (2025-02-18)
+
+
+### Features
+
+* Добавлены типы и интерфейсы для процессных мер, добавлена функция конвертации фильтров в строку, добавлены утилитарные функции для формул ([9a3a6ed](https://github.com/Infomaximum/widget-sdk/commit/9a3a6edaf16f65fcd16c1e82fb1f387328848967))
+
 ## [5.3.0](https://github.com/Infomaximum/widget-sdk/compare/v5.2.0...v5.3.0) (2025-02-14)
 
 

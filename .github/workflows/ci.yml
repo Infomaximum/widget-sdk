@@ -5,7 +5,7 @@ on:
     branches:
       - "**"
     tags:
-      - "v*" # Запускаем публикацию только при появлении тега вида v1.0.0, v2.1.3 и т. д.
+      - "v*" # Публикация только при выходе нового тега
   pull_request:
     branches:
       - "**"
@@ -33,7 +33,6 @@ jobs:
   test:
     name: Run Jest tests
     runs-on: ubuntu-latest
-    needs: lint
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -53,7 +52,7 @@ jobs:
   publish:
     name: Publish to npm
     runs-on: ubuntu-latest
-    needs: test
+    needs: [lint, test] # Ждём завершения lint и test
     if: startsWith(github.ref, 'refs/tags/v') # Проверяем, что это тег
     steps:
       - name: Checkout repository

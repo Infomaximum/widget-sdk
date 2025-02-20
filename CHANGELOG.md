@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.7.0](https://github.com/Infomaximum/widget-sdk/compare/v5.6.0...v5.7.0) (2025-02-20)
+
+
+### Features
+
+* изменено название поля с caseIdFormula в caseCaseIdFormula в режиме AGGREGATION ([44f9b9d](https://github.com/Infomaximum/widget-sdk/commit/44f9b9d965bc9548864938a2f399174de5412932))
+
 ## [5.6.0](https://github.com/Infomaximum/widget-sdk/compare/v5.5.0...v5.6.0) (2025-02-20)
 
 

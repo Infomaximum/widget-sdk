@@ -273,7 +273,7 @@ export type TWidgetIndicatorAggregationValue = {
   templateName: string;
   processName: string | null;
   eventName: string | null;
-  caseIdFormula: string | null;
+  caseCaseIdFormula: string | null;
   eventNameFormula: string | null;
   filters: TExtendedFormulaFilterValue[];
 

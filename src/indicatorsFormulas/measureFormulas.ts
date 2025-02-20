@@ -42,7 +42,7 @@ export const prepareAggregationParams = (
 ) => {
   if (
     !value.eventName ||
-    !value.caseIdFormula ||
+    !value.caseCaseIdFormula ||
     !value.eventNameFormula ||
     !value.outerAggregation ||
     !value.processName ||
@@ -54,7 +54,7 @@ export const prepareAggregationParams = (
   const commonParams = {
     outerAggregation: value.outerAggregation,
     eventNameFormula: value.eventNameFormula,
-    caseIdFormula: value.caseIdFormula,
+    caseCaseIdFormula: value.caseCaseIdFormula,
     eventName: value.eventName,
     objectFilters: "1",
     filters: convertFiltersToFormula(value.filters),

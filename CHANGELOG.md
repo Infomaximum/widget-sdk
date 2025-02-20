@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.5.0](https://github.com/Infomaximum/widget-sdk/compare/v5.4.16...v5.5.0) (2025-02-20)
+
+
+### Features
+
+* во ViewContext добавлены фильтры образа ([b916db7](https://github.com/Infomaximum/widget-sdk/commit/b916db74921f7f46ca71e7984c30483e463a37c8))
+
 ### [5.4.16](https://github.com/Infomaximum/widget-sdk/compare/v5.4.15...v5.4.16) (2025-02-19)
 
 ### [5.4.15](https://github.com/Infomaximum/widget-sdk/compare/v5.4.14...v5.4.15) (2025-02-19)

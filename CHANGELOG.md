@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.6.0](https://github.com/Infomaximum/widget-sdk/compare/v5.5.0...v5.6.0) (2025-02-20)
+
+
+### Features
+
+* добавлен интерфейс ICollapseRecord ([3f4f926](https://github.com/Infomaximum/widget-sdk/commit/3f4f926b0ddb544b91a19b8e55ea4349f1e5c16c))
+
 ## [5.5.0](https://github.com/Infomaximum/widget-sdk/compare/v5.4.16...v5.5.0) (2025-02-20)
 
 

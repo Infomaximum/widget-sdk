@@ -32,6 +32,13 @@ export interface IGroupSetRecord {
   groupSetKey: string;
 }
 
+/** Конфигурация коллапса */
+export interface ICollapseRecord<Settings extends object = object> {
+  key: string;
+  type: "collapse";
+  records: TGroupLevelRecord<Settings>[];
+}
+
 export type TEmptyRecord = boolean | null | undefined;
 
 /** Набор конфигураций, которые могут встречаться на уровне виджета */
@@ -39,12 +46,14 @@ export type TWidgetLevelRecord<Settings extends object> =
   | IControlRecord<Settings, any, EControlType>
   | IDividerRecord<Settings>
   | IGroupSetRecord
+  | ICollapseRecord<Settings>
   | TEmptyRecord;
 
 /** Набор конфигураций, которые могут встречаться на уровне группы */
 export type TGroupLevelRecord<LevelGroupSettings extends object> =
   | IControlRecord<LevelGroupSettings, any, EControlType>
   | IDividerRecord<LevelGroupSettings>
+  | ICollapseRecord<LevelGroupSettings>
   | TEmptyRecord;
 
 export interface ISelectOption {

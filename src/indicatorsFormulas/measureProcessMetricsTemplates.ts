@@ -92,32 +92,32 @@ export const durationTemplates: Record<EDurationTemplateName, string> = {
 };
 
 export const countReworksTemplate =
-  "{outerAggregation}If(process(if(countIf({eventNameFormula}  = {eventName}) > 0, countIf({eventNameFormula}  = {eventName}) - 1, 0), {caseIdFormula}),{objectFilters})";
+  "{outerAggregation}If(process(if(countIf({eventNameFormula} = '{eventName}'{filters}) > 0, countIf({eventNameFormula}  = '{eventName}'{filters}) - 1, 0), {caseCaseIdFormula}),{objectFilters})";
 
 export const countExecutionsTemplate =
-  "process(countIf({eventNameFormula} in '{eventName}'{filters}), {caseIdFormula}";
+  "process(countIf({eventNameFormula} in '{eventName}'{filters}), {caseCaseIdFormula})";
 
 export const measureAggregationTemplates: Record<EMeasureAggregationTemplateName, string> = {
   [EMeasureAggregationTemplateName.agvIf]:
-    "{outerAggregation}If(process(avgIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseIdFormula}), {objectFilters})",
+    "{outerAggregation}If(process(avgIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
   [EMeasureAggregationTemplateName.medianIf]:
-    "{outerAggregation}If(process(medianIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseIdFormula}), {objectFilters})",
+    "{outerAggregation}If(process(medianIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
   [EMeasureAggregationTemplateName.countIf]:
-    "{outerAggregation}If(process(countIf({eventNameFormula} = '{eventName}'{filters}), {caseIdFormula}), {objectFilters})",
+    "{outerAggregation}If(process(countIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
   [EMeasureAggregationTemplateName.countIfDistinct]:
-    "{outerAggregation}If(process(countIf(distinct {columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseIdFormula}), {objectFilters})",
+    "{outerAggregation}If(process(countIf(distinct {columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
   [EMeasureAggregationTemplateName.minIf]:
-    "{outerAggregation}If(process(minIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseIdFormula}), {objectFilters})",
+    "{outerAggregation}If(process(minIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
   [EMeasureAggregationTemplateName.maxIf]:
-    "{outerAggregation}If(process(maxIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseIdFormula}), {objectFilters})",
+    "{outerAggregation}If(process(maxIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
   [EMeasureAggregationTemplateName.sumIf]:
-    "{outerAggregation}If(process(sumIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseIdFormula}), {objectFilters})",
+    "{outerAggregation}If(process(sumIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
   [EMeasureAggregationTemplateName.top]:
-    "{outerAggregation}If(process(topKIf(1)({columnFormula}, {eventNameFormula} = '{eventName}'{filters})[1], {caseIdFormula}), {objectFilters})",
+    "{outerAggregation}If(process(topKIf(1)({columnFormula}, {eventNameFormula} = '{eventName}'{filters})[1], {caseCaseIdFormula}), {objectFilters})",
   [EMeasureAggregationTemplateName.firstValue]:
-    "{outerAggregation}If(process(argMinIf({columnFormula}, {eventTimeFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseIdFormula}), {objectFilters})",
+    "{outerAggregation}If(process(argMinIf({columnFormula}, {eventTimeFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
   [EMeasureAggregationTemplateName.lastValue]:
-    "{outerAggregation}If(process(argMaxIf({columnFormula}, {eventTimeFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseIdFormula}), {objectFilters})",
-  [EMeasureAggregationTemplateName.countExecutions]: `{outerAggregation}If(${countExecutionsTemplate}),{objectFilters})`,
+    "{outerAggregation}If(process(argMaxIf({columnFormula}, {eventTimeFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
+  [EMeasureAggregationTemplateName.countExecutions]: `{outerAggregation}If(${countExecutionsTemplate},{objectFilters})`,
   [EMeasureAggregationTemplateName.countReworks]: countReworksTemplate,
 };

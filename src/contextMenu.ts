@@ -14,9 +14,9 @@ export type TContextMenu = (TContextMenuList | TContextMenuButtonGroup) & {
     y?: number;
   };
   /** Относительно чего позиционируется меню */
-  positionOrigin?: "frame" | "workArea" | HTMLElement;
+  positionOrigin?: "frame" | "workArea" | Element;
   /** Каким элементом ограничено расположение меню */
-  boundingContainer?: HTMLElement;
+  boundingContainer?: Element;
   /** Положение меню относительно его позиции */
   placement?: "topRight" | "topLeft" | "bottomRight" | "bottomLeft";
 };

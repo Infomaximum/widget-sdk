@@ -1,5 +1,5 @@
 import type { TNullable } from "./utilityTypes";
-import type { EControlType, IControlRecord } from "./controls";
+import type { TControlUnion } from "./controls";
 import type { EWidgetIndicatorType } from "./indicators";
 import type { IGlobalContext } from "./widgetContext";
 import type { IAutoIdentifiedArrayItem, IBaseWidgetSettings } from "./settings/baseWidget";
@@ -13,8 +13,20 @@ export interface ILens<T extends TNullable<object>, Value> {
   set(obj: T, value: Value): void;
 }
 
+/**
+ * Линза, которая может вернуть Partial значение из get (будет обработано на стороне control'а),
+ * но требует передачи в set полного значения
+ */
+interface IPartialLens<T extends TNullable<object>, Value> {
+  get(obj: T): TNullable<Partial<Value>>;
+  set(obj: T, value: Value): void;
+}
+
 export type TValuePath = string | string[];
-export type TRecordAccessor<Settings extends object, Value> = TValuePath | ILens<Settings, Value>;
+
+export type TRecordAccessor<Settings extends object, Value> =
+  | TValuePath
+  | IPartialLens<Settings, Value>;
 
 export interface IDisplayPredicate<Settings> {
   (s: Settings): boolean;
@@ -36,6 +48,7 @@ export interface IGroupSetRecord {
 export interface ICollapseRecord<Settings extends object = object> {
   key: string;
   type: "collapse";
+  title?: string;
   records: TGroupLevelRecord<Settings>[];
 }
 
@@ -43,17 +56,17 @@ export type TEmptyRecord = boolean | null | undefined;
 
 /** Набор конфигураций, которые могут встречаться на уровне виджета */
 export type TWidgetLevelRecord<Settings extends object> =
-  | IControlRecord<Settings, any, EControlType>
+  | ICollapseRecord<Settings>
   | IDividerRecord<Settings>
   | IGroupSetRecord
-  | ICollapseRecord<Settings>
+  | TControlUnion<Settings>
   | TEmptyRecord;
 
 /** Набор конфигураций, которые могут встречаться на уровне группы */
 export type TGroupLevelRecord<LevelGroupSettings extends object> =
-  | IControlRecord<LevelGroupSettings, any, EControlType>
-  | IDividerRecord<LevelGroupSettings>
   | ICollapseRecord<LevelGroupSettings>
+  | IDividerRecord<LevelGroupSettings>
+  | TControlUnion<LevelGroupSettings>
   | TEmptyRecord;
 
 export interface ISelectOption {
@@ -190,7 +203,7 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
   /** Максимальное количество групп в наборе  */
   maxCount: number;
   /** Описание доступа к настройкам групп */
-  accessor: TRecordAccessor<Settings, GroupSettings[]>;
+  accessor: TValuePath | ILens<Settings, GroupSettings[]>;
 
   /** Конфигурация кнопок добавления группы в набор */
   addButtons: TAddButton[];

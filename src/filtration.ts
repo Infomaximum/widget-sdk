@@ -23,11 +23,22 @@ export enum EProcessFilterNames {
 }
 
 interface IProcessFilterValue {
+  /** @deprecated необходимо передавать посредством IProcessFilterPreviewParams [2502] */
+  eventsNamesByProcessNameMap?: Map<string, (string | null)[]>;
+}
+
+/**
+ * Параметры, которые влияют на отображаемый контент в окне настройки процессного фильтра,
+ * но не учитываются при применении фильтра.
+ */
+export interface IProcessFilterPreviewParams {
   /**
    * События, доступные при выборе процесса.
    * Если параметр не передан, используются все события процесса на основе запроса к вычислителю.
    */
-  eventsNamesByProcessNameMap?: Map<string, (string | null)[]>;
+  eventsNamesByProcessName?: Map<string, (string | null)[]>;
+  /** Фильтры событий */
+  eventFilters?: TExtendedFormulaFilterValue[];
 }
 
 export interface IProcessEventFilterValue extends IProcessFilterValue {
@@ -58,7 +69,8 @@ export interface IAddPresenceOfEventFilter {
   (
     name: EProcessFilterNames.presenceOfEvent,
     value: IProcessEventFilterValue,
-    positionConfig?: IPositionConfig
+    positionConfig?: IPositionConfig,
+    previewParams?: IProcessFilterPreviewParams
   ): void;
 }
 
@@ -66,7 +78,8 @@ export interface IAddRepetitionOfEventFilter {
   (
     name: EProcessFilterNames.repetitionOfEvent,
     value: IProcessEventFilterValue,
-    positionConfig?: IPositionConfig
+    positionConfig?: IPositionConfig,
+    previewParams?: IProcessFilterPreviewParams
   ): void;
 }
 
@@ -74,7 +87,8 @@ export interface IAddPresenceOfTransitionFilter {
   (
     name: EProcessFilterNames.presenceOfTransition,
     value: IProcessTransitionFilterValue,
-    positionConfig?: IPositionConfig
+    positionConfig?: IPositionConfig,
+    previewParams?: IProcessFilterPreviewParams
   ): void;
 }
 
@@ -82,7 +96,8 @@ export interface IAddDurationOfTransitionFilter {
   (
     name: EProcessFilterNames.durationOfTransition,
     value: IProcessTransitionFilterValue,
-    positionConfig?: IPositionConfig
+    positionConfig?: IPositionConfig,
+    previewParams?: IProcessFilterPreviewParams
   ): void;
 }
 

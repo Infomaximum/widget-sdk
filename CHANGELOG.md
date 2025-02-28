@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.8.0](https://github.com/Infomaximum/widget-sdk/compare/v5.7.1...v5.8.0) (2025-02-28)
+
+
+### Features
+
+* реализована возможность использовать фильтры событий для влияния на отображаемый контент в окне процессного фильтра. ([d2ccaca](https://github.com/Infomaximum/widget-sdk/commit/d2ccaca4d3a72a82f38e5773d96797b86e328527))
+
 ### [5.7.1](https://github.com/Infomaximum/widget-sdk/compare/v5.7.0...v5.7.1) (2025-02-25)
 
 

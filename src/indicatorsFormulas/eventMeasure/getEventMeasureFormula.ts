@@ -1,16 +1,7 @@
-import { EWidgetIndicatorValueModes, type IProcessIndicator } from "../indicators";
-import type { IWidgetProcess } from "../metaDescription";
-import { fillTemplateString } from "./common";
-
-export enum EEventMeasureTemplateNames {
-  eventsCount = "eventsCount",
-  reworksCount = "reworksCount",
-}
-
-export const eventMeasureTemplateFormulas = {
-  [EEventMeasureTemplateNames.eventsCount]: `count()`,
-  [EEventMeasureTemplateNames.reworksCount]: `count() - uniqExact({caseCaseIdFormula})`,
-} as const;
+import { EWidgetIndicatorValueModes, type IProcessIndicator } from "../../indicators";
+import type { IWidgetProcess } from "../../metaDescription";
+import { fillTemplateString } from "../shared";
+import { EEventMeasureTemplateNames, eventMeasureTemplateFormulas } from "./templates";
 
 export function getEventMeasureFormula(
   { value }: IProcessIndicator,

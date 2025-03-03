@@ -66,6 +66,8 @@ export enum EWidgetIndicatorValueModes {
   AGGREGATION = "AGGREGATION",
   DURATION = "DURATION",
   CONVERSION = "CONVERSION",
+  START_TIME = "START_TIME",
+  END_TIME = "END_TIME",
 }
 
 /** Режимы сортировки (на что ссылается сортировка) */
@@ -127,7 +129,12 @@ export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetD
 }
 
 export interface IWidgetDimension extends Omit<IWidgetColumnIndicator, "value"> {
-  value?: TColumnIndicatorValue;
+  value?:
+    | TColumnIndicatorValue
+    | (TWidgetIndicatorAggregationValue & {
+        innerTemplateName?: string;
+      })
+    | TWidgetIndicatorTimeValue;
   hideEmptyValues: boolean;
 }
 
@@ -310,3 +317,14 @@ export type TWidgetIndicatorDurationValue = {
   startEventAppearances: EEventAppearances;
   endEventAppearances: EEventAppearances;
 } & Omit<TWidgetIndicatorConversionValue, "mode">;
+
+export type TWidgetIndicatorTimeValue = {
+  templateName: string;
+  mode: EWidgetIndicatorValueModes.START_TIME | EWidgetIndicatorValueModes.END_TIME;
+  processName: string;
+  eventName: string;
+  eventTimeFormula: string;
+  caseCaseIdFormula: string;
+  eventNameFormula: string;
+  filters: TExtendedFormulaFilterValue[];
+};

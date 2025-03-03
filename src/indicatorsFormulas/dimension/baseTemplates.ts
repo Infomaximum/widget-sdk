@@ -1,6 +1,3 @@
-import { EWidgetIndicatorValueModes, type IWidgetDimension } from "../indicators";
-import { fillTemplateString, generateColumnFormula } from "./common";
-
 export enum EDimensionTemplateNames {
   dateTime = "dateTime",
   date = "date",
@@ -15,7 +12,8 @@ export enum EDimensionTemplateNames {
   hour = "hour",
 }
 
-export const dimensionTemplateFormulas = {
+/** Стандартные шаблоны разреза */
+export const dimensionTemplateFormulas: Record<EDimensionTemplateNames, string> = {
   [EDimensionTemplateNames.dateTime]: `toDateTime({columnFormula})`,
   [EDimensionTemplateNames.date]: `toDate({columnFormula})`,
   [EDimensionTemplateNames.year]: `if(defaultValueOfArgumentType({columnFormula}) = {columnFormula}, 0, toYear({columnFormula}))`,
@@ -28,29 +26,3 @@ export const dimensionTemplateFormulas = {
   [EDimensionTemplateNames.dayOfWeek]: `if(defaultValueOfArgumentType({columnFormula}) = {columnFormula}, 0, toDayOfWeek({columnFormula}))`,
   [EDimensionTemplateNames.hour]: `if(defaultValueOfArgumentType({columnFormula}) = {columnFormula}, 0, toHour({columnFormula}))`,
 } as const;
-
-export function getDimensionFormula({ value }: IWidgetDimension): string {
-  if (!value) {
-    return "";
-  }
-
-  if (value.mode === EWidgetIndicatorValueModes.FORMULA) {
-    return value.formula ?? "";
-  }
-
-  if (value.mode === EWidgetIndicatorValueModes.TEMPLATE) {
-    const { templateName, tableName, columnName } = value;
-
-    const templateFormula = dimensionTemplateFormulas[templateName as EDimensionTemplateNames];
-
-    if (!templateFormula || !tableName || !columnName) {
-      return "";
-    }
-
-    return fillTemplateString(templateFormula, {
-      columnFormula: generateColumnFormula(tableName, columnName),
-    });
-  }
-
-  return "";
-}

@@ -41,6 +41,12 @@ export enum EDrawerPlacement {
   RIGHT = "RIGHT",
 }
 
+export enum ERefreshAfterExecutionMode {
+  NO = "NO",
+  THIS_WIDGET = "THIS_WIDGET",
+  ALL_WIDGETS = "ALL_WIDGETS",
+}
+
 interface IParameterFromColumn {
   inputMethod: EWidgetActionInputMethod.COLUMN;
   tableName: string;
@@ -145,7 +151,7 @@ export interface IActionRunScript extends IActionCommon {
   type: EActionTypes.EXECUTE_SCRIPT;
   parameters: TActionOnClickParameter[];
   scriptKey: string;
-  updateDashboard: boolean;
+  updateDashboard: ERefreshAfterExecutionMode;
 }
 
 export interface IActionUpdateVariable extends IActionCommon {
@@ -207,7 +213,7 @@ export interface IWidgetAction extends IActionCommon {
   parameters: TWidgetActionParameter[];
   type: EActionTypes.EXECUTE_SCRIPT;
   scriptKey: string;
-  updateDashboard: boolean;
+  updateDashboard: ERefreshAfterExecutionMode;
   description: string;
   blockingCondition:
     | {

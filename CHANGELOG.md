@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.9.1](https://github.com/Infomaximum/widget-sdk/compare/v5.9.0...v5.9.1) (2025-03-11)
+
+
+### Bug Fixes
+
+* исправлена генерация формулы меры для шаблона "Длительность" ([002562f](https://github.com/Infomaximum/widget-sdk/commit/002562f6714009464cda884b54cec97f99a0a038))
+
 ## [5.9.0](https://github.com/Infomaximum/widget-sdk/compare/v5.8.0...v5.9.0) (2025-03-03)
 
 

@@ -1,4 +1,8 @@
-import { EWidgetIndicatorValueModes, type IWidgetMeasure } from "../../indicators";
+import {
+  EDurationTemplateName,
+  EWidgetIndicatorValueModes,
+  type IWidgetMeasure,
+} from "../../indicators";
 import { fillTemplateString, generateColumnFormula } from "../shared";
 import {
   EMeasureAggregationTemplateName,
@@ -7,7 +11,7 @@ import {
 } from "./aggregationTemplates";
 import { measureTemplateFormulas, type EMeasureTemplateNames } from "./baseTemplates";
 import { conversionTemplate, prepareConversionParams } from "./conversionTemplates";
-import { prepareDurationParams } from "./durationTemplates";
+import { durationTemplates, prepareDurationParams } from "./durationTemplates";
 
 export function getMeasureFormula({ value }: IWidgetMeasure): string {
   if (!value) {
@@ -62,7 +66,10 @@ export function getMeasureFormula({ value }: IWidgetMeasure): string {
       return "";
     }
 
-    return fillTemplateString(conversionTemplate, preparedParams);
+    return fillTemplateString(
+      durationTemplates[value.templateName as EDurationTemplateName],
+      preparedParams
+    );
   }
 
   return "";

@@ -41,7 +41,7 @@ export enum EDrawerPlacement {
   RIGHT = "RIGHT",
 }
 
-export enum ERefreshAfterExecutionMode {
+export enum EAutoUpdateMode {
   NO = "NO",
   THIS_WIDGET = "THIS_WIDGET",
   ALL_WIDGETS = "ALL_WIDGETS",
@@ -151,7 +151,7 @@ export interface IActionRunScript extends IActionCommon {
   type: EActionTypes.EXECUTE_SCRIPT;
   parameters: TActionOnClickParameter[];
   scriptKey: string;
-  updateDashboard: ERefreshAfterExecutionMode;
+  autoUpdate: EAutoUpdateMode;
 }
 
 export interface IActionUpdateVariable extends IActionCommon {
@@ -213,7 +213,7 @@ export interface IWidgetAction extends IActionCommon {
   parameters: TWidgetActionParameter[];
   type: EActionTypes.EXECUTE_SCRIPT;
   scriptKey: string;
-  updateDashboard: ERefreshAfterExecutionMode;
+  autoUpdate: EAutoUpdateMode;
   description: string;
   blockingCondition:
     | {

@@ -42,7 +42,7 @@ export enum EDrawerPlacement {
 }
 
 export enum EAutoUpdateMode {
-  NO = "NO",
+  NONE = "NONE",
   THIS_WIDGET = "THIS_WIDGET",
   ALL_WIDGETS = "ALL_WIDGETS",
 }

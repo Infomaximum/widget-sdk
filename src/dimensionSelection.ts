@@ -95,6 +95,7 @@ export const updateSingleModeSelection: TUpdateSelection = (
   });
 };
 
+/** @deprecated Отказ от режима фильтрации "Множественный выбор"*/
 export const updateMultiModeSelection: TUpdateSelection = (
   selection: IDimensionSelectionByFormula,
   formula: string,

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.10.0](https://github.com/Infomaximum/widget-sdk/compare/v5.9.1...v5.10.0) (2025-03-14)
+
+
+### Features
+
+* поле updateDashboard для запуска скрипта изменено с boolean на ERefreshAfterExecutionMode ([812fc42](https://github.com/Infomaximum/widget-sdk/commit/812fc423f999d89b899ff15abc6bc0c5153e6d5c))
+* режим фильтрации MULTI помечен как deprecated ([ca06f1a](https://github.com/Infomaximum/widget-sdk/commit/ca06f1a45f09ecfe363a945d8c5961d9888f65ef))
+
 ### [5.9.1](https://github.com/Infomaximum/widget-sdk/compare/v5.9.0...v5.9.1) (2025-03-11)
 
 

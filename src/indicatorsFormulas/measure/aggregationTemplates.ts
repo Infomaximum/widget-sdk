@@ -25,7 +25,10 @@ export enum EMeasureAggregationTemplateName {
 }
 
 /** Шаблоны процессных метрик меры с режимом AGGREGATION */
-export const measureAggregationTemplates: Record<EMeasureAggregationTemplateName, string> = {
+export const measureAggregationTemplates: Record<
+  EMeasureAggregationTemplateName,
+  string | ((isTop: boolean) => string)
+> = {
   [EMeasureAggregationTemplateName.agvIf]:
     "{outerAggregation}If(process(avgIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
   [EMeasureAggregationTemplateName.medianIf]:
@@ -40,12 +43,20 @@ export const measureAggregationTemplates: Record<EMeasureAggregationTemplateName
     "{outerAggregation}If(process(maxIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
   [EMeasureAggregationTemplateName.sumIf]:
     "{outerAggregation}If(process(sumIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
-  [EMeasureAggregationTemplateName.top]: `{outerAggregation}If(${topTemplate}, {objectFilters})`,
-  [EMeasureAggregationTemplateName.firstValue]: `{outerAggregation}If(${firstValueTemplate}, {objectFilters})`,
-  [EMeasureAggregationTemplateName.lastValue]: `{outerAggregation}If(${lastValueTemplate}, {objectFilters})`,
+  [EMeasureAggregationTemplateName.top]: createTopLikeTemplate(topTemplate),
+  [EMeasureAggregationTemplateName.firstValue]: createTopLikeTemplate(firstValueTemplate),
+  [EMeasureAggregationTemplateName.lastValue]: createTopLikeTemplate(lastValueTemplate),
   [EMeasureAggregationTemplateName.countExecutions]: `{outerAggregation}If(${countExecutionsTemplate},{objectFilters})`,
   [EMeasureAggregationTemplateName.countReworks]: `{outerAggregation}If(${countReworksTemplate},{objectFilters})`,
 };
+
+/** Вспомогательная функция для шаблонов top/firstValue/lastValue */
+function createTopLikeTemplate(template: string): (isTop: boolean) => string {
+  return (isTop: boolean) =>
+    isTop
+      ? `{outerAggregation}KIf(1)(${template}, {objectFilters})[1]`
+      : `{outerAggregation}If(${template}, {objectFilters})`;
+}
 
 /** На основе значения режима AGGREGATION подготовить параметры для подстановки в шаблонную формулу */
 export const prepareMeasureAggregationParams = (

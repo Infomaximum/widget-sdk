@@ -49,7 +49,7 @@ export function getMeasureFormula({ value }: IWidgetMeasure): string {
         measureAggregationTemplates[value.templateName as EMeasureAggregationTemplateName];
 
       return typeof templateFormula === "function"
-        ? templateFormula(preparedParams.outerAggregation === EOuterAggregation.top)
+        ? templateFormula(preparedParams.outerAggregation)
         : templateFormula;
     };
 

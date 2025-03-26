@@ -1,5 +1,9 @@
 import { convertFiltersToFormula } from "../../calculators/utils/filters";
-import type { EWidgetIndicatorValueModes, IWidgetMeasure } from "../../indicators";
+import {
+  EOuterAggregation,
+  type EWidgetIndicatorValueModes,
+  type IWidgetMeasure,
+} from "../../indicators";
 import {
   countExecutionsTemplate,
   countReworksTemplate,
@@ -24,25 +28,25 @@ export enum EMeasureAggregationTemplateName {
   countReworks = "countReworks",
 }
 
+function createAggregationTemplate(fn: string, additionalFn?: string) {
+  return `{outerAggregation}If(process(${fn}(${additionalFn ? additionalFn + " " : ""}{columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})`;
+}
+
 /** Шаблоны процессных метрик меры с режимом AGGREGATION */
 export const measureAggregationTemplates: Record<
   EMeasureAggregationTemplateName,
-  string | ((isTop: boolean) => string)
+  string | ((outerAggregation: EOuterAggregation) => string)
 > = {
-  [EMeasureAggregationTemplateName.agvIf]:
-    "{outerAggregation}If(process(avgIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
-  [EMeasureAggregationTemplateName.medianIf]:
-    "{outerAggregation}If(process(medianIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
-  [EMeasureAggregationTemplateName.countIf]:
-    "{outerAggregation}If(process(countIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
-  [EMeasureAggregationTemplateName.countIfDistinct]:
-    "{outerAggregation}If(process(countIf(distinct {columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
-  [EMeasureAggregationTemplateName.minIf]:
-    "{outerAggregation}If(process(minIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
-  [EMeasureAggregationTemplateName.maxIf]:
-    "{outerAggregation}If(process(maxIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
-  [EMeasureAggregationTemplateName.sumIf]:
-    "{outerAggregation}If(process(sumIf({columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})",
+  [EMeasureAggregationTemplateName.agvIf]: createAggregationTemplate("avgIf"),
+  [EMeasureAggregationTemplateName.medianIf]: createAggregationTemplate("medianIf"),
+  [EMeasureAggregationTemplateName.countIf]: createAggregationTemplate("countIf"),
+  [EMeasureAggregationTemplateName.countIfDistinct]: createAggregationTemplate(
+    "countIf",
+    "distinct"
+  ),
+  [EMeasureAggregationTemplateName.minIf]: createAggregationTemplate("minIf"),
+  [EMeasureAggregationTemplateName.maxIf]: createAggregationTemplate("maxIf"),
+  [EMeasureAggregationTemplateName.sumIf]: createAggregationTemplate("sumIf"),
   [EMeasureAggregationTemplateName.top]: createTopLikeTemplate(topTemplate),
   [EMeasureAggregationTemplateName.firstValue]: createTopLikeTemplate(firstValueTemplate),
   [EMeasureAggregationTemplateName.lastValue]: createTopLikeTemplate(lastValueTemplate),
@@ -51,9 +55,9 @@ export const measureAggregationTemplates: Record<
 };
 
 /** Вспомогательная функция для шаблонов top/firstValue/lastValue */
-function createTopLikeTemplate(template: string): (isTop: boolean) => string {
-  return (isTop: boolean) =>
-    isTop
+function createTopLikeTemplate(template: string): (outerAggregation: EOuterAggregation) => string {
+  return (outerAggregation: EOuterAggregation) =>
+    outerAggregation === EOuterAggregation.top
       ? `{outerAggregation}KIf(1)(${template}, {objectFilters})[1]`
       : `{outerAggregation}If(${template}, {objectFilters})`;
 }

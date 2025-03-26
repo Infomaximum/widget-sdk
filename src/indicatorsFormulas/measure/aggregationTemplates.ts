@@ -33,10 +33,7 @@ function createAggregationTemplate(fn: string, additionalFn?: string) {
 }
 
 /** Шаблоны процессных метрик меры с режимом AGGREGATION */
-export const measureAggregationTemplates: Record<
-  EMeasureAggregationTemplateName,
-  string | ((outerAggregation: EOuterAggregation) => string)
-> = {
+export const measureAggregationTemplates = {
   [EMeasureAggregationTemplateName.agvIf]: createAggregationTemplate("avgIf"),
   [EMeasureAggregationTemplateName.medianIf]: createAggregationTemplate("medianIf"),
   [EMeasureAggregationTemplateName.countIf]: createAggregationTemplate("countIf"),
@@ -52,7 +49,10 @@ export const measureAggregationTemplates: Record<
   [EMeasureAggregationTemplateName.lastValue]: createTopLikeTemplate(lastValueTemplate),
   [EMeasureAggregationTemplateName.countExecutions]: `{outerAggregation}If(${countExecutionsTemplate},{objectFilters})`,
   [EMeasureAggregationTemplateName.countReworks]: `{outerAggregation}If(${countReworksTemplate},{objectFilters})`,
-};
+} satisfies Record<
+  EMeasureAggregationTemplateName,
+  string | ((outerAggregation: EOuterAggregation) => string)
+>;
 
 /** Вспомогательная функция для шаблонов top/firstValue/lastValue */
 function createTopLikeTemplate(template: string): (outerAggregation: EOuterAggregation) => string {

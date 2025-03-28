@@ -32,6 +32,7 @@ export enum EFormatTypes {
   WEEK = "WEEK",
   /** Логический */
   BOOLEAN = "BOOLEAN",
+  PERCENT = "PERCENT",
 }
 
 export enum EFormattingPresets {
@@ -147,7 +148,7 @@ export const formattingConfig = {
     return {
       [ESimpleDataType.OTHER]: [EFormatTypes.STRING],
       [ESimpleDataType.STRING]: [EFormatTypes.STRING],
-      [ESimpleDataType.FLOAT]: [EFormatTypes.NUMBER, EFormatTypes.DURATION],
+      [ESimpleDataType.FLOAT]: [EFormatTypes.NUMBER, EFormatTypes.DURATION, EFormatTypes.PERCENT],
       [ESimpleDataType.INTEGER]: [
         EFormatTypes.NUMBER,
         EFormatTypes.DURATION,
@@ -155,6 +156,7 @@ export const formattingConfig = {
         EFormatTypes.MONTH_YEAR,
         EFormatTypes.MONTH,
         EFormatTypes.DAY_OF_WEEK,
+        EFormatTypes.PERCENT,
       ],
       [ESimpleDataType.DATE]: [EFormatTypes.DATE],
       [ESimpleDataType.DATETIME]: [EFormatTypes.DATETIME],
@@ -289,6 +291,11 @@ export const formattingConfig = {
       [EFormatTypes.WEEK]: [],
       [EFormatTypes.YEAR]: [],
       [EFormatTypes.BOOLEAN]: [],
+      [EFormatTypes.PERCENT]: [
+        EFormattingPresets.AUTO,
+        EFormattingPresets["x.x[%]"],
+        EFormattingPresets["zx.xx[%]"],
+      ],
     };
   },
 };

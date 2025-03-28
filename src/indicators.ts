@@ -22,6 +22,7 @@ export enum EOuterAggregation {
   min = "min",
   max = "max",
   sum = "sum",
+  top = "top",
 }
 
 export interface IWidgetIndicator extends IAutoIdentifiedArrayItem {

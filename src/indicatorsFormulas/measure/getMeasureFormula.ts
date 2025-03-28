@@ -1,5 +1,6 @@
 import {
   EDurationTemplateName,
+  EOuterAggregation,
   EWidgetIndicatorValueModes,
   type IWidgetMeasure,
 } from "../../indicators";
@@ -43,10 +44,16 @@ export function getMeasureFormula({ value }: IWidgetMeasure): string {
       return "";
     }
 
-    const templateFormula =
-      measureAggregationTemplates[value.templateName as EMeasureAggregationTemplateName];
+    const getTemplateFormula = () => {
+      const templateFormula =
+        measureAggregationTemplates[value.templateName as EMeasureAggregationTemplateName];
 
-    return fillTemplateString(templateFormula, preparedParams);
+      return typeof templateFormula === "function"
+        ? templateFormula(preparedParams.outerAggregation)
+        : templateFormula;
+    };
+
+    return fillTemplateString(getTemplateFormula(), preparedParams);
   }
 
   if (value.mode === EWidgetIndicatorValueModes.CONVERSION) {

@@ -8,8 +8,9 @@ import {
 import { type ICalculatorFilter } from "../calculator/calculator";
 import { compact, compactMap, isNil } from "../../utils/functions";
 import type { TNullable, valueof } from "../../utilityTypes";
-import { EClickHouseBaseTypes } from "../../clickHouseTypes";
+import { EClickHouseBaseTypes, parseClickHouseType } from "../../clickHouseTypes";
 import { EFormatTypes } from "../../formatting";
+import { ESimpleDataType } from "../../data";
 
 export enum ELastTimeUnit {
   DAYS = "DAYS",
@@ -183,7 +184,19 @@ export const mapFormulaFilterToCalculatorInput = (
     };
   }
 
-  const { formula, filteringMethod, dbDataType } = filterValue;
+  const { formula, filteringMethod } = filterValue;
+  let dbDataType = filterValue.dbDataType;
+
+  if (
+    filteringMethod === formulaFilterMethods.IN_RANGE ||
+    filteringMethod === formulaFilterMethods.NOT_IN_RANGE
+  ) {
+    const { simpleType } = parseClickHouseType(dbDataType);
+
+    if (simpleType === ESimpleDataType.INTEGER) {
+      dbDataType = EClickHouseBaseTypes.Float64;
+    }
+  }
 
   return {
     formula,

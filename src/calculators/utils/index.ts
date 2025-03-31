@@ -9,6 +9,7 @@ export {
   checkDisplayCondition,
   getDisplayConditionFormula,
   replaceDisplayCondition,
+  displayConditionTemplate,
 } from "./displayCondition";
 export { mapMeasuresToInputs } from "./mapMeasuresToInputs";
 export { mapDimensionsToInputs } from "./mapDimensionsToInputs";

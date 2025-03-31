@@ -10,6 +10,8 @@ import { compact, compactMap, isNil } from "../../utils/functions";
 import type { TNullable, valueof } from "../../utilityTypes";
 import { EClickHouseBaseTypes } from "../../clickHouseTypes";
 import { EFormatTypes } from "../../formatting";
+import { fillTemplateString } from "../../indicatorsFormulas";
+import { displayConditionTemplate } from "./displayCondition";
 
 export enum ELastTimeUnit {
   DAYS = "DAYS",
@@ -177,8 +179,8 @@ export const mapFormulaFilterToCalculatorInput = (
   if (!isFormulaFilterValue(filterValue)) {
     return {
       dbDataType: EClickHouseBaseTypes.Bool,
-      formula: filterValue.formula,
-      values: ["1"],
+      formula: fillTemplateString(displayConditionTemplate, { formula: filterValue.formula }),
+      values: ["true"],
       filteringMethod: formulaFilterMethods.EQUAL_TO,
     };
   }

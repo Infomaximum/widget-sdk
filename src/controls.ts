@@ -298,6 +298,7 @@ export interface IFormattingControl {
     formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;
     formatting?: Partial<Record<EFormatTypes, EFormattingPresets[]>>;
     dbDataType: TNullable<string>;
+    size?: "small" | "default";
   };
 }
 

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.11.1](https://github.com/Infomaximum/widget-sdk/compare/v5.11.0...v5.11.1) (2025-04-01)
+
+
+### Bug Fixes
+
+* для фильтра в режиме в/не в диапозоне, реализована подмена dataType c INTEGER на FLOAT ([5cccb69](https://github.com/Infomaximum/widget-sdk/commit/5cccb695c72a39bb594b0c5899fb92aa387b080c))
+* поведение строкового фильтра по формуле приведено к поведению условия отображения ([72611bc](https://github.com/Infomaximum/widget-sdk/commit/72611bc54ebecc1402160cc876aa3252800ad218))
+
 ## [5.11.0](https://github.com/Infomaximum/widget-sdk/compare/v5.10.1...v5.11.0) (2025-03-28)
 
 

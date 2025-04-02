@@ -56,16 +56,3 @@ export enum EFontWeight {
   NORMAL = "NORMAL",
   BOLD = "BOLD",
 }
-
-interface IAppearanceEnabledSettings {
-  enabled: true;
-  horizontalPaddings: string | number;
-  verticalPaddings: string | number;
-  cornerRadius: string | number;
-}
-
-interface IAppearanceDisabledSettings {
-  enabled: false;
-}
-
-export type TAppearanceSettings = IAppearanceEnabledSettings | IAppearanceDisabledSettings;

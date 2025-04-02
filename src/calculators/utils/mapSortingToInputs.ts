@@ -73,10 +73,16 @@ export const getDefaultSortOrders = ({
     const firstMeasure = measures[0];
 
     if (firstMeasure) {
+      const formula = getMeasureFormula(firstMeasure);
+
+      if (!formula) {
+        return [];
+      }
+
       return [
         {
           direction: ESortDirection.descend,
-          formula: getMeasureFormula(firstMeasure),
+          formula,
           dbDataType: firstMeasure.dbDataType,
         },
       ];

@@ -36,3 +36,19 @@ export const replaceDisplayCondition = <I extends IWidgetColumnIndicator>(
 ): TNullable<I> => {
   return isNil(displayCondition) ? dimension : { ...dimension, displayCondition };
 };
+
+/**
+ * Шаблон формулы для проверки условия отображения.
+ *
+ * - 0 -> false
+ * - 1 -> true
+ * - 15 -> true
+ * - '0' ->	false
+ * - '1' -> true
+ * - '15' ->	true (значение по умолчанию, т.к. не преобразуется к Boolean)
+ * - 'false' -> false
+ * - 'true' -> true
+ * - 'abc' -> true (значение по умолчанию, т.к. не преобразуется к Boolean)
+ * - null -> true (значение по умолчанию, т.к. не преобразуется к Boolean)
+ */
+export const displayConditionTemplate = `accurateCastOrDefault({formula}, 'Boolean', true)`;

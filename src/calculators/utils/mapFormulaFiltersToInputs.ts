@@ -8,8 +8,11 @@ import {
 import { type ICalculatorFilter } from "../calculator/calculator";
 import { compact, compactMap, isNil } from "../../utils/functions";
 import type { TNullable, valueof } from "../../utilityTypes";
-import { EClickHouseBaseTypes } from "../../clickHouseTypes";
+import { EClickHouseBaseTypes, parseClickHouseType } from "../../clickHouseTypes";
 import { EFormatTypes } from "../../formatting";
+import { fillTemplateString } from "../../indicatorsFormulas";
+import { displayConditionTemplate } from "./displayCondition";
+import { ESimpleDataType } from "../../data";
 
 export enum ELastTimeUnit {
   DAYS = "DAYS",
@@ -177,13 +180,25 @@ export const mapFormulaFilterToCalculatorInput = (
   if (!isFormulaFilterValue(filterValue)) {
     return {
       dbDataType: EClickHouseBaseTypes.Bool,
-      formula: filterValue.formula,
-      values: ["1"],
+      formula: fillTemplateString(displayConditionTemplate, { formula: filterValue.formula }),
+      values: ["true"],
       filteringMethod: formulaFilterMethods.EQUAL_TO,
     };
   }
 
-  const { formula, filteringMethod, dbDataType } = filterValue;
+  const { formula, filteringMethod } = filterValue;
+  let dbDataType = filterValue.dbDataType;
+
+  if (
+    filteringMethod === formulaFilterMethods.IN_RANGE ||
+    filteringMethod === formulaFilterMethods.NOT_IN_RANGE
+  ) {
+    const { simpleType } = parseClickHouseType(dbDataType);
+
+    if (simpleType === ESimpleDataType.INTEGER) {
+      dbDataType = EClickHouseBaseTypes.Float64;
+    }
+  }
 
   return {
     formula,

@@ -24,7 +24,7 @@ export const conversionTemplate = `countIf(
         ) != 0, 
         {endCaseCaseIdFormula}
     ) != 0
-) * 100 / countIf(
+) / countIf(
     process(
         countIf(
             {startEventNameFormula} = '{startEventName}'{startEventFilters}

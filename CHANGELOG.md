@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.11.1](https://github.com/Infomaximum/widget-sdk/compare/v5.11.0...v5.11.1) (2025-04-01)
+
+
+### Bug Fixes
+
+* для фильтра в режиме в/не в диапозоне, реализована подмена dataType c INTEGER на FLOAT ([5cccb69](https://github.com/Infomaximum/widget-sdk/commit/5cccb695c72a39bb594b0c5899fb92aa387b080c))
+* поведение строкового фильтра по формуле приведено к поведению условия отображения ([72611bc](https://github.com/Infomaximum/widget-sdk/commit/72611bc54ebecc1402160cc876aa3252800ad218))
+
+## [5.11.0](https://github.com/Infomaximum/widget-sdk/compare/v5.10.1...v5.11.0) (2025-03-28)
+
+
+### Features
+
+* в EFormatTypes добавлен новый тип PERCENT, удалено подкапотное умножение меры конверсия на 100 ([21a8f98](https://github.com/Infomaximum/widget-sdk/commit/21a8f9847d54992771f47abd792bd394cd013841))
+* в getDefaultSortOrders добавлена проверка на наличии формулы ([85b2b59](https://github.com/Infomaximum/widget-sdk/commit/85b2b590c2e28e0cb52ceb473200c3ee5a1b6d6b))
+* добавлена outerAggregation top ([0550463](https://github.com/Infomaximum/widget-sdk/commit/0550463375bc0e5b1abb2559a6da41a43cc2adb0))
+
 ### [5.10.1](https://github.com/Infomaximum/widget-sdk/compare/v5.10.0...v5.10.1) (2025-03-21)
 
 ## [5.10.0](https://github.com/Infomaximum/widget-sdk/compare/v5.9.1...v5.10.0) (2025-03-14)

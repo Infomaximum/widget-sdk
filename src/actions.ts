@@ -115,6 +115,7 @@ interface IParameterFromDataModelBase {
 
 export interface IParameterColumnList extends IParameterFromDataModelBase {
   option: EDataModelOption.COLUMN_LIST;
+  /* Имя ожидаемого поля от которого зависит текущее поле */
   parent: string;
 }
 

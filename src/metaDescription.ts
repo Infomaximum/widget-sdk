@@ -7,6 +7,7 @@ import type { ICalculatorFactory } from "./calculators";
 import type { EWidgetFilterMode } from "./settings/values";
 import type { EDimensionTemplateNames } from "./indicatorsFormulas";
 import type { ESimpleDataType } from "./data";
+import type { EFormatTypes } from "./formatting";
 
 export interface ILens<T extends TNullable<object>, Value> {
   get(obj: T): TNullable<Value>;
@@ -184,10 +185,19 @@ export type TWidgetDimensionData = {
   simpleTypes?: ESimpleDataType[];
   /** Шаблоны формул, доступные для выбора в разрезе */
   templates?: Partial<Record<ESimpleDataType, EDimensionTemplateNames[]>>;
+  /** Переопределение доступных форматов и их порядка */
+  formats?: Record<ESimpleDataType, EFormatTypes[]>;
+};
+
+/** Конфигурация меры */
+export type TWidgetMeasureData = {
+  type: EWidgetIndicatorType.MEASURE;
+  /** Переопределение доступных форматов и их порядка */
+  formats?: Record<ESimpleDataType, EFormatTypes[]>;
 };
 
 /** Конфигурация показателя */
-export type TWidgetIndicatorData = TWidgetDimensionData;
+type TWidgetIndicatorData = TWidgetDimensionData | TWidgetMeasureData;
 
 /**
  * Конфигурация набора групп настроек.

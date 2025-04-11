@@ -22,6 +22,7 @@ interface IScriptField {
   guid: string;
   name: string;
   isRequired: boolean;
+  isArray: boolean;
 }
 
 export interface IActionScript {

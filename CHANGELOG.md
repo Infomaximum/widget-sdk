@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.12.0](https://github.com/Infomaximum/widget-sdk/compare/v5.11.1...v5.12.0) (2025-04-11)
+
+
+### Features
+
+* добавлена возможность кастомизировать набор форматов для разрезов и мер ([3451242](https://github.com/Infomaximum/widget-sdk/commit/345124227c09b53d824b9cb632b47e850ac85913))
+
 ### [5.11.1](https://github.com/Infomaximum/widget-sdk/compare/v5.11.0...v5.11.1) (2025-04-01)
 
 

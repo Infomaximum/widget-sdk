@@ -93,10 +93,10 @@ interface IParameterFromManualInput {
   filterByRows?: boolean;
 }
 
-interface IParameterFromStaticList {
+export interface IParameterFromStaticList {
   inputMethod: EWidgetActionInputMethod.STATIC_LIST;
   options: string;
-  defaultOptionIndexes: number[];
+  defaultValue: string | string[];
 }
 
 interface IParameterFromDynamicList {

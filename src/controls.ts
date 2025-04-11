@@ -15,7 +15,6 @@ import type {
 import type {
   IDisplayPredicate,
   IDivePanelDescription,
-  IMeasureAddButtonProps,
   ISelectOption,
   IWidgetProcess,
   TMeasureAddButtonSelectOption,

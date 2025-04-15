@@ -168,6 +168,7 @@ export interface IInputNumberControl {
     unitLabel?: string;
     isClearable?: boolean;
     disabled?: boolean;
+    size?: "small" | "default"
   };
 }
 

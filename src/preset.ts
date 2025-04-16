@@ -1,8 +1,7 @@
 import type { TColor } from "./color";
-import type { EFontWeight, EWidgetFilterMode, TAppearanceSettings } from "./settings/values";
+import type { EFontWeight, EWidgetFilterMode } from "./settings/values";
 
 export interface IWidgetPresetSettings {
-  appearance: TAppearanceSettings;
   filterMode: EWidgetFilterMode;
   ignoreFilters: boolean;
   stateName: string | null;
@@ -10,4 +9,5 @@ export interface IWidgetPresetSettings {
   titleSize: number;
   titleWeight: EFontWeight;
   textSize: number;
+  paddings: number | string;
 }

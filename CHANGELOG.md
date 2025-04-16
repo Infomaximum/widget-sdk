@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.14.0](https://github.com/Infomaximum/widget-sdk/compare/v5.13.0...v5.14.0) (2025-04-16)
+
+
+### Features
+
+* добавлен новый inputMethod DATA_MODEL ([70b3d43](https://github.com/Infomaximum/widget-sdk/commit/70b3d434778f87777acbd18336286dde44dd9814))
+* добавлена возможность автоматического вызова fillSettings при изменении настройки через элемент управления ([e4fce52](https://github.com/Infomaximum/widget-sdk/commit/e4fce528b715fe5e748130402e07052b73c1a4cd))
+
 ## [5.13.0](https://github.com/Infomaximum/widget-sdk/compare/v5.12.1...v5.13.0) (2025-04-16)
 
 

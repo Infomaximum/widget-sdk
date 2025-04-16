@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.13.0](https://github.com/Infomaximum/widget-sdk/compare/v5.12.1...v5.13.0) (2025-04-16)
+
+
+### Features
+
+* удалены интефейсы расширенных настроек, добавлено поле paddings в интерфейс базовых настроек виджетов ([d704c81](https://github.com/Infomaximum/widget-sdk/commit/d704c81aa3dbf21d62b74580c654ffd08de17907))
+
 ### [5.12.1](https://github.com/Infomaximum/widget-sdk/compare/v5.12.0...v5.12.1) (2025-04-11)
 
 ## [5.12.0](https://github.com/Infomaximum/widget-sdk/compare/v5.11.1...v5.12.0) (2025-04-11)

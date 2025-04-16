@@ -13,6 +13,7 @@ export enum EWidgetActionInputMethod {
   START_EVENT = "START_EVENT",
   FINISH_EVENT = "FINISH_EVENT",
   AGGREGATION = "AGGREGATION",
+  DATA_MODEL = "DATA_MODEL",
 }
 
 export enum EActionTypes {
@@ -47,7 +48,12 @@ export enum EAutoUpdateMode {
   ALL_WIDGETS = "ALL_WIDGETS",
 }
 
-interface IParameterFromColumn {
+export enum EDataModelOption {
+  TABLE_LIST = "TABLE_LIST",
+  COLUMN_LIST = "COLUMN_LIST",
+}
+
+export interface IParameterFromColumn {
   inputMethod: EWidgetActionInputMethod.COLUMN;
   tableName: string;
   columnName: string;
@@ -102,6 +108,23 @@ interface IParameterFromDynamicList {
   filterByRows?: boolean;
 }
 
+interface IParameterFromDataModelBase {
+  inputMethod: EWidgetActionInputMethod.DATA_MODEL;
+  option: EDataModelOption;
+}
+
+export interface IParameterColumnList extends IParameterFromDataModelBase {
+  option: EDataModelOption.COLUMN_LIST;
+  /* Название параметра, содержащего имя таблицы, от которой зависит текущий параметр   */
+  parent: string;
+}
+
+export interface IParameterTableList extends IParameterFromDataModelBase {
+  option: EDataModelOption.TABLE_LIST;
+}
+
+export type TParameterFromDataModel = IParameterColumnList | IParameterTableList;
+
 interface IWidgetActionParameterCommon {
   name: string;
   displayName: string;
@@ -117,6 +140,7 @@ export type TWidgetActionParameter = IWidgetActionParameterCommon &
     | IParameterFromStaticList
     | IParameterFromDynamicList
     | IParameterFromAggregation
+    | TParameterFromDataModel
   );
 
 interface IActionOnClickParameterCommon extends IAutoIdentifiedArrayItem {
@@ -135,6 +159,7 @@ export type TActionOnClickParameter = IActionOnClickParameterCommon &
     | IParameterFromManualInput
     | IParameterFromStaticList
     | IParameterFromDynamicList
+    | TParameterFromDataModel
   );
 
 interface IActionCommon extends IAutoIdentifiedArrayItem {

@@ -96,7 +96,7 @@ export interface IParameterFromManualInput {
 export interface IParameterFromStaticList {
   inputMethod: EWidgetActionInputMethod.STATIC_LIST;
   options: string;
-  defaultOptionIndexes: number[];
+  defaultValue: string | string[];
 }
 
 export interface IParameterFromDynamicList {

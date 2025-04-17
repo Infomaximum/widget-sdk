@@ -12,6 +12,7 @@ import type {
   TWidgetIndicatorDurationValue,
   TWidgetIndicatorTimeValue,
 } from "./indicators";
+import type { EDimensionTemplateNames } from "./indicatorsFormulas";
 import type {
   IDisplayPredicate,
   IDivePanelDescription,
@@ -278,7 +279,7 @@ export interface IFormulaControl {
           /** @deprecated временное решение для виджета "Воронка", не следует использовать [BI-14710] */
           options?: TMeasureAddButtonSelectOption[];
         })
-      | { type: "dimension" };
+      | { type: "dimension"; templates?: EDimensionTemplateNames[] };
     disabled?: boolean;
     titleModal?: string;
   };

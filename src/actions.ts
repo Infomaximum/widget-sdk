@@ -59,47 +59,47 @@ export interface IParameterFromColumn {
   columnName: string;
 }
 
-interface IParameterFromVariable {
+export interface IParameterFromVariable {
   inputMethod: EWidgetActionInputMethod.VARIABLE;
   sourceVariable: string;
 }
 
-interface IParameterFromFormula {
+export interface IParameterFromFormula {
   inputMethod: EWidgetActionInputMethod.FORMULA;
   formula: string;
 }
 
-interface IParameterFromAggregation {
+export interface IParameterFromAggregation {
   inputMethod: EWidgetActionInputMethod.AGGREGATION;
   formula: string;
 }
 
-interface IParameterFromEvent {
+export interface IParameterFromEvent {
   inputMethod: EWidgetActionInputMethod.EVENT;
 }
 
-interface IParameterFromStartEvent {
+export interface IParameterFromStartEvent {
   inputMethod: EWidgetActionInputMethod.START_EVENT;
 }
 
-interface IParameterFromEndEvent {
+export interface IParameterFromEndEvent {
   inputMethod: EWidgetActionInputMethod.FINISH_EVENT;
 }
 
-interface IParameterFromManualInput {
+export interface IParameterFromManualInput {
   inputMethod: EWidgetActionInputMethod.MANUALLY;
   description: string;
   defaultValue?: string;
   filterByRows?: boolean;
 }
 
-interface IParameterFromStaticList {
+export interface IParameterFromStaticList {
   inputMethod: EWidgetActionInputMethod.STATIC_LIST;
   options: string;
   defaultOptionIndexes: number[];
 }
 
-interface IParameterFromDynamicList {
+export interface IParameterFromDynamicList {
   inputMethod: EWidgetActionInputMethod.DYNAMIC_LIST;
   options: string;
   defaultValue: string;

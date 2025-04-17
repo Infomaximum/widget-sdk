@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.15.0](https://github.com/Infomaximum/widget-sdk/compare/v5.14.0...v5.15.0) (2025-04-17)
+
+
+### Features
+
+* в IBaseWidgetSettings добавлено поле markdownTextSize ([816efbf](https://github.com/Infomaximum/widget-sdk/commit/816efbf0602c21529f3b7ffd9178904d761b8a2e))
+* для способа ввода статический список defaultOptionIndexes изменен на defaultValue ([afff970](https://github.com/Infomaximum/widget-sdk/commit/afff9709fbab78470d3ef3a5b8b2c12e233ad613))
+* добавлены шаблоны для фильтрации в FormulaControl [WD-1705] ([ed358c3](https://github.com/Infomaximum/widget-sdk/commit/ed358c3889aac546c481acb4f590a878ccf3d6bd))
+* экспортированы интерфейсы параметров ожидаемых полей действий ([473400c](https://github.com/Infomaximum/widget-sdk/commit/473400ccda532a247927f6f7d0084e91dabb83d0))
+
 ## [5.14.0](https://github.com/Infomaximum/widget-sdk/compare/v5.13.0...v5.14.0) (2025-04-16)
 
 

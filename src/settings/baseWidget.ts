@@ -21,6 +21,7 @@ export interface IBaseWidgetSettings {
   showMarkdown?: boolean;
   markdownMeasures?: IMarkdownMeasure[];
   markdownText?: string;
+  markdownTextSize?: number;
   filters?: TExtendedFormulaFilterValue[];
   filterMode?: EWidgetFilterMode;
   ignoreFilters?: boolean;

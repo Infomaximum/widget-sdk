@@ -1,5 +1,6 @@
 export { prepareValuesForSql } from "./prepareValuesForSql";
 export {
+  applyIndexToArrayFormula,
   mapFormulaFilterToCalculatorInput,
   mapFormulaFiltersToInputs,
   ELastTimeUnit,

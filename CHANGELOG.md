@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.12.2](https://github.com/Infomaximum/widget-sdk/compare/v5.12.1...v5.12.2) (2025-04-22)
+
+
+### Bug Fixes
+
+* исправленно падение фильтрации из-за комментариев в формуле ([962580c](https://github.com/Infomaximum/widget-sdk/commit/962580c0e86d6b7ebeacfef77481557add9eebf6))
+
 ### [5.12.1](https://github.com/Infomaximum/widget-sdk/compare/v5.12.0...v5.12.1) (2025-04-11)
 
 ## [5.12.0](https://github.com/Infomaximum/widget-sdk/compare/v5.11.1...v5.12.0) (2025-04-11)

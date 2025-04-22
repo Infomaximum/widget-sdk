@@ -13,6 +13,7 @@ import { EFormatTypes } from "../../formatting";
 import { fillTemplateString } from "../../indicatorsFormulas";
 import { displayConditionTemplate } from "./displayCondition";
 import { ESimpleDataType } from "../../data";
+import { prepareFormulaForSql } from "./prepareFormulaForSql";
 
 export enum ELastTimeUnit {
   DAYS = "DAYS",
@@ -180,7 +181,9 @@ export const mapFormulaFilterToCalculatorInput = (
   if (!isFormulaFilterValue(filterValue)) {
     return {
       dbDataType: EClickHouseBaseTypes.Bool,
-      formula: fillTemplateString(displayConditionTemplate, { formula: filterValue.formula }),
+      formula: fillTemplateString(displayConditionTemplate, {
+        formula: prepareFormulaForSql(filterValue.formula),
+      }),
       values: ["true"],
       filteringMethod: formulaFilterMethods.EQUAL_TO,
     };

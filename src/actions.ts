@@ -67,11 +67,13 @@ export interface IParameterFromVariable {
 export interface IParameterFromFormula {
   inputMethod: EWidgetActionInputMethod.FORMULA;
   formula: string;
+  considerFilters: boolean;
 }
 
 export interface IParameterFromAggregation {
   inputMethod: EWidgetActionInputMethod.AGGREGATION;
   formula: string;
+  considerFilters: boolean;
 }
 
 export interface IParameterFromEvent {
@@ -106,6 +108,7 @@ export interface IParameterFromDynamicList {
   displayOptions: string;
   filters: TExtendedFormulaFilterValue[];
   filterByRows?: boolean;
+  considerFilters: boolean;
 }
 
 interface IParameterFromDataModelBase {

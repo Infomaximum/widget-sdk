@@ -171,6 +171,8 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
   return [];
 };
 
+export const applyIndexToArrayFormula = (formula: string, index: number) => `${formula}[${index}]`;
+
 export const mapFormulaFilterToCalculatorInput = (
   filterValue: TExtendedFormulaFilterValue
 ): TNullable<ICalculatorFilter> => {
@@ -189,8 +191,19 @@ export const mapFormulaFilterToCalculatorInput = (
     };
   }
 
-  const { formula, filteringMethod } = filterValue;
-  let dbDataType = filterValue.dbDataType;
+  const { filteringMethod, sliceIndex } = filterValue;
+  let { formula, dbDataType } = filterValue;
+
+  if (typeof sliceIndex === "number") {
+    const { dbBaseDataType, containers } = parseClickHouseType(dbDataType);
+
+    if (!containers.includes("Array") || !dbBaseDataType) {
+      throw new Error(`Incorrect dbDataType: ${dbDataType}`);
+    }
+
+    dbDataType = dbBaseDataType;
+    formula = applyIndexToArrayFormula(formula, sliceIndex);
+  }
 
   if (
     filteringMethod === formulaFilterMethods.IN_RANGE ||

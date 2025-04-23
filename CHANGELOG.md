@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.17.0](https://github.com/Infomaximum/widget-sdk/compare/v5.16.0...v5.17.0) (2025-04-23)
+
+
+### Features
+
+* в мета-описание добавлена возможность позиционирования поля относительно системных полей ([92b59c2](https://github.com/Infomaximum/widget-sdk/commit/92b59c2944121f6f211c3347ba5c4504b1f16dc6))
+* в фильтрах по формуле поддержана возможность работы с элементами массива ([bfc6dcf](https://github.com/Infomaximum/widget-sdk/commit/bfc6dcfdae761d7c8306b250cd849ae64152b1d8))
+* для способов ввода по формуле, агрегации и динамический список, добавлено поле considerFilters ([b7d8f72](https://github.com/Infomaximum/widget-sdk/commit/b7d8f72d417db755d506ccf29434a16041a13876))
+
 ## [5.16.0](https://github.com/Infomaximum/widget-sdk/compare/v5.12.2...v5.16.0) (2025-04-22)
 
 ## [5.15.0](https://github.com/Infomaximum/widget-sdk/compare/v5.14.0...v5.15.0) (2025-04-17)

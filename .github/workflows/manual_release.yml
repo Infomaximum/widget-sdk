@@ -2,6 +2,12 @@ name: Create Release
 
 on:
   workflow_dispatch: # Ручной запуск
+    inputs:
+      prerelease:
+        description: "Предварительный релиз?"
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   lint:
@@ -69,7 +75,12 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Run release script
-        run: yarn release
+        run: |
+          if [ "${{ inputs.prerelease }}" = "true" ]; then
+            yarn prerelease
+          else
+            yarn release
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

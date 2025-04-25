@@ -14,6 +14,7 @@
     "build": "rollup -c",
     "lint": "tsc --noEmit",
     "release": "npm run lint && standard-version && npm run build",
+    "prerelease": "npm run lint && standard-version -p && npm run build",
     "format": "prettier --find-config-path --write 'src/**/*'",
     "prepublishOnly": "npm run build",
     "test": "jest"

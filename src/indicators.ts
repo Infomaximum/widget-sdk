@@ -238,6 +238,8 @@ export interface IWidgetDynamicListVariable extends IBaseWidgetVariable {
   multipleChoice: boolean;
   /** Фильтры */
   filters: TExtendedFormulaFilterValue[];
+  /** Флаг применения фильтров отчета для отображаемого списка */
+  considerFilters: boolean;
 }
 
 export interface IWidgetColumnListVariable extends IBaseWidgetVariable {

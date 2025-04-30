@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.18.0](https://github.com/Infomaximum/widget-sdk/compare/v5.18.0-0...v5.18.0) (2025-04-30)
+
 ## [5.18.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.17.0...v5.18.0-0) (2025-04-30)
 
 

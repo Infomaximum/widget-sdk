@@ -212,6 +212,7 @@ export interface IInputNumberControl {
     unitLabel?: string;
     isClearable?: boolean;
     disabled?: boolean;
+    layout?: "vertical" | "horizontal";
   };
 }
 

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.18.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.17.0...v5.18.0-0) (2025-04-30)
+
+
+### Features
+
+* **InputNumberControl:** в props добавлена настройка layout для ориентации поля ([5545657](https://github.com/Infomaximum/widget-sdk/commit/554565767a432ef2748533c2d0b4dccb1a98c0ba))
+* IParameterFromDynamicList расширен флагом enableCustomValue ([4ed6d23](https://github.com/Infomaximum/widget-sdk/commit/4ed6d234828c65350e24e8fee480381462304522))
+* для переменной динамический список добавлен флаг considerFilters ([bf55aad](https://github.com/Infomaximum/widget-sdk/commit/bf55aaddc3bd2b72f5440d3071e2f30c874b05eb))
+
 ## [5.17.0](https://github.com/Infomaximum/widget-sdk/compare/v5.16.0...v5.17.0) (2025-04-23)
 
 

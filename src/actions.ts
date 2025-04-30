@@ -109,6 +109,7 @@ export interface IParameterFromDynamicList {
   filters: TExtendedFormulaFilterValue[];
   filterByRows?: boolean;
   considerFilters: boolean;
+  enableCustomValue?: boolean;
 }
 
 interface IParameterFromDataModelBase {

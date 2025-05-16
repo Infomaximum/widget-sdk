@@ -192,6 +192,7 @@ type TActionOpenIn =
   | {
       openIn: EViewOpenIn.DRAWER_WINDOW;
       alignment: EDrawerPlacement;
+      actinButtons: boolean;
     }
   | {
       openIn: EViewOpenIn.PLACEHOLDER;
@@ -202,6 +203,7 @@ type TActionOpenIn =
     }
   | {
       openIn: EViewOpenIn.MODAL_WINDOW;
+      actinButtons: boolean;
     }
   | {
       openIn: EViewOpenIn.CURRENT_WINDOW;
@@ -260,7 +262,20 @@ export interface IWidgetAction extends IActionCommon {
   color: TColor;
 }
 
-export type TAction = TActionsOnClick | IWidgetAction;
+export type TViewActionParameter = (IParameterFromAggregation | IParameterFromVariable) & {
+  name: string;
+};
+
+export interface IViewAction {
+  name: string;
+  buttonType: EActionButtonsTypes;
+  type: EActionTypes.EXECUTE_SCRIPT;
+  parameters: TViewActionParameter[];
+  scriptKey: string;
+  id?: number;
+}
+
+export type TAction = TActionsOnClick | IWidgetAction | IViewAction;
 
 export type TActionValidator = (action: TAction) => boolean;
 

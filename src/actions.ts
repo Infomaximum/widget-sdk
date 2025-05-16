@@ -51,6 +51,7 @@ interface IParameterFromColumn {
   inputMethod: EWidgetActionInputMethod.COLUMN;
   tableName: string;
   columnName: string;
+  dbDataType?: string;
 }
 
 interface IParameterFromVariable {
@@ -61,11 +62,13 @@ interface IParameterFromVariable {
 interface IParameterFromFormula {
   inputMethod: EWidgetActionInputMethod.FORMULA;
   formula: string;
+  dbDataType?: string;
 }
 
 interface IParameterFromAggregation {
   inputMethod: EWidgetActionInputMethod.AGGREGATION;
   formula: string;
+  dbDataType?: string;
 }
 
 interface IParameterFromEvent {
@@ -84,6 +87,7 @@ interface IParameterFromManualInput {
   inputMethod: EWidgetActionInputMethod.MANUALLY;
   description: string;
   defaultValue?: string;
+  dbDataType?: string;
   filterByRows?: boolean;
 }
 
@@ -97,6 +101,7 @@ interface IParameterFromDynamicList {
   inputMethod: EWidgetActionInputMethod.DYNAMIC_LIST;
   options: string;
   defaultValue: string;
+  dbDataType?: string;
   displayOptions: string;
   filters: TExtendedFormulaFilterValue[];
   filterByRows?: boolean;

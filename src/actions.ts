@@ -202,6 +202,7 @@ type TActionOpenIn =
     }
   | {
       openIn: EViewOpenIn.MODAL_WINDOW;
+      positionByClick?: boolean;
     }
   | {
       openIn: EViewOpenIn.CURRENT_WINDOW;

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.12.3](https://github.com/Infomaximum/widget-sdk/compare/v5.12.2...v5.12.3) (2025-05-19)
+
+
+### Features
+
+* добавлено поле dbDataType в настройки способов ввода ([e165669](https://github.com/Infomaximum/widget-sdk/commit/e1656699ac6df13f41701e978ea4c6ec0f1feddd))
+
 ### [5.12.2](https://github.com/Infomaximum/widget-sdk/compare/v5.12.1...v5.12.2) (2025-04-22)
 
 

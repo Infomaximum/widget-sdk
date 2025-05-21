@@ -231,3 +231,8 @@ export const isFormulaFilterValue = (
 ): value is IFormulaFilterValue => {
   return "filteringMethod" in value;
 };
+
+export const isValidFormulaFilterValue = (
+  filterValue: TWidgetFilterValue | undefined
+): filterValue is IFormulaFilterValue =>
+  !!filterValue && "formula" in filterValue && isFormulaFilterValue(filterValue);

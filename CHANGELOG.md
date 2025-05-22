@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.20.0](https://github.com/Infomaximum/widget-sdk/compare/v5.19.0...v5.20.0) (2025-05-22)
+
+
+### Features
+
+* в EViewOpenIn  CURRENT_WINDOW и NEW_WINDOW отмечены как deprecated и добавлен WINDOW ([91db750](https://github.com/Infomaximum/widget-sdk/commit/91db750f3c16bbb7132fce2f24fa70abecdbdb09))
+* добавлена возможность показывать каретку в кнопке опций контекстного меню ([ae2ca8d](https://github.com/Infomaximum/widget-sdk/commit/ae2ca8d0470a2d555f6a4c91d09d7864ade08a5a))
+* добавлены типы для действий образа ([5d5942c](https://github.com/Infomaximum/widget-sdk/commit/5d5942c78f682668e5420e151da54c9b3ddac66a))
+
 ## [5.19.0](https://github.com/Infomaximum/widget-sdk/compare/v5.18.0...v5.19.0) (2025-05-19)
 
 

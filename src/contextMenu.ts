@@ -78,4 +78,5 @@ export type TContextMenuButtonOptions = {
   type: "options";
   icon: string;
   items: TContextMenuRow[];
+  showCaret?: boolean;
 };

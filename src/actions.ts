@@ -216,6 +216,7 @@ type TActionOpenIn =
   | {
       openIn: EViewOpenIn.MODAL_WINDOW;
       actinButtons: boolean;
+      positionByClick?: boolean;
     }
   // TODO: удалить  при выполении BI-14979
   /** @deprecated необходимо использовать EViewOpenIn.WINDOW с флагом newWindow - false */

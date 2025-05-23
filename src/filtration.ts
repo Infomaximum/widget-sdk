@@ -57,12 +57,13 @@ export interface IProcessTransitionFilterValue extends IProcessFilterValue {
 interface IClickPosition {
   x: number;
   y: number;
-  elementWidth: number;
-  elementHeight: number;
+  elementWidth?: number;
+  elementHeight?: number;
 }
 
 interface IPositionConfig extends IClickPosition {
-  type: string;
+  offsetX?: number;
+  offsetY?: number;
 }
 
 export interface IAddPresenceOfEventFilter {

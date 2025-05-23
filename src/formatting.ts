@@ -99,6 +99,7 @@ export enum EFormattingPresets {
   "MMMM" = "MMMM",
   //Группа шаблонов для формата NUMBER
   "k" = "k",
+  "x" = "x",
   "#,##x" = "#,##x",
   "#,##x.x" = "#,##x.x",
   "#,##x.xx" = "#,##x.xx",
@@ -243,6 +244,7 @@ export const formattingConfig = {
       ],
       [EFormatTypes.NUMBER]: [
         EFormattingPresets.AUTO,
+        EFormattingPresets["x"],
         EFormattingPresets["#,##x"],
         EFormattingPresets["#,##x.x"],
         EFormattingPresets["#,##x.xx"],

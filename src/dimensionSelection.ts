@@ -1,4 +1,5 @@
 import type { ICalculatorFilter } from "./calculators";
+import { isValidFormulaFilterValue, type IWidgetFilter } from "./filtration";
 import { EWidgetFilterMode } from "./settings/values";
 
 export interface IDimensionSelection {
@@ -133,6 +134,32 @@ export const replaceFiltersBySelection = (
     }
 
     acc.push(calculatorFilter);
+
+    return acc;
+  }, []);
+};
+
+export const replaceWidgetFiltersBySelection = (
+  filters: IWidgetFilter[],
+  selection: IDimensionSelectionByFormula
+): IWidgetFilter[] => {
+  return filters.reduce<IWidgetFilter[]>((acc, filter) => {
+    if (!isValidFormulaFilterValue(filter.filterValue)) {
+      return acc;
+    }
+
+    const formula = filter.filterValue.formula;
+    const formulaWithIndex = filter.filterValue.sliceIndex
+      ? `${formula}[${filter.filterValue.sliceIndex}]`
+      : formula;
+
+    const widgetFilter = selection.has(formulaWithIndex ?? "") ? undefined : filter;
+
+    if (!widgetFilter) {
+      return acc;
+    }
+
+    acc.push(widgetFilter);
 
     return acc;
   }, []);

@@ -137,6 +137,7 @@ export interface IWidgetDimension extends Omit<IWidgetColumnIndicator, "value"> 
       })
     | TWidgetIndicatorTimeValue;
   hideEmptyValues: boolean;
+  arrayNesting?: boolean;
 }
 
 export interface IWidgetMeasure extends Omit<IWidgetColumnIndicator, "value"> {
@@ -331,3 +332,35 @@ export type TWidgetIndicatorTimeValue = {
   eventNameFormula: string;
   filters: TExtendedFormulaFilterValue[];
 };
+
+export function removeIndexFromFormula(formula: string) {
+  return formula.replace(/\[\d+\]$/, "");
+}
+
+export function removeIndexFromDimensionFormula<D extends IWidgetDimension>(dimension: D): D {
+  if (dimension.value?.mode !== EWidgetIndicatorValueModes.FORMULA) {
+    return dimension;
+  }
+
+  return {
+    ...dimension,
+    value: {
+      ...dimension.value,
+      formula: removeIndexFromFormula(dimension.value.formula ?? ""),
+    },
+  };
+}
+
+export function extractIndexFromDimensionFormula(dimension: IWidgetDimension): number | undefined {
+  if (dimension.value?.mode !== EWidgetIndicatorValueModes.FORMULA) {
+    return undefined;
+  }
+
+  const index = dimension.value.formula?.match(/\[(\d+)\]$/)?.[1];
+
+  if (!index) {
+    return undefined;
+  }
+
+  return +index;
+}

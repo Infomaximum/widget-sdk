@@ -18,7 +18,10 @@ export { mapTransitionMeasuresToInputs } from "./mapTransitionMeasuresToInputs";
 export { mapEventMeasuresToInputs } from "./mapEventMeasuresToInputs";
 export { prepareSortOrders, getDefaultSortOrders } from "./mapSortingToInputs";
 export { mapSortingToInputs } from "./mapSortingToInputs";
-export { selectDimensionFromHierarchy } from "./selectDimensionFromHierarchy";
+export {
+  selectDimensionFromHierarchy,
+  type TDimensionsNesting,
+} from "./selectDimensionFromHierarchy";
 export { replaceHierarchiesWithDimensions } from "./replaceHierarchiesWithDimensions";
 export {
   bindContentWithIndicator,

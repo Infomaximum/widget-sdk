@@ -8,7 +8,8 @@ export interface IWidgetPlaceholderController {
    */
   setDisplay(value: boolean): void;
   setEmpty(value: boolean): void;
-  setOverlay(value: boolean): void;
+  setOverlay(value: true): void;
+  setOverlay(value: false, placeholderPlacement: "before" | "after"): void;
 }
 
 export interface IWidgetPlaceholderValues {
@@ -16,4 +17,5 @@ export interface IWidgetPlaceholderValues {
   isDisplay: boolean | undefined;
   isEmpty: boolean;
   isOverlay: boolean;
+  placeholderPlacement?: "before" | "after";
 }

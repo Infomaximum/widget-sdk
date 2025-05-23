@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.21.0](https://github.com/Infomaximum/widget-sdk/compare/v5.20.0...v5.21.0) (2025-05-23)
+
+
+### Features
+
+* добавлен шаблон форматирования 'x' ([8905393](https://github.com/Infomaximum/widget-sdk/commit/890539367b03e78852e0a75096f6b56835b8ae2d))
+* добавлена настройка 'Позиционирование по клику' ([b4107b9](https://github.com/Infomaximum/widget-sdk/commit/b4107b91cd1c00b102226a343838d6dfdf1bee29))
+* изменены интерфейсы IPositionConfig и IClickPosition ([052ab57](https://github.com/Infomaximum/widget-sdk/commit/052ab574285887c09121b65860bf49070f757bab))
+
 ## [5.20.0](https://github.com/Infomaximum/widget-sdk/compare/v5.19.0...v5.20.0) (2025-05-22)
 
 

@@ -1,27 +1,22 @@
-import type { TWidgetFilterValue } from "../../filtration";
 import {
   isDimensionsHierarchy,
   type IWidgetDimension,
   type IWidgetDimensionHierarchy,
 } from "../../indicators";
 import { compactMap } from "../../utils/functions";
+import type { ICalculatorFilter } from "../calculator";
 import { replaceDisplayCondition } from "./displayCondition";
-import {
-  selectDimensionFromHierarchy,
-  type TDimensionsNesting,
-} from "./selectDimensionFromHierarchy";
+import { selectDimensionFromHierarchy } from "./selectDimensionFromHierarchy";
 
 export const replaceHierarchiesWithDimensions = <D extends IWidgetDimension = IWidgetDimension>(
   dimensions: (D | IWidgetDimensionHierarchy<D>)[],
-  widgetFilters: TWidgetFilterValue[],
-  dimensionsNesting?: TDimensionsNesting
+  filters: ICalculatorFilter[]
 ) =>
   compactMap(dimensions, (indicator) => {
     if (isDimensionsHierarchy(indicator)) {
       const selectedDimension = selectDimensionFromHierarchy<IWidgetDimensionHierarchy<D>, D>(
         indicator,
-        widgetFilters,
-        dimensionsNesting
+        filters
       );
 
       return (

@@ -18,11 +18,15 @@ export { mapTransitionMeasuresToInputs } from "./mapTransitionMeasuresToInputs";
 export { mapEventMeasuresToInputs } from "./mapEventMeasuresToInputs";
 export { prepareSortOrders, getDefaultSortOrders } from "./mapSortingToInputs";
 export { mapSortingToInputs } from "./mapSortingToInputs";
-export {
-  selectDimensionFromHierarchy,
-  type TDimensionsNesting,
-} from "./selectDimensionFromHierarchy";
+export { selectDimensionFromHierarchy } from "./selectDimensionFromHierarchy";
 export { replaceHierarchiesWithDimensions } from "./replaceHierarchiesWithDimensions";
+export { replaceHierarchiesForNestingQuery } from "./replaceHierarchiesForNestingQuery";
+export { replaceHierarchiesWithSlicedDimensions } from "./replaceHierarchiesWithSlicedDimensions";
+export {
+  type ISlicedDimension,
+  type TDimensionMaxNestingMap,
+  selectSlicedDimensionFromHierarchy,
+} from "./selectSlicedDimensionFromHierarchy";
 export {
   bindContentWithIndicator,
   bindContentsWithIndicators,

@@ -16,6 +16,14 @@ export * from "./histogramCalculator";
 export * from "./twoLimitsCalculator";
 export * from "./typeCalculator";
 
+export interface ICalculatorOptions {
+  /**
+   * Должен ли созданный вычислитель влиять на отображение системного индикатора загрузки
+   * По умолчанию - true
+   */
+  affectLoader: boolean;
+}
+
 /** Фабрика вычислителей */
 export interface ICalculatorFactory {
   /**
@@ -26,7 +34,7 @@ export interface ICalculatorFactory {
    * Подходит для большинства задач, где требуется сделать одну или несколько группировок
    * и при необходимости посчитать показатель по каждой группе.
    */
-  general: () => IGeneralCalculator;
+  general: (options?: ICalculatorOptions) => IGeneralCalculator;
   /**
    * Вычислитель с двумя лимитами.
    * Для работы требует ровно 2 разреза(для каждого из которых указывается свой лимит) и
@@ -34,7 +42,7 @@ export interface ICalculatorFactory {
    *
    * Используется для отображения данных в виде двумерных матриц со значениями разрезов на осях.
    */
-  twoLimits: () => ITwoLimitsCalculator;
+  twoLimits: (options?: ICalculatorOptions) => ITwoLimitsCalculator;
   /**
    * Вычислитель круговой диаграммы.
    * Для работы требует ровно 1 разрез и 1 меру.
@@ -43,19 +51,19 @@ export interface ICalculatorFactory {
    * а не как меру по всему объему данных. Такая особенность необходима для расчета
    * размера оставшегося сектора круговой диаграммы.
    */
-  pie: () => IPieCalculator;
+  pie: (options?: ICalculatorOptions) => IPieCalculator;
   /**
    * Вычислитель, предназначенный для вычисления графа по переданному процессу.
    * Возвращает информацию о событиях процесса и связях(переходах) между ними.
    *
    * Может вычислять любое количество мер, отдельно для событий и переходов.
    */
-  processGraph: () => IProcessGraphCalculator;
+  processGraph: (options?: ICalculatorOptions) => IProcessGraphCalculator;
   /**
    * Вычислитель гистограммы.
    * Вычисляет "корзины" для переданного разреза.
    */
-  histogram: () => IHistogramCalculator;
+  histogram: (options?: ICalculatorOptions) => IHistogramCalculator;
   /**
    * Вычислитель типа для разрезов и мер.
    * Принимает любое количество разрезов и мер.
@@ -63,5 +71,5 @@ export interface ICalculatorFactory {
    * Под капотом использует general-вычислитель, оборачивая формулы в toTypeName, поэтому
    * все переданные формулы должны использовать связанные таблицы модели данных.
    */
-  type: () => ITypeCalculator;
+  type: (options?: ICalculatorOptions) => ITypeCalculator;
 }

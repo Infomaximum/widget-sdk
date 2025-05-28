@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.22.0](https://github.com/Infomaximum/widget-sdk/compare/v5.21.0...v5.22.0) (2025-05-28)
+
+
+### Features
+
+* добавлена возможность управлять отображением системного индикатора загрузки через вычислитель ([400c598](https://github.com/Infomaximum/widget-sdk/commit/400c5983510d8f18d917851f4079ab63a4a580f3))
+* обработаны одинарные кавычки при экранировании значений для sql-выражений ([27f3e49](https://github.com/Infomaximum/widget-sdk/commit/27f3e498b2400b1ecef7956b4802f4892ce91876))
+
 ## [5.21.0](https://github.com/Infomaximum/widget-sdk/compare/v5.20.0...v5.21.0) (2025-05-23)
 
 

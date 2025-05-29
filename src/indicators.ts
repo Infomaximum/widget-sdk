@@ -174,7 +174,7 @@ export interface IWidgetStaticVariable extends IBaseWidgetVariable {
   /** Тип переменной */
   type: EIndicatorType.STATIC;
   /** Значение */
-  value: string;
+  value: string | null;
   /** Обобщенный тип данных */
   simpleInputType: ESimpleInputType;
 }
@@ -183,7 +183,7 @@ export interface IWidgetStaticListVariable extends IBaseWidgetVariable {
   /** Тип переменной */
   type: EIndicatorType.STATIC_LIST;
   /** Значение */
-  value: string | string[];
+  value: string | string[] | null;
   /** Элементы статического списка */
   options: string[];
   /** Множественный выбор */
@@ -194,7 +194,7 @@ export interface IWidgetDynamicListVariable extends IBaseWidgetVariable {
   /** Тип переменной */
   type: EIndicatorType.DYNAMIC_LIST;
   /** Значение */
-  value: string | string[];
+  value: string | (string | null)[] | null;
   /** Формула для отображения списка */
   listFormula: TNullable<string>;
   /** Тип данных */
@@ -211,7 +211,7 @@ export interface IWidgetColumnListVariable extends IBaseWidgetVariable {
   /** Имя таблицы */
   tableName: string;
   /** Значение (имя колонки) */
-  value: string;
+  value: string | null;
 }
 
 export type TWidgetVariable =

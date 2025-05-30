@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.23.0](https://github.com/Infomaximum/widget-sdk/compare/v5.22.0...v5.23.0) (2025-05-30)
+
+
+### Features
+
+* поддержан null для значения переменных ([6b2cd53](https://github.com/Infomaximum/widget-sdk/commit/6b2cd53b28b169e4a1e0500ed9e972870aa46c95))
+
 ## [5.22.0](https://github.com/Infomaximum/widget-sdk/compare/v5.21.0...v5.22.0) (2025-05-28)
 
 

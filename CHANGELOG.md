@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.24.0](https://github.com/Infomaximum/widget-sdk/compare/v5.23.0...v5.24.0) (2025-06-06)
+
+
+### Features
+
+* убрано экранирование символов ` \' из escapeSpecialCharacters ([b5020f9](https://github.com/Infomaximum/widget-sdk/commit/b5020f9a1e6532a8c3e3a0547309f98892aaf1ea))
+
 ## [5.23.0](https://github.com/Infomaximum/widget-sdk/compare/v5.22.0...v5.23.0) (2025-05-30)
 
 

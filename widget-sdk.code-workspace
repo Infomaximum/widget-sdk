@@ -10,5 +10,6 @@
     "[html][json][jsonc][typescript][typescriptreact][javascriptreact][javascript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
+    "editor.rulers": [100],
   },
 }

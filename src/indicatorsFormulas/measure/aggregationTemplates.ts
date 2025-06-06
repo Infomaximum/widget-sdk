@@ -76,7 +76,7 @@ export const prepareMeasureAggregationParams = (
     !value.caseCaseIdFormula ||
     !value.eventNameFormula ||
     !value.outerAggregation ||
-    !value.processName ||
+    !value.processKey ||
     !value.templateName
   ) {
     return null;

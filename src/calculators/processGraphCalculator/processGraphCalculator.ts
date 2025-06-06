@@ -21,7 +21,7 @@ export interface IEdge extends IGraphElement {
 }
 
 export interface IProcessGraphCalculatorInput {
-  processName: string;
+  processKey: string;
   vertexLimit: number | null;
   edgeLimit: number;
   vertexMeasures: ICalculatorMeasureInput[];

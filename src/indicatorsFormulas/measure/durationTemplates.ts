@@ -60,10 +60,10 @@ export const prepareDurationParams = (value: TWidgetIndicatorDurationValue) => {
     !value.endEventName ||
     !value.endCaseCaseIdFormula ||
     !value.endEventNameFormula ||
-    !value.endEventProcessName ||
+    !value.endEventProcessKey ||
     !value.endEventTimeFormula ||
     !value.startEventNameFormula ||
-    !value.startEventProcessName ||
+    !value.startEventProcessKey ||
     !value.startEventTimeFormula
   ) {
     return null;

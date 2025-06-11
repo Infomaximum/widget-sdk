@@ -32,25 +32,33 @@ interface IProcessFilterValue {
  * но не учитываются при применении фильтра.
  */
 export interface IProcessFilterPreviewParams {
+  /** @deprecated необходимо использовать eventsNamesByProcessKey */
+  eventsNamesByProcessName?: Map<string, (string | null)[]>;
   /**
    * События, доступные при выборе процесса.
    * Если параметр не передан, используются все события процесса на основе запроса к вычислителю.
    */
-  eventsNamesByProcessName?: Map<string, (string | null)[]>;
+  eventsNamesByProcessKey?: Map<string, (string | null)[]>;
   /** Фильтры событий */
   eventFilters?: TExtendedFormulaFilterValue[];
 }
 
 export interface IProcessEventFilterValue extends IProcessFilterValue {
-  processName: string;
+  /** @deprecated необходимо использовать processKey  */
+  processName?: string;
+  processKey: string;
   eventName: string;
 }
 
 export interface IProcessTransitionFilterValue extends IProcessFilterValue {
-  startEventProcessName: string;
+  /** @deprecated необходимо использовать startEventProcessKey  */
+  startEventProcessName?: string;
+  startEventProcessKey: string;
   startEventName: string;
 
-  endEventProcessName: string;
+  /** @deprecated необходимо использовать endEventProcessKey  */
+  endEventProcessName?: string;
+  endEventProcessKey: string;
   endEventName: string;
 }
 

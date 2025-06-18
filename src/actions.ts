@@ -102,6 +102,7 @@ export interface IParameterFromManualInput {
   defaultValue?: string;
   dbDataType?: string;
   filterByRows?: boolean;
+  validation?: string;
 }
 
 export interface IParameterFromStaticList {
@@ -120,6 +121,7 @@ export interface IParameterFromDynamicList {
   filterByRows?: boolean;
   considerFilters: boolean;
   enableCustomValue?: boolean;
+  validation?: string;
 }
 
 interface IParameterFromDataModelBase {

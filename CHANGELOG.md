@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.25.0](https://github.com/Infomaximum/widget-sdk/compare/v5.24.1...v5.25.0) (2025-06-19)
+
+
+### Features
+
+* ESimpleInputType расширен логическим типом ([59f9d63](https://github.com/Infomaximum/widget-sdk/commit/59f9d6372e5fc1dc38d92d6032e6d5d64699f328))
+
 ### [5.24.1](https://github.com/Infomaximum/widget-sdk/compare/v5.24.0...v5.24.1) (2025-06-17)
 
 

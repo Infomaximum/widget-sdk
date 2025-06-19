@@ -196,6 +196,8 @@ export enum ESimpleInputType {
   DATE = "DATE",
   /** Дата и время (точность DateTime64) */
   DATE_AND_TIME = "DATETIME",
+  /** Логический тип */
+  BOOLEAN = "BOOLEAN",
 }
 
 export interface IWidgetStaticVariable extends IBaseWidgetVariable {

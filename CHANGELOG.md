@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.26.0](https://github.com/Infomaximum/widget-sdk/compare/v5.25.0...v5.26.0) (2025-06-23)
+
+
+### Features
+
+* для EWidgetActionInputMethod динамический список и вводимое значение добавлено поле валидации ([cf394d3](https://github.com/Infomaximum/widget-sdk/commit/cf394d365fef5aafd8935b3516d732f7a9616bfc))
+
 ## [5.25.0](https://github.com/Infomaximum/widget-sdk/compare/v5.24.1...v5.25.0) (2025-06-19)
 
 

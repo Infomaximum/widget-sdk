@@ -202,7 +202,7 @@ type TActionOpenIn =
   | {
       openIn: EViewOpenIn.DRAWER_WINDOW;
       alignment: EDrawerPlacement;
-      actinButtons: boolean;
+      actionButtons: boolean;
     }
   | {
       openIn: EViewOpenIn.PLACEHOLDER;
@@ -215,7 +215,7 @@ type TActionOpenIn =
     }
   | {
       openIn: EViewOpenIn.MODAL_WINDOW;
-      actinButtons: boolean;
+      actionButtons: boolean;
       positionByClick?: boolean;
     }
   // TODO: удалить  при выполении BI-14979

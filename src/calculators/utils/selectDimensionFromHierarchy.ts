@@ -1,4 +1,4 @@
-import type { IWidgetDimension, IWidgetDimensionHierarchy } from "../../indicators";
+import { type IWidgetDimension, type IWidgetDimensionHierarchy } from "../../indicators";
 import { getDimensionFormula } from "../../indicatorsFormulas";
 import type { TNullable } from "../../utilityTypes";
 import { ECalculatorFilterMethods, type ICalculatorFilter } from "../calculator";

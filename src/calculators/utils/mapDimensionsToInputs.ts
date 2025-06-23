@@ -1,13 +1,31 @@
+import { applyIndexToArrayFormula } from ".";
 import type { IWidgetDimension, TWidgetVariable } from "../../indicators";
 import { getDimensionFormula } from "../../indicatorsFormulas";
 import { compactMap } from "../../utils/functions";
 import type { ICalculatorDimensionInput } from "../calculator";
 import { checkDisplayCondition, getDisplayConditionFormula } from "./displayCondition";
+import type { ISlicedDimension } from "./selectSlicedDimensionFromHierarchy";
+
+function parseDimensionData<T extends IWidgetDimension>(dimensionData: T | ISlicedDimension<T>) {
+  const isSlicedDimension = (data: ISlicedDimension | any): data is ISlicedDimension =>
+    "sliceIndex" in data && "dimension" in data;
+
+  if (isSlicedDimension(dimensionData)) {
+    return dimensionData;
+  }
+
+  return {
+    dimension: dimensionData,
+    sliceIndex: undefined,
+  };
+}
 
 export function mapDimensionToInput<T extends IWidgetDimension>(
-  dimension: T,
+  dimensionData: T | ISlicedDimension<T>,
   variables: Map<string, TWidgetVariable>
 ): ICalculatorDimensionInput | null {
+  const { dimension, sliceIndex } = parseDimensionData(dimensionData);
+
   const formula = getDimensionFormula(dimension);
 
   if (!formula) {
@@ -20,7 +38,7 @@ export function mapDimensionToInput<T extends IWidgetDimension>(
 
   return {
     alias: String(dimension.id),
-    formula,
+    formula: sliceIndex ? applyIndexToArrayFormula(formula, sliceIndex) : formula,
     dbDataType: dimension.dbDataType,
     hideEmpty: dimension.hideEmptyValues,
     displayConditionFormula: getDisplayConditionFormula(dimension.displayCondition),
@@ -29,8 +47,10 @@ export function mapDimensionToInput<T extends IWidgetDimension>(
 
 /** Конвертировать разрезы виджета во входы для вычислителя */
 export function mapDimensionsToInputs<T extends IWidgetDimension>(
-  dimensions: T[],
+  dimensions: T[] | ISlicedDimension<T>[],
   variables: Map<string, TWidgetVariable>
 ) {
-  return compactMap(dimensions, (dimension) => mapDimensionToInput(dimension, variables));
+  return compactMap<T | ISlicedDimension<T>, ICalculatorDimensionInput>(dimensions, (dimension) =>
+    mapDimensionToInput(dimension, variables)
+  );
 }

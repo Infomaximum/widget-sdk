@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.27.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.26.0...v5.27.0-0) (2025-06-24)
+
+
+### Features
+
+* добавлен react-dom/client ([8f537ec](https://github.com/Infomaximum/widget-sdk/commit/8f537ecfdb0dd716066a504d7008bec2ec8079de))
+
+## [5.26.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.25.0...v5.26.0-0) (2025-06-19)
+
+
+### Features
+
+* добавлен интерфейс предоставляемых библиотек системой для системных виджетов ([06b38ad](https://github.com/Infomaximum/widget-sdk/commit/06b38ad6ba733766ff648b41efa5a38efcfc3748))
+
 ## [5.26.0](https://github.com/Infomaximum/widget-sdk/compare/v5.25.0...v5.26.0) (2025-06-23)
 
 ### Features

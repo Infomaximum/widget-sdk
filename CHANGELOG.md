@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.26.1](https://github.com/Infomaximum/widget-sdk/compare/v5.26.0...v5.26.1) (2025-06-25)
+
+
+### Bug Fixes
+
+* изменено именование поля actinButtons > actionButtons ([8b0ddf3](https://github.com/Infomaximum/widget-sdk/commit/8b0ddf374045287a06210c19debe021fe4dbcc97))
+
 ## [5.26.0](https://github.com/Infomaximum/widget-sdk/compare/v5.25.0...v5.26.0) (2025-06-23)
 
 

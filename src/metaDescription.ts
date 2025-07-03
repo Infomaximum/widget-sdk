@@ -235,6 +235,12 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
   /** Создать конфигурацию группы для вкладки настроек отображения */
   createDisplayRecords?(group: IGroupSettings, index: number): TGroupLevelRecord<GroupSettings>[];
 
+  /**
+   * Автоматически добавить этот groupSet в dataRecords
+   * (по умолчанию true для обратной совместимости)
+   */
+  autoAddToDataRecords?: boolean;
+
   /** Находится ли группа в состоянии загрузки (по умолчанию false) */
   isLoading?(group: IGroupSettings): boolean;
   /** Является ли группа валидной (по умолчанию true) */

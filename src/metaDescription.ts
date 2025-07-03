@@ -209,7 +209,7 @@ type TWidgetIndicatorData = TWidgetDimensionData | TWidgetMeasureData;
  */
 export interface IGroupSetDescription<Settings extends object, GroupSettings extends object> {
   /** Заголовок */
-  title: string;
+  title?: string;
   /** Максимальное количество групп в наборе  */
   maxCount: number;
   /** Описание доступа к настройкам групп */

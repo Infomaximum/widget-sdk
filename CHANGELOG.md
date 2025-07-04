@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.27.0](https://github.com/Infomaximum/widget-sdk/compare/v5.26.1...v5.27.0) (2025-07-04)
+
+
+### Features
+
+* в интерфейс IViewAction добавлено поле, отвечающее за авто-обновление отчета после запуска действия ([5fd1371](https://github.com/Infomaximum/widget-sdk/commit/5fd1371d7699a4e36a40f735574cd7277f35a94d))
+* добавлена возможность использовать groupSet (набор плашек) только во вкладке настроек отображения (displayRecords), не дублируя во вкладке настроек данных (dataRecords) ([72ae723](https://github.com/Infomaximum/widget-sdk/commit/72ae723d20b0e07e615b2840e514169bfe87a1ee))
+* добавлена возможность не указывать заголовок для groupSet ([fe09052](https://github.com/Infomaximum/widget-sdk/commit/fe09052d769a380565eed6ed301870752b84499d))
+
 ### [5.26.1](https://github.com/Infomaximum/widget-sdk/compare/v5.26.0...v5.26.1) (2025-06-25)
 
 

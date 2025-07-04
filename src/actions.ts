@@ -294,6 +294,7 @@ export interface IViewAction {
   parameters: TViewActionParameter[];
   scriptKey: string;
   id?: number;
+  autoUpdate?: EAutoUpdateMode.NONE | EAutoUpdateMode.ALL_WIDGETS;
 }
 
 export type TAction = TActionsOnClick | IWidgetAction | IViewAction;

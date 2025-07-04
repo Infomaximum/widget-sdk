@@ -193,6 +193,17 @@ export interface IActionRunScript extends IActionCommon {
   parameters: TActionOnClickParameter[];
   scriptKey: string;
   autoUpdate: EAutoUpdateMode;
+  hideInactiveButton: boolean;
+  blockingCondition:
+    | {
+        mode: EBlockingConditionMode.FORMULA;
+        formula: string;
+      }
+    | {
+        mode: EBlockingConditionMode.VARIABLE;
+        variableName: string;
+        variableValue: string;
+      };
 }
 
 export interface IActionUpdateVariable extends IActionCommon {

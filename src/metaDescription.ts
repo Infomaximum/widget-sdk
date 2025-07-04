@@ -209,7 +209,7 @@ type TWidgetIndicatorData = TWidgetDimensionData | TWidgetMeasureData;
  */
 export interface IGroupSetDescription<Settings extends object, GroupSettings extends object> {
   /** Заголовок */
-  title: string;
+  title?: string;
   /** Максимальное количество групп в наборе  */
   maxCount: number;
   /** Описание доступа к настройкам групп */
@@ -234,6 +234,12 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
   createDataRecords?(group: IGroupSettings, index: number): TGroupLevelRecord<GroupSettings>[];
   /** Создать конфигурацию группы для вкладки настроек отображения */
   createDisplayRecords?(group: IGroupSettings, index: number): TGroupLevelRecord<GroupSettings>[];
+
+  /**
+   * Автоматически добавить этот groupSet в dataRecords
+   * (по умолчанию true для обратной совместимости)
+   */
+  autoAddToDataRecords?: boolean;
 
   /** Находится ли группа в состоянии загрузки (по умолчанию false) */
   isLoading?(group: IGroupSettings): boolean;

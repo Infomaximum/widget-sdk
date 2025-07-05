@@ -89,12 +89,14 @@ interface IParameterFromManualInput {
   defaultValue?: string;
   dbDataType?: string;
   filterByRows?: boolean;
+  acceptEmptyValue?: boolean;
 }
 
 interface IParameterFromStaticList {
   inputMethod: EWidgetActionInputMethod.STATIC_LIST;
   options: string;
   defaultOptionIndexes: number[];
+  acceptEmptyValue?: boolean;
 }
 
 interface IParameterFromDynamicList {
@@ -105,6 +107,7 @@ interface IParameterFromDynamicList {
   displayOptions: string;
   filters: TExtendedFormulaFilterValue[];
   filterByRows?: boolean;
+  acceptEmptyValue?: boolean;
 }
 
 interface IWidgetActionParameterCommon {

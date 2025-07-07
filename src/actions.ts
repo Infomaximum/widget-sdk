@@ -193,6 +193,17 @@ export interface IActionRunScript extends IActionCommon {
   parameters: TActionOnClickParameter[];
   scriptKey: string;
   autoUpdate: EAutoUpdateMode;
+  hideInactiveButton?: boolean;
+  blockingCondition?:
+    | {
+        mode: EBlockingConditionMode.FORMULA;
+        formula: string;
+      }
+    | {
+        mode: EBlockingConditionMode.VARIABLE;
+        variableName: string;
+        variableValue: string;
+      };
 }
 
 export interface IActionUpdateVariable extends IActionCommon {
@@ -204,7 +215,6 @@ type TActionOpenIn =
   | {
       openIn: EViewOpenIn.DRAWER_WINDOW;
       alignment: EDrawerPlacement;
-      actionButtons: boolean;
     }
   | {
       openIn: EViewOpenIn.PLACEHOLDER;
@@ -217,7 +227,6 @@ type TActionOpenIn =
     }
   | {
       openIn: EViewOpenIn.MODAL_WINDOW;
-      actionButtons: boolean;
       positionByClick?: boolean;
     }
   // TODO: удалить  при выполении BI-14979

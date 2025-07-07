@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.28.0](https://github.com/Infomaximum/widget-sdk/compare/v5.27.0...v5.28.0) (2025-07-07)
+
+
+### Features
+
+* для действия запуска скрипта добавлен blockingCondition. удалено поле actionButtons из TActionOpenIn ([920a76e](https://github.com/Infomaximum/widget-sdk/commit/920a76e8d695f73876b1d6a96f33820aad4b17c4))
+
 ## [5.27.0](https://github.com/Infomaximum/widget-sdk/compare/v5.26.1...v5.27.0) (2025-07-04)
 
 

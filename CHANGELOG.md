@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.13.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.12.4-0...v5.13.0-0) (2025-07-08)
+
+
+### Features
+
+* Для способов ввода Вручную, Динамический и Статический список добавлен флаг acceptEmptyValue ([d4922b5](https://github.com/Infomaximum/widget-sdk/commit/d4922b58fee000dc14ff517511be202b0cd6bbba))
+
 ### [5.12.4-0](https://github.com/Infomaximum/widget-sdk/compare/v5.12.3...v5.12.4-0) (2025-05-30)
 
 

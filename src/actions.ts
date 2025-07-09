@@ -102,6 +102,7 @@ export interface IParameterFromManualInput {
   defaultValue?: string;
   dbDataType?: string;
   filterByRows?: boolean;
+  validation?: string;
 }
 
 export interface IParameterFromStaticList {
@@ -120,6 +121,7 @@ export interface IParameterFromDynamicList {
   filterByRows?: boolean;
   considerFilters: boolean;
   enableCustomValue?: boolean;
+  validation?: string;
 }
 
 interface IParameterFromDataModelBase {
@@ -191,6 +193,17 @@ export interface IActionRunScript extends IActionCommon {
   parameters: TActionOnClickParameter[];
   scriptKey: string;
   autoUpdate: EAutoUpdateMode;
+  hideInactiveButton?: boolean;
+  blockingCondition?:
+    | {
+        mode: EBlockingConditionMode.FORMULA;
+        formula: string;
+      }
+    | {
+        mode: EBlockingConditionMode.VARIABLE;
+        variableName: string;
+        variableValue: string;
+      };
 }
 
 export interface IActionUpdateVariable extends IActionCommon {
@@ -202,7 +215,6 @@ type TActionOpenIn =
   | {
       openIn: EViewOpenIn.DRAWER_WINDOW;
       alignment: EDrawerPlacement;
-      actinButtons: boolean;
     }
   | {
       openIn: EViewOpenIn.PLACEHOLDER;
@@ -215,7 +227,6 @@ type TActionOpenIn =
     }
   | {
       openIn: EViewOpenIn.MODAL_WINDOW;
-      actinButtons: boolean;
       positionByClick?: boolean;
     }
   // TODO: удалить  при выполении BI-14979
@@ -292,6 +303,7 @@ export interface IViewAction {
   parameters: TViewActionParameter[];
   scriptKey: string;
   id?: number;
+  autoUpdate?: EAutoUpdateMode.NONE | EAutoUpdateMode.ALL_WIDGETS;
 }
 
 export type TAction = TActionsOnClick | IWidgetAction | IViewAction;

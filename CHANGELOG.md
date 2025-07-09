@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.28.0](https://github.com/Infomaximum/widget-sdk/compare/v5.27.0...v5.28.0) (2025-07-07)
+
+
+### Features
+
+* для действия запуска скрипта добавлен blockingCondition. удалено поле actionButtons из TActionOpenIn ([920a76e](https://github.com/Infomaximum/widget-sdk/commit/920a76e8d695f73876b1d6a96f33820aad4b17c4))
+
+## [5.27.0](https://github.com/Infomaximum/widget-sdk/compare/v5.26.1...v5.27.0) (2025-07-04)
+
+
+### Features
+
+* в интерфейс IViewAction добавлено поле, отвечающее за авто-обновление отчета после запуска действия ([5fd1371](https://github.com/Infomaximum/widget-sdk/commit/5fd1371d7699a4e36a40f735574cd7277f35a94d))
+* добавлена возможность использовать groupSet (набор плашек) только во вкладке настроек отображения (displayRecords), не дублируя во вкладке настроек данных (dataRecords) ([72ae723](https://github.com/Infomaximum/widget-sdk/commit/72ae723d20b0e07e615b2840e514169bfe87a1ee))
+* добавлена возможность не указывать заголовок для groupSet ([fe09052](https://github.com/Infomaximum/widget-sdk/commit/fe09052d769a380565eed6ed301870752b84499d))
+
+### [5.26.1](https://github.com/Infomaximum/widget-sdk/compare/v5.26.0...v5.26.1) (2025-06-25)
+
+
+### Bug Fixes
+
+* изменено именование поля actinButtons > actionButtons ([8b0ddf3](https://github.com/Infomaximum/widget-sdk/commit/8b0ddf374045287a06210c19debe021fe4dbcc97))
+
+## [5.26.0](https://github.com/Infomaximum/widget-sdk/compare/v5.25.0...v5.26.0) (2025-06-23)
+
+
+### Features
+
+* для EWidgetActionInputMethod динамический список и вводимое значение добавлено поле валидации ([cf394d3](https://github.com/Infomaximum/widget-sdk/commit/cf394d365fef5aafd8935b3516d732f7a9616bfc))
+
+## [5.25.0](https://github.com/Infomaximum/widget-sdk/compare/v5.24.1...v5.25.0) (2025-06-19)
+
+
+### Features
+
+* ESimpleInputType расширен логическим типом ([59f9d63](https://github.com/Infomaximum/widget-sdk/commit/59f9d6372e5fc1dc38d92d6032e6d5d64699f328))
+
+### [5.24.1](https://github.com/Infomaximum/widget-sdk/compare/v5.24.0...v5.24.1) (2025-06-17)
+
+
+### Bug Fixes
+
+* entry может не быть ([1a3ea89](https://github.com/Infomaximum/widget-sdk/commit/1a3ea894ab1c62e7e79c14ea334326aee481eeac))
+
 ## [5.24.0](https://github.com/Infomaximum/widget-sdk/compare/v5.23.0...v5.24.0) (2025-06-06)
 
 

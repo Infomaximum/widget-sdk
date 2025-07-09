@@ -120,7 +120,7 @@ export interface IParameterFromDynamicList {
   filters: TExtendedFormulaFilterValue[];
   filterByRows?: boolean;
   considerFilters: boolean;
-  enableCustomValue?: boolean;
+  insertAnyValues?: boolean;
   validation?: string;
 }
 
@@ -194,13 +194,13 @@ export interface IActionRunScript extends IActionCommon {
   scriptKey: string;
   autoUpdate: EAutoUpdateMode;
   hideInactiveButton?: boolean;
-  blockingCondition?:
+  activateCondition?:
     | {
-        mode: EBlockingConditionMode.FORMULA;
+        mode: EActivateConditionMode.FORMULA;
         formula: string;
       }
     | {
-        mode: EBlockingConditionMode.VARIABLE;
+        mode: EActivateConditionMode.VARIABLE;
         variableName: string;
         variableValue: string;
       };
@@ -265,7 +265,7 @@ export type TActionsOnClick =
   | IActionUpdateVariable
   | TActionOpenView;
 
-export enum EBlockingConditionMode {
+export enum EActivateConditionMode {
   FORMULA = "FORMULA",
   VARIABLE = "VARIABLE",
 }
@@ -276,13 +276,13 @@ export interface IWidgetAction extends IActionCommon {
   scriptKey: string;
   autoUpdate: EAutoUpdateMode;
   description: string;
-  blockingCondition:
+  activateCondition:
     | {
-        mode: EBlockingConditionMode.FORMULA;
+        mode: EActivateConditionMode.FORMULA;
         formula: string;
       }
     | {
-        mode: EBlockingConditionMode.VARIABLE;
+        mode: EActivateConditionMode.VARIABLE;
         variableName: string;
         variableValue: string;
       };

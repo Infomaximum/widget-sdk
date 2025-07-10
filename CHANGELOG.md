@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.29.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.28.0...v5.29.0-0) (2025-07-10)
+
+
+### Features
+
+* отказ от имени процесса ([4fa01d5](https://github.com/Infomaximum/widget-sdk/commit/4fa01d5c2602211810277d0b6aef6b4d5f62e19c))
+
+
+### Bug Fixes
+
+* deprecated поле processName для интерфейса IProcessGraphCalculatorInput сделано необзятельным ([859f959](https://github.com/Infomaximum/widget-sdk/commit/859f959ea963ea2ed9214ccc4a4dc43a8b49142c))
+
 ## [5.28.0](https://github.com/Infomaximum/widget-sdk/compare/v5.27.0...v5.28.0) (2025-07-07)
 
 

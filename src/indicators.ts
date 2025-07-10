@@ -283,7 +283,7 @@ export enum EDurationTemplateName {
 export type TWidgetIndicatorAggregationValue = {
   mode: EWidgetIndicatorValueModes.AGGREGATION;
   templateName: string;
-  processName: string | null;
+  processKey: string | null;
   eventName: string | null;
   caseCaseIdFormula: string | null;
   eventNameFormula: string | null;
@@ -303,13 +303,13 @@ export type TWidgetIndicatorConversionValue = {
   mode: EWidgetIndicatorValueModes.CONVERSION;
 
   startEventNameFormula: string | null;
-  startEventProcessName: string | null;
+  startEventProcessKey: string | null;
   startEventName: string | null;
   startEventFilters: TExtendedFormulaFilterValue[];
   startEventTimeFormula: string | null;
 
   endEventNameFormula: string | null;
-  endEventProcessName: string | null;
+  endEventProcessKey: string | null;
   endEventName: string | null;
   endEventFilters: TExtendedFormulaFilterValue[];
   endCaseCaseIdFormula: string | null;
@@ -326,7 +326,7 @@ export type TWidgetIndicatorDurationValue = {
 export type TWidgetIndicatorTimeValue = {
   templateName: string;
   mode: EWidgetIndicatorValueModes.START_TIME | EWidgetIndicatorValueModes.END_TIME;
-  processName: string;
+  processKey: string;
   eventName: string;
   eventTimeFormula: string;
   caseCaseIdFormula: string;

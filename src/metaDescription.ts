@@ -290,6 +290,8 @@ export interface IWidgetProcess {
   // todo: удалить после окончания поддержки миграций [BI-13650]
   /** @deprecated */
   guid: string;
+  /** Ключ процесса */
+  key: string;
   /** Имя процесса */
   name: string;
   /** Формула имени события */

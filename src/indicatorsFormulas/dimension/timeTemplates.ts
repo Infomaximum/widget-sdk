@@ -34,7 +34,7 @@ export const prepareTimeParams = (value: TWidgetIndicatorTimeValue) => {
     !value.eventName ||
     !value.caseCaseIdFormula ||
     !value.eventNameFormula ||
-    !value.processName ||
+    !value.processKey ||
     !value.templateName ||
     !value.eventTimeFormula
   ) {

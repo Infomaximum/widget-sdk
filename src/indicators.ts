@@ -137,6 +137,7 @@ export interface IWidgetDimension extends Omit<IWidgetColumnIndicator, "value"> 
       })
     | TWidgetIndicatorTimeValue;
   hideEmptyValues: boolean;
+  arrayNesting?: boolean;
 }
 
 export interface IWidgetMeasure extends Omit<IWidgetColumnIndicator, "value"> {

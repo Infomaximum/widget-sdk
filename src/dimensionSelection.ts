@@ -1,4 +1,9 @@
-import type { ICalculatorFilter } from "./calculators";
+import { applyIndexToArrayFormula, type ICalculatorFilter } from "./calculators";
+import {
+  isValidFormulaFilterValue,
+  type IWidgetFilter,
+  type TWidgetFilterValue,
+} from "./filtration";
 import { EWidgetFilterMode } from "./settings/values";
 
 export interface IDimensionSelection {
@@ -119,21 +124,40 @@ export const updateMultiModeSelection: TUpdateSelection = (
   });
 };
 
-export const replaceFiltersBySelection = (
-  filters: ICalculatorFilter[],
+export function replaceFiltersBySelection<T extends ICalculatorFilter | IWidgetFilter>(
+  filters: T[],
   selection: IDimensionSelectionByFormula
-) => {
-  return filters.reduce<ICalculatorFilter[]>((acc, filter) => {
-    const calculatorFilter = selection.has(filter.formula)
-      ? selection.get(filter.formula)?.replacedFilter
-      : filter;
+): T[] {
+  const isWidgetFilter = (filter: ICalculatorFilter | IWidgetFilter): filter is IWidgetFilter =>
+    "filterValue" in filter;
 
-    if (!calculatorFilter) {
+  const getFilterValueFormula = (filterValue: TWidgetFilterValue) => {
+    if (!isValidFormulaFilterValue(filterValue) || !filterValue.sliceIndex) {
+      return null;
+    }
+
+    return applyIndexToArrayFormula(filterValue.formula, filterValue.sliceIndex);
+  };
+
+  return filters.reduce<T[]>((acc, filter) => {
+    const filterFormula = isWidgetFilter(filter)
+      ? getFilterValueFormula(filter.filterValue)
+      : filter.formula;
+
+    if (!filterFormula) {
       return acc;
     }
 
-    acc.push(calculatorFilter);
+    const currentFilter = selection.has(filterFormula)
+      ? selection.get(filterFormula)?.replacedFilter
+      : filter;
+
+    if (!currentFilter) {
+      return acc;
+    }
+
+    acc.push(currentFilter as T);
 
     return acc;
   }, []);
-};
+}

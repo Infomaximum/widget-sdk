@@ -14,8 +14,13 @@ import type { IViewContext } from "./viewContext";
 export type TLaunchActionParams = {
   /** Запускаемое действие */
   action: TAction;
+  /** Callback, вызываемый при успешном выполнении действия */
+  onComplete?: () => void;
+  /** Callback, вызываемый при ошибке запуска или выполнения действия */
+  onError?: () => void;
   /** Callback, вызываемый при успешном запуске действия */
-  onSuccess: () => void;
+  /** @deprecated заменен на onComplete и onError*/
+  onSuccess?: () => void;
 
   /** Требуется ли подтверждение о запуске (откроется модальное окно) */
   needConfirmation?: boolean;

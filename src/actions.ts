@@ -50,7 +50,7 @@ export enum EDrawerPlacement {
 export enum EAutoUpdateMode {
   NONE = "NONE",
   THIS_WIDGET = "THIS_WIDGET",
-  ALL_WIDGETS = "ALL_WIDGETS",
+  ALL_VIEWS = "ALL_VIEWS",
 }
 
 export enum EDataModelOption {
@@ -303,7 +303,7 @@ export interface IViewAction {
   parameters: TViewActionParameter[];
   scriptKey: string;
   id?: number;
-  autoUpdate?: EAutoUpdateMode.NONE | EAutoUpdateMode.ALL_WIDGETS;
+  autoUpdate?: EAutoUpdateMode.NONE | EAutoUpdateMode.ALL_VIEWS;
 }
 
 export type TAction = TActionsOnClick | IWidgetAction | IViewAction;

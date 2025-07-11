@@ -102,12 +102,14 @@ export interface IParameterFromManualInput {
   defaultValue?: string;
   dbDataType?: string;
   filterByRows?: boolean;
+  acceptEmptyValue?: boolean;
 }
 
 export interface IParameterFromStaticList {
   inputMethod: EWidgetActionInputMethod.STATIC_LIST;
   options: string;
   defaultValue: string | string[];
+  acceptEmptyValue?: boolean;
 }
 
 export interface IParameterFromDynamicList {
@@ -120,6 +122,7 @@ export interface IParameterFromDynamicList {
   filterByRows?: boolean;
   considerFilters: boolean;
   enableCustomValue?: boolean;
+  acceptEmptyValue?: boolean;
 }
 
 interface IParameterFromDataModelBase {

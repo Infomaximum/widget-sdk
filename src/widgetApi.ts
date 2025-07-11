@@ -19,7 +19,6 @@ export type TLaunchActionParams = {
   /** Callback, вызываемый при ошибке запуска или выполнения действия */
   onError?: () => void;
   /** Callback, вызываемый при успешном запуске действия */
-  /** @deprecated заменен на onComplete и onError*/
   onSuccess?: () => void;
 
   /** Требуется ли подтверждение о запуске (откроется модальное окно) */

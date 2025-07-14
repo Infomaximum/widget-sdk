@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.29.0](https://github.com/Infomaximum/widget-sdk/compare/v5.28.1...v5.29.0) (2025-07-14)
+
+
+### Features
+
+* в параметры запуска скрипта добавлены свойства onComplete и onError, а onSuccess сделан опциональным ([b989b84](https://github.com/Infomaximum/widget-sdk/commit/b989b84fe5008f6455fa7dacd51cf42beadb75dc))
+* Для способов ввода Вручную, Динамический и Статический список добавлен флаг acceptEmptyValue ([8ad56ae](https://github.com/Infomaximum/widget-sdk/commit/8ad56ae6b3f57d06c2e1aa54f0354b25490fcf14))
+
 ### [5.28.1](https://github.com/Infomaximum/widget-sdk/compare/v5.28.0...v5.28.1) (2025-07-11)
 
 ## [5.28.0](https://github.com/Infomaximum/widget-sdk/compare/v5.27.0...v5.28.0) (2025-07-07)

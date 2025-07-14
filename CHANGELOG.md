@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.13.0-1](https://github.com/Infomaximum/widget-sdk/compare/v5.13.0-0...v5.13.0-1) (2025-07-14)
+
+
+### Features
+
+* в параметры запуска скрипта добавлены свойства onComplete и onError, а onSuccess отмечен deprecated ([9a19aae](https://github.com/Infomaximum/widget-sdk/commit/9a19aae8052538ad97acdaacb0337cf754c6720a))
+
+
+### Bug Fixes
+
+* удален deprecated у onSuccess ([7c0828b](https://github.com/Infomaximum/widget-sdk/commit/7c0828be76f023ccc5a1f4614792c22025b0e226))
+
 ## [5.13.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.12.4-0...v5.13.0-0) (2025-07-08)
 
 

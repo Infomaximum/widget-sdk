@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.30.0](https://github.com/Infomaximum/widget-sdk/compare/v5.29.0...v5.30.0) (2025-07-15)
+
+
+### Features
+
+* Изменено поле ALL_WIDGETS > ALL_VIEWS для EAutoUpdateMode ([cb9ce26](https://github.com/Infomaximum/widget-sdk/commit/cb9ce26826f1c90cbadf2dd2d25932973050873f))
+
 ## [5.29.0](https://github.com/Infomaximum/widget-sdk/compare/v5.28.1...v5.29.0) (2025-07-14)
 
 

@@ -81,8 +81,10 @@ export interface IGlobalContext {
 
   /** Состояния(название сущности) отчета */
   states: Map<string, ICommonState>;
-  /** Процессы из модели данных */
+  /** @deprecated Процессы из модели данных (по имени) */
   processes: Map<string, IWidgetProcess>;
+  /** Процессы из модели данных (по ключу) */
+  processByKey: Map<string, IWidgetProcess>;
   /** Имена таблиц из модели данных */
   tables: Set<string>;
   /** Функция для запроса информации о колонках таблицы из модели данных */

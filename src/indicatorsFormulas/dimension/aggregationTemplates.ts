@@ -39,7 +39,7 @@ export const prepareDimensionAggregationParams = (
     !value.eventName ||
     !value.caseCaseIdFormula ||
     !value.eventNameFormula ||
-    !value.processName ||
+    !value.processKey ||
     !value.templateName
   ) {
     return null;

@@ -1,8 +1,5 @@
-import { escapeSpecialCharacters } from "../../calculators/utils/escapeSpecialCharacters";
+import { escapeDoubleQuoteLinkName } from "../link";
 
 export function generateColumnFormula(tableName: string, columnName: string) {
-  const preparedTableName = escapeSpecialCharacters(tableName);
-  const preparedColumnName = escapeSpecialCharacters(columnName);
-
-  return `"${preparedTableName}"."${preparedColumnName}"`;
+  return `"${escapeDoubleQuoteLinkName(tableName)}"."${escapeDoubleQuoteLinkName(columnName)}"`;
 }

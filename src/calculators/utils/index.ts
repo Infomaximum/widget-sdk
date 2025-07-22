@@ -25,7 +25,7 @@ export {
   bindContentsWithIndicators,
   type TBoundedContentWithIndicator,
 } from "./bindContentsWithIndicators";
-export { escapeSpecialCharacters } from "./escapeSpecialCharacters";
+export * from "./escapeSpecialCharacters";
 export { unescapeSpecialCharacters } from "./unescapeSpecialCharacters";
 export {
   prepareFormulaForSql,

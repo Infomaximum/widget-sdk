@@ -1,26 +1,39 @@
+import { createEscaper } from "../calculators/utils/escapeSpecialCharacters";
 import { unescapeSpecialCharacters } from "../calculators/utils/unescapeSpecialCharacters";
 
 /**
- * Регулярное выражение для поиска имени ссылки внутри формулы.
- * Учитывает, что имя внутри формулы содержит экраны.
+ * Паттерн подстроки, валидной для использования внутри фигурных скобок.
+ * Требование к подстроке - отсутствие закрывающих фигурных скобок (кроме экранированных).
  *
- * Принцип работы:
- * Пробовать следующие вхождения:
- *  - \\\\ - экранированный символ обратного слэша.
- *  - Иначе \\" - экранированный символ кавычки.
- *  - Иначе [^"] - любой символ кроме кавычки.
- *  Если встречается любой другой символ, то это закрывающая кавычка имени переменной.
+ * Принцип в строго последовательной проверке следующих вхождений:
+ *  - \\\\ - экранированный символ экрана;
+ *  - \\\} - экранированная закрывающая скобка;
+ *  - [^\}] - любой символ кроме закрывающей скобки;
+ *  - Если встречается любой другой символ, то это закрывающая скобка - подстрока невалидна.
  */
-export const linkNameRegExp = `(?:\\\\\\\\|\\\\"|[^"])+`;
+export const curlyBracketsContentPattern = String.raw`(?:\\\\|\\\}|[^\}])*`;
+
+/*
+ * Паттерн подстроки, валидной для использования внутри двойных кавычек.
+ * Требования и принцип аналогичны `curlyBracketsContentPattern`.
+ */
+export const doubleQuoteContentPattern = String.raw`(?:\\\\|\\\"|[^\"])+`;
 
 export const dashboardLinkRegExp = new RegExp(
-  `link: "(${linkNameRegExp})"(?!\\."${linkNameRegExp}")`,
+  String.raw`#\{(${curlyBracketsContentPattern})\}`,
   "g"
 );
+
 export const workspaceLinkRegExp = new RegExp(
-  `link: "(${linkNameRegExp})"\\."(${linkNameRegExp})"`,
+  String.raw`#\{(${curlyBracketsContentPattern})\}\.\{(${curlyBracketsContentPattern})\}`,
   "g"
 );
+
+/** Экранирование спец.символов при подстановке названий таблиц и колонок */
+export const escapeDoubleQuoteLinkName = createEscaper(Array.from(`\\"`));
+
+/** Экранирование спец.символов при подстановке названий переменных и показателей */
+export const escapeCurlyBracketLinkName = createEscaper(Array.from(`\\}.[]`));
 
 export interface IIndicatorLink {
   /** string - имя группы пространства, null - используется текущий отчет */

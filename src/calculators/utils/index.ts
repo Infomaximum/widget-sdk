@@ -20,6 +20,13 @@ export { prepareSortOrders, getDefaultSortOrders } from "./mapSortingToInputs";
 export { mapSortingToInputs } from "./mapSortingToInputs";
 export { selectDimensionFromHierarchy } from "./selectDimensionFromHierarchy";
 export { replaceHierarchiesWithDimensions } from "./replaceHierarchiesWithDimensions";
+export { replaceHierarchiesForNestingQuery } from "./replaceHierarchiesForNestingQuery";
+export { replaceHierarchiesWithSlicedDimensions } from "./replaceHierarchiesWithSlicedDimensions";
+export {
+  type ISlicedDimension,
+  type TDimensionMaxNestingMap,
+  selectSlicedDimensionFromHierarchy,
+} from "./selectSlicedDimensionFromHierarchy";
 export {
   bindContentWithIndicator,
   bindContentsWithIndicators,

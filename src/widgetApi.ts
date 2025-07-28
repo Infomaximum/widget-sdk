@@ -89,7 +89,13 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
   /** Функция для подписки на расфокусировку виджета (например, при фокусировке на другом виджете) */
   subscribeOnFocusOut(subscriber: () => void): void;
   /** Функция для захвата фокуса виджетом: остальные виджеты будут оповещены о расфокусировке */
-  captureFocus(): void;
+  captureFocus(options?: {
+    /**
+     * Якорный участок виджета, по которому сохраняется его положение
+     * @default "bottom"
+     */
+    anchor?: "top" | "bottom";
+  }): void;
 
   /** Глобальный контекст. Содержит информацию из отчета, пространства и платформы системы */
   globalContext: IGlobalContext;

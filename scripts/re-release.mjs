@@ -14,6 +14,6 @@ const branchName = execSync("git rev-parse --abbrev-ref HEAD").toString().trim()
 
 const newVersion = `${baseVersion}-${commitHash}-${branchName}`;
 
-execSync(`npx standard-version --release-as ${newVersion} --skip.tag=false --skip.commit`, {
+execSync(`npx standard-version --release-as ${newVersion} --skip.tag=false`, {
   stdio: "inherit",
 });

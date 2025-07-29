@@ -3,6 +3,9 @@ import type { EFormatTypes } from "./formatting";
 import type { TNullable, valueof } from "./utilityTypes";
 import { ECalculatorFilterMethods } from "./calculators/calculator";
 import type { EDurationUnit, ELastTimeUnit } from "./calculators/utils/mapFormulaFiltersToInputs";
+import type { EWidgetIndicatorValueModes } from "./indicators";
+import type { IFormulaControl } from "./controls";
+import { isObject } from "./utils/functions";
 
 export type TSelectivePartial<T, Keys extends keyof T> = Omit<T, Keys> & Partial<Pick<T, Keys>>;
 
@@ -149,9 +152,44 @@ export interface IFormulaFilterValue {
     [EFormulaFilterFieldKeys.numberRange]: Partial<[number, number]>;
     [EFormulaFilterFieldKeys.string]: string;
     [EFormulaFilterFieldKeys.lastTimeValue]: number;
-    [EFormulaFilterFieldKeys.lastTimeUnit]: ELastTimeUnit;
+    [EFormulaFilterFieldKeys.lastTimeUnit]: Exclude<
+      ELastTimeUnit,
+      ELastTimeUnit.MINUTES | ELastTimeUnit.HOURS
+    >;
     [EFormulaFilterFieldKeys.durationUnit]: EDurationUnit;
   }>;
+}
+
+export enum EConditionsByInstant {
+  LAST_TIME = "LAST_TIME",
+  IN_RANGE = "RANGE",
+  NOT_IN_RANGE = "NOT_RANGE",
+  EQUAL_TO = "EQUAL",
+  NOT_EQUAL_TO = "NOT_EQUAL",
+  GREATER_THAN = "MORE",
+  LESS_THAN = "LESS",
+  GREATER_THAN_OR_EQUAL_TO = "MORE_OR_EQUAL",
+  LESS_THAN_OR_EQUAL_TO = "LESS_OR_EQUAL",
+  EMPTY = "EMPTY_VALUE",
+  NONEMPTY = "NOT_EMPTY_VALUE",
+}
+
+export interface IDimensionProcessFilter {
+  value: Extract<
+    IFormulaControl["value"],
+    {
+      mode:
+        | EWidgetIndicatorValueModes.AGGREGATION
+        | EWidgetIndicatorValueModes.START_TIME
+        | EWidgetIndicatorValueModes.END_TIME;
+    }
+  >;
+  dbDataType: string;
+  condition: {
+    filteringMethod: EConditionsByInstant;
+    timeUnit: ELastTimeUnit;
+    values: (string | null)[];
+  };
 }
 
 export type TExtendedFormulaFilterValue = { formula: string } | IFormulaFilterValue;
@@ -239,4 +277,16 @@ export const isFormulaFilterValue = (
   value: TExtendedFormulaFilterValue
 ): value is IFormulaFilterValue => {
   return "filteringMethod" in value;
+};
+
+export const isDimensionProcessFilter = (filter: unknown): filter is IDimensionProcessFilter => {
+  if (!isObject(filter)) {
+    return false;
+  }
+
+  if ("value" in filter && "condition" in filter && "dbDataType" in filter) {
+    return true;
+  }
+
+  return false;
 };

@@ -1,8 +1,8 @@
 import type { IWidgetAction } from "../actions";
-import type { TExtendedFormulaFilterValue } from "../filtration";
 import type { EFontWeight, EWidgetFilterMode } from "./values";
 import type { IMarkdownMeasure, IWidgetSortingIndicator } from "../indicators";
 import type { TColor } from "../color";
+import type { TWidgetFilter } from "../calculators/utils/mapWidgetFiltersToInputs";
 
 export interface IAutoIdentifiedArrayItem {
   /**
@@ -22,7 +22,7 @@ export interface IBaseWidgetSettings {
   markdownMeasures?: IMarkdownMeasure[];
   markdownText?: string;
   markdownTextSize?: number;
-  filters?: TExtendedFormulaFilterValue[];
+  filters?: TWidgetFilter[];
   filterMode?: EWidgetFilterMode;
   ignoreFilters?: boolean;
   sorting?: IWidgetSortingIndicator[];

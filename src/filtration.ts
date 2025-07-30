@@ -176,7 +176,7 @@ export enum EConditionsByInstant {
 
 export interface IDimensionProcessFilter {
   value: Extract<
-    IFormulaControl["value"],
+    IFormulaControl["value"]["value"],
     {
       mode:
         | EWidgetIndicatorValueModes.AGGREGATION

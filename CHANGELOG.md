@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.29.0-2506.0](https://github.com/Infomaximum/widget-sdk/compare/v5.28.1-2506.0...v5.29.0-2506.0) (2025-07-31)
+
+
+### Features
+
+* добавлена возможность управления якорем для сохранения положения виджета ([3f74829](https://github.com/Infomaximum/widget-sdk/commit/3f748291e9f2a046a6ad72f61681ff5e22586bbe))
+
 ### [5.28.1-2506.0](https://github.com/Infomaximum/widget-sdk/compare/v5.28.1-3d31a2c-2506...v5.28.1-2506.0) (2025-07-28)
 
 ### [5.28.1-3d31a2c-2506](https://github.com/Infomaximum/widget-sdk/compare/v5.28.1-0...v5.28.1-3d31a2c-2506) (2025-07-28)

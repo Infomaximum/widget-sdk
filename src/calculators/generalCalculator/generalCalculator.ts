@@ -22,7 +22,7 @@ export interface IGeneralCalculatorExportInput extends IGeneralCalculatorInput {
 export interface IGeneralCalculatorOutput extends IBaseDimensionsAndMeasuresCalculatorOutput {
   // todo: widgets - подумать нужны ли итоги для дополнительных формул
   /** Итоги по мерам */
-  totals: Map<string, string>;
+  totals: Map<string, string | null>;
 }
 
 export interface IGeneralCalculator

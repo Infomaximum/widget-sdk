@@ -41,3 +41,7 @@ export function memoize<T extends string | number | null | undefined, R>(
     return result;
   };
 }
+
+export function isObject(value: unknown): value is object {
+  return typeof value === 'object' && value !== null && !Array.isArray(value)
+}

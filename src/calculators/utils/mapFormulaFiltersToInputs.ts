@@ -16,6 +16,8 @@ import { ESimpleDataType } from "../../data";
 import { prepareFormulaForSql } from "./prepareFormulaForSql";
 
 export enum ELastTimeUnit {
+  MINUTES = "MINUTES",
+  HOURS = "HOURS",
   DAYS = "DAYS",
   MONTHS = "MONTHS",
   YEARS = "YEARS",
@@ -47,7 +49,11 @@ const convertDateToClickHouse = (date: Date, showTime: boolean) => {
   return showTime ? `${dateString} ${timeString}` : `${dateString}`;
 };
 
-const subtractDurationFromDate = (date: Date, value: number, unitTime: ELastTimeUnit) => {
+const subtractDurationFromDate = (
+  date: Date,
+  value: number,
+  unitTime: Exclude<ELastTimeUnit, ELastTimeUnit.HOURS | ELastTimeUnit.MINUTES>
+) => {
   switch (unitTime) {
     case ELastTimeUnit.DAYS:
       date.setDate(date.getDate() - value);
@@ -136,7 +142,11 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
 
         return compact([
           convertDateToClickHouse(
-            subtractDurationFromDate(new Date(), lastTimeValue ?? 0, lastTimeUnit as ELastTimeUnit),
+            subtractDurationFromDate(
+              new Date(),
+              lastTimeValue ?? 0,
+              lastTimeUnit as Exclude<ELastTimeUnit, ELastTimeUnit.MINUTES | ELastTimeUnit.HOURS>
+            ),
             showTime
           ),
           convertDateToClickHouse(new Date(), showTime),

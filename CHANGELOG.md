@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.32.1](https://github.com/Infomaximum/widget-sdk/compare/v5.32.0...v5.32.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* исправлена типизация ответов вычислителей ([0453793](https://github.com/Infomaximum/widget-sdk/commit/04537930ba1916d300b279e658a7e9b8da191af4))
+
 ## [5.32.0](https://github.com/Infomaximum/widget-sdk/compare/v5.31.0...v5.32.0) (2025-07-31)
 
 

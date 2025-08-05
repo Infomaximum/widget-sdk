@@ -41,9 +41,8 @@ export interface IProcessIndicator extends IWidgetIndicator {
   value?: TProcessIndicatorValue;
   dbDataType?: string;
 
-  format?: EFormatTypes;
-  formatting?: EFormattingPresets;
-  formattingTemplate?: string;
+  format?: IWidgetColumnIndicator["format"];
+  formatting?: IWidgetColumnIndicator["formatting"];
 
   displayCondition?: TDisplayCondition;
 }
@@ -111,13 +110,17 @@ export type TColumnIndicatorValue =
       columnName?: string;
     };
 
+export enum EFormatOrFormattingMode {
+  BASE = "BASE",
+  TEMPLATE = "TEMPLATE",
+}
+
 /** Общий интерфейс разреза и меры */
 export interface IWidgetColumnIndicator extends IWidgetIndicator {
   dbDataType?: string;
 
-  format?: EFormatTypes;
-  formatting?: EFormattingPresets;
-  formattingTemplate?: string;
+  format?: { value?: EFormatTypes; mode: EFormatOrFormattingMode };
+  formatting?: { value?: EFormattingPresets; mode: EFormatOrFormattingMode };
   displayCondition?: TDisplayCondition;
   onClick?: TActionsOnClick[];
 }
@@ -150,7 +153,6 @@ export interface IWidgetMeasure extends Omit<IWidgetColumnIndicator, "value"> {
 }
 
 export interface IMarkdownMeasure extends IWidgetMeasure {
-  format: EFormatTypes;
   displaySign: EMarkdownDisplayMode;
 }
 

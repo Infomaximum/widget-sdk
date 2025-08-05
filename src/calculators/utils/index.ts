@@ -27,6 +27,7 @@ export {
 } from "./bindContentsWithIndicators";
 export { escapeSpecialCharacters } from "./escapeSpecialCharacters";
 export { unescapeSpecialCharacters } from "./unescapeSpecialCharacters";
+export { escapeSpecialsCharsInVariableName } from "./escapeSpecialsCharsInVariableName";
 export {
   prepareFormulaForSql,
   clearMultiLineComments,

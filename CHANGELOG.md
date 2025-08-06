@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.33.0](https://github.com/Infomaximum/widget-sdk/compare/v5.32.1...v5.33.0) (2025-08-06)
+
+
+### Features
+
+* расширены шаблоны процессных агрегаций ([f2bfbaf](https://github.com/Infomaximum/widget-sdk/commit/f2bfbafb557ba72ae605d906ae1341109adf3894))
+
 ### [5.32.1](https://github.com/Infomaximum/widget-sdk/compare/v5.32.0...v5.32.1) (2025-08-05)
 
 

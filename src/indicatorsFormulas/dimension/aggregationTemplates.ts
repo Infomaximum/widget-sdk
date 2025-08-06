@@ -6,6 +6,13 @@ import {
   firstValueTemplate,
   lastValueTemplate,
   topTemplate,
+  avgTemplate,
+  medianTemplate,
+  countTemplate,
+  countDistinctTemplate,
+  minTemplate,
+  maxTemplate,
+  sumTemplate,
 } from "../shared/aggregationTemplates";
 import { generateColumnFormula } from "../shared";
 
@@ -15,6 +22,13 @@ export enum EDimensionAggregationTemplateName {
   lastValue = "lastValue",
   countExecutions = "countExecutions",
   countReworks = "countReworks",
+  avg = "avg",
+  median = "median",
+  count = "count",
+  countDistinct = "countDistinct",
+  min = "min",
+  max = "max",
+  sum = "sum",
 }
 
 /** Шаблоны процессных метрик разреза с режимом AGGREGATION */
@@ -24,6 +38,13 @@ export const dimensionAggregationTemplates: Record<EDimensionAggregationTemplate
   [EDimensionAggregationTemplateName.lastValue]: lastValueTemplate,
   [EDimensionAggregationTemplateName.countExecutions]: countExecutionsTemplate,
   [EDimensionAggregationTemplateName.countReworks]: countReworksTemplate,
+  [EDimensionAggregationTemplateName.avg]: avgTemplate,
+  [EDimensionAggregationTemplateName.median]: medianTemplate,
+  [EDimensionAggregationTemplateName.count]: countTemplate,
+  [EDimensionAggregationTemplateName.countDistinct]: countDistinctTemplate,
+  [EDimensionAggregationTemplateName.min]: minTemplate,
+  [EDimensionAggregationTemplateName.max]: maxTemplate,
+  [EDimensionAggregationTemplateName.sum]: sumTemplate,
 };
 
 /** На основе значения режима AGGREGATION подготовить параметры для подстановки в шаблонную формулу */

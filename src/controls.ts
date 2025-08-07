@@ -404,7 +404,7 @@ export interface ITagSetControl {
 
 export interface IEventsPickerControl {
   type: EControlType.eventsPicker;
-  value: (string | null)[];
+  value: null | (string | null)[];
   props: {
     process: IWidgetProcess | undefined;
     withPercentageSelection?: boolean;

@@ -285,10 +285,10 @@ export type TWidgetIndicatorAggregationValue = {
   templateName: string;
   processKey: string | null;
   eventName: string | null;
-  caseCaseIdFormula: string | null;
   eventNameFormula: string | null;
+  anyEvent?: true;
+  caseCaseIdFormula: string | null;
   filters: TExtendedFormulaFilterValue[];
-
   tableName?: string;
   columnName?: string;
   eventTimeFormula?: string | null;

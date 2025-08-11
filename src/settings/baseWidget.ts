@@ -1,4 +1,4 @@
-import type { IWidgetAction } from "../actions";
+import type { IActionButton } from "../actions";
 import type { TExtendedFormulaFilterValue } from "../filtration";
 import type { EFontWeight, EWidgetFilterMode } from "./values";
 import type { IMarkdownMeasure, IWidgetSortingIndicator } from "../indicators";
@@ -26,6 +26,6 @@ export interface IBaseWidgetSettings {
   filterMode?: EWidgetFilterMode;
   ignoreFilters?: boolean;
   sorting?: IWidgetSortingIndicator[];
-  actions?: IWidgetAction[];
+  actionButtons?: IActionButton[];
   paddings?: number | string;
 }

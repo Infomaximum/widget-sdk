@@ -8,19 +8,22 @@ import {
 } from "../shared/aggregationTemplates";
 import { EMeasureAggregationTemplateName } from "./aggregationTemplates";
 
-function createAggregationTemplate(fn: string, additionalFn?: string) {
-  return `{outerAggregation}If(process(${fn}(${additionalFn ? additionalFn + " " : ""}{columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})`;
+function createAnyEventFormula(aggregatePart: string) {
+  return `{outerAggregation}If(process(${aggregatePart}, {caseCaseIdFormula}), {objectFilters})`;
 }
 
-/** Вспомогательная функция для шаблонов top/firstValue/lastValue */
-function createTopLikeTemplate(template: string): (outerAggregation: EOuterAggregation) => string {
+function createSpecificEventFormula(fn: string, additionalFn?: string) {
+  return `{outerAggregation}If(process(${fn}(${additionalFn ? `${additionalFn} ` : ""}{columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})`;
+}
+
+function createTopLikeTemplate(template: string) {
   return (outerAggregation: EOuterAggregation) =>
     outerAggregation === EOuterAggregation.top
       ? `{outerAggregation}KIf(1)(${template}, {objectFilters})[1]`
       : `{outerAggregation}If(${template}, {objectFilters})`;
 }
 
-export const createAggregationFormulaByTemplateName = (
+function createAggregationFormulaByTemplateName(
   templateName: EMeasureAggregationTemplateName,
   {
     outerAggregation,
@@ -28,51 +31,53 @@ export const createAggregationFormulaByTemplateName = (
   }: Pick<TWidgetIndicatorAggregationValue, "anyEvent"> & {
     outerAggregation: EOuterAggregation;
   }
-) => {
+) {
   switch (templateName) {
     case EMeasureAggregationTemplateName.agvIf:
       return anyEvent
-        ? "{outerAggregation}If(process(avg({columnFormula}), {caseCaseIdFormula}), {objectFilters})"
-        : createAggregationTemplate("avgIf");
+        ? createAnyEventFormula("avg({columnFormula})")
+        : createSpecificEventFormula("avgIf");
     case EMeasureAggregationTemplateName.medianIf:
       return anyEvent
-        ? "{outerAggregation}If(process(median({columnFormula}), {caseCaseIdFormula}), {objectFilters})"
-        : createAggregationTemplate("medianIf");
+        ? createAnyEventFormula("median({columnFormula})")
+        : createSpecificEventFormula("medianIf");
     case EMeasureAggregationTemplateName.countIf:
       return anyEvent
-        ? "{outerAggregation}If(process(count({columnFormula}), {caseCaseIdFormula}), {objectFilters})"
-        : createAggregationTemplate("countIf");
+        ? createAnyEventFormula("count({columnFormula})")
+        : createSpecificEventFormula("countIf");
     case EMeasureAggregationTemplateName.countIfDistinct:
       return anyEvent
-        ? "{outerAggregation}If(process(count(distinct {columnFormula}), {caseCaseIdFormula}), {objectFilters})"
-        : createAggregationTemplate("countIf", "distinct");
+        ? createAnyEventFormula("count(distinct {columnFormula})")
+        : createSpecificEventFormula("countIf", "distinct");
     case EMeasureAggregationTemplateName.minIf:
       return anyEvent
-        ? "{outerAggregation}If(process(min({columnFormula}), {caseCaseIdFormula}), {objectFilters})"
-        : createAggregationTemplate("minIf");
+        ? createAnyEventFormula("min({columnFormula})")
+        : createSpecificEventFormula("minIf");
     case EMeasureAggregationTemplateName.maxIf:
       return anyEvent
-        ? "{outerAggregation}If(process(max({columnFormula}), {caseCaseIdFormula}), {objectFilters})"
-        : createAggregationTemplate("maxIf");
+        ? createAnyEventFormula("max({columnFormula})")
+        : createSpecificEventFormula("maxIf");
     case EMeasureAggregationTemplateName.sumIf:
       return anyEvent
-        ? "{outerAggregation}If(process(sum({columnFormula}), {caseCaseIdFormula}), {objectFilters})"
-        : createAggregationTemplate("sumIf");
+        ? createAnyEventFormula("sum({columnFormula})")
+        : createSpecificEventFormula("sumIf");
     case EMeasureAggregationTemplateName.top:
       return anyEvent
-        ? "{outerAggregation}If(process(topK(1)({columnFormula})[1], {caseCaseIdFormula}), {objectFilters})"
+        ? createAnyEventFormula("topK(1)({columnFormula})[1]")
         : createTopLikeTemplate(topTemplate)(outerAggregation);
     case EMeasureAggregationTemplateName.firstValue:
       return anyEvent
-        ? "{outerAggregation}If(process(argMin({columnFormula}, {eventTimeFormula}), {caseCaseIdFormula}), {objectFilters})"
+        ? createAnyEventFormula("argMin({columnFormula}, {eventTimeFormula})")
         : createTopLikeTemplate(firstValueTemplate)(outerAggregation);
     case EMeasureAggregationTemplateName.lastValue:
       return anyEvent
-        ? "{outerAggregation}If(process(argMax({columnFormula}, {eventTimeFormula}), {caseCaseIdFormula}), {objectFilters})"
+        ? createAnyEventFormula("argMax({columnFormula}, {eventTimeFormula})")
         : createTopLikeTemplate(lastValueTemplate)(outerAggregation);
     case EMeasureAggregationTemplateName.countExecutions:
-      return `{outerAggregation}If(${countExecutionsTemplate},{objectFilters})`;
+      return `{outerAggregation}If(${countExecutionsTemplate}, {objectFilters})`;
     case EMeasureAggregationTemplateName.countReworks:
-      return `{outerAggregation}If(${countReworksTemplate},{objectFilters})`;
+      return `{outerAggregation}If(${countReworksTemplate}, {objectFilters})`;
   }
-};
+}
+
+export { createAggregationFormulaByTemplateName };

@@ -207,6 +207,7 @@ export interface IActionRunScript extends IActionCommon {
         variableName: string;
         variableValue: string;
       };
+  hint?: string;
 }
 
 export interface IActionUpdateVariable extends IActionCommon {

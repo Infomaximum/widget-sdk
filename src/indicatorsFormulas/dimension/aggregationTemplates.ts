@@ -1,15 +1,29 @@
 import { convertFiltersToFormula } from "../../calculators/utils/filters";
 import type { EWidgetIndicatorValueModes, IWidgetDimension } from "../../indicators";
 import {
-  countExecutionsTemplate,
-  countReworksTemplate,
+  avgTemplate,
+  medianTemplate,
+  countTemplate,
+  countDistinctTemplate,
+  minTemplate,
+  maxTemplate,
+  sumTemplate,
+  topTemplate,
   firstValueTemplate,
   lastValueTemplate,
-  topTemplate,
+  countExecutionsTemplate,
+  countReworksTemplate,
 } from "../shared/aggregationTemplates";
 import { generateColumnFormula } from "../shared";
 
 export enum EDimensionAggregationTemplateName {
+  avg = "avg",
+  median = "median",
+  count = "count",
+  countDistinct = "countDistinct",
+  min = "min",
+  max = "max",
+  sum = "sum",
   top = "top",
   firstValue = "firstValue",
   lastValue = "lastValue",
@@ -19,6 +33,13 @@ export enum EDimensionAggregationTemplateName {
 
 /** Шаблоны процессных метрик разреза с режимом AGGREGATION */
 export const dimensionAggregationTemplates: Record<EDimensionAggregationTemplateName, string> = {
+  [EDimensionAggregationTemplateName.avg]: avgTemplate,
+  [EDimensionAggregationTemplateName.median]: medianTemplate,
+  [EDimensionAggregationTemplateName.count]: countTemplate,
+  [EDimensionAggregationTemplateName.countDistinct]: countDistinctTemplate,
+  [EDimensionAggregationTemplateName.min]: minTemplate,
+  [EDimensionAggregationTemplateName.max]: maxTemplate,
+  [EDimensionAggregationTemplateName.sum]: sumTemplate,
   [EDimensionAggregationTemplateName.top]: topTemplate,
   [EDimensionAggregationTemplateName.firstValue]: firstValueTemplate,
   [EDimensionAggregationTemplateName.lastValue]: lastValueTemplate,

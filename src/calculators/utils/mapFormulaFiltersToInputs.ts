@@ -117,7 +117,7 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
     }) as [string, string];
   }
 
-  switch (format) {
+  switch (format?.value) {
     case EFormatTypes.DATE:
     case EFormatTypes.DATETIME:
       const {
@@ -132,7 +132,7 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
       }
 
       if (filteringMethod === formulaFilterMethods.LAST_TIME) {
-        const showTime = format === EFormatTypes.DATETIME;
+        const showTime = format.value === EFormatTypes.DATETIME;
 
         return compact([
           convertDateToClickHouse(

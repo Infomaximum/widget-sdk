@@ -7,6 +7,11 @@ export {
   EDurationUnit,
 } from "./mapFormulaFiltersToInputs";
 export {
+  type TWidgetFilter,
+  mapWidgetFilterToCalculatorInput,
+  mapWidgetFiltersToInputs,
+} from "./mapWidgetFiltersToInputs";
+export {
   checkDisplayCondition,
   getDisplayConditionFormula,
   replaceDisplayCondition,

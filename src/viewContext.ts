@@ -1,6 +1,6 @@
-import type { TExtendedFormulaFilterValue } from "./filtration";
+import type { TWidgetFilter } from "./calculators/utils/mapWidgetFiltersToInputs";
 
 /** Контекст с данными образа (будет заполняться по мере необходимости) */
 export interface IViewContext {
-  filters: TExtendedFormulaFilterValue[];
+  filters: TWidgetFilter[];
 }

@@ -1,4 +1,4 @@
-export function constructAggregationTemplate(
+function createAggregationTemplate(
   functionName: string,
   options?: {
     distinct?: boolean;
@@ -6,3 +6,5 @@ export function constructAggregationTemplate(
 ) {
   return `process(${functionName}(${options?.distinct ? "distinct " : ""}{columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula})`;
 }
+
+export { createAggregationTemplate };

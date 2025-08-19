@@ -11,7 +11,7 @@ import {
 import { measureTemplateFormulas, type EMeasureTemplateNames } from "./baseTemplates";
 import { conversionTemplate, prepareConversionParams } from "./conversionTemplates";
 import { durationTemplates, prepareDurationParams } from "./durationTemplates";
-import { createAggregationFormulaByTemplateName } from "./createAggregationFormulaByTemplateName";
+import { createAggregationTemplate } from "./createAggregationTemplate";
 
 export function getMeasureFormula({ value }: IWidgetMeasure): string {
   if (!value) {
@@ -41,13 +41,10 @@ export function getMeasureFormula({ value }: IWidgetMeasure): string {
 
     return preparedParams
       ? fillTemplateString(
-          createAggregationFormulaByTemplateName(
-            value.templateName as EMeasureAggregationTemplateName,
-            {
-              outerAggregation: preparedParams.outerAggregation,
-              anyEvent: value.anyEvent,
-            }
-          ),
+          createAggregationTemplate(value.templateName as EMeasureAggregationTemplateName, {
+            outerAggregation: preparedParams.outerAggregation,
+            anyEvent: value.anyEvent,
+          }),
           preparedParams
         )
       : "";

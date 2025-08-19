@@ -1,4 +1,4 @@
-import { constructAggregationTemplate } from "./constructAggregationTemplate";
+import { createAggregationTemplate } from "./createAggregationTemplate";
 
 export const countReworksTemplate =
   "process(if(countIf({eventNameFormula} = '{eventName}'{filters}) > 0, countIf({eventNameFormula}  = '{eventName}'{filters}) - 1, 0), {caseCaseIdFormula})";
@@ -15,16 +15,16 @@ export const firstValueTemplate =
 export const topTemplate =
   "process(topKIf(1)({columnFormula}, {eventNameFormula} = '{eventName}'{filters})[1], {caseCaseIdFormula})";
 
-export const avgTemplate = constructAggregationTemplate("avgIf");
+export const avgTemplate = createAggregationTemplate("avgIf");
 
-export const medianTemplate = constructAggregationTemplate("medianIf");
+export const medianTemplate = createAggregationTemplate("medianIf");
 
-export const countTemplate = constructAggregationTemplate("countIf");
+export const countTemplate = createAggregationTemplate("countIf");
 
-export const countDistinctTemplate = constructAggregationTemplate("countIf", { distinct: true });
+export const countDistinctTemplate = createAggregationTemplate("countIf", { distinct: true });
 
-export const minTemplate = constructAggregationTemplate("minIf");
+export const minTemplate = createAggregationTemplate("minIf");
 
-export const maxTemplate = constructAggregationTemplate("maxIf");
+export const maxTemplate = createAggregationTemplate("maxIf");
 
-export const sumTemplate = constructAggregationTemplate("sumIf");
+export const sumTemplate = createAggregationTemplate("sumIf");

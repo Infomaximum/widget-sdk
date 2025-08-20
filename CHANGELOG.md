@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.33.1...v6.0.0-0) (2025-08-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* получение ф-ии шаблона процессной агрегации для меры через константу "measureAggregationTemplates" заменено на получение через ф-ию "createAggregationFormulaByTemplateName"
+* поле actions удалено из настроек виджетов
+
+### Features
+
+* отказ от поля actions в пользу actionButtons в настройках виджетов ([2ee361a](https://github.com/Infomaximum/widget-sdk/commit/2ee361a5ab1478e1b0ad90feae2256cf90d46058))
+* расширен IInputControl полями hint и hintPlacement. Для запуска скрипта из действий по клику добавлена подсказка ([63d02d6](https://github.com/Infomaximum/widget-sdk/commit/63d02d68bc38bb6d6b1bb2dfd1898d4b948ee6fc))
+
+
+* From BI-15231 into master (#92) ([8257237](https://github.com/Infomaximum/widget-sdk/commit/8257237e12b42ee403378408d0bb5007853c379d)), closes [#92](https://github.com/Infomaximum/widget-sdk/issues/92)
+
 ### [5.33.1](https://github.com/Infomaximum/widget-sdk/compare/v5.33.0...v5.33.1) (2025-08-15)
 
 ## [5.33.0](https://github.com/Infomaximum/widget-sdk/compare/v5.32.1...v5.33.0) (2025-08-06)

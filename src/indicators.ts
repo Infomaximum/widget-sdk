@@ -81,16 +81,10 @@ export enum ESortingValueModes {
 
 export interface ICommonState {
   name: string;
-  // todo: удалить после окончания поддержки миграций [BI-13650]
-  /** @deprecated */
-  guid: string;
 }
 
 export interface ICommonMeasures {
   name: string;
-  // todo: удалить после окончания поддержки миграций [BI-13650]
-  /** @deprecated */
-  guid: string;
   formula: string;
 }
 
@@ -179,9 +173,6 @@ export enum EIndicatorType {
 interface IBaseWidgetVariable {
   /** Имя переменной */
   name: string;
-  // todo: удалить после окончания поддержки миграций [BI-13650]
-  /** @deprecated */
-  guid: string;
 }
 
 /** Обобщенные типы значений переменных */

@@ -17,9 +17,6 @@ export interface IWidgetTableColumn {
 }
 
 interface IScriptField {
-  // todo: удалить после окончания поддержки миграций [BI-13650]
-  /** @deprecated */
-  guid: string;
   name: string;
   isRequired: boolean;
   isArray: boolean;
@@ -27,9 +24,6 @@ interface IScriptField {
 
 export interface IActionScript {
   key: string;
-  // todo: удалить после окончания поддержки миграций [BI-13650]
-  /** @deprecated */
-  guid: string;
   name: string;
   fields: IScriptField[];
 }
@@ -52,10 +46,6 @@ export interface IGlobalContext {
   reportName: string;
   /** Имена образов по их ключу(в текущем отчете) */
   viewNameByKey: Map<string, string>;
-
-  // todo: удалить после окончания поддержки миграций [BI-13650]
-  /** @deprecated имя группы пространства по ее id */
-  workspaceGroupNameById: Map<number, string>;
 
   /** Меры уровня отчета */
   reportMeasures: TNullable<Map<string, ICommonMeasures>>;

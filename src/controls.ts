@@ -24,6 +24,20 @@ import type {
 import type { IRange, TDisplayCondition } from "./settings/values";
 import type { TNullable } from "./utilityTypes";
 
+export type THintPlacement =
+  | "top"
+  | "left"
+  | "right"
+  | "bottom"
+  | "topLeft"
+  | "topRight"
+  | "bottomLeft"
+  | "bottomRight"
+  | "leftTop"
+  | "leftBottom"
+  | "rightTop"
+  | "rightBottom";
+
 export enum EControlType {
   /** Ввод текста */
   input = "input",
@@ -184,6 +198,8 @@ export interface IInputControl {
     /** Использовать ли уменьшенный размер заголовка */
     isSmallTitle?: boolean;
     disabled?: boolean;
+    hintText?: string;
+    hintPlacement?: THintPlacement;
   };
 }
 

@@ -279,6 +279,8 @@ export interface IWidgetAction extends IActionCommon {
   scriptKey: string;
   autoUpdate: EAutoUpdateMode;
   description: string;
+  hideInactiveButton?: boolean;
+  hint?: string;
   activateCondition:
     | {
         mode: EActivateConditionMode.FORMULA;
@@ -289,10 +291,16 @@ export interface IWidgetAction extends IActionCommon {
         variableName: string;
         variableValue: string;
       };
+}
+
+export interface IActionButton extends IAutoIdentifiedArrayItem {
+  name: string;
+  onClick: IWidgetAction[];
   buttonType: EActionButtonsTypes;
   backgroundColor?: TColor;
   borderColor?: TColor;
   color: TColor;
+  hint?: string;
 }
 
 export type TViewActionParameter = (IParameterFromAggregation | IParameterFromVariable) & {

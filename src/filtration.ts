@@ -165,7 +165,7 @@ export interface IDimensionProcessFilter {
   dbDataType: string;
   condition: {
     filteringMethod: valueof<typeof formulaFilterMethods>;
-    timeUnit: EDimensionProcessFilterTimeUnit;
+    timeUnit?: EDimensionProcessFilterTimeUnit;
     values: (string | null)[];
   };
 }

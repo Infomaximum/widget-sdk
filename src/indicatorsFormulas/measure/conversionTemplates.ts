@@ -50,8 +50,6 @@ export const prepareConversionParams = (value: TWidgetIndicatorConversionValue) 
   }
 
   return {
-    objectFilters: "1",
-
     startEventTimeFormula: value.startEventTimeFormula,
     startEventNameFormula: value.startEventNameFormula,
     startEventFilters: convertFiltersToFormula(value.startEventFilters),

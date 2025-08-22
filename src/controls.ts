@@ -4,6 +4,7 @@ import type { ESimpleDataType } from "./data";
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormattingPresets, EFormatTypes } from "./formatting";
 import type {
+  EFormatOrFormattingMode,
   EOuterAggregation,
   IWidgetDimension,
   TColumnIndicatorValue,
@@ -350,9 +351,8 @@ export interface ITypedFormulaControl {
 export interface IFormattingControl {
   type: EControlType.formatting;
   value: {
-    format: EFormatTypes;
-    formatting: EFormattingPresets;
-    formattingTemplate?: string;
+    format: { value?: EFormatTypes; mode: EFormatOrFormattingMode };
+    formatting: { value?: EFormattingPresets; mode: EFormatOrFormattingMode };
   };
   props: {
     formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;

@@ -3,6 +3,7 @@ import type { EFormatTypes } from "./formatting";
 import type { TNullable, valueof } from "./utilityTypes";
 import { ECalculatorFilterMethods } from "./calculators/calculator";
 import type { EDurationUnit, ELastTimeUnit } from "./calculators/utils/mapFormulaFiltersToInputs";
+import type { IWidgetColumnIndicator } from "./indicators";
 
 export type TSelectivePartial<T, Keys extends keyof T> = Omit<T, Keys> & Partial<Pick<T, Keys>>;
 
@@ -137,7 +138,7 @@ export interface IFormulaFilterValue {
   /** Тип данных формулы (без учета `sliceIndex`) */
   dbDataType: string;
   /** Формат */
-  format: EFormatTypes;
+  format: IWidgetColumnIndicator["format"];
   /** Метод фильтрации */
   filteringMethod: valueof<typeof formulaFilterMethods>;
   /** Выбранные в списке значения в виде моделей */

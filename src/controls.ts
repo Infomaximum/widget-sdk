@@ -41,6 +41,8 @@ export type THintPlacement =
 export enum EControlType {
   /** Ввод текста */
   input = "input",
+  /** Ввод текста с поддержкой шаблонной вставки сущностей */
+  inputTemplate = "inputTemplate",
   /** Ввод текста в формате markdown */
   inputMarkdown = "inputMarkdown",
   /** Ввод числа */
@@ -102,6 +104,7 @@ type ControlsMap = {
   [EControlType.tagSet]: ITagSetControl;
   [EControlType.eventsPicker]: IEventsPickerControl;
   [EControlType.eventsColor]: IEventsColorControl;
+  [EControlType.inputTemplate]: IInputTemplatedControl;
 };
 
 export type TControlUnion<Settings extends object> = {
@@ -205,6 +208,12 @@ export interface IInputControl {
 
 export interface IInputMarkdownControl {
   type: EControlType.inputMarkdown;
+  value: string;
+  props: {};
+}
+
+export interface IInputTemplatedControl {
+  type: EControlType.inputTemplate;
   value: string;
   props: {};
 }

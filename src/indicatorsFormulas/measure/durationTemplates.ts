@@ -73,8 +73,6 @@ export const prepareDurationParams = (value: TWidgetIndicatorDurationValue) => {
     appearance === EEventAppearances.FIRST ? "minIf" : "maxIf";
 
   return {
-    objectFilters: "1",
-
     startEventTimeFormula: value.startEventTimeFormula,
     startEventNameFormula: value.startEventNameFormula,
     startEventFilters: convertFiltersToFormula(value.startEventFilters),

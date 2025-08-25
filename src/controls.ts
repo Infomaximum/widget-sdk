@@ -12,7 +12,6 @@ import type {
   TWidgetIndicatorDurationValue,
   TWidgetIndicatorTimeValue,
 } from "./indicators";
-import type { EDimensionTemplateNames } from "./indicatorsFormulas";
 import type {
   IDisplayPredicate,
   IDivePanelDescription,
@@ -20,6 +19,8 @@ import type {
   IWidgetProcess,
   TMeasureAddButtonSelectOption,
   TRecordAccessor,
+  TWidgetDimensionData,
+  TWidgetMeasureData,
 } from "./metaDescription";
 import type { IRange, TDisplayCondition } from "./settings/values";
 import type { TNullable } from "./utilityTypes";
@@ -319,7 +320,7 @@ export interface IFormulaControl {
   props: {
     showModeToggle?: boolean;
     indicatorConfig?:
-      | ({ type: "measure" } & {
+      | ({ type: "measure"; templates?: TWidgetMeasureData["templates"] } & {
           /** @deprecated временное решение для виджета "Воронка", не следует использовать [BI-14710] */
           allowClear?: boolean;
           /** @deprecated временное решение для виджета "Воронка", не следует использовать [BI-14710] */
@@ -329,7 +330,7 @@ export interface IFormulaControl {
           /** @deprecated временное решение для виджета "Воронка", не следует использовать [BI-14710] */
           options?: TMeasureAddButtonSelectOption[];
         })
-      | { type: "dimension"; templates?: EDimensionTemplateNames[] };
+      | { type: "dimension"; templates?: TWidgetDimensionData["templates"] };
     disabled?: boolean;
     titleModal?: string;
   };

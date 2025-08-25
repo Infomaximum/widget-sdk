@@ -165,7 +165,10 @@ export interface IInitialSettings extends Record<string, any> {}
 /** Кнопка добавления группы в набор */
 export type TAddButton = {
   title: string;
-  props?: ICustomAddButtonProps | IMeasureAddButtonProps | ISortingAddButtonProps;
+  props?: (ICustomAddButtonProps | IMeasureAddButtonProps | ISortingAddButtonProps) & {
+    /** Ключи процессов для фильтрации таблиц, доступных для выбора */
+    processKeys?: Iterable<string>;
+  };
   /**
    * Начальные настройки, которые получит показатель при создании через кнопку добавления.
    * Возможность не поддерживается для иерархии разрезов.

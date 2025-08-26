@@ -2,29 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [5.27.0-1](https://github.com/Infomaximum/widget-sdk/compare/v5.26.1...v5.27.0-1) (2025-06-26)
+## [6.0.0-1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-0...v6.0.0-1) (2025-08-26)
+
+### ⚠ BREAKING CHANGES
+
+- если виджет использовал guid, то требуется поддержка
+
+### Features
+
+- удален guid из интерфейсов. ([f50d978](https://github.com/Infomaximum/widget-sdk/commit/f50d9781ab2fc41ed1deb3fafee262e4c4057db1))
+
+## [6.0.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.33.1...v6.0.0-0) (2025-08-20)
+
+### ⚠ BREAKING CHANGES
+
+- получение ф-ии шаблона процессной агрегации для меры через константу "measureAggregationTemplates" заменено на получение через ф-ию "createAggregationFormulaByTemplateName"
+- поле actions удалено из настроек виджетов
+
+### Features
+
+- отказ от поля actions в пользу actionButtons в настройках виджетов ([2ee361a](https://github.com/Infomaximum/widget-sdk/commit/2ee361a5ab1478e1b0ad90feae2256cf90d46058))
+- расширен IInputControl полями hint и hintPlacement. Для запуска скрипта из действий по клику добавлена подсказка ([63d02d6](https://github.com/Infomaximum/widget-sdk/commit/63d02d68bc38bb6d6b1bb2dfd1898d4b948ee6fc))
+
+- From BI-15231 into master (#92) ([8257237](https://github.com/Infomaximum/widget-sdk/commit/8257237e12b42ee403378408d0bb5007853c379d)), closes [#92](https://github.com/Infomaximum/widget-sdk/issues/92)
+
+### [5.33.1](https://github.com/Infomaximum/widget-sdk/compare/v5.33.0...v5.33.1) (2025-08-15)
+
+## [5.33.0](https://github.com/Infomaximum/widget-sdk/compare/v5.32.1...v5.33.0) (2025-08-06)
+
+### Features
+
+- расширены шаблоны процессных агрегаций ([f2bfbaf](https://github.com/Infomaximum/widget-sdk/commit/f2bfbafb557ba72ae605d906ae1341109adf3894))
+
+### [5.32.1](https://github.com/Infomaximum/widget-sdk/compare/v5.32.0...v5.32.1) (2025-08-05)
 
 ## [5.27.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.26.0...v5.27.0-0) (2025-06-24)
-
-
-### Features
-
-* добавлен react-dom/client ([8f537ec](https://github.com/Infomaximum/widget-sdk/commit/8f537ecfdb0dd716066a504d7008bec2ec8079de))
-
-## [5.26.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.25.0...v5.26.0-0) (2025-06-19)
-
-
-### Features
-
-* добавлен интерфейс предоставляемых библиотек системой для системных виджетов ([06b38ad](https://github.com/Infomaximum/widget-sdk/commit/06b38ad6ba733766ff648b41efa5a38efcfc3748))
-
-### [5.26.1](https://github.com/Infomaximum/widget-sdk/compare/v5.26.0...v5.26.1) (2025-06-25)
-
-### Bug Fixes
-
-- изменено именование поля actinButtons > actionButtons ([8b0ddf3](https://github.com/Infomaximum/widget-sdk/commit/8b0ddf374045287a06210c19debe021fe4dbcc97))
-
-## [5.26.0](https://github.com/Infomaximum/widget-sdk/compare/v5.25.0...v5.26.0) (2025-06-23)
 
 ### Features
 
@@ -35,6 +47,85 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 - добавлен интерфейс предоставляемых библиотек системой для системных виджетов ([06b38ad](https://github.com/Infomaximum/widget-sdk/commit/06b38ad6ba733766ff648b41efa5a38efcfc3748))
+
+### [5.26.1](https://github.com/Infomaximum/widget-sdk/compare/v5.26.0...v5.26.1) (2025-06-25)
+
+### Bug Fixes
+
+- исправлена типизация ответов вычислителей ([0453793](https://github.com/Infomaximum/widget-sdk/commit/04537930ba1916d300b279e658a7e9b8da191af4))
+
+## [5.32.0](https://github.com/Infomaximum/widget-sdk/compare/v5.31.0...v5.32.0) (2025-07-31)
+
+### Features
+
+- добавлена возможность управления якорем для сохранения положения виджета ([3bd5610](https://github.com/Infomaximum/widget-sdk/commit/3bd561058e48055ec10f99c53f88f2fcddf18d94))
+
+## [5.31.0](https://github.com/Infomaximum/widget-sdk/compare/v5.30.0...v5.31.0) (2025-07-17)
+
+## [5.29.0-1](https://github.com/Infomaximum/widget-sdk/compare/v5.29.0...v5.29.0-1) (2025-07-14)
+
+## [5.29.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.28.0...v5.29.0-0) (2025-07-10)
+
+### Features
+
+- отказ от имени процесса ([4fa01d5](https://github.com/Infomaximum/widget-sdk/commit/4fa01d5c2602211810277d0b6aef6b4d5f62e19c))
+
+### Bug Fixes
+
+- deprecated поле processName для интерфейса IProcessGraphCalculatorInput сделано необзятельным ([859f959](https://github.com/Infomaximum/widget-sdk/commit/859f959ea963ea2ed9214ccc4a4dc43a8b49142c))
+
+## [5.30.0](https://github.com/Infomaximum/widget-sdk/compare/v5.29.0...v5.30.0) (2025-07-15)
+
+### Features
+
+- Изменено поле ALL_WIDGETS > ALL_VIEWS для EAutoUpdateMode ([cb9ce26](https://github.com/Infomaximum/widget-sdk/commit/cb9ce26826f1c90cbadf2dd2d25932973050873f))
+
+## [5.29.0](https://github.com/Infomaximum/widget-sdk/compare/v5.28.1...v5.29.0) (2025-07-14)
+
+### Features
+
+- отказ от имени процесса ([4fa01d5](https://github.com/Infomaximum/widget-sdk/commit/4fa01d5c2602211810277d0b6aef6b4d5f62e19c))
+
+### Bug Fixes
+
+- deprecated поле processName для интерфейса IProcessGraphCalculatorInput сделано необзятельным ([859f959](https://github.com/Infomaximum/widget-sdk/commit/859f959ea963ea2ed9214ccc4a4dc43a8b49142c))
+
+## [5.29.0](https://github.com/Infomaximum/widget-sdk/compare/v5.28.1...v5.29.0) (2025-07-14)
+
+### Features
+
+- в параметры запуска скрипта добавлены свойства onComplete и onError, а onSuccess сделан опциональным ([b989b84](https://github.com/Infomaximum/widget-sdk/commit/b989b84fe5008f6455fa7dacd51cf42beadb75dc))
+- Для способов ввода Вручную, Динамический и Статический список добавлен флаг acceptEmptyValue ([8ad56ae](https://github.com/Infomaximum/widget-sdk/commit/8ad56ae6b3f57d06c2e1aa54f0354b25490fcf14))
+
+## [5.29.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.28.0...v5.29.0-0) (2025-07-10)
+
+### Features
+
+- отказ от имени процесса ([4fa01d5](https://github.com/Infomaximum/widget-sdk/commit/4fa01d5c2602211810277d0b6aef6b4d5f62e19c))
+
+### Bug Fixes
+
+- deprecated поле processName для интерфейса IProcessGraphCalculatorInput сделано необзятельным ([859f959](https://github.com/Infomaximum/widget-sdk/commit/859f959ea963ea2ed9214ccc4a4dc43a8b49142c))
+
+## [5.28.0](https://github.com/Infomaximum/widget-sdk/compare/v5.27.0...v5.28.0) (2025-07-07)
+
+### Features
+
+- для действия запуска скрипта добавлен blockingCondition. удалено поле actionButtons из TActionOpenIn ([920a76e](https://github.com/Infomaximum/widget-sdk/commit/920a76e8d695f73876b1d6a96f33820aad4b17c4))
+
+## [5.27.0](https://github.com/Infomaximum/widget-sdk/compare/v5.26.1...v5.27.0) (2025-07-04)
+
+### Features
+
+- в интерфейс IViewAction добавлено поле, отвечающее за авто-обновление отчета после запуска действия ([5fd1371](https://github.com/Infomaximum/widget-sdk/commit/5fd1371d7699a4e36a40f735574cd7277f35a94d))
+- добавлена возможность использовать groupSet (набор плашек) только во вкладке настроек отображения (displayRecords), не дублируя во вкладке настроек данных (dataRecords) ([72ae723](https://github.com/Infomaximum/widget-sdk/commit/72ae723d20b0e07e615b2840e514169bfe87a1ee))
+- добавлена возможность не указывать заголовок для groupSet ([fe09052](https://github.com/Infomaximum/widget-sdk/commit/fe09052d769a380565eed6ed301870752b84499d))
+
+### [5.26.1](https://github.com/Infomaximum/widget-sdk/compare/v5.26.0...v5.26.1) (2025-06-25)
+
+### Bug Fixes
+
+- изменено именование поля actinButtons > actionButtons ([8b0ddf3](https://github.com/Infomaximum/widget-sdk/commit/8b0ddf374045287a06210c19debe021fe4dbcc97))
 
 ## [5.26.0](https://github.com/Infomaximum/widget-sdk/compare/v5.25.0...v5.26.0) (2025-06-23)
 

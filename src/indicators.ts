@@ -81,16 +81,10 @@ export enum ESortingValueModes {
 
 export interface ICommonState {
   name: string;
-  // todo: удалить после окончания поддержки миграций [BI-13650]
-  /** @deprecated */
-  guid: string;
 }
 
 export interface ICommonMeasures {
   name: string;
-  // todo: удалить после окончания поддержки миграций [BI-13650]
-  /** @deprecated */
-  guid: string;
   formula: string;
 }
 
@@ -179,9 +173,6 @@ export enum EIndicatorType {
 interface IBaseWidgetVariable {
   /** Имя переменной */
   name: string;
-  // todo: удалить после окончания поддержки миграций [BI-13650]
-  /** @deprecated */
-  guid: string;
 }
 
 /** Обобщенные типы значений переменных */
@@ -283,12 +274,12 @@ export enum EDurationTemplateName {
 export type TWidgetIndicatorAggregationValue = {
   mode: EWidgetIndicatorValueModes.AGGREGATION;
   templateName: string;
-  processName: string | null;
+  processKey: string | null;
   eventName: string | null;
-  caseCaseIdFormula: string | null;
   eventNameFormula: string | null;
+  anyEvent?: true;
+  caseCaseIdFormula: string | null;
   filters: TExtendedFormulaFilterValue[];
-
   tableName?: string;
   columnName?: string;
   eventTimeFormula?: string | null;
@@ -303,13 +294,13 @@ export type TWidgetIndicatorConversionValue = {
   mode: EWidgetIndicatorValueModes.CONVERSION;
 
   startEventNameFormula: string | null;
-  startEventProcessName: string | null;
+  startEventProcessKey: string | null;
   startEventName: string | null;
   startEventFilters: TExtendedFormulaFilterValue[];
   startEventTimeFormula: string | null;
 
   endEventNameFormula: string | null;
-  endEventProcessName: string | null;
+  endEventProcessKey: string | null;
   endEventName: string | null;
   endEventFilters: TExtendedFormulaFilterValue[];
   endCaseCaseIdFormula: string | null;
@@ -326,7 +317,7 @@ export type TWidgetIndicatorDurationValue = {
 export type TWidgetIndicatorTimeValue = {
   templateName: string;
   mode: EWidgetIndicatorValueModes.START_TIME | EWidgetIndicatorValueModes.END_TIME;
-  processName: string;
+  processKey: string;
   eventName: string;
   eventTimeFormula: string;
   caseCaseIdFormula: string;

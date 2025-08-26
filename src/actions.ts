@@ -50,7 +50,7 @@ export enum EDrawerPlacement {
 export enum EAutoUpdateMode {
   NONE = "NONE",
   THIS_WIDGET = "THIS_WIDGET",
-  ALL_WIDGETS = "ALL_WIDGETS",
+  ALL_VIEWS = "ALL_VIEWS",
 }
 
 export enum EDataModelOption {
@@ -103,12 +103,14 @@ export interface IParameterFromManualInput {
   dbDataType?: string;
   filterByRows?: boolean;
   validation?: string;
+  acceptEmptyValue?: boolean;
 }
 
 export interface IParameterFromStaticList {
   inputMethod: EWidgetActionInputMethod.STATIC_LIST;
   options: string;
   defaultValue: string | string[];
+  acceptEmptyValue?: boolean;
 }
 
 export interface IParameterFromDynamicList {
@@ -120,8 +122,9 @@ export interface IParameterFromDynamicList {
   filters: TExtendedFormulaFilterValue[];
   filterByRows?: boolean;
   considerFilters: boolean;
-  enableCustomValue?: boolean;
+  insertAnyValues?: boolean;
   validation?: string;
+  acceptEmptyValue?: boolean;
 }
 
 interface IParameterFromDataModelBase {
@@ -193,6 +196,18 @@ export interface IActionRunScript extends IActionCommon {
   parameters: TActionOnClickParameter[];
   scriptKey: string;
   autoUpdate: EAutoUpdateMode;
+  hideInactiveButton?: boolean;
+  activateCondition?:
+    | {
+        mode: EActivateConditionMode.FORMULA;
+        formula: string;
+      }
+    | {
+        mode: EActivateConditionMode.VARIABLE;
+        variableName: string;
+        variableValue: string;
+      };
+  hint?: string;
 }
 
 export interface IActionUpdateVariable extends IActionCommon {
@@ -204,7 +219,6 @@ type TActionOpenIn =
   | {
       openIn: EViewOpenIn.DRAWER_WINDOW;
       alignment: EDrawerPlacement;
-      actionButtons: boolean;
     }
   | {
       openIn: EViewOpenIn.PLACEHOLDER;
@@ -217,7 +231,6 @@ type TActionOpenIn =
     }
   | {
       openIn: EViewOpenIn.MODAL_WINDOW;
-      actionButtons: boolean;
       positionByClick?: boolean;
     }
   // TODO: удалить  при выполении BI-14979
@@ -256,7 +269,7 @@ export type TActionsOnClick =
   | IActionUpdateVariable
   | TActionOpenView;
 
-export enum EBlockingConditionMode {
+export enum EActivateConditionMode {
   FORMULA = "FORMULA",
   VARIABLE = "VARIABLE",
 }
@@ -267,20 +280,28 @@ export interface IWidgetAction extends IActionCommon {
   scriptKey: string;
   autoUpdate: EAutoUpdateMode;
   description: string;
-  blockingCondition:
+  hideInactiveButton?: boolean;
+  hint?: string;
+  activateCondition:
     | {
-        mode: EBlockingConditionMode.FORMULA;
+        mode: EActivateConditionMode.FORMULA;
         formula: string;
       }
     | {
-        mode: EBlockingConditionMode.VARIABLE;
+        mode: EActivateConditionMode.VARIABLE;
         variableName: string;
         variableValue: string;
       };
+}
+
+export interface IActionButton extends IAutoIdentifiedArrayItem {
+  name: string;
+  onClick: IWidgetAction[];
   buttonType: EActionButtonsTypes;
   backgroundColor?: TColor;
   borderColor?: TColor;
   color: TColor;
+  hint?: string;
 }
 
 export type TViewActionParameter = (IParameterFromAggregation | IParameterFromVariable) & {
@@ -294,6 +315,7 @@ export interface IViewAction {
   parameters: TViewActionParameter[];
   scriptKey: string;
   id?: number;
+  autoUpdate?: EAutoUpdateMode.NONE | EAutoUpdateMode.ALL_VIEWS;
 }
 
 export type TAction = TActionsOnClick | IWidgetAction | IViewAction;

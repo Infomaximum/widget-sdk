@@ -1,18 +1,17 @@
 import {
   EDurationTemplateName,
-  EOuterAggregation,
   EWidgetIndicatorValueModes,
   type IWidgetMeasure,
 } from "../../indicators";
 import { fillTemplateString, generateColumnFormula } from "../shared";
 import {
   EMeasureAggregationTemplateName,
-  measureAggregationTemplates,
   prepareMeasureAggregationParams,
 } from "./aggregationTemplates";
 import { measureTemplateFormulas, type EMeasureTemplateNames } from "./baseTemplates";
 import { conversionTemplate, prepareConversionParams } from "./conversionTemplates";
 import { durationTemplates, prepareDurationParams } from "./durationTemplates";
+import { createAggregationTemplate } from "./createAggregationTemplate";
 
 export function getMeasureFormula({ value }: IWidgetMeasure): string {
   if (!value) {
@@ -40,20 +39,15 @@ export function getMeasureFormula({ value }: IWidgetMeasure): string {
   if (value.mode === EWidgetIndicatorValueModes.AGGREGATION) {
     const preparedParams = prepareMeasureAggregationParams(value);
 
-    if (!preparedParams) {
-      return "";
-    }
-
-    const getTemplateFormula = () => {
-      const templateFormula =
-        measureAggregationTemplates[value.templateName as EMeasureAggregationTemplateName];
-
-      return typeof templateFormula === "function"
-        ? templateFormula(preparedParams.outerAggregation)
-        : templateFormula;
-    };
-
-    return fillTemplateString(getTemplateFormula(), preparedParams);
+    return preparedParams
+      ? fillTemplateString(
+          createAggregationTemplate(value.templateName as EMeasureAggregationTemplateName, {
+            outerAggregation: preparedParams.outerAggregation,
+            anyEvent: value.anyEvent,
+          }),
+          preparedParams
+        )
+      : "";
   }
 
   if (value.mode === EWidgetIndicatorValueModes.CONVERSION) {

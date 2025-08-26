@@ -38,7 +38,7 @@ export interface ICalculatorMeasureInput extends ICalculatorIndicatorInput {
 
 export interface ICalculatorMeasureOutput extends ICalculatorIndicatorOutput {
   /** Значения, вычисленные на основе дополнительных формул */
-  additionalValues: Map<string, string[]>;
+  additionalValues: Map<string, (string | null)[]>;
 }
 
 export enum ECalculatorFilterMethods {

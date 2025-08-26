@@ -209,9 +209,6 @@ export interface IWidgetStaticListVariable extends IBaseWidgetVariable {
   type: EIndicatorType.STATIC_LIST;
   /** Значение */
   value: string | string[] | null;
-  /** Элементы статического списка */
-  /** @deprecated поле будет удалено, необходимо использовать labeledOptions */
-  options: string[];
   /** Объект ключ значение для статического списка  */
   labeledOptions: IStaticListLabeledOption[];
   /** Множественный выбор */

@@ -5,18 +5,13 @@ import type { TNullable } from "../utilityTypes";
 export enum EWidgetFilterMode {
   DEFAULT = "DEFAULT",
   SINGLE = "SINGLE",
-  /** @deprecated Отказ от режима фильтрации "Множественный выбор"*/
-  MULTI = "MULTI",
   DISABLED = "DISABLED",
 }
 
 export type TWidgetFiltering =
   | {
       ignore: true;
-      mode:
-        | EWidgetFilterMode.SINGLE
-        /** @deprecated Отказ от режима фильтрации "Множественный выбор"*/
-        | EWidgetFilterMode.MULTI;
+      mode: EWidgetFilterMode.SINGLE;
     }
   | { ignore: false; mode: EWidgetFilterMode };
 

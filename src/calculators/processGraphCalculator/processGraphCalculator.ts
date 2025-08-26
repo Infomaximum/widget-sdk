@@ -21,8 +21,6 @@ export interface IEdge extends IGraphElement {
 }
 
 export interface IProcessGraphCalculatorInput {
-  /** @deprecated необходимо использовать processKey  */
-  processName?: string;
   processKey: string;
   vertexLimit: number | null;
   edgeLimit: number;

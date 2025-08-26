@@ -7,6 +7,7 @@ export { ELanguages } from "@infomaximum/localization";
 export { EFilteringMethodValues } from "@infomaximum/base-filter";
 
 export * from "./widgetApi";
+export * from "./systemWidgetApi";
 export * from "./migrates";
 export * from "./definition";
 export * from "./actions";

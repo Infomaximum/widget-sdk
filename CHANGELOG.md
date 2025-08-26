@@ -2,55 +2,81 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [6.0.0-1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-0...v6.0.0-1) (2025-08-26)
+## [6.0.0-wefi344-1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-1...v6.0.0-wefi344-1) (2025-08-26)
 
+## [5.27.0-1](https://github.com/Infomaximum/widget-sdk/compare/v5.26.1...v5.27.0-1) (2025-06-26)
 
-### ⚠ BREAKING CHANGES
+## [5.27.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.26.0...v5.27.0-0) (2025-06-24)
 
-* если виджет использовал guid, то требуется поддержка
 
 ### Features
 
-* удален guid из интерфейсов. ([f50d978](https://github.com/Infomaximum/widget-sdk/commit/f50d9781ab2fc41ed1deb3fafee262e4c4057db1))
+* добавлен react-dom/client ([8f537ec](https://github.com/Infomaximum/widget-sdk/commit/8f537ecfdb0dd716066a504d7008bec2ec8079de))
+
+## [5.26.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.25.0...v5.26.0-0) (2025-06-19)
+
+
+### Features
+
+* добавлен интерфейс предоставляемых библиотек системой для системных виджетов ([06b38ad](https://github.com/Infomaximum/widget-sdk/commit/06b38ad6ba733766ff648b41efa5a38efcfc3748))
+
+## [6.0.0-1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-0...v6.0.0-1) (2025-08-26)
+
+### ⚠ BREAKING CHANGES
+
+- если виджет использовал guid, то требуется поддержка
+
+### Features
+
+- удален guid из интерфейсов. ([f50d978](https://github.com/Infomaximum/widget-sdk/commit/f50d9781ab2fc41ed1deb3fafee262e4c4057db1))
 
 ## [6.0.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.33.1...v6.0.0-0) (2025-08-20)
 
-
 ### ⚠ BREAKING CHANGES
 
-* получение ф-ии шаблона процессной агрегации для меры через константу "measureAggregationTemplates" заменено на получение через ф-ию "createAggregationFormulaByTemplateName"
-* поле actions удалено из настроек виджетов
+- получение ф-ии шаблона процессной агрегации для меры через константу "measureAggregationTemplates" заменено на получение через ф-ию "createAggregationFormulaByTemplateName"
+- поле actions удалено из настроек виджетов
 
 ### Features
 
-* отказ от поля actions в пользу actionButtons в настройках виджетов ([2ee361a](https://github.com/Infomaximum/widget-sdk/commit/2ee361a5ab1478e1b0ad90feae2256cf90d46058))
-* расширен IInputControl полями hint и hintPlacement. Для запуска скрипта из действий по клику добавлена подсказка ([63d02d6](https://github.com/Infomaximum/widget-sdk/commit/63d02d68bc38bb6d6b1bb2dfd1898d4b948ee6fc))
+- отказ от поля actions в пользу actionButtons в настройках виджетов ([2ee361a](https://github.com/Infomaximum/widget-sdk/commit/2ee361a5ab1478e1b0ad90feae2256cf90d46058))
+- расширен IInputControl полями hint и hintPlacement. Для запуска скрипта из действий по клику добавлена подсказка ([63d02d6](https://github.com/Infomaximum/widget-sdk/commit/63d02d68bc38bb6d6b1bb2dfd1898d4b948ee6fc))
 
-
-* From BI-15231 into master (#92) ([8257237](https://github.com/Infomaximum/widget-sdk/commit/8257237e12b42ee403378408d0bb5007853c379d)), closes [#92](https://github.com/Infomaximum/widget-sdk/issues/92)
+- From BI-15231 into master (#92) ([8257237](https://github.com/Infomaximum/widget-sdk/commit/8257237e12b42ee403378408d0bb5007853c379d)), closes [#92](https://github.com/Infomaximum/widget-sdk/issues/92)
 
 ### [5.33.1](https://github.com/Infomaximum/widget-sdk/compare/v5.33.0...v5.33.1) (2025-08-15)
 
 ## [5.33.0](https://github.com/Infomaximum/widget-sdk/compare/v5.32.1...v5.33.0) (2025-08-06)
 
-
 ### Features
 
-* расширены шаблоны процессных агрегаций ([f2bfbaf](https://github.com/Infomaximum/widget-sdk/commit/f2bfbafb557ba72ae605d906ae1341109adf3894))
+- расширены шаблоны процессных агрегаций ([f2bfbaf](https://github.com/Infomaximum/widget-sdk/commit/f2bfbafb557ba72ae605d906ae1341109adf3894))
 
 ### [5.32.1](https://github.com/Infomaximum/widget-sdk/compare/v5.32.0...v5.32.1) (2025-08-05)
 
-
-### Bug Fixes
-
-* исправлена типизация ответов вычислителей ([0453793](https://github.com/Infomaximum/widget-sdk/commit/04537930ba1916d300b279e658a7e9b8da191af4))
-
-## [5.32.0](https://github.com/Infomaximum/widget-sdk/compare/v5.31.0...v5.32.0) (2025-07-31)
-
+## [5.27.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.26.0...v5.27.0-0) (2025-06-24)
 
 ### Features
 
-* добавлена возможность управления якорем для сохранения положения виджета ([3bd5610](https://github.com/Infomaximum/widget-sdk/commit/3bd561058e48055ec10f99c53f88f2fcddf18d94))
+- добавлен react-dom/client ([8f537ec](https://github.com/Infomaximum/widget-sdk/commit/8f537ecfdb0dd716066a504d7008bec2ec8079de))
+
+## [5.26.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.25.0...v5.26.0-0) (2025-06-19)
+
+### Features
+
+- добавлен интерфейс предоставляемых библиотек системой для системных виджетов ([06b38ad](https://github.com/Infomaximum/widget-sdk/commit/06b38ad6ba733766ff648b41efa5a38efcfc3748))
+
+### [5.26.1](https://github.com/Infomaximum/widget-sdk/compare/v5.26.0...v5.26.1) (2025-06-25)
+
+### Bug Fixes
+
+- исправлена типизация ответов вычислителей ([0453793](https://github.com/Infomaximum/widget-sdk/commit/04537930ba1916d300b279e658a7e9b8da191af4))
+
+## [5.32.0](https://github.com/Infomaximum/widget-sdk/compare/v5.31.0...v5.32.0) (2025-07-31)
+
+### Features
+
+- добавлена возможность управления якорем для сохранения положения виджета ([3bd5610](https://github.com/Infomaximum/widget-sdk/commit/3bd561058e48055ec10f99c53f88f2fcddf18d94))
 
 ## [5.31.0](https://github.com/Infomaximum/widget-sdk/compare/v5.30.0...v5.31.0) (2025-07-17)
 
@@ -58,15 +84,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [5.29.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.28.0...v5.29.0-0) (2025-07-10)
 
-
 ### Features
 
-* отказ от имени процесса ([4fa01d5](https://github.com/Infomaximum/widget-sdk/commit/4fa01d5c2602211810277d0b6aef6b4d5f62e19c))
-
+- отказ от имени процесса ([4fa01d5](https://github.com/Infomaximum/widget-sdk/commit/4fa01d5c2602211810277d0b6aef6b4d5f62e19c))
 
 ### Bug Fixes
 
-* deprecated поле processName для интерфейса IProcessGraphCalculatorInput сделано необзятельным ([859f959](https://github.com/Infomaximum/widget-sdk/commit/859f959ea963ea2ed9214ccc4a4dc43a8b49142c))
+- deprecated поле processName для интерфейса IProcessGraphCalculatorInput сделано необзятельным ([859f959](https://github.com/Infomaximum/widget-sdk/commit/859f959ea963ea2ed9214ccc4a4dc43a8b49142c))
 
 ## [5.30.0](https://github.com/Infomaximum/widget-sdk/compare/v5.29.0...v5.30.0) (2025-07-15)
 

@@ -301,10 +301,6 @@ export interface IWidgetProcess {
   caseCaseIdFormula: string;
   /** Имя колонки CaseId события */
   eventCaseIdColumnName: string;
-  /** Тип данных CaseId */
-  caseIdDbDataType: string;
-  /** Тип данных времени события */
-  eventTimeDbDataType: string;
   /** Является ли процесс валидным */
   isValid: boolean;
 }

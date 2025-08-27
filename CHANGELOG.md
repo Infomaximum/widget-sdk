@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-2](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-1...v6.0.0-2) (2025-08-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* - Виджеты, использующие импорты, связанные со старым синтаксисом ссылок, будут работать некорректно в новой версии системы (dashboardLinkRegExp, workspaceLinkRegExp, parseIndicatorLink, getRuleColor, isValidColor).
+- Функция escapeSpecialCharacters заменена на escapeDoubleQuoteLinkName.
+- Константа linkNameRegExp удалена - вместо нее используется curlyBracketsContentPattern.
+
+### Features
+
+* добавлена поддержка нового синтаксиса ссылок на показатели ([7449482](https://github.com/Infomaximum/widget-sdk/commit/74494820ae4ca9e05f5d225ad243a57ca0a6d6aa))
+
+## [6.0.0-1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-0...v6.0.0-1) (2025-08-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* если виджет использовал guid, то требуется поддержка
+
+### Features
+
+* удален guid из интерфейсов. ([f50d978](https://github.com/Infomaximum/widget-sdk/commit/f50d9781ab2fc41ed1deb3fafee262e4c4057db1))
+
 ## [6.0.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.33.1...v6.0.0-0) (2025-08-20)
 
 

@@ -4,6 +4,7 @@ import type { ESimpleDataType } from "./data";
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormattingPresets, EFormatTypes } from "./formatting";
 import type {
+  EFormatOrFormattingMode,
   EOuterAggregation,
   IWidgetDimension,
   TColumnIndicatorValue,
@@ -41,6 +42,8 @@ export type THintPlacement =
 export enum EControlType {
   /** Ввод текста */
   input = "input",
+  /** Ввод текста с поддержкой шаблонной вставки сущностей */
+  inputTemplate = "inputTemplate",
   /** Ввод текста в формате markdown */
   inputMarkdown = "inputMarkdown",
   /** Ввод числа */
@@ -84,6 +87,7 @@ export enum EControlType {
 
 type ControlsMap = {
   [EControlType.input]: IInputControl;
+  [EControlType.inputTemplate]: IInputTemplatedControl;
   [EControlType.inputMarkdown]: IInputMarkdownControl;
   [EControlType.inputNumber]: IInputNumberControl;
   [EControlType.inputRange]: IInputRangeControl;
@@ -201,6 +205,12 @@ export interface IInputControl {
     hintText?: string;
     hintPlacement?: THintPlacement;
   };
+}
+
+export interface IInputTemplatedControl {
+  type: EControlType.inputTemplate;
+  value: string;
+  props: {};
 }
 
 export interface IInputMarkdownControl {
@@ -352,9 +362,8 @@ export interface ITypedFormulaControl {
 export interface IFormattingControl {
   type: EControlType.formatting;
   value: {
-    format: EFormatTypes;
-    formatting: EFormattingPresets;
-    formattingTemplate?: string;
+    format: { value?: EFormatTypes; mode: EFormatOrFormattingMode };
+    formatting: { value?: EFormattingPresets; mode: EFormatOrFormattingMode };
   };
   props: {
     formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;

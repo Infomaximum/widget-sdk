@@ -191,10 +191,17 @@ export type TWidgetDimensionData = {
   type: EWidgetIndicatorType.DIMENSION;
   /** Обобщенные типы данных, поддерживаемые разрезом */
   simpleTypes?: ESimpleDataType[];
-  /** Шаблоны формул, доступные для выбора в разрезе */
+  /**
+   * Шаблоны формул, доступные к выбору шаблоны на основе колонок (по типу колонки)
+   * Фильтрация применяется только для указаных типов колонки
+   */
   templates?: Partial<
     Record<ESimpleDataType, (EDimensionTemplateNames | EDimensionAggregationTemplateName)[]>
   >;
+  /**
+   * Шаблоны формул, доступные к выбору в процессных разрезах по времени
+   */
+  processTimeTemplates?: EDimensionTemplateNames[];
   /** Переопределение доступных форматов */
   formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;
 };
@@ -202,7 +209,7 @@ export type TWidgetDimensionData = {
 /** Конфигурация меры */
 export type TWidgetMeasureData = {
   type: EWidgetIndicatorType.MEASURE;
-  /** Переопределение доступных форматов и их порядка */
+  /** Переопределение доступных форматов */
   formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;
   /** Шаблоны формул, доступные для выбора в мере */
   templates?: Partial<Record<ESimpleDataType, EMeasureTemplateNames[]>>;

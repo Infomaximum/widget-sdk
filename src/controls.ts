@@ -330,7 +330,11 @@ export interface IFormulaControl {
           /** @deprecated временное решение для виджета "Воронка", не следует использовать [BI-14710] */
           options?: TMeasureAddButtonSelectOption[];
         })
-      | { type: "dimension"; templates?: TWidgetDimensionData["templates"] };
+      | {
+          type: "dimension";
+          templates?: TWidgetDimensionData["templates"];
+          processTimeTemplates?: TWidgetDimensionData["processTimeTemplates"];
+        };
     disabled?: boolean;
     /** Ключи процессов для фильтрации таблиц, доступных для выбора */
     processKeys?: Iterable<string>;

@@ -34,12 +34,6 @@ export enum EViewOpenIn {
   PLACEHOLDER = "PLACEHOLDER",
   MODAL_WINDOW = "MODAL_WINDOW",
   DRAWER_WINDOW = "DRAWER_WINDOW",
-  // TODO: удалить при выполении BI-14979
-  /** @deprecated необходимо использовать EViewOpenIn.WINDOW с флагом newWindow - true */
-  NEW_WINDOW = "NEW_WINDOW",
-  // TODO: удалить при выполении BI-14979
-  /** @deprecated необходимо использовать EViewOpenIn.WINDOW с флагом newWindow - false */
-  CURRENT_WINDOW = "CURRENT_WINDOW",
 }
 
 export enum EDrawerPlacement {
@@ -224,19 +218,9 @@ type TActionOpenIn =
       openIn: EViewOpenIn.PLACEHOLDER;
       placeholderName: string;
     }
-  // TODO: удалить  при выполении BI-14979
-  /** @deprecated необходимо использовать EViewOpenIn.WINDOW с флагом newWindow - true */
-  | {
-      openIn: EViewOpenIn.NEW_WINDOW;
-    }
   | {
       openIn: EViewOpenIn.MODAL_WINDOW;
       positionByClick?: boolean;
-    }
-  // TODO: удалить  при выполении BI-14979
-  /** @deprecated необходимо использовать EViewOpenIn.WINDOW с флагом newWindow - false */
-  | {
-      openIn: EViewOpenIn.CURRENT_WINDOW;
     }
   | {
       openIn: EViewOpenIn.WINDOW;

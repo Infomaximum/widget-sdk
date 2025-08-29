@@ -332,6 +332,8 @@ export interface IFormulaControl {
         })
       | { type: "dimension"; templates?: TWidgetDimensionData["templates"] };
     disabled?: boolean;
+    /** Ключи процессов для фильтрации таблиц, доступных для выбора */
+    processKeys?: Iterable<string>;
     titleModal?: string;
   };
 }
@@ -386,6 +388,8 @@ export interface IFilterControl {
   value: TExtendedFormulaFilterValue[];
   props: {
     buttonTitle?: string;
+    /** Ключи процессов для фильтрации таблиц, доступных для выбора */
+    processKeys?: Iterable<string>;
   };
 }
 

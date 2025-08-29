@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-4](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-3...v6.0.0-4) (2025-08-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* если виджеты использовали типы данных процесса, то теперь должны запрашивать их сами через type_calculator
+* требуется поддержка в виджетах
+
+### Features
+
+* удален deprecated код в связи с переходом на widget-sdk 6 ([c1ce6cb](https://github.com/Infomaximum/widget-sdk/commit/c1ce6cb5f3838a4bfea3003ee2de0cb494477e8c))
+* удалены типы данных из интерфейса процесса ([3b17150](https://github.com/Infomaximum/widget-sdk/commit/3b17150ef67facaf50e489ec308a69fad1d6db82))
+
 ## [6.0.0-3](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2...v6.0.0-3) (2025-08-28)
 
 

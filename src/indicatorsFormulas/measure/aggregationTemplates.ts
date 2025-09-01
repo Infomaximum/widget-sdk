@@ -42,7 +42,6 @@ export const prepareMeasureAggregationParams = (
     eventNameFormula: value.eventNameFormula,
     caseCaseIdFormula: value.caseCaseIdFormula,
     eventName: value.eventName,
-    objectFilters: "1",
     filters: convertFiltersToFormula(value.filters),
     eventTimeFormula: "",
     columnFormula: "",

@@ -3,6 +3,8 @@ import type { EFormatTypes } from "./formatting";
 import type { TNullable, valueof } from "./utilityTypes";
 import { ECalculatorFilterMethods } from "./calculators/calculator";
 import type { EDurationUnit, ELastTimeUnit } from "./calculators/utils/mapFormulaFiltersToInputs";
+import type { EWidgetIndicatorValueModes } from "./indicators";
+import type { IFormulaControl } from "./controls";
 
 export type TSelectivePartial<T, Keys extends keyof T> = Omit<T, Keys> & Partial<Pick<T, Keys>>;
 
@@ -141,6 +143,33 @@ export interface IFormulaFilterValue {
   }>;
 }
 
+export enum EDimensionProcessFilterTimeUnit {
+  YEARS = "YEARS",
+  MONTHS = "MONTHS",
+  HOURS = "HOURS",
+  DAYS = "DAYS",
+  MINUTES = "MINUTES",
+}
+
+export interface IDimensionProcessFilter {
+  value: Extract<
+    IFormulaControl["value"]["value"],
+    {
+      mode:
+        | EWidgetIndicatorValueModes.AGGREGATION
+        | EWidgetIndicatorValueModes.START_TIME
+        | EWidgetIndicatorValueModes.END_TIME
+        | EWidgetIndicatorValueModes.FORMULA;
+    }
+  >;
+  dbDataType: string;
+  condition: {
+    filteringMethod: valueof<typeof formulaFilterMethods>;
+    timeUnit?: EDimensionProcessFilterTimeUnit;
+    values: (string | null)[];
+  };
+}
+
 export type TExtendedFormulaFilterValue = { formula: string } | IFormulaFilterValue;
 
 interface IStagesFilterItem {
@@ -222,8 +251,14 @@ export interface IWidgetFiltration {
   removeStagesFilter(widgetKey: string): void;
 }
 
+export type TSettingsFilter = TExtendedFormulaFilterValue | IDimensionProcessFilter;
+
 export const isFormulaFilterValue = (
   value: TExtendedFormulaFilterValue
 ): value is IFormulaFilterValue => {
   return "filteringMethod" in value;
 };
+
+export const isDimensionProcessFilter = (
+  filter: TSettingsFilter
+): filter is IDimensionProcessFilter => "value" in filter && "condition" in filter;

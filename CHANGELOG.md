@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-5](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-4...v6.0.0-5) (2025-09-01)
+
+
+### Features
+
+* добавлена поддержка фильтрации шаблонов мер и агригатных разрезов [WD-1197] ([af49cc3](https://github.com/Infomaximum/widget-sdk/commit/af49cc3ff7840f0d7762c6c40eb1bf183a32d4b7))
+* добавлена фильтрация шаблонов для процессных разрезов времяни [WD-1197] ([564cd57](https://github.com/Infomaximum/widget-sdk/commit/564cd5782276c4ec74c8d26de109f0d2e9deec50))
+
 ## [6.0.0-4](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-3...v6.0.0-4) (2025-08-29)
 
 

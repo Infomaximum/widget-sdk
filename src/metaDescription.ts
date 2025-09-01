@@ -193,7 +193,7 @@ export type TWidgetDimensionData = {
   simpleTypes?: ESimpleDataType[];
   /**
    * Шаблоны формул, доступные к выбору шаблоны на основе колонок (по типу колонки)
-   * Фильтрация применяется только для указаных типов колонки
+   * Фильтрация применяется только для указанных типов колонки
    */
   templates?: Partial<
     Record<ESimpleDataType, (EDimensionTemplateNames | EDimensionAggregationTemplateName)[]>

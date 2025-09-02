@@ -2,23 +2,69 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [6.0.0-wefi344-1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-1...v6.0.0-wefi344-1) (2025-08-26)
+## [6.0.0-6](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-5...v6.0.0-6) (2025-09-02)
+
+### ⚠ BREAKING CHANGES
+
+- Удален formattingTemplate. Изменены поля формат и форматирование
+
+### Features
+
+- изменены формат и форматирование. Удален formattingTemplate. Добавлен новый контрол inputTemplated. ([7c3d230](https://github.com/Infomaximum/widget-sdk/commit/7c3d230c443f897d20be4ec4a23f6fe6b914a213))
+
+## [6.0.0-5](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-4...v6.0.0-5) (2025-09-01)
+
+### Features
+
+- добавлена поддержка фильтрации шаблонов мер и агригатных разрезов [WD-1197] ([af49cc3](https://github.com/Infomaximum/widget-sdk/commit/af49cc3ff7840f0d7762c6c40eb1bf183a32d4b7))
+- добавлена фильтрация шаблонов для процессных разрезов времяни [WD-1197] ([564cd57](https://github.com/Infomaximum/widget-sdk/commit/564cd5782276c4ec74c8d26de109f0d2e9deec50))
+
+## [6.0.0-4](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-3...v6.0.0-4) (2025-08-29)
+
+### ⚠ BREAKING CHANGES
+
+- если виджеты использовали типы данных процесса, то теперь должны запрашивать их сами через type_calculator
+- требуется поддержка в виджетах
+
+### Features
+
+- удален deprecated код в связи с переходом на widget-sdk 6 ([c1ce6cb](https://github.com/Infomaximum/widget-sdk/commit/c1ce6cb5f3838a4bfea3003ee2de0cb494477e8c))
+- удалены типы данных из интерфейса процесса ([3b17150](https://github.com/Infomaximum/widget-sdk/commit/3b17150ef67facaf50e489ec308a69fad1d6db82))
+
+## [6.0.0-3](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2...v6.0.0-3) (2025-08-28)
+
+### Features
+
+- виджета дана возможность фильтровать таблицы в дропдаунах кнопок добавления индикаторов и фильтрации по процессам ([cb9fd22](https://github.com/Infomaximum/widget-sdk/commit/cb9fd22cbf6ebf12f0261949ab9d467edcaf0a36))
+
+## [6.0.0-2](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-1...v6.0.0-2) (2025-08-26)
+
+### ⚠ BREAKING CHANGES
+
+- - Виджеты, использующие импорты, связанные со старым синтаксисом ссылок, будут работать некорректно в новой версии системы (dashboardLinkRegExp, workspaceLinkRegExp, parseIndicatorLink, getRuleColor, isValidColor).
+
+* Функция escapeSpecialCharacters заменена на escapeDoubleQuoteLinkName.
+* Константа linkNameRegExp удалена - вместо нее используется curlyBracketsContentPattern.
+
+### Features
+
+- добавлена поддержка нового синтаксиса ссылок на показатели ([7449482](https://github.com/Infomaximum/widget-sdk/commit/74494820ae4ca9e05f5d225ad243a57ca0a6d6aa))
+
+## [6.0.0-1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-0...v6.0.0-1) (2025-08-26)
 
 ## [5.27.0-1](https://github.com/Infomaximum/widget-sdk/compare/v5.26.1...v5.27.0-1) (2025-06-26)
 
 ## [5.27.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.26.0...v5.27.0-0) (2025-06-24)
 
-
 ### Features
 
-* добавлен react-dom/client ([8f537ec](https://github.com/Infomaximum/widget-sdk/commit/8f537ecfdb0dd716066a504d7008bec2ec8079de))
+- добавлен react-dom/client ([8f537ec](https://github.com/Infomaximum/widget-sdk/commit/8f537ecfdb0dd716066a504d7008bec2ec8079de))
 
 ## [5.26.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.25.0...v5.26.0-0) (2025-06-19)
 
-
 ### Features
 
-* добавлен интерфейс предоставляемых библиотек системой для системных виджетов ([06b38ad](https://github.com/Infomaximum/widget-sdk/commit/06b38ad6ba733766ff648b41efa5a38efcfc3748))
+- добавлен интерфейс предоставляемых библиотек системой для системных виджетов ([06b38ad](https://github.com/Infomaximum/widget-sdk/commit/06b38ad6ba733766ff648b41efa5a38efcfc3748))
 
 ## [6.0.0-1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-0...v6.0.0-1) (2025-08-26)
 

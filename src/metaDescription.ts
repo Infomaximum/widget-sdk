@@ -5,7 +5,12 @@ import type { IGlobalContext } from "./widgetContext";
 import type { IAutoIdentifiedArrayItem, IBaseWidgetSettings } from "./settings/baseWidget";
 import type { ICalculatorFactory } from "./calculators";
 import type { EWidgetFilterMode } from "./settings/values";
-import type { EDimensionTemplateNames } from "./indicatorsFormulas";
+import type {
+  EDimensionAggregationTemplateName,
+  EDimensionTemplateNames,
+  EMeasureAggregationTemplateName,
+  EMeasureTemplateNames,
+} from "./indicatorsFormulas";
 import type { ESimpleDataType } from "./data";
 import type { EFormatTypes } from "./formatting";
 
@@ -165,7 +170,10 @@ export interface IInitialSettings extends Record<string, any> {}
 /** Кнопка добавления группы в набор */
 export type TAddButton = {
   title: string;
-  props?: ICustomAddButtonProps | IMeasureAddButtonProps | ISortingAddButtonProps;
+  props?: (ICustomAddButtonProps | IMeasureAddButtonProps | ISortingAddButtonProps) & {
+    /** Ключи процессов для фильтрации таблиц, доступных для выбора */
+    processKeys?: Iterable<string>;
+  };
   /**
    * Начальные настройки, которые получит показатель при создании через кнопку добавления.
    * Возможность не поддерживается для иерархии разрезов.
@@ -183,17 +191,28 @@ export type TWidgetDimensionData = {
   type: EWidgetIndicatorType.DIMENSION;
   /** Обобщенные типы данных, поддерживаемые разрезом */
   simpleTypes?: ESimpleDataType[];
-  /** Шаблоны формул, доступные для выбора в разрезе */
-  templates?: Partial<Record<ESimpleDataType, EDimensionTemplateNames[]>>;
-  /** Переопределение доступных форматов и их порядка */
-  formats?: Record<ESimpleDataType, EFormatTypes[]>;
+  /**
+   * Шаблоны формул, доступные к выбору шаблоны на основе колонок (по типу колонки)
+   * Фильтрация применяется только для указанных типов колонки
+   */
+  templates?: Partial<
+    Record<ESimpleDataType, (EDimensionTemplateNames | EDimensionAggregationTemplateName)[]>
+  >;
+  /**
+   * Шаблоны формул, доступные к выбору в процессных разрезах по времени
+   */
+  processTimeTemplates?: EDimensionTemplateNames[];
+  /** Переопределение доступных форматов */
+  formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;
 };
 
 /** Конфигурация меры */
 export type TWidgetMeasureData = {
   type: EWidgetIndicatorType.MEASURE;
-  /** Переопределение доступных форматов и их порядка */
-  formats?: Record<ESimpleDataType, EFormatTypes[]>;
+  /** Переопределение доступных форматов */
+  formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;
+  /** Шаблоны формул, доступные для выбора в мере */
+  templates?: Partial<Record<ESimpleDataType, EMeasureTemplateNames[]>>;
 };
 
 /** Конфигурация показателя */
@@ -301,10 +320,6 @@ export interface IWidgetProcess {
   caseCaseIdFormula: string;
   /** Имя колонки CaseId события */
   eventCaseIdColumnName: string;
-  /** Тип данных CaseId */
-  caseIdDbDataType: string;
-  /** Тип данных времени события */
-  eventTimeDbDataType: string;
   /** Является ли процесс валидным */
   isValid: boolean;
 }

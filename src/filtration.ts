@@ -22,18 +22,11 @@ export enum EProcessFilterNames {
   durationOfTransition = "durationOfTransition",
 }
 
-interface IProcessFilterValue {
-  /** @deprecated необходимо передавать посредством IProcessFilterPreviewParams [2502] */
-  eventsNamesByProcessNameMap?: Map<string, (string | null)[]>;
-}
-
 /**
  * Параметры, которые влияют на отображаемый контент в окне настройки процессного фильтра,
  * но не учитываются при применении фильтра.
  */
 export interface IProcessFilterPreviewParams {
-  /** @deprecated необходимо использовать eventsNamesByProcessKey */
-  eventsNamesByProcessName?: Map<string, (string | null)[]>;
   /**
    * События, доступные при выборе процесса.
    * Если параметр не передан, используются все события процесса на основе запроса к вычислителю.
@@ -43,21 +36,15 @@ export interface IProcessFilterPreviewParams {
   eventFilters?: TExtendedFormulaFilterValue[];
 }
 
-export interface IProcessEventFilterValue extends IProcessFilterValue {
-  /** @deprecated необходимо использовать processKey  */
-  processName?: string;
+export interface IProcessEventFilterValue {
   processKey: string;
   eventName: string;
 }
 
-export interface IProcessTransitionFilterValue extends IProcessFilterValue {
-  /** @deprecated необходимо использовать startEventProcessKey  */
-  startEventProcessName?: string;
+export interface IProcessTransitionFilterValue {
   startEventProcessKey: string;
   startEventName: string;
 
-  /** @deprecated необходимо использовать endEventProcessKey  */
-  endEventProcessName?: string;
   endEventProcessKey: string;
   endEventName: string;
 }

@@ -95,30 +95,6 @@ export const updateSingleModeSelection: TUpdateSelection = (
   });
 };
 
-/** @deprecated Отказ от режима фильтрации "Множественный выбор"*/
-export const updateMultiModeSelection: TUpdateSelection = (
-  selection: IDimensionSelectionByFormula,
-  formula: string,
-  value: string
-) => {
-  const selectionItemValues = getSelectionItemValues(
-    value,
-    EWidgetFilterMode.MULTI,
-    selection.get(formula)?.values
-  );
-
-  if (!selectionItemValues.size) {
-    selection.delete(formula);
-
-    return;
-  }
-
-  selection.set(formula, {
-    values: selectionItemValues,
-    replacedFilter: null,
-  });
-};
-
 export const replaceFiltersBySelection = (
   filters: ICalculatorFilter[],
   selection: IDimensionSelectionByFormula

@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-6](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-5...v6.0.0-6) (2025-09-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* Удален formattingTemplate. Изменены поля формат и форматирование
+
+### Features
+
+* изменены формат и форматирование. Удален formattingTemplate. Добавлен новый контрол inputTemplated. ([7c3d230](https://github.com/Infomaximum/widget-sdk/commit/7c3d230c443f897d20be4ec4a23f6fe6b914a213))
+
 ## [6.0.0-5](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-4...v6.0.0-5) (2025-09-01)
 
 

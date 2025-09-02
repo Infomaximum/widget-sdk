@@ -1,4 +1,5 @@
 import { ESimpleDataType } from "./data";
+import type { IWidgetColumnIndicator } from "./indicators";
 import type { TNullable } from "./utilityTypes";
 
 export enum EFormatTypes {
@@ -139,8 +140,7 @@ export interface IWidgetFormatting {
   getFormattedValue: (
     value: string,
     formatType: EFormatTypes,
-    formatting: EFormattingPresets,
-    formatTemplate: TNullable<string>
+    formatting: IWidgetColumnIndicator["formatting"]
   ) => string;
 }
 

@@ -43,7 +43,7 @@ export const getDefaultSortOrders = ({
   /** Если есть временной разрез, то авто-сортировка по первому такому разрезу (по возрастанию) */
   const timeDimension = dimensions.find(
     (dimension) =>
-      dimension.format &&
+      dimension.format?.value &&
       [
         EFormatTypes.DATE,
         EFormatTypes.MONTH,
@@ -56,7 +56,7 @@ export const getDefaultSortOrders = ({
         EFormatTypes.QUARTER_YEAR,
         EFormatTypes.DAY_OF_MONTH,
         EFormatTypes.WEEK,
-      ].includes(dimension.format)
+      ].includes(dimension.format.value)
   );
 
   if (timeDimension) {

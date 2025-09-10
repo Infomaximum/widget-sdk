@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-7](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-6...v6.0.0-7) (2025-09-10)
+
+
+### Bug Fixes
+
+* исправлена проблема с подстановкой sql-комментариев в формулы. ([a07cbbe](https://github.com/Infomaximum/widget-sdk/commit/a07cbbe3d1597d9eb22bdeb0ee4621abecbd5740))
+
 ## [6.0.0-6](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-5...v6.0.0-6) (2025-09-02)
 
 

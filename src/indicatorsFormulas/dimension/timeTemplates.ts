@@ -1,6 +1,6 @@
 import { convertFiltersToFormula } from "../../calculators/utils/filters";
 import { EWidgetIndicatorValueModes, type TWidgetIndicatorTimeValue } from "../../indicators";
-import { fillTemplateString } from "../shared";
+import { fillTemplateSql } from "../shared";
 import { dimensionTemplateFormulas, type EDimensionTemplateNames } from "./baseTemplates";
 
 /** Шаблоны процессных метрик разреза с режимами START_TIME/END_TIME */
@@ -9,7 +9,7 @@ export const timeTemplates = (() => {
     const templates = {} as Record<EDimensionTemplateNames, string>;
 
     for (const key in dimensionTemplateFormulas) {
-      templates[key as EDimensionTemplateNames] = fillTemplateString(
+      templates[key as EDimensionTemplateNames] = fillTemplateSql(
         dimensionTemplateFormulas[key as EDimensionTemplateNames],
         { columnFormula: innerTemplate }
       );

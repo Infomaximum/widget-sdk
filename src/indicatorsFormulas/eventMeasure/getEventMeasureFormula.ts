@@ -5,7 +5,7 @@ import { EEventMeasureTemplateNames, eventMeasureTemplateFormulas } from "./temp
 
 export function getEventMeasureFormula(
   { value }: IProcessIndicator,
-  process: IWidgetProcess
+  process: Omit<IWidgetProcess, "isValid">
 ): string {
   if (!value) {
     return "";

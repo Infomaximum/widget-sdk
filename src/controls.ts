@@ -328,7 +328,6 @@ export interface IFormulaControl {
     dbDataType: string | undefined;
   };
   props: {
-    showModeToggle?: boolean;
     indicatorConfig?:
       | ({ type: "measure"; templates?: TWidgetMeasureData["templates"] } & {
           /** @deprecated временное решение для виджета "Воронка", не следует использовать [BI-14710] */

@@ -81,11 +81,8 @@ jobs:
       - name: Build package
         run: yarn build
 
-      - name: Get branch name and normalize
-        run: echo "TAG_NAME=${GITHUB_REF_NAME//\//-}" >> $GITHUB_ENV
-
       - name: Publish package
         run: |
-          yarn publish --access public --tag $TAG_NAME
+          yarn publish --access public --tag release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

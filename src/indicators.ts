@@ -316,10 +316,10 @@ export type TWidgetIndicatorDurationValue = {
 export type TWidgetIndicatorTimeValue = {
   templateName: string;
   mode: EWidgetIndicatorValueModes.START_TIME | EWidgetIndicatorValueModes.END_TIME;
-  processKey: string;
-  eventName: string;
-  eventTimeFormula: string;
-  caseCaseIdFormula: string;
-  eventNameFormula: string;
+  processKey: string | null;
+  eventName: string | null;
+  eventTimeFormula: string | null;
+  caseCaseIdFormula: string | null;
+  eventNameFormula: string | null;
   filters: TExtendedFormulaFilterValue[];
 };

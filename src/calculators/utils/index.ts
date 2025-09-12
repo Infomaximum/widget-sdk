@@ -6,6 +6,7 @@ export {
   ELastTimeUnit,
   EDurationUnit,
 } from "./mapFormulaFiltersToInputs";
+export { mapSettingsFiltersToInputs } from "./mapSettingsFiltersToInputs";
 export {
   checkDisplayCondition,
   getDisplayConditionFormula,

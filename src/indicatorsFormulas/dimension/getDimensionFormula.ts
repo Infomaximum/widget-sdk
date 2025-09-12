@@ -1,4 +1,9 @@
-import { EWidgetIndicatorValueModes, type IWidgetDimension } from "../../indicators";
+import {
+  EWidgetIndicatorValueModes,
+  type IWidgetDimension,
+  type TWidgetIndicatorAggregationValue,
+  type TWidgetIndicatorTimeValue,
+} from "../../indicators";
 import { fillTemplateSql, generateColumnFormula } from "../shared";
 import {
   dimensionAggregationTemplates,
@@ -31,6 +36,16 @@ export function getDimensionFormula({ value }: IWidgetDimension): string {
     });
   }
 
+  return getProcessDimensionValueFormula(value) ?? "";
+}
+
+export function getProcessDimensionValueFormula(
+  value:
+    | (TWidgetIndicatorAggregationValue & {
+        innerTemplateName?: string;
+      })
+    | TWidgetIndicatorTimeValue
+) {
   if (value.mode === EWidgetIndicatorValueModes.AGGREGATION) {
     const preparedParams = prepareDimensionAggregationParams(value);
 
@@ -70,6 +85,4 @@ export function getDimensionFormula({ value }: IWidgetDimension): string {
 
     return fillTemplateSql(templateFormula, preparedParams);
   }
-
-  return "";
 }

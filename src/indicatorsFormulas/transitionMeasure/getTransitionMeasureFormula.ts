@@ -5,7 +5,7 @@ import { ETransitionMeasureTemplateNames, transitionMeasureTemplateFormulas } fr
 
 export function getTransitionMeasureFormula(
   { value }: IProcessIndicator,
-  process: IWidgetProcess
+  process: Omit<IWidgetProcess, "isValid">
 ): string {
   if (!value) {
     return "";

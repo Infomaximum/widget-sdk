@@ -70,7 +70,6 @@ export const prepareDimensionAggregationParams = (
     eventNameFormula: value.eventNameFormula,
     caseCaseIdFormula: value.caseCaseIdFormula,
     eventName: value.eventName,
-    objectFilters: "1",
     filters: convertFiltersToFormula(value.filters),
     eventTimeFormula: "",
     columnFormula: "",

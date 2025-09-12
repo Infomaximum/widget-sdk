@@ -9,18 +9,18 @@ import {
 import { EMeasureAggregationTemplateName } from "./aggregationTemplates";
 
 function createAnyEventTemplate(aggregatePart: string) {
-  return `{outerAggregation}If(process(${aggregatePart}, {caseCaseIdFormula}), {objectFilters})`;
+  return `{outerAggregation}(process(${aggregatePart}, {caseCaseIdFormula}))`;
 }
 
 function createSpecificEventTemplate(fn: string, additionalFn?: string) {
-  return `{outerAggregation}If(process(${fn}(${additionalFn ? `${additionalFn} ` : ""}{columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}), {objectFilters})`;
+  return `{outerAggregation}(process(${fn}(${additionalFn ? `${additionalFn} ` : ""}{columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}))`;
 }
 
 function createTopLikeTemplate(template: string) {
   return (outerAggregation: EOuterAggregation) =>
     outerAggregation === EOuterAggregation.top
-      ? `{outerAggregation}KIf(1)(${template}, {objectFilters})[1]`
-      : `{outerAggregation}If(${template}, {objectFilters})`;
+      ? `{outerAggregation}K(1)(${template})[1]`
+      : `{outerAggregation}(${template})`;
 }
 
 function createAggregationTemplate(
@@ -74,9 +74,9 @@ function createAggregationTemplate(
         ? createAnyEventTemplate("argMax({columnFormula}, {eventTimeFormula})")
         : createTopLikeTemplate(lastValueTemplate)(outerAggregation);
     case EMeasureAggregationTemplateName.countExecutions:
-      return `{outerAggregation}If(${countExecutionsTemplate}, {objectFilters})`;
+      return `{outerAggregation}(${countExecutionsTemplate})`;
     case EMeasureAggregationTemplateName.countReworks:
-      return `{outerAggregation}If(${countReworksTemplate}, {objectFilters})`;
+      return `{outerAggregation}(${countReworksTemplate})`;
   }
 }
 

@@ -4,121 +4,109 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [6.0.0-9](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-8...v6.0.0-9) (2025-09-12)
 
-
 ### Bug Fixes
 
-* исправлен баг с подстановкой значений в template строки ([12166b5](https://github.com/Infomaximum/widget-sdk/commit/12166b587b74e0ff912822b0d065463b8f23121e))
+- исправлен баг с подстановкой значений в template строки ([12166b5](https://github.com/Infomaximum/widget-sdk/commit/12166b587b74e0ff912822b0d065463b8f23121e))
 
 ## [6.0.0-8](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-7...v6.0.0-8) (2025-09-11)
 
 ## [6.0.0-7](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-6...v6.0.0-7) (2025-09-10)
 
-
 ### Bug Fixes
 
-* исправлена проблема с подстановкой sql-комментариев в формулы. ([a07cbbe](https://github.com/Infomaximum/widget-sdk/commit/a07cbbe3d1597d9eb22bdeb0ee4621abecbd5740))
+- исправлена проблема с подстановкой sql-комментариев в формулы. ([a07cbbe](https://github.com/Infomaximum/widget-sdk/commit/a07cbbe3d1597d9eb22bdeb0ee4621abecbd5740))
 
 ## [6.0.0-6](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-5...v6.0.0-6) (2025-09-02)
 
-
 ### ⚠ BREAKING CHANGES
 
-* Удален formattingTemplate. Изменены поля формат и форматирование
+- Удален formattingTemplate. Изменены поля формат и форматирование
 
 ### Features
 
-* изменены формат и форматирование. Удален formattingTemplate. Добавлен новый контрол inputTemplated. ([7c3d230](https://github.com/Infomaximum/widget-sdk/commit/7c3d230c443f897d20be4ec4a23f6fe6b914a213))
+- изменены формат и форматирование. Удален formattingTemplate. Добавлен новый контрол inputTemplated. ([7c3d230](https://github.com/Infomaximum/widget-sdk/commit/7c3d230c443f897d20be4ec4a23f6fe6b914a213))
 
 ## [6.0.0-5](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-4...v6.0.0-5) (2025-09-01)
 
-
 ### Features
 
-* добавлена поддержка фильтрации шаблонов мер и агригатных разрезов [WD-1197] ([af49cc3](https://github.com/Infomaximum/widget-sdk/commit/af49cc3ff7840f0d7762c6c40eb1bf183a32d4b7))
-* добавлена фильтрация шаблонов для процессных разрезов времяни [WD-1197] ([564cd57](https://github.com/Infomaximum/widget-sdk/commit/564cd5782276c4ec74c8d26de109f0d2e9deec50))
+- добавлена поддержка фильтрации шаблонов мер и агригатных разрезов [WD-1197] ([af49cc3](https://github.com/Infomaximum/widget-sdk/commit/af49cc3ff7840f0d7762c6c40eb1bf183a32d4b7))
+- добавлена фильтрация шаблонов для процессных разрезов времяни [WD-1197] ([564cd57](https://github.com/Infomaximum/widget-sdk/commit/564cd5782276c4ec74c8d26de109f0d2e9deec50))
 
 ## [6.0.0-4](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-3...v6.0.0-4) (2025-08-29)
 
-
 ### ⚠ BREAKING CHANGES
 
-* если виджеты использовали типы данных процесса, то теперь должны запрашивать их сами через type_calculator
-* требуется поддержка в виджетах
+- если виджеты использовали типы данных процесса, то теперь должны запрашивать их сами через type_calculator
+- требуется поддержка в виджетах
 
 ### Features
 
-* удален deprecated код в связи с переходом на widget-sdk 6 ([c1ce6cb](https://github.com/Infomaximum/widget-sdk/commit/c1ce6cb5f3838a4bfea3003ee2de0cb494477e8c))
-* удалены типы данных из интерфейса процесса ([3b17150](https://github.com/Infomaximum/widget-sdk/commit/3b17150ef67facaf50e489ec308a69fad1d6db82))
+- удален deprecated код в связи с переходом на widget-sdk 6 ([c1ce6cb](https://github.com/Infomaximum/widget-sdk/commit/c1ce6cb5f3838a4bfea3003ee2de0cb494477e8c))
+- удалены типы данных из интерфейса процесса ([3b17150](https://github.com/Infomaximum/widget-sdk/commit/3b17150ef67facaf50e489ec308a69fad1d6db82))
 
 ## [6.0.0-3](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2...v6.0.0-3) (2025-08-28)
 
-
 ### Features
 
-* виджета дана возможность фильтровать таблицы в дропдаунах кнопок добавления индикаторов и фильтрации по процессам ([cb9fd22](https://github.com/Infomaximum/widget-sdk/commit/cb9fd22cbf6ebf12f0261949ab9d467edcaf0a36))
+- виджета дана возможность фильтровать таблицы в дропдаунах кнопок добавления индикаторов и фильтрации по процессам ([cb9fd22](https://github.com/Infomaximum/widget-sdk/commit/cb9fd22cbf6ebf12f0261949ab9d467edcaf0a36))
 
 ## [6.0.0-2](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-1...v6.0.0-2) (2025-08-26)
 
-
 ### ⚠ BREAKING CHANGES
 
-* - Виджеты, использующие импорты, связанные со старым синтаксисом ссылок, будут работать некорректно в новой версии системы (dashboardLinkRegExp, workspaceLinkRegExp, parseIndicatorLink, getRuleColor, isValidColor).
-- Функция escapeSpecialCharacters заменена на escapeDoubleQuoteLinkName.
-- Константа linkNameRegExp удалена - вместо нее используется curlyBracketsContentPattern.
+- - Виджеты, использующие импорты, связанные со старым синтаксисом ссылок, будут работать некорректно в новой версии системы (dashboardLinkRegExp, workspaceLinkRegExp, parseIndicatorLink, getRuleColor, isValidColor).
+
+* Функция escapeSpecialCharacters заменена на escapeDoubleQuoteLinkName.
+* Константа linkNameRegExp удалена - вместо нее используется curlyBracketsContentPattern.
 
 ### Features
 
-* добавлена поддержка нового синтаксиса ссылок на показатели ([7449482](https://github.com/Infomaximum/widget-sdk/commit/74494820ae4ca9e05f5d225ad243a57ca0a6d6aa))
+- добавлена поддержка нового синтаксиса ссылок на показатели ([7449482](https://github.com/Infomaximum/widget-sdk/commit/74494820ae4ca9e05f5d225ad243a57ca0a6d6aa))
 
 ## [6.0.0-1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-0...v6.0.0-1) (2025-08-26)
 
-
 ### ⚠ BREAKING CHANGES
 
-* если виджет использовал guid, то требуется поддержка
+- если виджет использовал guid, то требуется поддержка
 
 ### Features
 
-* удален guid из интерфейсов. ([f50d978](https://github.com/Infomaximum/widget-sdk/commit/f50d9781ab2fc41ed1deb3fafee262e4c4057db1))
+- удален guid из интерфейсов. ([f50d978](https://github.com/Infomaximum/widget-sdk/commit/f50d9781ab2fc41ed1deb3fafee262e4c4057db1))
 
 ## [6.0.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.33.1...v6.0.0-0) (2025-08-20)
 
-
 ### ⚠ BREAKING CHANGES
 
-* получение ф-ии шаблона процессной агрегации для меры через константу "measureAggregationTemplates" заменено на получение через ф-ию "createAggregationFormulaByTemplateName"
-* поле actions удалено из настроек виджетов
+- получение ф-ии шаблона процессной агрегации для меры через константу "measureAggregationTemplates" заменено на получение через ф-ию "createAggregationFormulaByTemplateName"
+- поле actions удалено из настроек виджетов
 
 ### Features
 
-* отказ от поля actions в пользу actionButtons в настройках виджетов ([2ee361a](https://github.com/Infomaximum/widget-sdk/commit/2ee361a5ab1478e1b0ad90feae2256cf90d46058))
-* расширен IInputControl полями hint и hintPlacement. Для запуска скрипта из действий по клику добавлена подсказка ([63d02d6](https://github.com/Infomaximum/widget-sdk/commit/63d02d68bc38bb6d6b1bb2dfd1898d4b948ee6fc))
+- отказ от поля actions в пользу actionButtons в настройках виджетов ([2ee361a](https://github.com/Infomaximum/widget-sdk/commit/2ee361a5ab1478e1b0ad90feae2256cf90d46058))
+- расширен IInputControl полями hint и hintPlacement. Для запуска скрипта из действий по клику добавлена подсказка ([63d02d6](https://github.com/Infomaximum/widget-sdk/commit/63d02d68bc38bb6d6b1bb2dfd1898d4b948ee6fc))
 
-
-* From BI-15231 into master (#92) ([8257237](https://github.com/Infomaximum/widget-sdk/commit/8257237e12b42ee403378408d0bb5007853c379d)), closes [#92](https://github.com/Infomaximum/widget-sdk/issues/92)
+- From BI-15231 into master (#92) ([8257237](https://github.com/Infomaximum/widget-sdk/commit/8257237e12b42ee403378408d0bb5007853c379d)), closes [#92](https://github.com/Infomaximum/widget-sdk/issues/92)
 
 ### [5.33.1](https://github.com/Infomaximum/widget-sdk/compare/v5.33.0...v5.33.1) (2025-08-15)
 
 ## [5.33.0](https://github.com/Infomaximum/widget-sdk/compare/v5.32.1...v5.33.0) (2025-08-06)
 
-
 ### Features
 
-* расширены шаблоны процессных агрегаций ([f2bfbaf](https://github.com/Infomaximum/widget-sdk/commit/f2bfbafb557ba72ae605d906ae1341109adf3894))
+- расширены шаблоны процессных агрегаций ([f2bfbaf](https://github.com/Infomaximum/widget-sdk/commit/f2bfbafb557ba72ae605d906ae1341109adf3894))
 
 ### [5.32.1](https://github.com/Infomaximum/widget-sdk/compare/v5.32.0...v5.32.1) (2025-08-05)
 
-
 ### Bug Fixes
 
-* исправлена типизация ответов вычислителей ([0453793](https://github.com/Infomaximum/widget-sdk/commit/04537930ba1916d300b279e658a7e9b8da191af4))
+- исправлена типизация ответов вычислителей ([0453793](https://github.com/Infomaximum/widget-sdk/commit/04537930ba1916d300b279e658a7e9b8da191af4))
 
 ## [5.32.0](https://github.com/Infomaximum/widget-sdk/compare/v5.31.0...v5.32.0) (2025-07-31)
 
-
 ### Features
 
-* добавлена возможность управления якорем для сохранения положения виджета ([3bd5610](https://github.com/Infomaximum/widget-sdk/commit/3bd561058e48055ec10f99c53f88f2fcddf18d94))
+- добавлена возможность управления якорем для сохранения положения виджета ([3bd5610](https://github.com/Infomaximum/widget-sdk/commit/3bd561058e48055ec10f99c53f88f2fcddf18d94))
 
 ## [5.31.0](https://github.com/Infomaximum/widget-sdk/compare/v5.30.0...v5.31.0) (2025-07-17)
 
@@ -126,15 +114,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [5.29.0-0](https://github.com/Infomaximum/widget-sdk/compare/v5.28.0...v5.29.0-0) (2025-07-10)
 
-
 ### Features
 
-* отказ от имени процесса ([4fa01d5](https://github.com/Infomaximum/widget-sdk/commit/4fa01d5c2602211810277d0b6aef6b4d5f62e19c))
-
+- отказ от имени процесса ([4fa01d5](https://github.com/Infomaximum/widget-sdk/commit/4fa01d5c2602211810277d0b6aef6b4d5f62e19c))
 
 ### Bug Fixes
 
-* deprecated поле processName для интерфейса IProcessGraphCalculatorInput сделано необзятельным ([859f959](https://github.com/Infomaximum/widget-sdk/commit/859f959ea963ea2ed9214ccc4a4dc43a8b49142c))
+- deprecated поле processName для интерфейса IProcessGraphCalculatorInput сделано необзятельным ([859f959](https://github.com/Infomaximum/widget-sdk/commit/859f959ea963ea2ed9214ccc4a4dc43a8b49142c))
 
 ## [5.30.0](https://github.com/Infomaximum/widget-sdk/compare/v5.29.0...v5.30.0) (2025-07-15)
 

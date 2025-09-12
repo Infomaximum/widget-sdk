@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-9](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-8...v6.0.0-9) (2025-09-12)
+
+
+### Bug Fixes
+
+* исправлен баг с подстановкой значений в template строки ([12166b5](https://github.com/Infomaximum/widget-sdk/commit/12166b587b74e0ff912822b0d065463b8f23121e))
+
 ## [6.0.0-8](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-7...v6.0.0-8) (2025-09-11)
 
 ## [6.0.0-7](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-6...v6.0.0-7) (2025-09-10)

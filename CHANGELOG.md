@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-2508.1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2508.0...v6.0.0-2508.1) (2025-09-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* в виджетах требуется обработать получение нового типа фильтра
+
+### Features
+
+* в настройки виджетов и образов добавлен новый тип фильтра - по процессному разрезу ([e5811d1](https://github.com/Infomaximum/widget-sdk/commit/e5811d1c2f5beb31374aa845b256ccae9044baad))
+
+
+### Bug Fixes
+
+* исправлена типизация полей интерфейса TWidgetIndicatorTimeValue ([9beb5d9](https://github.com/Infomaximum/widget-sdk/commit/9beb5d97ec62c774f894a389067058494186dfc7))
+* поле timeUnit сделано необязательным в фильтре по процессному разрезу ([3c97c94](https://github.com/Infomaximum/widget-sdk/commit/3c97c94a1fb7e7112dd9c4737346d50ca746c84d))
+
 ## [6.0.0-2508.0](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-7...v6.0.0-2508.0) (2025-09-11)
 
 ## [6.0.0-7](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-6...v6.0.0-7) (2025-09-10)

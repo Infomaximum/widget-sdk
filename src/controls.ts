@@ -193,7 +193,6 @@ export interface IInputControl {
   type: EControlType.input;
   value: string;
   props: {
-    isBordered?: boolean;
     placeholder?: string;
     /** Максимальное количество символов которое можно ввести в поле */
     maxLength?: number;

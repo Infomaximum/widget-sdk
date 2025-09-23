@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-2508.2](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2508.1...v6.0.0-2508.2) (2025-09-23)
+
+
+### Features
+
+* удален флаг isBordered для IInputControl [BI-15461] ([aabacfe](https://github.com/Infomaximum/widget-sdk/commit/aabacfe1ed8083f8ac891b619f26ec612dbf59fa))
+
 ## [6.0.0-2508.1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2508.0...v6.0.0-2508.1) (2025-09-12)
 
 

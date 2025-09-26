@@ -146,8 +146,6 @@ export interface IWidgetManifest {
     show_title?: boolean;
     /** Отображать ли markdown "описание" виджета (по умолчанию false) */
     show_markdown?: boolean;
-    /** Отображать ли переключатель темы виджета (по умолчанию false) */
-    view_theme?: boolean;
   };
 }
 

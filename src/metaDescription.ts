@@ -282,7 +282,7 @@ export interface IPanelDescription<
   useTitle?: boolean;
   /** Добавить поле настройки описания */
   useMarkdown?: boolean;
-  /** Добавить перекключатель темы */
+  /** Добавить переключатель темы */
   useTheme?: boolean;
 
   /** Конфигурация вкладки настроек данных */

@@ -288,9 +288,10 @@ export interface IActionButton extends IAutoIdentifiedArrayItem {
   hint?: string;
 }
 
-export type TViewActionParameter = (IParameterFromAggregation | IParameterFromVariable) & {
-  name: string;
-};
+export type TViewActionParameter = (IParameterFromAggregation | IParameterFromVariable) &
+  IAutoIdentifiedArrayItem & {
+    name: string;
+  };
 
 export interface IViewAction {
   name: string;

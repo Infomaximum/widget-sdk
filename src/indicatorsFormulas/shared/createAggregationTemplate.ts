@@ -4,7 +4,7 @@ function createAggregationTemplate(
     distinct?: boolean;
   }
 ) {
-  return `process(${functionName}(${options?.distinct ? "distinct " : ""}{columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula})`;
+  return `process(${functionName}(${options?.distinct ? "distinct " : ""}{columnFormula}, {eventNameFormula} ={eventName}{filters}), {caseCaseIdFormula})`;
 }
 
 export { createAggregationTemplate };

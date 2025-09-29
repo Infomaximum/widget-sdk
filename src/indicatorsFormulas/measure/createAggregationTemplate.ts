@@ -13,7 +13,7 @@ function createAnyEventTemplate(aggregatePart: string) {
 }
 
 function createSpecificEventTemplate(fn: string, additionalFn?: string) {
-  return `{outerAggregation}(process(${fn}(${additionalFn ? `${additionalFn} ` : ""}{columnFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula}))`;
+  return `{outerAggregation}(process(${fn}(${additionalFn ? `${additionalFn} ` : ""}{columnFormula}, {eventNameFormula} = {eventName}{filters}), {caseCaseIdFormula}))`;
 }
 
 function createTopLikeTemplate(template: string) {

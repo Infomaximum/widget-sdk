@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-12](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-11...v6.0.0-12) (2025-09-29)
+
+
+### Features
+
+* для параметров действий образа добавлен id ([4b92d35](https://github.com/Infomaximum/widget-sdk/commit/4b92d3547a6048b8326db94ec360515d99e17b1a))
+
 ## [6.0.0-11](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-10...v6.0.0-11) (2025-09-23)
 
 

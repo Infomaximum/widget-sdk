@@ -12,6 +12,7 @@ import {
   topTemplate,
 } from "../shared/aggregationTemplates";
 import { generateColumnFormula } from "../shared";
+import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuotes";
 
 export enum EMeasureAggregationTemplateName {
   agvIf = "agvIf",
@@ -86,7 +87,7 @@ export const prepareMeasureAggregationParams = (
     outerAggregation: value.outerAggregation,
     eventNameFormula: value.eventNameFormula,
     caseCaseIdFormula: value.caseCaseIdFormula,
-    eventName: value.eventName,
+    eventName: escapeSingularQuotes(value.eventName),
     objectFilters: "1",
     filters: convertFiltersToFormula(value.filters),
     eventTimeFormula: "",

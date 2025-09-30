@@ -8,6 +8,7 @@ import {
   topTemplate,
 } from "../shared/aggregationTemplates";
 import { generateColumnFormula } from "../shared";
+import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuotes";
 
 export enum EDimensionAggregationTemplateName {
   top = "top",
@@ -48,7 +49,7 @@ export const prepareDimensionAggregationParams = (
   const commonParams = {
     eventNameFormula: value.eventNameFormula,
     caseCaseIdFormula: value.caseCaseIdFormula,
-    eventName: value.eventName,
+    eventName: escapeSingularQuotes(value.eventName),
     objectFilters: "1",
     filters: convertFiltersToFormula(value.filters),
     eventTimeFormula: "",

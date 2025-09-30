@@ -4,6 +4,7 @@ import {
   EEventAppearances,
   type TWidgetIndicatorDurationValue,
 } from "../../indicators";
+import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuotes";
 
 /** Шаблоны процессных метрик меры с режимом DURATION */
 export const durationTemplates: Record<EDurationTemplateName, string> = (() => {
@@ -78,13 +79,13 @@ export const prepareDurationParams = (value: TWidgetIndicatorDurationValue) => {
     startEventTimeFormula: value.startEventTimeFormula,
     startEventNameFormula: value.startEventNameFormula,
     startEventFilters: convertFiltersToFormula(value.startEventFilters),
-    startEventName: value.startEventName,
+    startEventName: escapeSingularQuotes(value.startEventName),
     startEventAggregationName: getAggregationNameByAppearances(value.startEventAppearances),
 
     endEventTimeFormula: value.endEventTimeFormula,
     endCaseCaseIdFormula: value.endCaseCaseIdFormula,
     endEventNameFormula: value.endEventNameFormula,
-    endEventName: value.endEventName,
+    endEventName: escapeSingularQuotes(value.endEventName),
     endEventFilters: convertFiltersToFormula(value.endEventFilters),
     endEventAggregationName: getAggregationNameByAppearances(value.endEventAppearances),
   };

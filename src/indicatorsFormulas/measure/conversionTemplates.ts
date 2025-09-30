@@ -1,5 +1,6 @@
 import { convertFiltersToFormula } from "../../calculators/utils/filters";
 import type { TWidgetIndicatorConversionValue } from "../../indicators";
+import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuotes";
 
 /** Шаблон процессной метрики меры с режимом CONVERSION */
 export const conversionTemplate = `countIf(
@@ -55,12 +56,12 @@ export const prepareConversionParams = (value: TWidgetIndicatorConversionValue) 
     startEventTimeFormula: value.startEventTimeFormula,
     startEventNameFormula: value.startEventNameFormula,
     startEventFilters: convertFiltersToFormula(value.startEventFilters),
-    startEventName: value.startEventName,
+    startEventName: escapeSingularQuotes(value.startEventName),
 
     endEventTimeFormula: value.endEventTimeFormula,
     endCaseCaseIdFormula: value.endCaseCaseIdFormula,
     endEventNameFormula: value.endEventNameFormula,
-    endEventName: value.endEventName,
+    endEventName: escapeSingularQuotes(value.endEventName),
     endEventFilters: convertFiltersToFormula(value.endEventFilters),
   };
 };

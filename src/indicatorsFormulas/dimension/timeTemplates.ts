@@ -2,6 +2,7 @@ import { convertFiltersToFormula } from "../../calculators/utils/filters";
 import { EWidgetIndicatorValueModes, type TWidgetIndicatorTimeValue } from "../../indicators";
 import { fillTemplateString } from "../shared";
 import { dimensionTemplateFormulas, type EDimensionTemplateNames } from "./baseTemplates";
+import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuotes";
 
 /** Шаблоны процессных метрик разреза с режимами START_TIME/END_TIME */
 export const timeTemplates = (() => {
@@ -46,6 +47,6 @@ export const prepareTimeParams = (value: TWidgetIndicatorTimeValue) => {
     eventNameFormula: value.eventNameFormula,
     caseCaseIdFormula: value.caseCaseIdFormula,
     filters: convertFiltersToFormula(value.filters),
-    eventName: value.eventName,
+    eventName: escapeSingularQuotes(value.eventName),
   };
 };

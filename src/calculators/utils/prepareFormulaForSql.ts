@@ -1,7 +1,8 @@
 import { ESimpleDataType } from "../../data";
+import { sanitizeSingleLineComment } from "../../sanitizeSingleLineComment";
 
 export const prepareFormulaForSql = (formula: string, simpleType?: ESimpleDataType) => {
-  formula = clearSingleLineComments(clearMultiLineComments(formula)).trim();
+  formula = sanitizeSingleLineComment(formula, true);
 
   return simpleType === ESimpleDataType.OTHER ? `toString(${formula})` : formula;
 };

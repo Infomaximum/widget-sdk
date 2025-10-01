@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-13](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-12...v6.0.0-13) (2025-10-01)
+
+
+### Bug Fixes
+
+* исправлены шаблоны формул и функции подготовки параметров наполнения шаблонов. Отказ от удаления однострочных и многострочных комментариев ([97332be](https://github.com/Infomaximum/widget-sdk/commit/97332be7bddd6942f3670ff806470b9c1a59c122))
+
 ## [6.0.0-12](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-11...v6.0.0-12) (2025-09-29)
 
 

@@ -1,6 +1,6 @@
 import { EWidgetIndicatorValueModes, type IProcessIndicator } from "../../indicators";
 import type { IWidgetProcess } from "../../metaDescription";
-import { fillTemplateSql } from "../shared";
+import { fillTemplateString } from "../shared";
 import { EEventMeasureTemplateNames, eventMeasureTemplateFormulas } from "./templates";
 
 export function getEventMeasureFormula(
@@ -19,7 +19,7 @@ export function getEventMeasureFormula(
     const templateFormula =
       eventMeasureTemplateFormulas[value.templateName as EEventMeasureTemplateNames];
 
-    return templateFormula && fillTemplateSql(templateFormula, process);
+    return templateFormula && fillTemplateString(templateFormula, process);
   }
 
   return "";

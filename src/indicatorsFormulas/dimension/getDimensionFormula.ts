@@ -1,10 +1,9 @@
 import {
-  EWidgetIndicatorValueModes,
-  type IWidgetDimension,
   type TWidgetIndicatorAggregationValue,
   type TWidgetIndicatorTimeValue,
 } from "../../indicators";
-import { fillTemplateSql, generateColumnFormula } from "../shared";
+import { EWidgetIndicatorValueModes, type IWidgetDimension } from "../../indicators";
+import { fillTemplateString, generateColumnFormula } from "../shared";
 import {
   dimensionAggregationTemplates,
   EDimensionAggregationTemplateName,
@@ -31,7 +30,7 @@ export function getDimensionFormula({ value }: IWidgetDimension): string {
       return "";
     }
 
-    return fillTemplateSql(templateFormula, {
+    return fillTemplateString(templateFormula, {
       columnFormula: generateColumnFormula(tableName, columnName),
     });
   }
@@ -58,13 +57,13 @@ export function getProcessDimensionValueFormula(
       : null;
 
     const columnFormula = innerTemplate
-      ? fillTemplateSql(innerTemplate, { columnFormula: preparedParams.columnFormula })
+      ? fillTemplateString(innerTemplate, { columnFormula: preparedParams.columnFormula })
       : preparedParams.columnFormula;
 
     const dimensionAggregationTemplate =
       dimensionAggregationTemplates[value.templateName as EDimensionAggregationTemplateName];
 
-    return fillTemplateSql(dimensionAggregationTemplate, {
+    return fillTemplateString(dimensionAggregationTemplate, {
       ...preparedParams,
       columnFormula,
     });
@@ -83,6 +82,6 @@ export function getProcessDimensionValueFormula(
     const templateFormula =
       timeTemplates[value.mode][value.templateName as EDimensionTemplateNames];
 
-    return fillTemplateSql(templateFormula, preparedParams);
+    return fillTemplateString(templateFormula, preparedParams);
   }
 }

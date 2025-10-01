@@ -278,6 +278,7 @@ export interface ISwitchControl {
   value: boolean;
   props: {
     size?: "small" | "default";
+    disabled?: boolean;
   };
 }
 
@@ -422,6 +423,7 @@ export interface IColorPickerControl {
     /** Цвет по умолчанию для режима BASE при переключении с другого режима */
     defaultColor?: string;
     dimension?: IWidgetDimension;
+    disabled?: boolean;
   };
 }
 

@@ -13,7 +13,8 @@ export interface IDefinition<
 > {
   /** иконка виджета отображаемая в системе (в base64, svg или png) */
   icon?: string;
-
+  /** очищает настройки заполненные в теме, возвращает функцию отката настроек */
+  cleanupThemeProperties?: (settings: WidgetSettings) => (settings: WidgetSettings) => void;
   /** возвращает конфигурацию настроек для отображения */
   createPanelDescription: IPanelDescriptionCreator<WidgetSettings, GroupSettings>;
   /** заполняет настройки значениями по умолчанию */

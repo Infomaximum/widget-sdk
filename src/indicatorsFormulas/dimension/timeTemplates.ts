@@ -1,6 +1,7 @@
+import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuotes";
 import { convertFiltersToFormula } from "../../calculators/utils/filters";
 import { EWidgetIndicatorValueModes, type TWidgetIndicatorTimeValue } from "../../indicators";
-import { fillTemplateSql } from "../shared";
+import { fillTemplateString } from "../shared";
 import { dimensionTemplateFormulas, type EDimensionTemplateNames } from "./baseTemplates";
 
 /** Шаблоны процессных метрик разреза с режимами START_TIME/END_TIME */
@@ -9,7 +10,7 @@ export const timeTemplates = (() => {
     const templates = {} as Record<EDimensionTemplateNames, string>;
 
     for (const key in dimensionTemplateFormulas) {
-      templates[key as EDimensionTemplateNames] = fillTemplateSql(
+      templates[key as EDimensionTemplateNames] = fillTemplateString(
         dimensionTemplateFormulas[key as EDimensionTemplateNames],
         { columnFormula: innerTemplate }
       );
@@ -20,10 +21,10 @@ export const timeTemplates = (() => {
 
   return {
     [EWidgetIndicatorValueModes.START_TIME]: generateTemplates(
-      "process(minIf({eventTimeFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula})"
+      "process(minIf({eventTimeFormula}, {eventNameFormula} = {eventName}{filters}), {caseCaseIdFormula})"
     ),
     [EWidgetIndicatorValueModes.END_TIME]: generateTemplates(
-      "process(maxIf({eventTimeFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula})"
+      "process(maxIf({eventTimeFormula}, {eventNameFormula} = {eventName}{filters}), {caseCaseIdFormula})"
     ),
   };
 })();
@@ -46,6 +47,6 @@ export const prepareTimeParams = (value: TWidgetIndicatorTimeValue) => {
     eventNameFormula: value.eventNameFormula,
     caseCaseIdFormula: value.caseCaseIdFormula,
     filters: convertFiltersToFormula(value.filters),
-    eventName: value.eventName,
+    eventName: `'${escapeSingularQuotes(value.eventName)}'`,
   };
 };

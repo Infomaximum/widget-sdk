@@ -1,5 +1,4 @@
-import type { TNullable } from "../../utilityTypes";
-import { isNil } from "../../utils/functions";
+import { sanitizeSingleLineComment } from "../../sanitizeSingleLineComment";
 
 /** @deprecated - следует использовать fillTemplateSql */
 export function fillTemplateString(templateString: string, params: Record<string, any>) {
@@ -12,16 +11,22 @@ export function fillTemplateString(templateString: string, params: Record<string
 export function fillTemplateSql(templateString: string, params: Record<string, string>): string {
   const newParams: Record<string, string> = {};
 
+  if (templateString.indexOf("'{") >= 0) {
+    throw new Error(
+      `Некорректный шаблон: плейсхолдеры не должны заключаться в одинарные кавычки.
+       Используйте {placeholder} вместо '{placeholder}'.
+       Кавычки должны добавляться для необходимых полей при формировании объекта параметров.`
+    );
+  }
+
   for (const [key, value] of Object.entries(params)) {
-    /** Эвристическая проверка на возможное присутствие sql-комментария в значении подставляемом в template
-     */
     if (String(value).indexOf("--") >= 0) {
       newParams[key] = `${value}\n`;
 
       continue;
     }
 
-    newParams[key] = String(value);
+    newParams[key] = sanitizeSingleLineComment(String(value));
   }
 
   return fillTemplateString(templateString, newParams);

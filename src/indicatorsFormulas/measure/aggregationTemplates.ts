@@ -1,3 +1,4 @@
+import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuotes";
 import { convertFiltersToFormula } from "../../calculators/utils/filters";
 import { type EWidgetIndicatorValueModes, type IWidgetMeasure } from "../../indicators";
 import { generateColumnFormula } from "../shared";
@@ -41,7 +42,7 @@ export const prepareMeasureAggregationParams = (
     outerAggregation: value.outerAggregation,
     eventNameFormula: value.eventNameFormula,
     caseCaseIdFormula: value.caseCaseIdFormula,
-    eventName: value.eventName ?? "",
+    eventName: value.eventName ? `'${escapeSingularQuotes(value.eventName)}'` : "",
     filters: convertFiltersToFormula(value.filters),
     eventTimeFormula: "",
     columnFormula: "",

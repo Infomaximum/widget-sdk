@@ -28,4 +28,5 @@ export interface IBaseWidgetSettings {
   sorting?: IWidgetSortingIndicator[];
   actionButtons?: IActionButton[];
   paddings?: number | string;
+  viewTheme?: boolean;
 }

@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [6.0.0-13](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-12...v6.0.0-13) (2025-10-01)
+## [6.0.0-14](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2508.4...v6.0.0-14) (2025-10-01)
+
+## [6.0.0-13](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2508.3...v6.0.0-13) (2025-10-01)
 
 
 ### Bug Fixes
@@ -11,16 +13,12 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [6.0.0-12](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-11...v6.0.0-12) (2025-09-29)
 
+## [6.0.0-11](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2508.2...v6.0.0-11) (2025-09-23)
+
 
 ### Features
 
 * для параметров действий образа добавлен id ([4b92d35](https://github.com/Infomaximum/widget-sdk/commit/4b92d3547a6048b8326db94ec360515d99e17b1a))
-
-## [6.0.0-11](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-10...v6.0.0-11) (2025-09-23)
-
-
-### Features
-
 * удален флаг isBordered для IInputControl [BI-15461] ([d60c32d](https://github.com/Infomaximum/widget-sdk/commit/d60c32d02134c10b1aa799dc5a45e2656fe5aefd))
 
 ## [6.0.0-10](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2508.1...v6.0.0-10) (2025-09-12)
@@ -31,6 +29,34 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * исправлен баг с подстановкой значений в template строки ([12166b5](https://github.com/Infomaximum/widget-sdk/commit/12166b587b74e0ff912822b0d065463b8f23121e))
+
+## [6.0.0-8](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2508.0...v6.0.0-8) (2025-09-11)
+
+## [6.0.0-13](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-12...v6.0.0-13) (2025-10-01)
+
+### Bug Fixes
+
+- исправлены шаблоны формул и функции подготовки параметров наполнения шаблонов. Отказ от удаления однострочных и многострочных комментариев ([97332be](https://github.com/Infomaximum/widget-sdk/commit/97332be7bddd6942f3670ff806470b9c1a59c122))
+
+## [6.0.0-12](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-11...v6.0.0-12) (2025-09-29)
+
+### Features
+
+- для параметров действий образа добавлен id ([4b92d35](https://github.com/Infomaximum/widget-sdk/commit/4b92d3547a6048b8326db94ec360515d99e17b1a))
+
+## [6.0.0-11](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-10...v6.0.0-11) (2025-09-23)
+
+### Features
+
+- удален флаг isBordered для IInputControl [BI-15461] ([d60c32d](https://github.com/Infomaximum/widget-sdk/commit/d60c32d02134c10b1aa799dc5a45e2656fe5aefd))
+
+## [6.0.0-10](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2508.1...v6.0.0-10) (2025-09-12)
+
+## [6.0.0-9](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-8...v6.0.0-9) (2025-09-12)
+
+### Bug Fixes
+
+- исправлен баг с подстановкой значений в template строки ([12166b5](https://github.com/Infomaximum/widget-sdk/commit/12166b587b74e0ff912822b0d065463b8f23121e))
 
 ## [6.0.0-8](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2508.0...v6.0.0-8) (2025-09-11)
 

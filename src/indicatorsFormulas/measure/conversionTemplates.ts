@@ -1,3 +1,4 @@
+import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuotes";
 import { convertFiltersToFormula } from "../../calculators/utils/filters";
 import type { TWidgetIndicatorConversionValue } from "../../indicators";
 
@@ -6,28 +7,28 @@ export const conversionTemplate = `countIf(
     process(
         minIf(
             {startEventTimeFormula}, 
-            {startEventNameFormula} = '{startEventName}'{startEventFilters}
+            {startEventNameFormula} = {startEventName}{startEventFilters}
         ), 
         {endCaseCaseIdFormula}
     ) < 
     process(
         maxIf(
             {endEventTimeFormula}, 
-            {endEventNameFormula} = '{endEventName}'{endEventFilters}
+            {endEventNameFormula} = {endEventName}{endEventFilters}
         ), 
         {endCaseCaseIdFormula}
     ) 
     and 
     process(
         countIf(
-            {startEventNameFormula} = '{startEventName}'{startEventFilters}
+            {startEventNameFormula} = {startEventName}{startEventFilters}
         ) != 0, 
         {endCaseCaseIdFormula}
     ) != 0
 ) / countIf(
     process(
         countIf(
-            {startEventNameFormula} = '{startEventName}'{startEventFilters}
+            {startEventNameFormula} = {startEventName}{startEventFilters}
         ) != 0, 
         {endCaseCaseIdFormula}
     ) != 0
@@ -53,12 +54,12 @@ export const prepareConversionParams = (value: TWidgetIndicatorConversionValue) 
     startEventTimeFormula: value.startEventTimeFormula,
     startEventNameFormula: value.startEventNameFormula,
     startEventFilters: convertFiltersToFormula(value.startEventFilters),
-    startEventName: value.startEventName,
+    startEventName: `'${escapeSingularQuotes(value.startEventName)}'`,
 
     endEventTimeFormula: value.endEventTimeFormula,
     endCaseCaseIdFormula: value.endCaseCaseIdFormula,
     endEventNameFormula: value.endEventNameFormula,
-    endEventName: value.endEventName,
+    endEventName: `'${escapeSingularQuotes(value.endEventName)}'`,
     endEventFilters: convertFiltersToFormula(value.endEventFilters),
   };
 };

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.32.1-2507.0](https://github.com/Infomaximum/widget-sdk/compare/v5.32.0...v5.32.1-2507.0) (2025-10-01)
+
+
+### Bug Fixes
+
+* исправлено отсутствие экранирования спец символов в процессных метриках ([122fb33](https://github.com/Infomaximum/widget-sdk/commit/122fb3381796ff707fd84da5e072e9b749b54289))
+
 ## [5.32.0](https://github.com/Infomaximum/widget-sdk/compare/v5.31.0...v5.32.0) (2025-07-31)
 
 

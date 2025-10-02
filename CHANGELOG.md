@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.2](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-15...v6.0.0-view-theme.2) (2025-10-02)
+
+## [6.0.0-view-theme.1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-14...v6.0.0-view-theme.1) (2025-10-01)
+
+## [6.0.0-view-theme.0](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-12...v6.0.0-view-theme.0) (2025-09-29)
+
+
+### Features
+
+* поддержен флаг для темы [BI-15496] ([5196fa6](https://github.com/Infomaximum/widget-sdk/commit/5196fa6c69a521c4529a355e674bcb1f8c1aac39))
+
 ## [6.0.0-view-theme.1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2508.4...v6.0.0-view-theme.1) (2025-10-01)
 
 ## [6.0.0-15](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-14...v6.0.0-15) (2025-10-02)

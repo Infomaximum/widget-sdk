@@ -3,7 +3,7 @@ import {
   EWidgetIndicatorValueModes,
   type IWidgetMeasure,
 } from "../../indicators";
-import { fillTemplateString, generateColumnFormula } from "../shared";
+import { fillTemplateSql, generateColumnFormula } from "../shared";
 import {
   EMeasureAggregationTemplateName,
   prepareMeasureAggregationParams,
@@ -31,7 +31,7 @@ export function getMeasureFormula({ value }: IWidgetMeasure): string {
       return "";
     }
 
-    return fillTemplateString(templateFormula, {
+    return fillTemplateSql(templateFormula, {
       columnFormula: generateColumnFormula(tableName, columnName),
     });
   }
@@ -40,7 +40,7 @@ export function getMeasureFormula({ value }: IWidgetMeasure): string {
     const preparedParams = prepareMeasureAggregationParams(value);
 
     return preparedParams
-      ? fillTemplateString(
+      ? fillTemplateSql(
           createAggregationTemplate(value.templateName as EMeasureAggregationTemplateName, {
             outerAggregation: preparedParams.outerAggregation,
             anyEvent: value.anyEvent,
@@ -57,7 +57,7 @@ export function getMeasureFormula({ value }: IWidgetMeasure): string {
       return "";
     }
 
-    return fillTemplateString(conversionTemplate, preparedParams);
+    return fillTemplateSql(conversionTemplate, preparedParams);
   }
 
   if (value.mode === EWidgetIndicatorValueModes.DURATION) {
@@ -67,7 +67,7 @@ export function getMeasureFormula({ value }: IWidgetMeasure): string {
       return "";
     }
 
-    return fillTemplateString(
+    return fillTemplateSql(
       durationTemplates[value.templateName as EDurationTemplateName],
       preparedParams
     );

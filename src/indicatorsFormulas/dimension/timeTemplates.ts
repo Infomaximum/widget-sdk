@@ -1,3 +1,4 @@
+import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuotes";
 import { convertFiltersToFormula } from "../../calculators/utils/filters";
 import { EWidgetIndicatorValueModes, type TWidgetIndicatorTimeValue } from "../../indicators";
 import { fillTemplateSql } from "../shared";
@@ -20,10 +21,10 @@ export const timeTemplates = (() => {
 
   return {
     [EWidgetIndicatorValueModes.START_TIME]: generateTemplates(
-      "process(minIf({eventTimeFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula})"
+      "process(minIf({eventTimeFormula}, {eventNameFormula} = {eventName}{filters}), {caseCaseIdFormula})"
     ),
     [EWidgetIndicatorValueModes.END_TIME]: generateTemplates(
-      "process(maxIf({eventTimeFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula})"
+      "process(maxIf({eventTimeFormula}, {eventNameFormula} = {eventName}{filters}), {caseCaseIdFormula})"
     ),
   };
 })();
@@ -46,6 +47,6 @@ export const prepareTimeParams = (value: TWidgetIndicatorTimeValue) => {
     eventNameFormula: value.eventNameFormula,
     caseCaseIdFormula: value.caseCaseIdFormula,
     filters: convertFiltersToFormula(value.filters),
-    eventName: value.eventName,
+    eventName: `'${escapeSingularQuotes(value.eventName)}'`,
   };
 };

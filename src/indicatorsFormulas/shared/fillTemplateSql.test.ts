@@ -2,9 +2,9 @@ import { fillTemplateSql } from "./fillTemplateString";
 
 describe("fillTemplateSql", () => {
   const lastValueTemplate =
-    "process(argMaxIf({columnFormula}, {eventTimeFormula}, {eventNameFormula} = '{eventName}'{filters}), {caseCaseIdFormula})";
+    "process(argMaxIf({columnFormula}, {eventTimeFormula}, {eventNameFormula} = {eventName}{filters}), {caseCaseIdFormula})";
   const countReworksTemplate =
-    "process(if(countIf({eventNameFormula} = '{eventName}'{filters}) > 0, countIf({eventNameFormula}  = '{eventName}'{filters}) - 1, 0), {caseCaseIdFormula})";
+    "process(if(countIf({eventNameFormula} = {eventName}{filters}) > 0, countIf({eventNameFormula}  = {eventName}{filters}) - 1, 0), {caseCaseIdFormula})";
   const reworkTemplate = "count() - uniqExact({caseCaseIdFormula})";
   const medianTimeTemplate =
     "medianExact(date_diff(second, begin({eventTimeFormula}), end({eventTimeFormula})))";
@@ -12,7 +12,7 @@ describe("fillTemplateSql", () => {
   const columnFormula = `"table_name"."Integer"`;
   const eventTimeFormula = `"table_name"."DateTime"`;
   const eventNameFormula = `"table_name"."String"`;
-  const eventName = "Some Event";
+  const eventName = "'Some Event'";
   const filters = "[]";
   const caseCaseIdFormula = `"table_name"."Float"`;
 
@@ -27,7 +27,7 @@ describe("fillTemplateSql", () => {
     };
 
     expect(fillTemplateSql(lastValueTemplate, params)).toEqual(
-      `process(argMaxIf(${columnFormula}, ${eventTimeFormula}, ${eventNameFormula} = '${eventName}'${filters}), ${caseCaseIdFormula})`
+      `process(argMaxIf(${columnFormula}, ${eventTimeFormula}, ${eventNameFormula} = ${eventName}${filters}), ${caseCaseIdFormula})`
     );
   });
 
@@ -36,13 +36,13 @@ describe("fillTemplateSql", () => {
       columnFormula,
       eventTimeFormula,
       eventNameFormula,
-      eventName: "eventName -- комментарий",
+      eventName: "'eventName' -- комментарий",
       filters,
       caseCaseIdFormula,
     };
 
     expect(fillTemplateSql(lastValueTemplate, params)).toEqual(
-      `process(argMaxIf(${columnFormula}, ${eventTimeFormula}, ${eventNameFormula} = '${params.eventName}\n'${filters}), ${caseCaseIdFormula})`
+      `process(argMaxIf(${columnFormula}, ${eventTimeFormula}, ${eventNameFormula} = ${params.eventName}\n${filters}), ${caseCaseIdFormula})`
     );
   });
 
@@ -69,7 +69,7 @@ describe("fillTemplateSql", () => {
     };
 
     expect(fillTemplateSql(countReworksTemplate, params)).toEqual(
-      `process(if(countIf(${eventNameFormula} = '${eventName}'${filters}) > 0, countIf(${eventNameFormula}  = '${eventName}'${filters}) - 1, 0), ${params.caseCaseIdFormula}\n)`
+      `process(if(countIf(${eventNameFormula} = ${eventName}${filters}) > 0, countIf(${eventNameFormula}  = ${eventName}${filters}) - 1, 0), ${params.caseCaseIdFormula}\n)`
     );
   });
 
@@ -90,6 +90,24 @@ describe("fillTemplateSql", () => {
 
     expect(fillTemplateSql(medianTimeTemplate, params)).toEqual(
       `medianExact(date_diff(second, begin(${eventTimeFormula}), end(${eventTimeFormula})))`
+    );
+  });
+
+  it("не должен выбросить ошибку для корректного шаблона без одинарных кавычек", () => {
+    const validTemplate = "SELECT {column} FROM table WHERE id = {id}";
+    const params = { column: "name", id: "123" };
+
+    expect(() => fillTemplateSql(validTemplate, params)).not.toThrow();
+  });
+
+  it("должен выбросить ошибку, если шаблон содержит '{", () => {
+    const invalidTemplate = "SELECT * FROM table WHERE name = '{value}' AND active = {active}";
+    const params = { value: "test", active: "1" };
+
+    expect(() => fillTemplateSql(invalidTemplate, params)).toThrow(
+      `Некорректный шаблон: плейсхолдеры не должны заключаться в одинарные кавычки.
+       Используйте {placeholder} вместо '{placeholder}'.
+       Кавычки должны добавляться для необходимых полей при формировании объекта параметров.`
     );
   });
 });

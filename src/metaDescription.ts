@@ -282,8 +282,6 @@ export interface IPanelDescription<
   useTitle?: boolean;
   /** Добавить поле настройки описания */
   useMarkdown?: boolean;
-  /** Добавить переключатель темы */
-  useTheme?: boolean;
 
   /** Конфигурация вкладки настроек данных */
   dataRecords?: TWidgetLevelRecord<Settings>[];

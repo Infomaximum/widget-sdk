@@ -10,7 +10,7 @@ import { compact, compactMap, isNil } from "../../utils/functions";
 import type { TNullable, valueof } from "../../utilityTypes";
 import { EClickHouseBaseTypes, parseClickHouseType } from "../../clickHouseTypes";
 import { EFormatTypes } from "../../formatting";
-import { fillTemplateString } from "../../indicatorsFormulas";
+import { fillTemplateSql } from "../../indicatorsFormulas";
 import { displayConditionTemplate } from "./displayCondition";
 import { ESimpleDataType } from "../../data";
 import { prepareFormulaForSql } from "./prepareFormulaForSql";
@@ -183,7 +183,7 @@ export const mapFormulaFilterToCalculatorInput = (
   if (!isFormulaFilterValue(filterValue)) {
     return {
       dbDataType: EClickHouseBaseTypes.Bool,
-      formula: fillTemplateString(displayConditionTemplate, {
+      formula: fillTemplateSql(displayConditionTemplate, {
         formula: prepareFormulaForSql(filterValue.formula),
       }),
       values: ["true"],

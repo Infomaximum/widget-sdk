@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.3](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.2...v6.0.0-view-theme.3) (2025-10-07)
+
+
+### Features
+
+* добавлен disabled для Control используемых в панели отображения [BI-15509] ([6c58001](https://github.com/Infomaximum/widget-sdk/commit/6c58001f88648b48f81dd86480cc1ec25022493b))
+* добавлена поддержка cleanupThemeProperties для кастомных виджетов [BI-15499] ([879c956](https://github.com/Infomaximum/widget-sdk/commit/879c956c9893b0379968eadd420912ccac8405fd))
+* флаг useTheme перенесен в конфиг виджета [BI-15072] ([5d9c187](https://github.com/Infomaximum/widget-sdk/commit/5d9c187af2b1ebe39b66bbd5853c6112b603e6c7))
+
 ## [6.0.0-view-theme.2](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-15...v6.0.0-view-theme.2) (2025-10-02)
 
 ## [6.0.0-view-theme.1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-14...v6.0.0-view-theme.1) (2025-10-01)

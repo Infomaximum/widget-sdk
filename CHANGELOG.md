@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.4](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.3...v6.0.0-view-theme.4) (2025-10-24)
+
+
+### Features
+
+* IDefinition расширен методом createSettingsScheme ([55e6569](https://github.com/Infomaximum/widget-sdk/commit/55e65694b9aa03bebaf638bf9156f719aa884cd1))
+
 ## [6.0.0-view-theme.3](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.2...v6.0.0-view-theme.3) (2025-10-07)
 
 

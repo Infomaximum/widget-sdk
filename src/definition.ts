@@ -7,12 +7,12 @@ import type { IFillSettings } from "./widgetApi";
 import type { IGlobalContext } from "./widgetContext";
 import type { z as Zod, ZodType } from "zod";
 
-/** Используется для вывода типа настроек виджета по описанной схеме в методе `createSettingsScheme`
+/** Используется для вывода типа настроек виджета по описанной схеме в методе `createSettingsSchema`
  */
 export type TSettingsOf<
   D extends IDefinition<B, any, any>,
   B extends IBaseWidgetSettings = IBaseWidgetSettings,
-> = D["createSettingsScheme"] extends (z: typeof Zod) => infer Schema
+> = D["createSettingsSchema"] extends (z: typeof Zod) => infer Schema
   ? Schema extends ZodType
     ? Zod.infer<Schema> & B
     : B
@@ -28,7 +28,7 @@ export interface IDefinition<
   /** метод удаляет настройки, наследуемые от темы и возвращает функцию отката, которая возвращает удаленные настройки */
   cleanupThemeProperties?: (settings: WidgetSettings) => (settings: WidgetSettings) => void;
   /** возвращает zod-схему настроек виджета */
-  createSettingsScheme?: (z: typeof Zod) => ZodType<WidgetSettings>;
+  createSettingsSchema?: (z: typeof Zod) => ZodType<WidgetSettings>;
   /** возвращает конфигурацию настроек для отображения */
   createPanelDescription: IPanelDescriptionCreator<WidgetSettings, GroupSettings>;
   /** заполняет настройки значениями по умолчанию */

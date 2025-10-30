@@ -51,3 +51,15 @@ export enum EFontWeight {
   NORMAL = "NORMAL",
   BOLD = "BOLD",
 }
+
+export interface IGradient {
+  startColor: string;
+  endColor: string;
+}
+
+export type TTabsHorizontalAlignment = "left" | "center" | "right";
+
+export enum EHeightMode {
+  FIXED = "FIXED",
+  PERCENT = "PERCENT",
+}

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.5](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.4...v6.0.0-view-theme.5) (2025-11-01)
+
+
+### Features
+
+* добавлен интерфейс ITheme [BI-15688] ([4c0821c](https://github.com/Infomaximum/widget-sdk/commit/4c0821cdee32900f6cd225da4e07b78082a243de))
+* добавлена функция для привязки мета-информации о теме к Zod-схеме ([731fd97](https://github.com/Infomaximum/widget-sdk/commit/731fd9784a9cce1586bf14cde2f747582a61371c))
+* удален флаг use_theme [BI-15617] ([f0fce3b](https://github.com/Infomaximum/widget-sdk/commit/f0fce3be7bcc1472fcd930f883b83f6702f839da))
+
 ## [6.0.0-view-theme.4](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.3...v6.0.0-view-theme.4) (2025-10-24)
 
 

@@ -30,6 +30,7 @@ export * from "./viewContext";
 export * from "./color";
 export * from "./preset";
 export { parseClickHouseType, EClickHouseBaseTypes } from "./clickHouseTypes";
+export * from "./theme";
 
 export type TDefineWidgetOptions = {
   manifest?: IWidgetManifest;

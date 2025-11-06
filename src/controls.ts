@@ -13,6 +13,7 @@ import type {
   TWidgetIndicatorDurationValue,
   TWidgetIndicatorTimeValue,
 } from "./indicators";
+import type { EMeasureInnerTemplateNames } from "./indicatorsFormulas";
 import type {
   IDisplayPredicate,
   IDivePanelDescription,
@@ -328,7 +329,11 @@ export interface IFormulaControl {
   };
   props: {
     indicatorConfig?:
-      | ({ type: "measure"; templates?: TWidgetMeasureData["templates"] } & {
+      | ({
+          type: "measure";
+          templates?: TWidgetMeasureData["templates"];
+          innerTemplateNames?: EMeasureInnerTemplateNames[];
+        } & {
           /** @deprecated временное решение для виджета "Воронка", не следует использовать [BI-14710] */
           allowClear?: boolean;
           /** @deprecated временное решение для виджета "Воронка", не следует использовать [BI-14710] */

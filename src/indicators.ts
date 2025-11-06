@@ -1,6 +1,7 @@
 import type { TActionsOnClick } from "./actions";
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormatTypes, EFormattingPresets } from "./formatting";
+import type { EMeasureInnerTemplateNames } from "./indicatorsFormulas";
 import type { IAutoIdentifiedArrayItem } from "./settings/baseWidget";
 import type { EMarkdownDisplayMode, TDisplayCondition } from "./settings/values";
 import type { TSortDirection, TWidgetSortingValue } from "./sorting";
@@ -92,17 +93,30 @@ export interface ICommonDimensions {
   formula: string;
 }
 
-export type TColumnIndicatorValue =
-  | { mode: EWidgetIndicatorValueModes.FORMULA; formula?: string }
-  | {
-      mode: EWidgetIndicatorValueModes.TEMPLATE;
-      /** Имя шаблонной формулы, использующей колонку таблицы */
-      templateName?: string;
-      /** Имя таблицы */
-      tableName?: string;
-      /** Имя колонки */
-      columnName?: string;
-    };
+export type TWidgetIndicatorFormulaValue = {
+  mode: EWidgetIndicatorValueModes.FORMULA;
+  formula?: string;
+};
+
+export type TWidgetIndicatorTemplateValue = {
+  mode: EWidgetIndicatorValueModes.TEMPLATE;
+  /** Имя шаблонной формулы, использующей колонку таблицы */
+  templateName?: string;
+  /** Имя таблицы */
+  tableName?: string;
+  /** Имя колонки */
+  columnName?: string;
+};
+
+export type TMeasureValue =
+  | TWidgetIndicatorFormulaValue
+  | (TWidgetIndicatorTemplateValue & { innerTemplateName?: EMeasureInnerTemplateNames });
+
+export type TDimensionValue =
+  | TWidgetIndicatorFormulaValue
+  | (TWidgetIndicatorTemplateValue & { innerTemplateName?: never });
+
+export type TColumnIndicatorValue = TMeasureValue | TDimensionValue;
 
 export enum EFormatOrFormattingMode {
   BASE = "BASE",

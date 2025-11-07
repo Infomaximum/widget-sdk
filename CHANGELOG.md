@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.6](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.5...v6.0.0-view-theme.6) (2025-11-07)
+
+
+### Features
+
+* добавлены zod схемы для базовых настроек виджета ([b55eeb1](https://github.com/Infomaximum/widget-sdk/commit/b55eeb1b932fa5348b575fa220b61361e1defdd6))
+
 ## [6.0.0-view-theme.5](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.4...v6.0.0-view-theme.5) (2025-11-01)
 
 

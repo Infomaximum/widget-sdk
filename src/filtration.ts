@@ -1,10 +1,13 @@
 import type { ICalculatorFilter } from "./calculators/calculator/calculator";
-import type { EFormatTypes } from "./formatting";
-import type { TNullable, valueof } from "./utilityTypes";
+import type { TNullable } from "./utilityTypes";
 import { ECalculatorFilterMethods } from "./calculators/calculator";
-import type { EDurationUnit, ELastTimeUnit } from "./calculators/utils/mapFormulaFiltersToInputs";
-import type { EWidgetIndicatorValueModes } from "./indicators";
-import type { IFormulaControl } from "./controls";
+import type { TSchemaType } from ".";
+import type {
+  DimensionProcessFilterSchema,
+  ExtendedFormulaFilterValueSchema,
+  FormulaFilterValueSchema,
+  SettingsFilterSchema,
+} from "./filtration.schema";
 
 export type TSelectivePartial<T, Keys extends keyof T> = Omit<T, Keys> & Partial<Pick<T, Keys>>;
 
@@ -109,39 +112,7 @@ export enum EFormulaFilterFieldKeys {
   durationUnit = "durationUnit",
 }
 
-export interface IFormulaFilterValue {
-  /** Заголовок фильтра */
-  name: TNullable<string>;
-  /** Формула */
-  formula: string;
-  /**
-   * Индекс элемента в результате вычисления формулы (если результат - массив).
-   *
-   * Используется, когда формула возвращает массив значений, но требуется работать только с одним конкретным элементом.
-   * Индекс добавляется к вычисляемой формуле, позволяя выбрать нужный элемент из результирующего массива.
-   *
-   * **Важно:** Индексация начинается с 1, т.к. используется ClickHouse (1-based).
-   */
-  sliceIndex?: number;
-  /** Тип данных формулы (без учета `sliceIndex`) */
-  dbDataType: string;
-  /** Формат */
-  format: EFormatTypes;
-  /** Метод фильтрации */
-  filteringMethod: valueof<typeof formulaFilterMethods>;
-  /** Выбранные в списке значения в виде моделей */
-  checkedValues?: (string | null)[];
-  /** Значения полей формы редактора */
-  formValues?: Partial<{
-    [EFormulaFilterFieldKeys.date]: string | null;
-    [EFormulaFilterFieldKeys.dateRange]: [string, string];
-    [EFormulaFilterFieldKeys.numberRange]: Partial<[number, number]>;
-    [EFormulaFilterFieldKeys.string]: string;
-    [EFormulaFilterFieldKeys.lastTimeValue]: number;
-    [EFormulaFilterFieldKeys.lastTimeUnit]: ELastTimeUnit;
-    [EFormulaFilterFieldKeys.durationUnit]: EDurationUnit;
-  }>;
-}
+export interface IFormulaFilterValue extends TSchemaType<typeof FormulaFilterValueSchema> {}
 
 export enum EDimensionProcessFilterTimeUnit {
   YEARS = "YEARS",
@@ -150,27 +121,9 @@ export enum EDimensionProcessFilterTimeUnit {
   DAYS = "DAYS",
   MINUTES = "MINUTES",
 }
+export interface IDimensionProcessFilter extends TSchemaType<typeof DimensionProcessFilterSchema> {}
 
-export interface IDimensionProcessFilter {
-  value: Extract<
-    IFormulaControl["value"]["value"],
-    {
-      mode:
-        | EWidgetIndicatorValueModes.AGGREGATION
-        | EWidgetIndicatorValueModes.START_TIME
-        | EWidgetIndicatorValueModes.END_TIME
-        | EWidgetIndicatorValueModes.FORMULA;
-    }
-  >;
-  dbDataType: string;
-  condition: {
-    filteringMethod: valueof<typeof formulaFilterMethods>;
-    timeUnit?: EDimensionProcessFilterTimeUnit;
-    values: (string | null)[];
-  };
-}
-
-export type TExtendedFormulaFilterValue = { formula: string } | IFormulaFilterValue;
+export type TExtendedFormulaFilterValue = TSchemaType<typeof ExtendedFormulaFilterValueSchema>;
 
 interface IStagesFilterItem {
   id: number;
@@ -251,7 +204,7 @@ export interface IWidgetFiltration {
   removeStagesFilter(widgetKey: string): void;
 }
 
-export type TSettingsFilter = TExtendedFormulaFilterValue | IDimensionProcessFilter;
+export type TSettingsFilter = TSchemaType<typeof SettingsFilterSchema>;
 
 export const isFormulaFilterValue = (
   value: TExtendedFormulaFilterValue

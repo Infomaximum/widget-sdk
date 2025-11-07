@@ -1,6 +1,9 @@
-import type { ESimpleDataType } from "./data";
-import type { ESortingValueModes } from "./indicators";
-import type { TNullable } from "./utilityTypes";
+import type { TSchemaType } from ".";
+import type {
+  SortDirectionSchema,
+  SortOrderSchema,
+  WidgetSortingValueSchema,
+} from "./sorting.schema";
 
 export enum ESortDirection {
   descend = "DESC",
@@ -9,27 +12,6 @@ export enum ESortDirection {
   DESC = "descend",
 }
 
-export type TSortDirection = ESortDirection.ascend | ESortDirection.descend;
-
-export interface ISortOrder {
-  /** Формула сортировки */
-  formula: string;
-  /** Тип данных формулы */
-  dbDataType: TNullable<string>;
-  /** Направление сортировки */
-  direction: TSortDirection;
-  /** Условие применения сортировки */
-  displayCondition?: TNullable<string>;
-}
-
-export type TWidgetSortingValue =
-  | {
-      mode: ESortingValueModes.FORMULA;
-      formula: string;
-      dbDataType: string;
-    }
-  | {
-      mode: ESortingValueModes.IN_WIDGET;
-      group: string;
-      index: number;
-    };
+export type TSortDirection = TSchemaType<typeof SortDirectionSchema>;
+export type TWidgetSortingValue = TSchemaType<typeof WidgetSortingValueSchema>;
+export interface ISortOrder extends TSchemaType<typeof SortOrderSchema> {}

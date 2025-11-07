@@ -1,7 +1,13 @@
 import { parseIndicatorLink } from "./indicatorsFormulas";
-import type { TNullable } from "./utilityTypes";
 import { isNil } from "./utils/functions";
 import type { IGlobalContext } from "./widgetContext";
+import type {
+  ColorBaseSchema,
+  ColoredValueSchema,
+  ColorRuleSchema,
+  ColorSchema,
+} from "./color.schema";
+import type { TSchemaType } from ".";
 
 export enum EColorMode {
   /** Окрашивание отключено */
@@ -21,52 +27,11 @@ export enum EColorMode {
   /** Задать цвет конкретным значениям общего разреза. Режим используется только для настроек правила отображения */
   BY_DIMENSION = "BY_DIMENSION",
 }
+export type TColorBase = TSchemaType<typeof ColorBaseSchema>;
+export type TColorRule = TSchemaType<typeof ColorRuleSchema>;
+export type TColor = TSchemaType<typeof ColorSchema>;
 
-export type TColorBase = {
-  mode: EColorMode.BASE;
-  value?: string;
-};
-
-export type TColorRule = {
-  mode: EColorMode.RULE;
-  formula: string;
-};
-
-export interface IColoredValue {
-  value: string;
-  color: TColorBase | TColorRule;
-}
-
-/** Настройка цвета */
-export type TColor =
-  | {
-      mode: EColorMode.FORMULA;
-      formula: string;
-    }
-  | TColorBase
-  | {
-      mode: EColorMode.GRADIENT;
-      startValue: string;
-      endValue: string;
-      classCount?: TNullable<number>;
-    }
-  | {
-      mode: EColorMode.AUTO;
-    }
-  | TColorRule
-  | {
-      mode: EColorMode.VALUES;
-      items: IColoredValue[];
-    }
-  | {
-      mode: EColorMode.BY_DIMENSION;
-      /** Имя разреза из области видимости правила отображения */
-      dimensionName: string;
-      items: IColoredValue[];
-    }
-  | {
-      mode: EColorMode.DISABLED;
-    };
+export interface IColoredValue extends TSchemaType<typeof ColoredValueSchema> {}
 
 export const getRuleColor = (
   ruleFormula: string,

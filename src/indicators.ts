@@ -1,10 +1,21 @@
-import type { TActionsOnClick } from "./actions";
 import type { TExtendedFormulaFilterValue } from "./filtration";
-import type { EFormatTypes, EFormattingPresets } from "./formatting";
-import type { IAutoIdentifiedArrayItem } from "./settings/baseWidget";
-import type { EMarkdownDisplayMode, TDisplayCondition } from "./settings/values";
-import type { TSortDirection, TWidgetSortingValue } from "./sorting";
+import type {
+  ColumnIndicatorValueSchema,
+  MarkdownMeasureSchema,
+  WidgetColumnIndicatorSchema,
+  WidgetDimensionHierarchySchema,
+  WidgetDimensionSchema,
+  WidgetIndicatorAggregationValueSchema,
+  WidgetIndicatorConversionValue,
+  WidgetIndicatorDurationValue,
+  WidgetIndicatorSchema,
+  WidgetIndicatorTimeValueSchema,
+  WidgetMeasureSchema,
+  WidgetSortingIndicatorSchema,
+} from "./indicators.schema";
+import type { TDisplayCondition } from "./settings/values";
 import type { TNullable } from "./utilityTypes";
+import type { TSchemaType, TZod } from ".";
 
 export enum EWidgetIndicatorType {
   MEASURE = "MEASURE",
@@ -25,9 +36,7 @@ export enum EOuterAggregation {
   top = "top",
 }
 
-export interface IWidgetIndicator extends IAutoIdentifiedArrayItem {
-  name: string;
-}
+export interface IWidgetIndicator extends TSchemaType<typeof WidgetIndicatorSchema> {}
 
 export type TProcessIndicatorValue =
   | { mode: EWidgetIndicatorValueModes.FORMULA; formula: string }
@@ -51,11 +60,7 @@ export interface IProcessEventIndicator extends IProcessIndicator {}
 
 export interface IProcessTransitionIndicator extends IProcessIndicator {}
 
-/** Индикатор для сортировки */
-export interface IWidgetSortingIndicator extends IWidgetIndicator {
-  direction: TSortDirection;
-  value: TWidgetSortingValue;
-}
+export interface IWidgetSortingIndicator extends TSchemaType<typeof WidgetSortingIndicatorSchema> {}
 
 /** Режимы значения показателя (на основе чего генерируется формула) */
 export enum EWidgetIndicatorValueModes {
@@ -92,17 +97,7 @@ export interface ICommonDimensions {
   formula: string;
 }
 
-export type TColumnIndicatorValue =
-  | { mode: EWidgetIndicatorValueModes.FORMULA; formula?: string }
-  | {
-      mode: EWidgetIndicatorValueModes.TEMPLATE;
-      /** Имя шаблонной формулы, использующей колонку таблицы */
-      templateName?: string;
-      /** Имя таблицы */
-      tableName?: string;
-      /** Имя колонки */
-      columnName?: string;
-    };
+export type TColumnIndicatorValue = TSchemaType<typeof ColumnIndicatorValueSchema>;
 
 export enum EFormatOrFormattingMode {
   BASE = "BASE",
@@ -110,45 +105,16 @@ export enum EFormatOrFormattingMode {
 }
 
 /** Общий интерфейс разреза и меры */
-export interface IWidgetColumnIndicator extends IWidgetIndicator {
-  dbDataType?: string;
-
-  format?: { value?: EFormatTypes; mode: EFormatOrFormattingMode };
-  formatting?: { value?: EFormattingPresets; mode: EFormatOrFormattingMode };
-  displayCondition?: TDisplayCondition;
-  onClick?: TActionsOnClick[];
-}
+export interface IWidgetColumnIndicator extends TSchemaType<typeof WidgetColumnIndicatorSchema> {}
 
 export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetDimension>
-  extends IAutoIdentifiedArrayItem {
-  name: string;
-  hierarchyDimensions: D[];
-  displayCondition?: TDisplayCondition;
-}
+  extends TSchemaType<typeof WidgetDimensionHierarchySchema<D>> {}
 
-export interface IWidgetDimension extends Omit<IWidgetColumnIndicator, "value"> {
-  value?:
-    | TColumnIndicatorValue
-    | (TWidgetIndicatorAggregationValue & {
-        innerTemplateName?: string;
-      })
-    | TWidgetIndicatorTimeValue;
-  hideEmptyValues: boolean;
-}
+export interface IWidgetDimension extends TSchemaType<typeof WidgetDimensionSchema> {}
 
-export interface IWidgetMeasure extends Omit<IWidgetColumnIndicator, "value"> {
-  value?:
-    | TColumnIndicatorValue
-    | (TWidgetIndicatorAggregationValue & {
-        outerAggregation: EOuterAggregation;
-      })
-    | TWidgetIndicatorConversionValue
-    | TWidgetIndicatorDurationValue;
-}
+export interface IWidgetMeasure extends TSchemaType<typeof WidgetMeasureSchema> {}
 
-export interface IMarkdownMeasure extends IWidgetMeasure {
-  displaySign: EMarkdownDisplayMode;
-}
+export interface IMarkdownMeasure extends TSchemaType<typeof MarkdownMeasureSchema> {}
 
 /** Тип показателя */
 export enum EIndicatorType {
@@ -250,7 +216,7 @@ export type TWidgetVariable =
   | IWidgetColumnListVariable;
 
 export function isDimensionsHierarchy(
-  indicator: IWidgetColumnIndicator
+  indicator: IWidgetColumnIndicator | IWidgetDimensionHierarchy
 ): indicator is IWidgetDimensionHierarchy {
   return "hierarchyDimensions" in indicator;
 }
@@ -270,56 +236,17 @@ export enum EDurationTemplateName {
   median = "median",
 }
 
-export type TWidgetIndicatorAggregationValue = {
-  mode: EWidgetIndicatorValueModes.AGGREGATION;
-  templateName: string;
-  processKey: string | null;
-  eventName: string | null;
-  eventNameFormula: string | null;
-  anyEvent?: true;
-  caseCaseIdFormula: string | null;
-  filters: TExtendedFormulaFilterValue[];
-  tableName?: string;
-  columnName?: string;
-  eventTimeFormula?: string | null;
-};
+export type TWidgetIndicatorAggregationValue = TSchemaType<
+  typeof WidgetIndicatorAggregationValueSchema
+>;
 
 export enum EEventAppearances {
   FIRST = "FIRST",
   LAST = "LAST",
 }
 
-export type TWidgetIndicatorConversionValue = {
-  mode: EWidgetIndicatorValueModes.CONVERSION;
+export type TWidgetIndicatorConversionValue = TSchemaType<typeof WidgetIndicatorConversionValue>;
 
-  startEventNameFormula: string | null;
-  startEventProcessKey: string | null;
-  startEventName: string | null;
-  startEventFilters: TExtendedFormulaFilterValue[];
-  startEventTimeFormula: string | null;
+export type TWidgetIndicatorDurationValue = TSchemaType<typeof WidgetIndicatorDurationValue>;
 
-  endEventNameFormula: string | null;
-  endEventProcessKey: string | null;
-  endEventName: string | null;
-  endEventFilters: TExtendedFormulaFilterValue[];
-  endCaseCaseIdFormula: string | null;
-  endEventTimeFormula: string | null;
-};
-
-export type TWidgetIndicatorDurationValue = {
-  mode: EWidgetIndicatorValueModes.DURATION;
-  templateName: string;
-  startEventAppearances: EEventAppearances;
-  endEventAppearances: EEventAppearances;
-} & Omit<TWidgetIndicatorConversionValue, "mode">;
-
-export type TWidgetIndicatorTimeValue = {
-  templateName: string;
-  mode: EWidgetIndicatorValueModes.START_TIME | EWidgetIndicatorValueModes.END_TIME;
-  processKey: string | null;
-  eventName: string | null;
-  eventTimeFormula: string | null;
-  caseCaseIdFormula: string | null;
-  eventNameFormula: string | null;
-  filters: TExtendedFormulaFilterValue[];
-};
+export type TWidgetIndicatorTimeValue = TSchemaType<typeof WidgetIndicatorTimeValueSchema>;

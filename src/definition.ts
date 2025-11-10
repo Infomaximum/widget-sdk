@@ -40,16 +40,9 @@ export interface IDefinition<
   getInitialSettings?: (settings: Partial<IWidgetPresetSettings>) => Partial<IBaseWidgetSettings>;
   /** возвращает ключи показателей(разрезов или мер), для которых должна работать системная сортировка */
   getSortableIndicatorsKeys?(): Readonly<StringKeyOf<WidgetSettings>[]>;
-  /** Регистрация системных миграторов виджета */
-  registerSystemMigrateProcessors?(
+  /** Регистрация миграторов виджета */
+  registerMigrateProcessors?(
     migrator: IWidgetMigrator<MigrationStruct>,
     globalContext: IGlobalContext
   ): void;
-  /** Регистрация собственных миграторов виджета */
-  registerLocalMigrateProcessors?(
-    migrator: IWidgetMigrator<MigrationStruct>,
-    globalContext: IGlobalContext
-  ): void;
-  /** Возвращает массив версий локальных миграций виджета */
-  getLocalMigrateVersions(): string[];
 }

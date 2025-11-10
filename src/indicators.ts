@@ -2,6 +2,8 @@ import type { TExtendedFormulaFilterValue } from "./filtration";
 import type {
   ColumnIndicatorValueSchema,
   MarkdownMeasureSchema,
+  ProcessIndicatorSchema,
+  ProcessIndicatorValueSchema,
   WidgetColumnIndicatorSchema,
   WidgetDimensionHierarchySchema,
   WidgetDimensionSchema,
@@ -38,23 +40,9 @@ export enum EOuterAggregation {
 
 export interface IWidgetIndicator extends TSchemaType<typeof WidgetIndicatorSchema> {}
 
-export type TProcessIndicatorValue =
-  | { mode: EWidgetIndicatorValueModes.FORMULA; formula: string }
-  | {
-      mode: EWidgetIndicatorValueModes.TEMPLATE;
-      /** Имя шаблонной формулы, использующей колонку таблицы */
-      templateName: string;
-    };
+export type TProcessIndicatorValue = TSchemaType<typeof ProcessIndicatorValueSchema>;
 
-export interface IProcessIndicator extends IWidgetIndicator {
-  value?: TProcessIndicatorValue;
-  dbDataType?: string;
-
-  format?: IWidgetColumnIndicator["format"];
-  formatting?: IWidgetColumnIndicator["formatting"];
-
-  displayCondition?: TDisplayCondition;
-}
+export interface IProcessIndicator extends TSchemaType<typeof ProcessIndicatorSchema> {}
 
 export interface IProcessEventIndicator extends IProcessIndicator {}
 

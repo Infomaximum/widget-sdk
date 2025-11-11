@@ -213,6 +213,7 @@ type TActionOpenIn =
   | {
       openIn: EViewOpenIn.DRAWER_WINDOW;
       alignment: EDrawerPlacement;
+      inheritFilter?: boolean;
     }
   | {
       openIn: EViewOpenIn.PLACEHOLDER;
@@ -221,10 +222,12 @@ type TActionOpenIn =
   | {
       openIn: EViewOpenIn.MODAL_WINDOW;
       positionByClick?: boolean;
+      inheritFilter?: boolean;
     }
   | {
       openIn: EViewOpenIn.WINDOW;
       newWindow: boolean;
+      inheritFilter?: boolean;
     };
 
 export type TActionOpenView = IActionCommon & {

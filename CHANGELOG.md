@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.7](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.6...v6.0.0-view-theme.7) (2025-11-13)
+
+
+### Features
+
+* добавлен ISchemaContext в метод createSettingsSchema ([5a9475b](https://github.com/Infomaximum/widget-sdk/commit/5a9475bcc042b97ceb47146c8fa64c402824762c))
+
 ## [6.0.0-view-theme.6](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.5...v6.0.0-view-theme.6) (2025-11-07)
 
 

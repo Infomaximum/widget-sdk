@@ -25,8 +25,6 @@ export interface IDefinition<
 > {
   /** иконка виджета отображаемая в системе (в base64, svg или png) */
   icon?: string;
-  /** метод удаляет настройки, наследуемые от темы и возвращает функцию отката, которая возвращает удаленные настройки */
-  cleanupThemeProperties?: (settings: WidgetSettings) => (settings: WidgetSettings) => void;
   /** возвращает zod-схему настроек виджета */
   createSettingsSchema?: (z: typeof Zod) => ZodType<WidgetSettings>;
   /** возвращает конфигурацию настроек для отображения */

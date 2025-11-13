@@ -304,6 +304,7 @@ export interface IRadioIconGroupControl<Icon = string> {
   type: EControlType.radioIconGroup;
   value: string;
   props: {
+    disabled?: boolean;
     options: {
       value: string;
       /** Иконка */

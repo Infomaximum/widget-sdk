@@ -6,6 +6,7 @@ import type { StringKeyOf } from "./utilityTypes";
 import type { IFillSettings } from "./widgetApi";
 import type { IGlobalContext } from "./widgetContext";
 import type { z as Zod, ZodType } from "zod";
+import type { ELanguages } from "@infomaximum/localization";
 
 /** Используется для вывода типа настроек виджета по описанной схеме в методе `createSettingsSchema`
  */
@@ -18,6 +19,10 @@ export type TSettingsOf<
     : B
   : B;
 
+export interface ISchemaContext {
+  language: ELanguages;
+}
+
 export interface IDefinition<
   WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings,
   GroupSettings extends IGroupSettings = IGroupSettings,
@@ -28,7 +33,7 @@ export interface IDefinition<
   /** метод удаляет настройки, наследуемые от темы и возвращает функцию отката, которая возвращает удаленные настройки */
   cleanupThemeProperties?: (settings: WidgetSettings) => (settings: WidgetSettings) => void;
   /** возвращает zod-схему настроек виджета */
-  createSettingsSchema?: (z: typeof Zod) => ZodType<WidgetSettings>;
+  createSettingsSchema?: (z: typeof Zod, context: ISchemaContext) => ZodType<WidgetSettings>;
   /** возвращает конфигурацию настроек для отображения */
   createPanelDescription: IPanelDescriptionCreator<WidgetSettings, GroupSettings>;
   /** заполняет настройки значениями по умолчанию */

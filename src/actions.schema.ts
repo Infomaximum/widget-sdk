@@ -184,6 +184,7 @@ export const ActionOpenInSchema = (z: TZod) =>
     z.object({
       openIn: z.literal(EViewOpenIn.DRAWER_WINDOW),
       alignment: z.enum(EDrawerPlacement),
+      inheritFilter: z.boolean().optional(),
     }),
     z.object({
       openIn: z.literal(EViewOpenIn.PLACEHOLDER),
@@ -192,10 +193,12 @@ export const ActionOpenInSchema = (z: TZod) =>
     z.object({
       openIn: z.literal(EViewOpenIn.MODAL_WINDOW),
       positionByClick: z.boolean().optional(),
+      inheritFilter: z.boolean().optional(),
     }),
     z.object({
       openIn: z.literal(EViewOpenIn.WINDOW),
       newWindow: z.boolean(),
+      inheritFilter: z.boolean().optional(),
     }),
   ]);
 

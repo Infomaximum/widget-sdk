@@ -4,42 +4,37 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [6.0.0-view-theme.7](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.6...v6.0.0-view-theme.7) (2025-11-13)
 
-
 ### Features
 
-* добавлен ISchemaContext в метод createSettingsSchema ([5a9475b](https://github.com/Infomaximum/widget-sdk/commit/5a9475bcc042b97ceb47146c8fa64c402824762c))
+- добавлен ISchemaContext в метод createSettingsSchema ([5a9475b](https://github.com/Infomaximum/widget-sdk/commit/5a9475bcc042b97ceb47146c8fa64c402824762c))
 
 ## [6.0.0-view-theme.6](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.5...v6.0.0-view-theme.6) (2025-11-07)
 
-
 ### Features
 
-* добавлены zod схемы для базовых настроек виджета ([b55eeb1](https://github.com/Infomaximum/widget-sdk/commit/b55eeb1b932fa5348b575fa220b61361e1defdd6))
+- добавлены zod схемы для базовых настроек виджета ([b55eeb1](https://github.com/Infomaximum/widget-sdk/commit/b55eeb1b932fa5348b575fa220b61361e1defdd6))
 
 ## [6.0.0-view-theme.5](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.4...v6.0.0-view-theme.5) (2025-11-01)
 
-
 ### Features
 
-* добавлен интерфейс ITheme [BI-15688] ([4c0821c](https://github.com/Infomaximum/widget-sdk/commit/4c0821cdee32900f6cd225da4e07b78082a243de))
-* добавлена функция для привязки мета-информации о теме к Zod-схеме ([731fd97](https://github.com/Infomaximum/widget-sdk/commit/731fd9784a9cce1586bf14cde2f747582a61371c))
-* удален флаг use_theme [BI-15617] ([f0fce3b](https://github.com/Infomaximum/widget-sdk/commit/f0fce3be7bcc1472fcd930f883b83f6702f839da))
+- добавлен интерфейс ITheme [BI-15688] ([4c0821c](https://github.com/Infomaximum/widget-sdk/commit/4c0821cdee32900f6cd225da4e07b78082a243de))
+- добавлена функция для привязки мета-информации о теме к Zod-схеме ([731fd97](https://github.com/Infomaximum/widget-sdk/commit/731fd9784a9cce1586bf14cde2f747582a61371c))
+- удален флаг use_theme [BI-15617] ([f0fce3b](https://github.com/Infomaximum/widget-sdk/commit/f0fce3be7bcc1472fcd930f883b83f6702f839da))
 
 ## [6.0.0-view-theme.4](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.3...v6.0.0-view-theme.4) (2025-10-24)
 
-
 ### Features
 
-* IDefinition расширен методом createSettingsScheme ([55e6569](https://github.com/Infomaximum/widget-sdk/commit/55e65694b9aa03bebaf638bf9156f719aa884cd1))
+- IDefinition расширен методом createSettingsScheme ([55e6569](https://github.com/Infomaximum/widget-sdk/commit/55e65694b9aa03bebaf638bf9156f719aa884cd1))
 
 ## [6.0.0-view-theme.3](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.2...v6.0.0-view-theme.3) (2025-10-07)
 
-
 ### Features
 
-* добавлен disabled для Control используемых в панели отображения [BI-15509] ([6c58001](https://github.com/Infomaximum/widget-sdk/commit/6c58001f88648b48f81dd86480cc1ec25022493b))
-* добавлена поддержка cleanupThemeProperties для кастомных виджетов [BI-15499] ([879c956](https://github.com/Infomaximum/widget-sdk/commit/879c956c9893b0379968eadd420912ccac8405fd))
-* флаг useTheme перенесен в конфиг виджета [BI-15072] ([5d9c187](https://github.com/Infomaximum/widget-sdk/commit/5d9c187af2b1ebe39b66bbd5853c6112b603e6c7))
+- добавлен disabled для Control используемых в панели отображения [BI-15509] ([6c58001](https://github.com/Infomaximum/widget-sdk/commit/6c58001f88648b48f81dd86480cc1ec25022493b))
+- добавлена поддержка cleanupThemeProperties для кастомных виджетов [BI-15499] ([879c956](https://github.com/Infomaximum/widget-sdk/commit/879c956c9893b0379968eadd420912ccac8405fd))
+- флаг useTheme перенесен в конфиг виджета [BI-15072] ([5d9c187](https://github.com/Infomaximum/widget-sdk/commit/5d9c187af2b1ebe39b66bbd5853c6112b603e6c7))
 
 ## [6.0.0-view-theme.2](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-15...v6.0.0-view-theme.2) (2025-10-02)
 
@@ -47,10 +42,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [6.0.0-view-theme.0](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-12...v6.0.0-view-theme.0) (2025-09-29)
 
-
 ### Features
 
-* поддержен флаг для темы [BI-15496] ([5196fa6](https://github.com/Infomaximum/widget-sdk/commit/5196fa6c69a521c4529a355e674bcb1f8c1aac39))
+- поддержен флаг для темы [BI-15496] ([5196fa6](https://github.com/Infomaximum/widget-sdk/commit/5196fa6c69a521c4529a355e674bcb1f8c1aac39))
 
 ## [6.0.0-view-theme.1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-2508.4...v6.0.0-view-theme.1) (2025-10-01)
 

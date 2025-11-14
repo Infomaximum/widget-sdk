@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.8](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.7...v6.0.0-view-theme.8) (2025-11-14)
+
+## [6.0.0-16](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.6...v6.0.0-16) (2025-11-13)
+
+### Features
+
+- в TActionOpenIn добавлено поле inheritFilter ([6d14dec](https://github.com/Infomaximum/widget-sdk/commit/6d14dec72ebf060654ffb8905051fb58d3798237))
+
 ## [6.0.0-view-theme.7](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.6...v6.0.0-view-theme.7) (2025-11-13)
 
 ### Features

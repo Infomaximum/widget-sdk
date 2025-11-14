@@ -1,13 +1,3 @@
-import type { TColor } from "./color";
-import type { EFontWeight, EWidgetFilterMode } from "./settings/values";
+import type { TSchemaType, WidgetPresetSettingsSchema } from ".";
 
-export interface IWidgetPresetSettings {
-  filterMode: EWidgetFilterMode;
-  ignoreFilters: boolean;
-  stateName: string | null;
-  titleColor: TColor;
-  titleSize: number;
-  titleWeight: EFontWeight;
-  textSize: number;
-  paddings: number | string;
-}
+export interface IWidgetPresetSettings extends TSchemaType<typeof WidgetPresetSettingsSchema> {}

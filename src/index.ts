@@ -17,6 +17,7 @@ export * from "./controls";
 export * from "./contextMenu";
 export { ESimpleDataType } from "./data";
 export * from "./filtration";
+export * from "./filtration.schema";
 export * from "./formatting";
 export * from "./indicators";
 export * from "./indicators.schema";

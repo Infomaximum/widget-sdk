@@ -15,7 +15,7 @@ import type {
 } from "./indicators.schema";
 import type { TDisplayCondition } from "./settings/values";
 import type { TNullable } from "./utilityTypes";
-import type { TSchemaType, TZod } from ".";
+import type { TSchemaType } from ".";
 
 export enum EWidgetIndicatorType {
   MEASURE = "MEASURE",

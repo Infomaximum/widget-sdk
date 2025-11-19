@@ -285,7 +285,7 @@ export const ViewActionSchema = (z: TZod) =>
     buttonType: z.enum(EActionButtonsTypes).default(EActionButtonsTypes.BASE),
     type: z.literal(EActionTypes.EXECUTE_SCRIPT).default(EActionTypes.EXECUTE_SCRIPT),
     parameters: z.array(ViewActionParameterSchema(z)),
-    scriptKey: z.string().default(""),
+    scriptKey: z.string().nullable(),
     autoUpdate: z
       .union([z.literal(EAutoUpdateMode.NONE), z.literal(EAutoUpdateMode.ALL_VIEWS)])
       .default(EAutoUpdateMode.NONE)

@@ -98,7 +98,7 @@ export const WidgetDimensionSchema = (z: TZod) =>
         WidgetIndicatorTimeValueSchema(z),
       ])
       .optional(),
-    hideEmptyValues: z.boolean(),
+    hideEmptyValues: z.boolean().default(false),
   });
 
 export const WidgetDimensionHierarchySchema = <D extends TSchemaType<typeof WidgetDimensionSchema>>(
@@ -107,7 +107,7 @@ export const WidgetDimensionHierarchySchema = <D extends TSchemaType<typeof Widg
 ) =>
   AutoIdentifiedArrayItemSchema(z).extend({
     name: z.string(),
-    hierarchyDimensions: z.array(dimensionSchema),
+    hierarchyDimensions: z.array(dimensionSchema).default([]),
     displayCondition: DisplayConditionSchema(z).optional(),
   });
 
@@ -153,7 +153,7 @@ export const WidgetMeasureSchema = (z: TZod) =>
 
 export const MarkdownMeasureSchema = (z: TZod) =>
   WidgetMeasureSchema(z).extend({
-    displaySign: z.enum(EMarkdownDisplayMode),
+    displaySign: z.enum(EMarkdownDisplayMode).default(EMarkdownDisplayMode.NONE),
   });
 
 export const WidgetSortingIndicatorSchema = (z: TZod) =>

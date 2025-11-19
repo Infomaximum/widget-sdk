@@ -280,15 +280,15 @@ export const ViewActionParameterSchema = (z: TZod) =>
   );
 
 export const ViewActionSchema = (z: TZod) =>
-  z.object({
+  AutoIdentifiedArrayItemSchema(z).extend({
     name: z.string(),
-    buttonType: z.enum(EActionButtonsTypes),
-    type: z.literal(EActionTypes.EXECUTE_SCRIPT),
+    buttonType: z.enum(EActionButtonsTypes).default(EActionButtonsTypes.BASE),
+    type: z.literal(EActionTypes.EXECUTE_SCRIPT).default(EActionTypes.EXECUTE_SCRIPT),
     parameters: z.array(ViewActionParameterSchema(z)),
-    scriptKey: z.string(),
-    id: z.number().optional(),
+    scriptKey: z.string().nullable(),
     autoUpdate: z
       .union([z.literal(EAutoUpdateMode.NONE), z.literal(EAutoUpdateMode.ALL_VIEWS)])
+      .default(EAutoUpdateMode.NONE)
       .optional(),
   });
 

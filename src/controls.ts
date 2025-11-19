@@ -23,7 +23,7 @@ import type {
   TWidgetDimensionData,
   TWidgetMeasureData,
 } from "./metaDescription";
-import type { IRange, TDisplayCondition } from "./settings/values";
+import type { EDisplayConditionMode, IRange, TDisplayCondition } from "./settings/values";
 import type { TNullable } from "./utilityTypes";
 
 export type THintPlacement =
@@ -410,6 +410,7 @@ export interface IDisplayConditionControl {
   props: {
     isInMeasure?: boolean;
     labelFontSize?: number;
+    modes?: EDisplayConditionMode[];
   };
 }
 

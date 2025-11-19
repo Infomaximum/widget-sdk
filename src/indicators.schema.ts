@@ -161,3 +161,25 @@ export const WidgetSortingIndicatorSchema = (z: TZod) =>
     direction: SortDirectionSchema(z),
     value: WidgetSortingValueSchema(z),
   });
+
+export const ProcessIndicatorValueSchema = (z: TZod) =>
+  z.discriminatedUnion("mode", [
+    z.object({
+      mode: z.literal(EWidgetIndicatorValueModes.FORMULA),
+      formula: z.string(),
+    }),
+    z.object({
+      mode: z.literal(EWidgetIndicatorValueModes.TEMPLATE),
+      /** Имя шаблонной формулы, использующей колонку таблицы */
+      templateName: z.string(),
+    }),
+  ]);
+
+export const ProcessIndicatorSchema = (z: TZod) =>
+  WidgetIndicatorSchema(z).extend({
+    value: ProcessIndicatorValueSchema(z).optional(),
+    dbDataType: z.string().optional(),
+    format: FormatSchema(z).optional(),
+    formatting: FormattingSchema(z).optional(),
+    displayCondition: DisplayConditionSchema(z).optional(),
+  });

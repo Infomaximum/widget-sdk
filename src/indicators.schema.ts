@@ -72,7 +72,7 @@ export const DimensionValueSchema = (z: TZod) =>
   z.discriminatedUnion("mode", [
     WidgetIndicatorFormulaValueSchema(z),
     WidgetIndicatorTemplateValueSchema(z).extend({
-      innerTemplateName: z.never(),
+      innerTemplateName: z.never().optional(),
     }),
   ]);
 

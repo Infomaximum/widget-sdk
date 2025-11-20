@@ -13,6 +13,7 @@ import type {
   TWidgetIndicatorDurationValue,
   TWidgetIndicatorTimeValue,
 } from "./indicators";
+import type { EMeasureInnerTemplateNames } from "./indicatorsFormulas";
 import type {
   IDisplayPredicate,
   IDivePanelDescription,
@@ -23,7 +24,7 @@ import type {
   TWidgetDimensionData,
   TWidgetMeasureData,
 } from "./metaDescription";
-import type { IRange, TDisplayCondition } from "./settings/values";
+import type { EDisplayConditionMode, IRange, TDisplayCondition } from "./settings/values";
 import type { TNullable } from "./utilityTypes";
 
 export type THintPlacement =
@@ -330,7 +331,11 @@ export interface IFormulaControl {
   };
   props: {
     indicatorConfig?:
-      | ({ type: "measure"; templates?: TWidgetMeasureData["templates"] } & {
+      | ({
+          type: "measure";
+          templates?: TWidgetMeasureData["templates"];
+          innerTemplateNames?: EMeasureInnerTemplateNames[];
+        } & {
           /** @deprecated временное решение для виджета "Воронка", не следует использовать [BI-14710] */
           allowClear?: boolean;
           /** @deprecated временное решение для виджета "Воронка", не следует использовать [BI-14710] */
@@ -412,6 +417,7 @@ export interface IDisplayConditionControl {
   props: {
     isInMeasure?: boolean;
     labelFontSize?: number;
+    modes?: EDisplayConditionMode[];
   };
 }
 

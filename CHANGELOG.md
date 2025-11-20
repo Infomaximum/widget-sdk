@@ -4,23 +4,21 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [6.0.0-view-theme.9](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.8...v6.0.0-view-theme.9) (2025-11-19)
 
-
 ### Features
 
-* добавлен общий disabled для RadioIconGroupControl ([a000905](https://github.com/Infomaximum/widget-sdk/commit/a00090571e9c9109904c6df8dead94760047d108))
-* добавлена zod схема для процессного индикатора ([07f2788](https://github.com/Infomaximum/widget-sdk/commit/07f27881ea43f3278608b485a3088039dc0228a0))
-* описана схема для WidgetPresetSettingsSchema ([bd1bdfc](https://github.com/Infomaximum/widget-sdk/commit/bd1bdfc28005122a774051589e3288c44272f9b2))
-* описана схема для WidgetPresetSettingsSchema ([ade690c](https://github.com/Infomaximum/widget-sdk/commit/ade690c2e6a61e46af419919cba59ab365eb4d4f))
-* схемы наполнены дефолтами ([3f7f99c](https://github.com/Infomaximum/widget-sdk/commit/3f7f99cbbd5e9795f8b676fe9f862052a31f4306))
+- добавлен общий disabled для RadioIconGroupControl ([a000905](https://github.com/Infomaximum/widget-sdk/commit/a00090571e9c9109904c6df8dead94760047d108))
+- добавлена zod схема для процессного индикатора ([07f2788](https://github.com/Infomaximum/widget-sdk/commit/07f27881ea43f3278608b485a3088039dc0228a0))
+- описана схема для WidgetPresetSettingsSchema ([bd1bdfc](https://github.com/Infomaximum/widget-sdk/commit/bd1bdfc28005122a774051589e3288c44272f9b2))
+- описана схема для WidgetPresetSettingsSchema ([ade690c](https://github.com/Infomaximum/widget-sdk/commit/ade690c2e6a61e46af419919cba59ab365eb4d4f))
+- схемы наполнены дефолтами ([3f7f99c](https://github.com/Infomaximum/widget-sdk/commit/3f7f99cbbd5e9795f8b676fe9f862052a31f4306))
 
 ## [6.0.0-view-theme.8](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.7...v6.0.0-view-theme.8) (2025-11-14)
 
 ## [6.0.0-16](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.6...v6.0.0-16) (2025-11-13)
 
-
 ### Features
 
-* в TActionOpenIn добавлено поле inheritFilter ([6d14dec](https://github.com/Infomaximum/widget-sdk/commit/6d14dec72ebf060654ffb8905051fb58d3798237))
+- в TActionOpenIn добавлено поле inheritFilter ([6d14dec](https://github.com/Infomaximum/widget-sdk/commit/6d14dec72ebf060654ffb8905051fb58d3798237))
 
 ## [6.0.0-view-theme.7](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.6...v6.0.0-view-theme.7) (2025-11-13)
 

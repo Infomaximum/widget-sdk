@@ -8,7 +8,11 @@ import {
   EMeasureAggregationTemplateName,
   prepareMeasureAggregationParams,
 } from "./aggregationTemplates";
-import { measureTemplateFormulas, type EMeasureTemplateNames } from "./baseTemplates";
+import {
+  measureInnerTemplateFormulas,
+  measureTemplateFormulas,
+  type EMeasureTemplateNames,
+} from "./baseTemplates";
 import { conversionTemplate, prepareConversionParams } from "./conversionTemplates";
 import { durationTemplates, prepareDurationParams } from "./durationTemplates";
 import { createAggregationTemplate } from "./createAggregationTemplate";
@@ -23,7 +27,7 @@ export function getMeasureFormula({ value }: IWidgetMeasure): string {
   }
 
   if (value.mode === EWidgetIndicatorValueModes.TEMPLATE) {
-    const { templateName, tableName, columnName } = value;
+    const { templateName, tableName, columnName, innerTemplateName } = value;
 
     const templateFormula = measureTemplateFormulas[templateName as EMeasureTemplateNames];
 
@@ -31,8 +35,14 @@ export function getMeasureFormula({ value }: IWidgetMeasure): string {
       return "";
     }
 
+    const columnFormula = innerTemplateName
+      ? fillTemplateSql(measureInnerTemplateFormulas[innerTemplateName], {
+          columnFormula: generateColumnFormula(tableName, columnName),
+        })
+      : generateColumnFormula(tableName, columnName);
+
     return fillTemplateSql(templateFormula, {
-      columnFormula: generateColumnFormula(tableName, columnName),
+      columnFormula,
     });
   }
 

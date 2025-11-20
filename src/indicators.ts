@@ -15,7 +15,6 @@ import type {
   WidgetMeasureSchema,
   WidgetSortingIndicatorSchema,
 } from "./indicators.schema";
-import type { TDisplayCondition } from "./settings/values";
 import type { TNullable } from "./utilityTypes";
 import type { TSchemaType } from ".";
 

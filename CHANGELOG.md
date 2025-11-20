@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.10](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.9...v6.0.0-view-theme.10) (2025-11-20)
+
+## [6.0.0-17](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.8...v6.0.0-17) (2025-11-19)
+
+
+### Features
+
+* добавлен innerTemplateName для шаблонов ([7980b8a](https://github.com/Infomaximum/widget-sdk/commit/7980b8a9a18b166c74b77f8ef5cf8f9e13ca711a))
+* добавлена возможность изменять список селлекта условий отображения ([dd0c1d7](https://github.com/Infomaximum/widget-sdk/commit/dd0c1d7b8df655ad23eea77c16cbb1baa44192f7))
+
 ## [6.0.0-view-theme.9](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.8...v6.0.0-view-theme.9) (2025-11-19)
 
 ### Features

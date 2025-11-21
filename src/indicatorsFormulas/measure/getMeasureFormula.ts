@@ -17,7 +17,7 @@ import { conversionTemplate, prepareConversionParams } from "./conversionTemplat
 import { durationTemplates, prepareDurationParams } from "./durationTemplates";
 import { createAggregationTemplate } from "./createAggregationTemplate";
 
-export function getMeasureFormula({ value }: IWidgetMeasure): string {
+export function getMeasureFormula({ value }: Pick<IWidgetMeasure, "value">): string {
   if (!value) {
     return "";
   }

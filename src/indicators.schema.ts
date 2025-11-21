@@ -6,7 +6,7 @@ import {
   EOuterAggregation,
   EWidgetIndicatorValueModes,
 } from "./indicators";
-import { EMarkdownDisplayMode } from "./settings/values";
+import { EDisplayConditionMode, EMarkdownDisplayMode } from "./settings/values";
 import { EMeasureInnerTemplateNames, type TSchemaType, type TZod } from ".";
 import { ActionsOnClickSchema } from "./actions.schema";
 import { ExtendedFormulaFilterValueSchema } from "./filtration.schema";
@@ -36,7 +36,7 @@ export const WidgetColumnIndicatorSchema = (z: TZod) =>
     dbDataType: z.string().optional(),
     format: FormatSchema(z).optional(),
     formatting: FormattingSchema(z).optional(),
-    displayCondition: DisplayConditionSchema(z).optional(),
+    displayCondition: DisplayConditionSchema(z).default({ mode: EDisplayConditionMode.DISABLED }),
     onClick: z.array(ActionsOnClickSchema(z)).optional(),
   });
 
@@ -127,7 +127,7 @@ export const WidgetDimensionHierarchySchema = <D extends TSchemaType<typeof Widg
   AutoIdentifiedArrayItemSchema(z).extend({
     name: z.string(),
     hierarchyDimensions: z.array(dimensionSchema).default([]),
-    displayCondition: DisplayConditionSchema(z).optional(),
+    displayCondition: DisplayConditionSchema(z).default({ mode: EDisplayConditionMode.DISABLED }),
   });
 
 export const WidgetIndicatorConversionValue = (z: TZod) =>
@@ -200,5 +200,5 @@ export const ProcessIndicatorSchema = (z: TZod) =>
     dbDataType: z.string().optional(),
     format: FormatSchema(z).optional(),
     formatting: FormattingSchema(z).optional(),
-    displayCondition: DisplayConditionSchema(z).optional(),
+    displayCondition: DisplayConditionSchema(z).default({ mode: EDisplayConditionMode.DISABLED }),
   });

@@ -1,4 +1,4 @@
-import { ColorSchema, EFontWeight, EWidgetFilterMode, type TZod } from "..";
+import { ColorSchema, EColorMode, EFontWeight, EWidgetFilterMode, type TZod } from "..";
 import { ActionButtonSchema } from "../actions.schema";
 import { SettingsFilterSchema } from "../filtration.schema";
 import { MarkdownMeasureSchema, WidgetSortingIndicatorSchema } from "../indicators.schema";
@@ -19,20 +19,20 @@ export const AutoIdentifiedArrayItemSchema = (z: TZod) =>
 
 export const BaseWidgetSettingsSchema = (z: TZod) =>
   z.object({
-    title: z.string().optional(),
-    titleSize: z.number().optional(),
-    titleColor: ColorSchema(z).optional(),
-    titleWeight: z.enum(EFontWeight).optional(),
-    stateName: z.string().nullable().optional(),
-    showMarkdown: z.boolean().optional(),
-    markdownMeasures: z.array(MarkdownMeasureSchema(z)).optional(),
-    markdownText: z.string().optional(),
-    markdownTextSize: z.number().optional(),
-    filters: z.array(SettingsFilterSchema(z)).optional(),
-    filterMode: z.enum(EWidgetFilterMode).optional(),
-    ignoreFilters: z.boolean().optional(),
-    sorting: z.array(WidgetSortingIndicatorSchema(z)).optional(),
-    actionButtons: z.array(ActionButtonSchema(z)).optional(),
-    paddings: z.union([z.number(), z.string()]).optional(),
-    viewTheme: z.boolean().optional(),
+    title: z.string().default(""),
+    titleSize: z.number().default(14),
+    titleColor: ColorSchema(z).default({ mode: EColorMode.AUTO }),
+    titleWeight: z.enum(EFontWeight).default(EFontWeight.NORMAL),
+    stateName: z.string().nullable().default(null),
+    showMarkdown: z.boolean().default(false),
+    markdownMeasures: z.array(MarkdownMeasureSchema(z)).default([]),
+    markdownText: z.string().default(""),
+    markdownTextSize: z.number().default(14),
+    filters: z.array(SettingsFilterSchema(z)).default([]),
+    filterMode: z.enum(EWidgetFilterMode).default(EWidgetFilterMode.DEFAULT),
+    ignoreFilters: z.boolean().default(false),
+    sorting: z.array(WidgetSortingIndicatorSchema(z)).default([]),
+    actionButtons: z.array(ActionButtonSchema(z)).default([]),
+    paddings: z.union([z.number(), z.string()]).default(8),
+    viewTheme: z.boolean().default(false),
   });

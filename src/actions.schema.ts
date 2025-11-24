@@ -78,8 +78,8 @@ export const ParameterFromManualInputSchema = (z: TZod) =>
 export const ParameterFromStaticListSchema = (z: TZod) =>
   z.object({
     inputMethod: z.literal(EWidgetActionInputMethod.STATIC_LIST),
-    options: z.string(),
-    defaultValue: z.union([z.string(), z.array(z.string())]),
+    options: z.string().default(""),
+    defaultValue: z.union([z.string(), z.array(z.string())]).default(""),
     acceptEmptyValue: z.boolean().optional(),
   });
 
@@ -165,7 +165,7 @@ const ActivateConditionSchema = (z: TZod) =>
 export const ActionRunScriptSchema = (z: TZod) =>
   ActionCommonSchema(z).extend({
     type: z.literal(EActionTypes.EXECUTE_SCRIPT),
-    parameters: z.array(ActionOnClickParameterSchema(z)),
+    parameters: z.array(ActionOnClickParameterSchema(z)).default([]),
     scriptKey: z.string(),
     autoUpdate: z.enum(EAutoUpdateMode),
     hideInactiveButton: z.boolean().optional(),
@@ -211,13 +211,13 @@ export const ActionOpenViewSchema = (z: TZod) =>
       ActionOpenViewCommonSchema(z).extend({
         mode: z.literal(EViewMode.GENERATED_BY_SCRIPT),
         scriptKey: z.string(),
-        parameters: z.array(ActionOnClickParameterSchema(z)),
+        parameters: z.array(ActionOnClickParameterSchema(z)).default([]),
         displayName: z.string(),
       }),
       ActionOpenViewCommonSchema(z).extend({
         mode: z.literal(EViewMode.EXISTED_VIEW),
         viewKey: z.string(),
-        parameters: z.array(ActionOnClickParameterSchema(z)),
+        parameters: z.array(ActionOnClickParameterSchema(z)).default([]),
       }),
       ActionOpenViewCommonSchema(z).extend({
         mode: z.literal(EViewMode.EMPTY),
@@ -260,7 +260,7 @@ export const WidgetActionParameterSchema = (z: TZod) =>
 
 export const WidgetActionSchema = (z: TZod) =>
   ActionCommonSchema(z).extend({
-    parameters: z.array(WidgetActionParameterSchema(z)),
+    parameters: z.array(WidgetActionParameterSchema(z)).default([]),
     type: z.literal(EActionTypes.EXECUTE_SCRIPT),
     scriptKey: z.string(),
     autoUpdate: z.enum(EAutoUpdateMode),
@@ -284,7 +284,7 @@ export const ViewActionSchema = (z: TZod) =>
     name: z.string(),
     buttonType: z.enum(EActionButtonsTypes).default(EActionButtonsTypes.BASE),
     type: z.literal(EActionTypes.EXECUTE_SCRIPT).default(EActionTypes.EXECUTE_SCRIPT),
-    parameters: z.array(ViewActionParameterSchema(z)),
+    parameters: z.array(ViewActionParameterSchema(z)).default([]),
     scriptKey: z.string().nullable(),
     autoUpdate: z
       .union([z.literal(EAutoUpdateMode.NONE), z.literal(EAutoUpdateMode.ALL_VIEWS)])

@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.11](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.10...v6.0.0-view-theme.11) (2025-11-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* некоторые поля настроек виджетов сделаны обязательными
+
+### Features
+
+* выполнен первый этап ревизии схем ([67f5efb](https://github.com/Infomaximum/widget-sdk/commit/67f5efb8b3cd4eef477f64efceba18942522789c))
+
 ## [6.0.0-view-theme.10](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.9...v6.0.0-view-theme.10) (2025-11-20)
 
 ## [6.0.0-17](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.8...v6.0.0-17) (2025-11-19)

@@ -3,6 +3,12 @@ import { ActionButtonSchema } from "../actions.schema";
 import { SettingsFilterSchema } from "../filtration.schema";
 import { MarkdownMeasureSchema, WidgetSortingIndicatorSchema } from "../indicators.schema";
 
+/**
+ * Глобальный счетчик для генерации ID.
+ *
+ * @todo
+ * В будущем можно заменить единый счетчик на изолированные счетчики в разных контекстах.
+ */
 let id = 1;
 
 export const AutoIdentifiedArrayItemSchema = (z: TZod) =>

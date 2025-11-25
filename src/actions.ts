@@ -1,4 +1,4 @@
-import type { TSchemaType } from ".";
+import type { ParameterFromDataModelSchema, TSchemaType } from ".";
 import type {
   ActionButtonSchema,
   ActionGoToURLSchema,
@@ -8,7 +8,6 @@ import type {
   ActionSchema,
   ActionsOnClickSchema,
   ActionUpdateVariableSchema,
-  ParameterColumnListSchema,
   ParameterFromAggregationSchema,
   ParameterFromColumnSchema,
   ParameterFromDynamicListSchema,
@@ -19,7 +18,6 @@ import type {
   ParameterFromStartEventSchema,
   ParameterFromStaticListSchema,
   ParameterFromVariableSchema,
-  ParameterTableListSchema,
   ViewActionParameterSchema,
   ViewActionSchema,
   WidgetActionParameterSchema,
@@ -101,11 +99,7 @@ export interface IParameterFromStaticList
 export interface IParameterFromDynamicList
   extends TSchemaType<typeof ParameterFromDynamicListSchema> {}
 
-export interface IParameterColumnList extends TSchemaType<typeof ParameterColumnListSchema> {}
-
-export interface IParameterTableList extends TSchemaType<typeof ParameterTableListSchema> {}
-
-export type TParameterFromDataModel = IParameterColumnList | IParameterTableList;
+export type TParameterFromDataModel = TSchemaType<typeof ParameterFromDataModelSchema>;
 
 export type TWidgetActionParameter = TSchemaType<typeof WidgetActionParameterSchema>;
 

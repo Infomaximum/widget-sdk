@@ -1,4 +1,4 @@
-import type { TZod } from ".";
+import { FormulaSchema, type TZod } from ".";
 import { EColorMode } from "./color";
 
 export const ColorBaseSchema = (z: TZod) =>
@@ -10,7 +10,7 @@ export const ColorBaseSchema = (z: TZod) =>
 export const ColorRuleSchema = (z: TZod) =>
   z.object({
     mode: z.literal(EColorMode.RULE),
-    formula: z.string(),
+    formula: FormulaSchema(z),
   });
 
 export const ColorAutoSchema = (z: TZod) =>
@@ -34,15 +34,17 @@ export const ColorGradientSchema = (z: TZod) =>
 export const ColorFormulaSchema = (z: TZod) =>
   z.object({
     mode: z.literal(EColorMode.FORMULA),
-    formula: z.string(),
+    formula: FormulaSchema(z),
   });
 
 export const ColorValuesSchema = (z: TZod) =>
   z.object({
     mode: z.literal(EColorMode.VALUES),
-    items: z.array(
-      z.object({ value: z.string(), color: z.union([ColorBaseSchema(z), ColorRuleSchema(z)]) })
-    ),
+    items: z
+      .array(
+        z.object({ value: z.string(), color: z.union([ColorBaseSchema(z), ColorRuleSchema(z)]) })
+      )
+      .default([]),
   });
 
 export const ColorByDimensionSchema = (z: TZod) =>
@@ -50,9 +52,11 @@ export const ColorByDimensionSchema = (z: TZod) =>
     mode: z.literal(EColorMode.BY_DIMENSION),
     /** Имя разреза из области видимости правила отображения */
     dimensionName: z.string(),
-    items: z.array(
-      z.object({ value: z.string(), color: z.union([ColorBaseSchema(z), ColorRuleSchema(z)]) })
-    ),
+    items: z
+      .array(
+        z.object({ value: z.string(), color: z.union([ColorBaseSchema(z), ColorRuleSchema(z)]) })
+      )
+      .default([]),
   });
 
 export const ColoredValueSchema = (z: TZod) =>
@@ -62,13 +66,15 @@ export const ColoredValueSchema = (z: TZod) =>
   });
 
 export const ColorSchema = (z: TZod) =>
-  z.discriminatedUnion("mode", [
-    ColorAutoSchema(z),
-    ColorDisabledSchema(z),
-    ColorBaseSchema(z),
-    ColorRuleSchema(z),
-    ColorGradientSchema(z),
-    ColorFormulaSchema(z),
-    ColorValuesSchema(z),
-    ColorByDimensionSchema(z),
-  ]);
+  z
+    .discriminatedUnion("mode", [
+      ColorAutoSchema(z),
+      ColorDisabledSchema(z),
+      ColorBaseSchema(z),
+      ColorRuleSchema(z),
+      ColorGradientSchema(z),
+      ColorFormulaSchema(z),
+      ColorValuesSchema(z),
+      ColorByDimensionSchema(z),
+    ])
+    .default({ mode: EColorMode.AUTO });

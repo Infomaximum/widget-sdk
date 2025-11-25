@@ -27,10 +27,7 @@ export const BaseWidgetSettingsSchema = (z: TZod) =>
   z.object({
     title: z.string().default(""),
     titleSize: themed(z.number().default(14), (theme) => theme.widgets.titleSize),
-    titleColor: themed(
-      ColorSchema(z).default({ mode: EColorMode.AUTO }),
-      (theme) => theme.widgets.titleColor
-    ),
+    titleColor: themed(ColorSchema(z), (theme) => theme.widgets.titleColor),
     titleWeight: themed(
       z.enum(EFontWeight).default(EFontWeight.NORMAL),
       (theme) => theme.widgets.titleWeight

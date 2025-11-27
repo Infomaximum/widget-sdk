@@ -6,6 +6,7 @@ import type {
   ProcessIndicatorValueSchema,
   WidgetColumnIndicatorSchema,
   WidgetDimensionHierarchySchema,
+  WidgetDimensionInHierarchySchema,
   WidgetDimensionSchema,
   WidgetIndicatorAggregationValueSchema,
   WidgetIndicatorConversionValue,
@@ -94,10 +95,32 @@ export enum EFormatOrFormattingMode {
 /** Общий интерфейс разреза и меры */
 export interface IWidgetColumnIndicator extends TSchemaType<typeof WidgetColumnIndicatorSchema> {}
 
-export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetDimension>
-  extends TSchemaType<typeof WidgetDimensionHierarchySchema<D>> {}
+export interface IWidgetDimensionHierarchy<
+  D extends IWidgetDimensionInHierarchy = IWidgetDimensionInHierarchy,
+> extends TSchemaType<typeof WidgetDimensionHierarchySchema<D>> {}
+
+export type TDisplayedDimensionInHierarchy<
+  T extends IWidgetDimensionInHierarchy = IWidgetDimensionInHierarchy,
+> = T & {
+  displayCondition: IWidgetDimensionHierarchy["displayCondition"];
+};
+
+export function getDisplayedDimensionInHierarchy<
+  D extends IWidgetDimensionInHierarchy,
+  H extends IWidgetDimensionHierarchy,
+>(dimension: D, hierarchy: H): TDisplayedDimensionInHierarchy<D> {
+  return {
+    ...dimension,
+    displayCondition: hierarchy.displayCondition,
+  };
+}
 
 export interface IWidgetDimension extends TSchemaType<typeof WidgetDimensionSchema> {}
+
+export type TWidgetDimensionUnion = IWidgetDimension | IWidgetDimensionInHierarchy;
+
+export interface IWidgetDimensionInHierarchy
+  extends TSchemaType<typeof WidgetDimensionInHierarchySchema> {}
 
 export interface IWidgetMeasure extends TSchemaType<typeof WidgetMeasureSchema> {}
 
@@ -203,7 +226,7 @@ export type TWidgetVariable =
   | IWidgetColumnListVariable;
 
 export function isDimensionsHierarchy(
-  indicator: IWidgetColumnIndicator | IWidgetDimensionHierarchy
+  indicator: IWidgetColumnIndicator | IWidgetDimensionHierarchy | IWidgetDimensionInHierarchy
 ): indicator is IWidgetDimensionHierarchy {
   return "hierarchyDimensions" in indicator;
 }

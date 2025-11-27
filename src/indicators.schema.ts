@@ -120,7 +120,12 @@ export const WidgetDimensionSchema = (z: TZod) =>
     hideEmptyValues: z.boolean().default(false),
   });
 
-export const WidgetDimensionHierarchySchema = <D extends TSchemaType<typeof WidgetDimensionSchema>>(
+export const WidgetDimensionInHierarchySchema = (z: TZod) =>
+  WidgetDimensionSchema(z).omit({ displayCondition: true });
+
+export const WidgetDimensionHierarchySchema = <
+  D extends TSchemaType<typeof WidgetDimensionInHierarchySchema>,
+>(
   z: TZod,
   dimensionSchema: ZodType<D>
 ) =>

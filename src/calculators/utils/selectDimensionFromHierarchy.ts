@@ -1,4 +1,9 @@
-import type { IWidgetDimension, IWidgetDimensionHierarchy } from "../../indicators";
+import type {
+  IWidgetDimension,
+  IWidgetDimensionHierarchy,
+  IWidgetDimensionInHierarchy,
+  TDisplayedDimensionInHierarchy,
+} from "../../indicators";
 import { getDimensionFormula } from "../../indicatorsFormulas";
 import type { TNullable } from "../../utilityTypes";
 import { ECalculatorFilterMethods, type ICalculatorFilter } from "../calculator";
@@ -10,9 +15,13 @@ import { ECalculatorFilterMethods, type ICalculatorFilter } from "../calculator"
  * Если к разрезу иерархии применяется INCLUDE-фильтр с несколькими значениями - выбираем данный разрез
  */
 export function selectDimensionFromHierarchy<
-  H extends IWidgetDimensionHierarchy<D>,
+  H extends IWidgetDimensionHierarchy<I>,
   D extends IWidgetDimension,
->({ hierarchyDimensions }: H, filters: ICalculatorFilter[]): TNullable<D> {
+  I extends IWidgetDimensionInHierarchy,
+>(
+  { hierarchyDimensions, displayCondition }: H,
+  filters: ICalculatorFilter[]
+): TNullable<D | TDisplayedDimensionInHierarchy<IWidgetDimensionInHierarchy>> {
   for (let i = hierarchyDimensions.length - 1; i >= 0; i--) {
     const dimension = hierarchyDimensions[i]!;
 
@@ -30,8 +39,20 @@ export function selectDimensionFromHierarchy<
     const selectionIndex =
       matchedFilter.values.length > 1 ? i : Math.min(i + 1, hierarchyDimensions.length - 1);
 
-    return hierarchyDimensions[selectionIndex];
+    const dimensionFromHierarchy = hierarchyDimensions[selectionIndex];
+
+    if (!dimensionFromHierarchy) {
+      return undefined;
+    }
+
+    return { ...dimensionFromHierarchy, displayCondition };
   }
 
-  return hierarchyDimensions[0];
+  const dimensionFromHierarchy = hierarchyDimensions[0];
+
+  if (!dimensionFromHierarchy) {
+    return undefined;
+  }
+
+  return { ...dimensionFromHierarchy, displayCondition };
 }

@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.12](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.11...v6.0.0-view-theme.12) (2025-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* требуется поддержка в виджетах
+* требуется поддержка в мета-описании виджетов, которые использовали этот флаг
+
+### Features
+
+* выполнена ревизия дефолтных значения схем ([3c397d8](https://github.com/Infomaximum/widget-sdk/commit/3c397d8e77ba8fe76e58edca6bcb849ef5934338))
+* к схеме базовых настроек виджета привязана тема ([7ab52be](https://github.com/Infomaximum/widget-sdk/commit/7ab52becfa93f30b94fb5a3dcee3bee76c624d21))
+* флаг fillSettings переименован на resolveSettings, т.к. теперь активирует не только этап fillSettings. ([3448973](https://github.com/Infomaximum/widget-sdk/commit/3448973695a973011688fb29f80cc96d7946b6fd))
+
 ## [6.0.0-view-theme.11](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.10...v6.0.0-view-theme.11) (2025-11-24)
 
 

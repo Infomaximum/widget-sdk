@@ -17,7 +17,6 @@ export type TGradientsSetValue =
   | Extract<TColor, { mode: EColorMode.AUTO }>
   | { mode: EColorMode.BASE; values: IGradient[] };
 
-// TODO: заменить на схему [BI-15671]
 export interface ITheme {
   apiVersion: string;
   maxWidth?: number;

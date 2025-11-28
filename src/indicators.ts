@@ -9,8 +9,8 @@ import type {
   WidgetDimensionInHierarchySchema,
   WidgetDimensionSchema,
   WidgetIndicatorAggregationValueSchema,
-  WidgetIndicatorConversionValue,
-  WidgetIndicatorDurationValue,
+  WidgetIndicatorConversionValueSchema,
+  WidgetIndicatorDurationValueSchema,
   WidgetIndicatorSchema,
   WidgetIndicatorTimeValueSchema,
   WidgetMeasureSchema,
@@ -255,8 +255,10 @@ export enum EEventAppearances {
   LAST = "LAST",
 }
 
-export type TWidgetIndicatorConversionValue = TSchemaType<typeof WidgetIndicatorConversionValue>;
+export type TWidgetIndicatorConversionValue = TSchemaType<
+  typeof WidgetIndicatorConversionValueSchema
+>;
 
-export type TWidgetIndicatorDurationValue = TSchemaType<typeof WidgetIndicatorDurationValue>;
+export type TWidgetIndicatorDurationValue = TSchemaType<typeof WidgetIndicatorDurationValueSchema>;
 
 export type TWidgetIndicatorTimeValue = TSchemaType<typeof WidgetIndicatorTimeValueSchema>;

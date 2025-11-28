@@ -1,8 +1,14 @@
-import { ColorSchema, EColorMode, EFontWeight, EWidgetFilterMode, type TZod } from "..";
+import { ColorSchema, EColorMode, EFontWeight, EWidgetFilterMode, themed, type TZod } from "..";
 import { ActionButtonSchema } from "../actions.schema";
 import { SettingsFilterSchema } from "../filtration.schema";
 import { MarkdownMeasureSchema, WidgetSortingIndicatorSchema } from "../indicators.schema";
 
+/**
+ * Глобальный счетчик для генерации ID.
+ *
+ * @todo
+ * В будущем можно заменить единый счетчик на изолированные счетчики в разных контекстах.
+ */
 let id = 1;
 
 export const AutoIdentifiedArrayItemSchema = (z: TZod) =>
@@ -20,9 +26,12 @@ export const AutoIdentifiedArrayItemSchema = (z: TZod) =>
 export const BaseWidgetSettingsSchema = (z: TZod) =>
   z.object({
     title: z.string().default(""),
-    titleSize: z.number().default(14),
-    titleColor: ColorSchema(z).default({ mode: EColorMode.AUTO }),
-    titleWeight: z.enum(EFontWeight).default(EFontWeight.NORMAL),
+    titleSize: themed(z.number().default(14), (theme) => theme.widgets.titleSize),
+    titleColor: themed(ColorSchema(z), (theme) => theme.widgets.titleColor),
+    titleWeight: themed(
+      z.enum(EFontWeight).default(EFontWeight.NORMAL),
+      (theme) => theme.widgets.titleWeight
+    ),
     stateName: z.string().nullable().default(null),
     showMarkdown: z.boolean().default(false),
     markdownMeasures: z.array(MarkdownMeasureSchema(z)).default([]),
@@ -33,6 +42,9 @@ export const BaseWidgetSettingsSchema = (z: TZod) =>
     ignoreFilters: z.boolean().default(false),
     sorting: z.array(WidgetSortingIndicatorSchema(z)).default([]),
     actionButtons: z.array(ActionButtonSchema(z)).default([]),
-    paddings: z.union([z.number(), z.string()]).default(8),
+    paddings: themed(
+      z.union([z.number(), z.string()]).default(8),
+      (theme) => theme.widgets.paddings
+    ),
     viewTheme: z.boolean().default(false),
   });

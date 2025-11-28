@@ -1,6 +1,6 @@
 import {
   EWidgetIndicatorValueModes,
-  type TWidgetDimensionUnion,
+  type IWidgetDimension,
   type TWidgetIndicatorAggregationValue,
   type TWidgetIndicatorTimeValue,
 } from "../../indicators";
@@ -13,7 +13,7 @@ import {
 import { dimensionTemplateFormulas, type EDimensionTemplateNames } from "./baseTemplates";
 import { prepareTimeParams, timeTemplates } from "./timeTemplates";
 
-export function getDimensionFormula({ value }: TWidgetDimensionUnion): string {
+export function getDimensionFormula({ value }: Pick<IWidgetDimension, "value">): string {
   if (!value) {
     return "";
   }

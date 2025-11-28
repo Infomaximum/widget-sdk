@@ -105,7 +105,7 @@ export type TConditionalDimensionInHierarchy<
   displayCondition: IWidgetDimensionHierarchy["displayCondition"];
 };
 
-export function getConditionalDimensionFromHierarchy<
+export function inheritDisplayConditionFromHierarchy<
   D extends IWidgetDimensionInHierarchy,
   H extends IWidgetDimensionHierarchy,
 >(dimension: D, hierarchy: H): TConditionalDimensionInHierarchy<D> {

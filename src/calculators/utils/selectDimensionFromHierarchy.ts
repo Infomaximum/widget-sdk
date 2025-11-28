@@ -1,5 +1,5 @@
 import {
-  getConditionalDimensionFromHierarchy,
+  inheritDisplayConditionFromHierarchy,
   type IWidgetDimension,
   type IWidgetDimensionHierarchy,
   type IWidgetDimensionInHierarchy,
@@ -46,7 +46,7 @@ export function selectDimensionFromHierarchy<
 
     return (
       dimensionFromHierarchy &&
-      getConditionalDimensionFromHierarchy(dimensionFromHierarchy, hierarchy)
+      inheritDisplayConditionFromHierarchy(dimensionFromHierarchy, hierarchy)
     );
   }
 
@@ -54,6 +54,6 @@ export function selectDimensionFromHierarchy<
 
   return (
     dimensionFromHierarchy &&
-    getConditionalDimensionFromHierarchy(dimensionFromHierarchy, hierarchy)
+    inheritDisplayConditionFromHierarchy(dimensionFromHierarchy, hierarchy)
   );
 }

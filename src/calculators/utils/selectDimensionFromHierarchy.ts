@@ -1,8 +1,9 @@
-import type {
-  IWidgetDimension,
-  IWidgetDimensionHierarchy,
-  IWidgetDimensionInHierarchy,
-  TConditionalDimensionInHierarchy,
+import {
+  getConditionalDimensionFromHierarchy,
+  type IWidgetDimension,
+  type IWidgetDimensionHierarchy,
+  type IWidgetDimensionInHierarchy,
+  type TConditionalDimensionInHierarchy,
 } from "../../indicators";
 import { getDimensionFormula } from "../../indicatorsFormulas";
 import type { TNullable } from "../../utilityTypes";
@@ -19,9 +20,11 @@ export function selectDimensionFromHierarchy<
   D extends IWidgetDimension,
   I extends IWidgetDimensionInHierarchy,
 >(
-  { hierarchyDimensions, displayCondition }: H,
+  hierarchy: H,
   filters: ICalculatorFilter[]
 ): TNullable<D | TConditionalDimensionInHierarchy<IWidgetDimensionInHierarchy>> {
+  const { hierarchyDimensions, displayCondition } = hierarchy;
+
   for (let i = hierarchyDimensions.length - 1; i >= 0; i--) {
     const dimension = hierarchyDimensions[i]!;
 
@@ -41,10 +44,16 @@ export function selectDimensionFromHierarchy<
 
     const dimensionFromHierarchy = hierarchyDimensions[selectionIndex];
 
-    return dimensionFromHierarchy ? { ...dimensionFromHierarchy, displayCondition } : undefined;
+    return (
+      dimensionFromHierarchy &&
+      getConditionalDimensionFromHierarchy(dimensionFromHierarchy, hierarchy)
+    );
   }
 
   const dimensionFromHierarchy = hierarchyDimensions[0];
 
-  return dimensionFromHierarchy ? { ...dimensionFromHierarchy, displayCondition } : undefined;
+  return (
+    dimensionFromHierarchy &&
+    getConditionalDimensionFromHierarchy(dimensionFromHierarchy, hierarchy)
+  );
 }

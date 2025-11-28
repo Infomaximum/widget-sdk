@@ -99,16 +99,16 @@ export interface IWidgetDimensionHierarchy<
   D extends IWidgetDimensionInHierarchy = IWidgetDimensionInHierarchy,
 > extends TSchemaType<typeof WidgetDimensionHierarchySchema<D>> {}
 
-export type TDisplayedDimensionInHierarchy<
+export type TConditionalDimensionInHierarchy<
   T extends IWidgetDimensionInHierarchy = IWidgetDimensionInHierarchy,
 > = T & {
   displayCondition: IWidgetDimensionHierarchy["displayCondition"];
 };
 
-export function getDisplayedDimensionInHierarchy<
+export function getConditionalDimensionFromHierarchy<
   D extends IWidgetDimensionInHierarchy,
   H extends IWidgetDimensionHierarchy,
->(dimension: D, hierarchy: H): TDisplayedDimensionInHierarchy<D> {
+>(dimension: D, hierarchy: H): TConditionalDimensionInHierarchy<D> {
   return {
     ...dimension,
     displayCondition: hierarchy.displayCondition,

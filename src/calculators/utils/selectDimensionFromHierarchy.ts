@@ -2,7 +2,7 @@ import type {
   IWidgetDimension,
   IWidgetDimensionHierarchy,
   IWidgetDimensionInHierarchy,
-  TDisplayedDimensionInHierarchy,
+  TConditionalDimensionInHierarchy,
 } from "../../indicators";
 import { getDimensionFormula } from "../../indicatorsFormulas";
 import type { TNullable } from "../../utilityTypes";
@@ -21,7 +21,7 @@ export function selectDimensionFromHierarchy<
 >(
   { hierarchyDimensions, displayCondition }: H,
   filters: ICalculatorFilter[]
-): TNullable<D | TDisplayedDimensionInHierarchy<IWidgetDimensionInHierarchy>> {
+): TNullable<D | TConditionalDimensionInHierarchy<IWidgetDimensionInHierarchy>> {
   for (let i = hierarchyDimensions.length - 1; i >= 0; i--) {
     const dimension = hierarchyDimensions[i]!;
 
@@ -41,18 +41,10 @@ export function selectDimensionFromHierarchy<
 
     const dimensionFromHierarchy = hierarchyDimensions[selectionIndex];
 
-    if (!dimensionFromHierarchy) {
-      return undefined;
-    }
-
-    return { ...dimensionFromHierarchy, displayCondition };
+    return dimensionFromHierarchy ? { ...dimensionFromHierarchy, displayCondition } : undefined;
   }
 
   const dimensionFromHierarchy = hierarchyDimensions[0];
 
-  if (!dimensionFromHierarchy) {
-    return undefined;
-  }
-
-  return { ...dimensionFromHierarchy, displayCondition };
+  return dimensionFromHierarchy ? { ...dimensionFromHierarchy, displayCondition } : undefined;
 }

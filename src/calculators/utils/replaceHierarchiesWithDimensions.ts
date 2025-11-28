@@ -6,26 +6,19 @@ import {
 } from "../../indicators";
 import { compactMap } from "../../utils/functions";
 import type { ICalculatorFilter } from "../calculator";
-import { replaceDisplayCondition } from "./displayCondition";
 import { selectDimensionFromHierarchy } from "./selectDimensionFromHierarchy";
 
 export const replaceHierarchiesWithDimensions = <
+  H extends IWidgetDimensionHierarchy<I>,
   D extends IWidgetDimension = IWidgetDimension,
   I extends IWidgetDimensionInHierarchy = IWidgetDimensionInHierarchy,
 >(
-  dimensions: (D | IWidgetDimensionHierarchy<I>)[],
+  dimensions: (D | H)[],
   filters: ICalculatorFilter[]
 ) =>
   compactMap(dimensions, (indicator) => {
     if (isDimensionsHierarchy(indicator)) {
-      const selectedDimension = selectDimensionFromHierarchy<IWidgetDimensionHierarchy<I>, D, I>(
-        indicator,
-        filters
-      );
-
-      return (
-        selectedDimension && replaceDisplayCondition(selectedDimension, indicator.displayCondition)
-      );
+      return selectDimensionFromHierarchy<H, D, I>(indicator, filters);
     }
 
     return indicator;

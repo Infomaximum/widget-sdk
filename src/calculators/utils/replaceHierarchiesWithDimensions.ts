@@ -2,26 +2,23 @@ import {
   isDimensionsHierarchy,
   type IWidgetDimension,
   type IWidgetDimensionHierarchy,
+  type IWidgetDimensionInHierarchy,
 } from "../../indicators";
 import { compactMap } from "../../utils/functions";
 import type { ICalculatorFilter } from "../calculator";
-import { replaceDisplayCondition } from "./displayCondition";
 import { selectDimensionFromHierarchy } from "./selectDimensionFromHierarchy";
 
-export const replaceHierarchiesWithDimensions = <D extends IWidgetDimension = IWidgetDimension>(
-  dimensions: (D | IWidgetDimensionHierarchy<D>)[],
+export const replaceHierarchiesWithDimensions = <
+  H extends IWidgetDimensionHierarchy<I>,
+  D extends IWidgetDimension = IWidgetDimension,
+  I extends IWidgetDimensionInHierarchy = IWidgetDimensionInHierarchy,
+>(
+  dimensions: (D | H)[],
   filters: ICalculatorFilter[]
 ) =>
   compactMap(dimensions, (indicator) => {
     if (isDimensionsHierarchy(indicator)) {
-      const selectedDimension = selectDimensionFromHierarchy<IWidgetDimensionHierarchy<D>, D>(
-        indicator,
-        filters
-      );
-
-      return (
-        selectedDimension && replaceDisplayCondition(selectedDimension, indicator.displayCondition)
-      );
+      return selectDimensionFromHierarchy<H, D, I>(indicator, filters);
     }
 
     return indicator;

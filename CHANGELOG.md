@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.13](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.12...v6.0.0-view-theme.13) (2025-12-01)
+
+
+### Features
+
+* Добавлен и поддержан тип для разреза внутри иерархии ([#133](https://github.com/Infomaximum/widget-sdk/issues/133)) ([120150e](https://github.com/Infomaximum/widget-sdk/commit/120150e004ef7e691345bc50b8f37312c205d7b2))
+
 ## [6.0.0-view-theme.12](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.11...v6.0.0-view-theme.12) (2025-11-27)
 
 

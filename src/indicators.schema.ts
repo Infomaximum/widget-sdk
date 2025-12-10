@@ -32,10 +32,18 @@ export const FormatSchema = (z: TZod) =>
   });
 
 export const FormattingSchema = (z: TZod) =>
-  z.object({
-    value: z.enum(EFormattingPresets).optional(),
-    mode: z.enum(EFormatOrFormattingMode),
-  });
+  z
+    .discriminatedUnion("mode", [
+      z.object({
+        mode: z.literal(EFormatOrFormattingMode.BASE),
+        value: z.enum(EFormattingPresets).default(EFormattingPresets.AUTO),
+      }),
+      z.object({
+        mode: z.literal(EFormatOrFormattingMode.TEMPLATE),
+        value: z.string().default(""),
+      }),
+    ])
+    .default({ mode: EFormatOrFormattingMode.BASE, value: EFormattingPresets.AUTO });
 
 export const WidgetColumnIndicatorSchema = (z: TZod) =>
   WidgetIndicatorSchema(z).extend({

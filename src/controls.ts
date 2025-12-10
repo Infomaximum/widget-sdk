@@ -3,8 +3,9 @@ import type { EColorMode, TColor } from "./color";
 import type { ESimpleDataType } from "./data";
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormattingPresets, EFormatTypes } from "./formatting";
+import type { TSchemaType } from ".";
+import type { FormatSchema, FormattingSchema } from "./indicators.schema";
 import type {
-  EFormatOrFormattingMode,
   EOuterAggregation,
   IWidgetDimension,
   TColumnIndicatorValue,
@@ -371,8 +372,8 @@ export interface ITypedFormulaControl {
 export interface IFormattingControl {
   type: EControlType.formatting;
   value: {
-    format: { value?: EFormatTypes; mode: EFormatOrFormattingMode };
-    formatting: { value?: EFormattingPresets; mode: EFormatOrFormattingMode };
+    format: TSchemaType<typeof FormatSchema>;
+    formatting: TSchemaType<typeof FormattingSchema>;
   };
   props: {
     formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;

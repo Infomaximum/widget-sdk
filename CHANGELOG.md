@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.14](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.13...v6.0.0-view-theme.14) (2025-12-15)
+
+
+### Bug Fixes
+
+* исправлена схема настроек форматирования ([22b9ac8](https://github.com/Infomaximum/widget-sdk/commit/22b9ac857486d55c201cb5259db1b1230c634692))
+* расширен тип схемы для поля lastTimeUnit в фильтре по формуле ([d41ee4e](https://github.com/Infomaximum/widget-sdk/commit/d41ee4e0aedc878da0b7fd153a71ea84373b9cd9))
+
 ## [6.0.0-view-theme.13](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.12...v6.0.0-view-theme.13) (2025-12-01)
 
 

@@ -8,6 +8,7 @@ import {
   type TWidgetVariable,
   type IWidgetMeasure,
   type IWidgetDimensionHierarchy,
+  EFormatOrFormattingMode,
 } from "../../indicators";
 import { getDimensionFormula, getMeasureFormula } from "../../indicatorsFormulas";
 import type { IBaseWidgetSettings } from "../../settings/baseWidget";
@@ -44,7 +45,8 @@ export const getDefaultSortOrders = ({
   /** Если есть временной разрез, то авто-сортировка по первому такому разрезу (по возрастанию) */
   const timeDimension = dimensions.find(
     (dimension) =>
-      dimension.format?.value &&
+      dimension.format?.mode === EFormatOrFormattingMode.BASE &&
+      dimension.format.value !== undefined &&
       [
         EFormatTypes.DATE,
         EFormatTypes.MONTH,

@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.15](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.14...v6.0.0-view-theme.15) (2025-12-15)
+
 ## [6.0.0-view-theme.14](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.13...v6.0.0-view-theme.14) (2025-12-15)
 
 

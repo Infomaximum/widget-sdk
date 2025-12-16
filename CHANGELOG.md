@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-18](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-17...v6.0.0-18) (2025-12-16)
+
+
+### Bug Fixes
+
+* исправлено формирование формулы для разреза типа массив ([cc0b7a6](https://github.com/Infomaximum/widget-sdk/commit/cc0b7a6f82706326afdd556d5dcb4b0af184759e))
+
 ## [6.0.0-17](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-16...v6.0.0-17) (2025-11-19)
 
 

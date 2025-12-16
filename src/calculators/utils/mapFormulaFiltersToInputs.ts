@@ -175,7 +175,8 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
   return [];
 };
 
-export const applyIndexToArrayFormula = (formula: string, index: number) => `${formula}[${index}]`;
+export const applyIndexToArrayFormula = (formula: string, index: number) =>
+  `(${formula})[${index}]`;
 
 export const mapFormulaFilterToCalculatorInput = (
   filterValue: TExtendedFormulaFilterValue

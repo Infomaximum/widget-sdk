@@ -42,28 +42,22 @@ export const FormulaFilterValueSchema = (z: TZod) =>
   });
 
 export const ExtendedFormulaFilterValueSchema = (z: TZod) =>
-  z.union([z.object({ formula: z.string() }).strict(), FormulaFilterValueSchema(z).strict()]);
+  z.union([FormulaFilterValueSchema(z), z.object({ formula: z.string() })]);
 
 export const DimensionProcessFilterSchema = (z: TZod) =>
   z.object({
     value: z.union([
-      WidgetIndicatorAggregationValueSchema(z)
-        .extend({
-          outerAggregation: z.enum(EOuterAggregation),
-        })
-        .strict(),
-      WidgetIndicatorAggregationValueSchema(z)
-        .extend({
-          innerTemplateName: z.string().optional(),
-        })
-        .strict(),
-      WidgetIndicatorTimeValueSchema(z).strict(),
-      z
-        .object({
-          mode: z.literal(EWidgetIndicatorValueModes.FORMULA),
-          formula: z.string().optional(),
-        })
-        .strict(),
+      WidgetIndicatorAggregationValueSchema(z).extend({
+        outerAggregation: z.enum(EOuterAggregation),
+      }),
+      WidgetIndicatorAggregationValueSchema(z).extend({
+        innerTemplateName: z.string().optional(),
+      }),
+      WidgetIndicatorTimeValueSchema(z),
+      z.object({
+        mode: z.literal(EWidgetIndicatorValueModes.FORMULA),
+        formula: z.string().optional(),
+      }),
     ]),
     dbDataType: z.string(),
     condition: z.object({

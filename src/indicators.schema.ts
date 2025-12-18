@@ -148,7 +148,8 @@ export const WidgetDimensionHierarchySchema = <
 ) =>
   AutoIdentifiedArrayItemSchema(z).extend({
     name: z.string(),
-    hierarchyDimensions: z.array(dimensionSchema).default([]),
+    // Для иерархии является дискриминатором, для него нельзя задавать дефолтное значение.
+    hierarchyDimensions: z.array(dimensionSchema),
     displayCondition: DisplayConditionSchema(z),
   });
 

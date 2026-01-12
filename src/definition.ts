@@ -31,11 +31,11 @@ export interface IDefinition<
   /** иконка виджета отображаемая в системе (в base64, svg или png) */
   icon?: string;
   /** возвращает zod-схему настроек виджета */
-  createSettingsSchema?: (z: typeof Zod, context: ISchemaContext) => ZodType<WidgetSettings>;
-  /** возвращает конфигурацию настроек для отображения */
+  createSettingsSchema: (z: typeof Zod, context: ISchemaContext) => ZodType<WidgetSettings>;
+  /** возвращает конфигурацию панели настроек */
   createPanelDescription: IPanelDescriptionCreator<WidgetSettings, GroupSettings>;
-  /** заполняет настройки значениями по умолчанию */
-  fillSettings: IFillSettings<WidgetSettings>;
+  /** обеспечивает консистентность настроек */
+  fillSettings?: IFillSettings<WidgetSettings>;
   /** получить начальные настройки виджета, используя заданный пользователем шаблон настроек */
   getInitialSettings?: (settings: Partial<IWidgetPresetSettings>) => Partial<IBaseWidgetSettings>;
   /** возвращает ключи показателей(разрезов или мер), для которых должна работать системная сортировка */

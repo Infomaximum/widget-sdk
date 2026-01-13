@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.18](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.17...v6.0.0-view-theme.18) (2026-01-13)
+
+
+### Features
+
+* изменен api миграций ([ab086c6](https://github.com/Infomaximum/widget-sdk/commit/ab086c6c22ef489059b9a5ae01460af91b6f4782))
+
 ## [6.0.0-view-theme.17](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.16...v6.0.0-view-theme.17) (2025-12-18)
 
 ## [6.0.0-view-theme.16](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-18...v6.0.0-view-theme.16) (2025-12-16)

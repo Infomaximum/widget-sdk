@@ -213,6 +213,11 @@ type TWidgetIndicatorData = TWidgetDimensionData | TWidgetMeasureData;
  * Каждый объект в массиве - это группа настроек.
  *
  * Группа отображается в виде раскрываемой плашки, может представлять из себя разрез, меру, процесс и др.
+ *
+ * @remarks
+ * Если заменить createDataRecords и createDisplayRecords на общий createRecords:
+ * + Мета-описание станет более универсальным, проще писать код рендеринга.
+ * - Но если IGroupSetDescription нужен в >= 2-х вкладках - для каждой вкладки нужно дублировать IGroupSetDescription.
  */
 export interface IGroupSetDescription<Settings extends object, GroupSettings extends object> {
   /** Заголовок */
@@ -237,6 +242,7 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
    * - содержимого выпадающего списка.
    */
   getIndicatorData?: (settings: IInitialSettings) => EWidgetIndicatorType | TWidgetIndicatorData;
+
   /** Создать конфигурацию группы для вкладки настроек данных */
   createDataRecords?(group: IGroupSettings, index: number): TGroupLevelRecord<GroupSettings>[];
   /** Создать конфигурацию группы для вкладки настроек отображения */

@@ -8,31 +8,19 @@ import type { EWidgetFilterMode } from "./settings/values";
 import type {
   EDimensionAggregationTemplateName,
   EDimensionTemplateNames,
-  EMeasureAggregationTemplateName,
   EMeasureTemplateNames,
 } from "./indicatorsFormulas";
 import type { ESimpleDataType } from "./data";
 import type { EFormatTypes } from "./formatting";
 
-export interface ILens<T extends TNullable<object>, Value> {
-  get(obj: T): TNullable<Value>;
-  set(obj: T, value: Value): void;
-}
-
-/**
- * Линза, которая может вернуть Partial значение из get (будет обработано на стороне control'а),
- * но требует передачи в set полного значения
- */
-interface IPartialLens<T extends TNullable<object>, Value> {
-  get(obj: T): TNullable<Partial<Value>>;
-  set(obj: T, value: Value): void;
+export interface ILens<InputShape, Value> {
+  get(obj: InputShape): Value;
+  set(obj: InputShape, value: Value): void;
 }
 
 export type TValuePath = string | string[];
 
-export type TRecordAccessor<Settings extends object, Value> =
-  | TValuePath
-  | IPartialLens<Settings, Value>;
+export type TRecordAccessor<Settings extends object, Value> = TValuePath | ILens<Settings, Value>;
 
 export interface IDisplayPredicate<Settings> {
   (s: Settings): boolean;

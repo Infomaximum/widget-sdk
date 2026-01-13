@@ -1,6 +1,5 @@
 import { ESimpleDataType } from "./data";
 import type { IWidgetColumnIndicator } from "./indicators";
-import type { TNullable } from "./utilityTypes";
 
 export enum EFormatTypes {
   /** Дата */

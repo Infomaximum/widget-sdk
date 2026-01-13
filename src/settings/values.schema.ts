@@ -1,4 +1,5 @@
 import { EDisplayConditionMode, type TZod } from "..";
+import { ESettingsSchemaMetaKey } from "./const";
 
 export const RangeSchema = (z: TZod) =>
   z.object({
@@ -32,12 +33,17 @@ export const KeyNullableSchema = (z: TZod) => z.string().nullable().default(null
 export const NameNullableSchema = (z: TZod) => z.string().nullable().default(null);
 
 /**
- * Схема формулы
- *
- * @note в будущем к схеме будет привязана мета-информация для того,
- * чтобы система видела расположение формул в настройках
+ * Перечисление системных типов сущностей в схеме настроек виджетов.
+ * @note при расширении лучше положить на более общий уровень.
  */
-export const FormulaSchema = (z: TZod) => z.string().default("");
+enum EEntity {
+  formula = "formula",
+}
+
+const formulaMeta = Object.freeze({ [ESettingsSchemaMetaKey.entity]: EEntity.formula });
+
+/** Схема формулы */
+export const FormulaSchema = (z: TZod) => z.string().default("").meta(formulaMeta);
 
 /**
  * Схема формулы, которая не может быть пустой строкой, но может быть в
@@ -45,4 +51,5 @@ export const FormulaSchema = (z: TZod) => z.string().default("");
  *
  * @note для обратной совместимости без необходимости писать миграции
  */
-export const FormulaNullableSchema = (z: TZod) => z.string().nullable().default(null);
+export const FormulaNullableSchema = (z: TZod) =>
+  z.string().nullable().default(null).meta(formulaMeta);

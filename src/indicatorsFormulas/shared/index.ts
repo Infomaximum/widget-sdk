@@ -1,3 +1,3 @@
 export * from "./aggregationTemplates";
-export * from "./fillTemplateString";
+export * from "./fillTemplateSql";
 export * from "./generateColumnFormula";

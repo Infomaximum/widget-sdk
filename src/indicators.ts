@@ -2,20 +2,22 @@ import type { TExtendedFormulaFilterValue } from "./filtration";
 import type {
   ColumnIndicatorValueSchema,
   MarkdownMeasureSchema,
+  ProcessIndicatorSchema,
+  ProcessIndicatorValueSchema,
   WidgetColumnIndicatorSchema,
   WidgetDimensionHierarchySchema,
+  WidgetDimensionInHierarchySchema,
   WidgetDimensionSchema,
   WidgetIndicatorAggregationValueSchema,
-  WidgetIndicatorConversionValue,
-  WidgetIndicatorDurationValue,
+  WidgetIndicatorConversionValueSchema,
+  WidgetIndicatorDurationValueSchema,
   WidgetIndicatorSchema,
   WidgetIndicatorTimeValueSchema,
   WidgetMeasureSchema,
   WidgetSortingIndicatorSchema,
 } from "./indicators.schema";
-import type { TDisplayCondition } from "./settings/values";
 import type { TNullable } from "./utilityTypes";
-import type { TSchemaType, TZod } from ".";
+import type { TSchemaType } from ".";
 
 export enum EWidgetIndicatorType {
   MEASURE = "MEASURE",
@@ -38,23 +40,9 @@ export enum EOuterAggregation {
 
 export interface IWidgetIndicator extends TSchemaType<typeof WidgetIndicatorSchema> {}
 
-export type TProcessIndicatorValue =
-  | { mode: EWidgetIndicatorValueModes.FORMULA; formula: string }
-  | {
-      mode: EWidgetIndicatorValueModes.TEMPLATE;
-      /** Имя шаблонной формулы, использующей колонку таблицы */
-      templateName: string;
-    };
+export type TProcessIndicatorValue = TSchemaType<typeof ProcessIndicatorValueSchema>;
 
-export interface IProcessIndicator extends IWidgetIndicator {
-  value?: TProcessIndicatorValue;
-  dbDataType?: string;
-
-  format?: IWidgetColumnIndicator["format"];
-  formatting?: IWidgetColumnIndicator["formatting"];
-
-  displayCondition?: TDisplayCondition;
-}
+export interface IProcessIndicator extends TSchemaType<typeof ProcessIndicatorSchema> {}
 
 export interface IProcessEventIndicator extends IProcessIndicator {}
 
@@ -107,10 +95,32 @@ export enum EFormatOrFormattingMode {
 /** Общий интерфейс разреза и меры */
 export interface IWidgetColumnIndicator extends TSchemaType<typeof WidgetColumnIndicatorSchema> {}
 
-export interface IWidgetDimensionHierarchy<D extends IWidgetDimension = IWidgetDimension>
-  extends TSchemaType<typeof WidgetDimensionHierarchySchema<D>> {}
+export interface IWidgetDimensionHierarchy<
+  D extends IWidgetDimensionInHierarchy = IWidgetDimensionInHierarchy,
+> extends TSchemaType<typeof WidgetDimensionHierarchySchema<D>> {}
+
+export type TConditionalDimensionInHierarchy<
+  T extends IWidgetDimensionInHierarchy = IWidgetDimensionInHierarchy,
+> = T & {
+  displayCondition: IWidgetDimensionHierarchy["displayCondition"];
+};
+
+export function inheritDisplayConditionFromHierarchy<
+  D extends IWidgetDimensionInHierarchy,
+  H extends IWidgetDimensionHierarchy,
+>(dimension: D, hierarchy: H): TConditionalDimensionInHierarchy<D> {
+  return {
+    ...dimension,
+    displayCondition: hierarchy.displayCondition,
+  };
+}
 
 export interface IWidgetDimension extends TSchemaType<typeof WidgetDimensionSchema> {}
+
+export type TWidgetDimensionUnion = IWidgetDimension | IWidgetDimensionInHierarchy;
+
+export interface IWidgetDimensionInHierarchy
+  extends TSchemaType<typeof WidgetDimensionInHierarchySchema> {}
 
 export interface IWidgetMeasure extends TSchemaType<typeof WidgetMeasureSchema> {}
 
@@ -216,7 +226,7 @@ export type TWidgetVariable =
   | IWidgetColumnListVariable;
 
 export function isDimensionsHierarchy(
-  indicator: IWidgetColumnIndicator | IWidgetDimensionHierarchy
+  indicator: IWidgetColumnIndicator | IWidgetDimensionHierarchy | IWidgetDimensionInHierarchy
 ): indicator is IWidgetDimensionHierarchy {
   return "hierarchyDimensions" in indicator;
 }
@@ -245,8 +255,10 @@ export enum EEventAppearances {
   LAST = "LAST",
 }
 
-export type TWidgetIndicatorConversionValue = TSchemaType<typeof WidgetIndicatorConversionValue>;
+export type TWidgetIndicatorConversionValue = TSchemaType<
+  typeof WidgetIndicatorConversionValueSchema
+>;
 
-export type TWidgetIndicatorDurationValue = TSchemaType<typeof WidgetIndicatorDurationValue>;
+export type TWidgetIndicatorDurationValue = TSchemaType<typeof WidgetIndicatorDurationValueSchema>;
 
 export type TWidgetIndicatorTimeValue = TSchemaType<typeof WidgetIndicatorTimeValueSchema>;

@@ -136,7 +136,11 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
 
         return compact([
           convertDateToClickHouse(
-            subtractDurationFromDate(new Date(), lastTimeValue ?? 0, lastTimeUnit as ELastTimeUnit),
+            subtractDurationFromDate(
+              new Date(),
+              Number(lastTimeValue ?? 0),
+              lastTimeUnit as ELastTimeUnit
+            ),
             showTime
           ),
           convertDateToClickHouse(new Date(), showTime),
@@ -171,7 +175,8 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
   return [];
 };
 
-export const applyIndexToArrayFormula = (formula: string, index: number) => `${formula}[${index}]`;
+export const applyIndexToArrayFormula = (formula: string, index: number) =>
+  `(${formula})[${index}]`;
 
 export const mapFormulaFilterToCalculatorInput = (
   filterValue: TExtendedFormulaFilterValue

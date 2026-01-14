@@ -8,6 +8,11 @@ export enum EMeasureTemplateNames {
   sum = "sum",
 }
 
+export enum EMeasureInnerTemplateNames {
+  begin = "begin",
+  end = "end",
+}
+
 /** Стандартные шаблоны меры */
 export const measureTemplateFormulas = {
   [EMeasureTemplateNames.avg]: `avg({columnFormula})`,
@@ -17,4 +22,9 @@ export const measureTemplateFormulas = {
   [EMeasureTemplateNames.min]: `min({columnFormula})`,
   [EMeasureTemplateNames.max]: `max({columnFormula})`,
   [EMeasureTemplateNames.sum]: `sum({columnFormula})`,
+} as const;
+
+export const measureInnerTemplateFormulas = {
+  [EMeasureInnerTemplateNames.begin]: `begin({columnFormula})`,
+  [EMeasureInnerTemplateNames.end]: `end({columnFormula})`,
 } as const;

@@ -30,8 +30,6 @@ export interface IDefinition<
 > {
   /** иконка виджета отображаемая в системе (в base64, svg или png) */
   icon?: string;
-  /** метод удаляет настройки, наследуемые от темы и возвращает функцию отката, которая возвращает удаленные настройки */
-  cleanupThemeProperties?: (settings: WidgetSettings) => (settings: WidgetSettings) => void;
   /** возвращает zod-схему настроек виджета */
   createSettingsSchema?: (z: typeof Zod, context: ISchemaContext) => ZodType<WidgetSettings>;
   /** возвращает конфигурацию настроек для отображения */
@@ -42,16 +40,9 @@ export interface IDefinition<
   getInitialSettings?: (settings: Partial<IWidgetPresetSettings>) => Partial<IBaseWidgetSettings>;
   /** возвращает ключи показателей(разрезов или мер), для которых должна работать системная сортировка */
   getSortableIndicatorsKeys?(): Readonly<StringKeyOf<WidgetSettings>[]>;
-  /** Регистрация системных миграторов виджета */
-  registerSystemMigrateProcessors?(
+  /** Регистрация миграторов виджета */
+  registerMigrateProcessors?(
     migrator: IWidgetMigrator<MigrationStruct>,
     globalContext: IGlobalContext
   ): void;
-  /** Регистрация собственных миграторов виджета */
-  registerLocalMigrateProcessors?(
-    migrator: IWidgetMigrator<MigrationStruct>,
-    globalContext: IGlobalContext
-  ): void;
-  /** Возвращает массив версий локальных миграций виджета */
-  getLocalMigrateVersions(): string[];
 }

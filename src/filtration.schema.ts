@@ -32,7 +32,8 @@ export const FormulaFilterValueSchema = (z: TZod) =>
           z.number().optional(),
         ]),
         [EFormulaFilterFieldKeys.string]: z.string(),
-        [EFormulaFilterFieldKeys.lastTimeValue]: z.number(),
+        // todo: отказаться от использования z.string(), оставить только z.number() [BI-15912]
+        [EFormulaFilterFieldKeys.lastTimeValue]: z.number().or(z.string()),
         [EFormulaFilterFieldKeys.lastTimeUnit]: z.enum(ELastTimeUnit),
         [EFormulaFilterFieldKeys.durationUnit]: z.enum(EDurationUnit),
       })
@@ -41,11 +42,11 @@ export const FormulaFilterValueSchema = (z: TZod) =>
   });
 
 export const ExtendedFormulaFilterValueSchema = (z: TZod) =>
-  z.union([z.object({ formula: z.string() }), FormulaFilterValueSchema(z)]);
+  z.union([FormulaFilterValueSchema(z), z.object({ formula: z.string() })]);
 
 export const DimensionProcessFilterSchema = (z: TZod) =>
   z.object({
-    value: z.discriminatedUnion("mode", [
+    value: z.union([
       WidgetIndicatorAggregationValueSchema(z).extend({
         outerAggregation: z.enum(EOuterAggregation),
       }),

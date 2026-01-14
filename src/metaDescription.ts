@@ -11,7 +11,7 @@ import type {
   EMeasureTemplateNames,
 } from "./indicatorsFormulas";
 import type { ESimpleDataType } from "./data";
-import type { EFormatTypes } from "./formatting";
+import type { EFormatTypes } from "@infomaximum/bi-formatting";
 
 export interface ILens<InputShape, Value> {
   get(obj: InputShape): Value;

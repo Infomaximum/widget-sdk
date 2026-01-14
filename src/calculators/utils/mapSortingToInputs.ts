@@ -1,4 +1,4 @@
-import { EFormatTypes } from "../../formatting";
+import { EFormatTypes } from "@infomaximum/bi-formatting";
 import {
   ESortingValueModes,
   EWidgetIndicatorType,

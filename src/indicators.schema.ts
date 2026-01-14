@@ -1,5 +1,4 @@
 import { AutoIdentifiedArrayItemSchema } from "./settings/baseWidget.schema";
-import { EFormattingPresets, EFormatTypes } from "./formatting";
 import {
   EEventAppearances,
   EFormatOrFormattingMode,
@@ -7,7 +6,13 @@ import {
   EWidgetIndicatorValueModes,
 } from "./indicators";
 import { EMarkdownDisplayMode } from "./settings/values";
-import { EMeasureInnerTemplateNames, type TSchemaType, type TZod } from ".";
+import {
+  EFormattingPresets,
+  EFormatTypes,
+  EMeasureInnerTemplateNames,
+  type TSchemaType,
+  type TZod,
+} from ".";
 import { ActionsOnClickSchema } from "./actions.schema";
 import { ExtendedFormulaFilterValueSchema } from "./filtration.schema";
 import { SortDirectionSchema, WidgetSortingValueSchema } from "./sorting.schema";

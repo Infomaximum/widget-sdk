@@ -7,6 +7,11 @@ import type { ZodType, z as zod } from "zod";
 export { ELanguages } from "@infomaximum/localization";
 export { EFilteringMethodValues } from "@infomaximum/base-filter";
 
+export {
+  EFormatTypes,
+  EFormattingPresets,
+  availableFormattingByFormat,
+} from "@infomaximum/bi-formatting";
 export * from "./widgetApi";
 export * from "./migrates";
 export * from "./definition";
@@ -33,7 +38,6 @@ export * from "./sorting.schema";
 export * from "./widgetContext";
 export * from "./indicatorsFormulas";
 export * from "./dimensionSelection";
-export * from "./utils";
 export * from "./viewContext";
 export * from "./color";
 export * from "./preset";

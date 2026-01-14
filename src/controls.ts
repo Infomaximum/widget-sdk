@@ -3,7 +3,7 @@ import type { EColorMode, TColor } from "./color";
 import type { ESimpleDataType } from "./data";
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormattingPresets, EFormatTypes } from "./formatting";
-import type { TSchemaType } from ".";
+import { EActionTypes, type TSchemaType } from ".";
 import type { FormatSchema, FormattingSchema } from "./indicators.schema";
 import type {
   EOuterAggregation,
@@ -391,13 +391,48 @@ export interface IFormattingTemplateControl {
   };
 }
 
+interface ICommonActionConfig {
+  /**
+   * Определяет доступность действия.
+   *
+   * - `true` - действие доступно для отображения и выполнения.
+   * - `false` - действие недоступно без указания причины.
+   * - `string` - действие недоступно. Значение содержит причину недоступности.
+   */
+  availability: boolean | string;
+  extraInputMethods?: EWidgetActionInputMethod[];
+}
+
+export type TActionsConfig = Partial<{
+  [EActionTypes.UPDATE_VARIABLE]: ICommonActionConfig;
+  [EActionTypes.OPEN_VIEW]: ICommonActionConfig;
+  [EActionTypes.DRILL_DOWN]: Omit<ICommonActionConfig, "extraInputMethods">;
+  [EActionTypes.OPEN_URL]: Omit<ICommonActionConfig, "extraInputMethods">;
+  [EActionTypes.EXECUTE_SCRIPT]: ICommonActionConfig & {
+    showActivateCondition?: boolean;
+  };
+}>;
+
+export const defaultActionsConfig = {
+  OPEN_URL: { availability: true },
+  UPDATE_VARIABLE: { availability: true },
+  EXECUTE_SCRIPT: { availability: true },
+  OPEN_VIEW: { availability: true },
+};
+
 export interface IActionOnClickControl {
   type: EControlType.actionOnClick;
   value: TActionsOnClick[];
   props: {
-    indicator: { name: string; onClick?: TActionsOnClick[] };
-    placeholder?: string;
+    /** Заголовок для отображения при проваливании */
+    diveTitle: string;
+    /** Общие способы ввода для всех действий с параметрами */
     inputMethods: EWidgetActionInputMethod[];
+    /**
+     * Объект точечной конфигурации действия по типу, отобразятся только те действия, которые описаны в нем
+     * @default {defaultActionsConfig}
+     */
+    actionsConfig?: TActionsConfig;
   };
 }
 

@@ -43,6 +43,7 @@ export enum EActionTypes {
   UPDATE_VARIABLE = "UPDATE_VARIABLE",
   EXECUTE_SCRIPT = "EXECUTE_SCRIPT",
   OPEN_VIEW = "OPEN_VIEW",
+  DRILL_DOWN = "DRILL_DOWN",
 }
 
 export enum EViewMode {

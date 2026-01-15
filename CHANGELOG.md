@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.19](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.18...v6.0.0-view-theme.19) (2026-01-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* вместо удаленной функции в виджетах требуется использовать функцию fillTemplateSql
+* требуется поддержка в виджетах
+
+### Features
+
+* в схему формулы добавлена мета-информация о типе сущности ([45cb47f](https://github.com/Infomaximum/widget-sdk/commit/45cb47f79414d47c27529f4506bc507fee2d07cc))
+* из типа линзы убраны TNullable и Partial ([8f85239](https://github.com/Infomaximum/widget-sdk/commit/8f852393700b4914645eb6110fda3b55329cb83f))
+* метод createSettingsSchema сделан обязательным, а метод fillSettings - необязательным ([d0734a8](https://github.com/Infomaximum/widget-sdk/commit/d0734a8319e5abd96863ed345f35678170c0c0e3))
+* удалена функция fillTemplateString ([43a051d](https://github.com/Infomaximum/widget-sdk/commit/43a051dc6cdff3d774b06fe2e63f454b9f90a4d6))
+
 ## [6.0.0-view-theme.18](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.17...v6.0.0-view-theme.18) (2026-01-13)
 
 

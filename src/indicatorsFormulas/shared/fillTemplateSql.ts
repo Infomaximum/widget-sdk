@@ -1,12 +1,5 @@
 import { sanitizeSingleLineComment } from "../../sanitizeSingleLineComment";
 
-/** @deprecated - следует использовать fillTemplateSql */
-export function fillTemplateString(templateString: string, params: Record<string, any>) {
-  return templateString.replace(/\{(.*?)\}/g, (_, key) => {
-    return params[key] ?? "";
-  });
-}
-
 /** Функция для безопасного заполнения SQL шаблонов с защитой от однострочных SQL комментариев в подставляемых значениях. */
 export function fillTemplateSql(templateString: string, params: Record<string, string>): string {
   const newParams: Record<string, string> = {};
@@ -29,5 +22,7 @@ export function fillTemplateSql(templateString: string, params: Record<string, s
     newParams[key] = sanitizeSingleLineComment(String(value));
   }
 
-  return fillTemplateString(templateString, newParams);
+  return templateString.replace(/\{(.*?)\}/g, (_, key) => {
+    return newParams[key] ?? "";
+  });
 }

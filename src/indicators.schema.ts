@@ -26,10 +26,12 @@ export const WidgetIndicatorSchema = (z: TZod) =>
   });
 
 export const FormatSchema = (z: TZod) =>
-  z.object({
-    value: z.enum(EFormatTypes).optional(),
-    mode: z.enum(EFormatOrFormattingMode).default(EFormatOrFormattingMode.BASE),
-  });
+  z
+    .object({
+      mode: z.enum(EFormatOrFormattingMode),
+      value: z.enum(EFormatTypes).optional(),
+    })
+    .default({ mode: EFormatOrFormattingMode.BASE, value: EFormatTypes.STRING });
 
 export const FormattingSchema = (z: TZod) =>
   z

@@ -6,6 +6,7 @@ import type {
   IGradient,
   TTabsHorizontalAlignment,
 } from "./settings/values";
+import { ESettingsSchemaMetaKey } from "./settings/const";
 
 export type TLimitedColor = Extract<TColor, { mode: EColorMode.AUTO } | { mode: EColorMode.BASE }>;
 
@@ -28,6 +29,7 @@ export interface ITheme {
   backgroundInEdit: boolean;
   spacing: boolean;
   widgets: {
+    /** @remarks Заложено для будущего использования */
     color: string;
     paddings: number | string;
     cornerRadius: number | undefined;
@@ -75,8 +77,6 @@ export interface ITheme {
   hoverColor: TLimitedColor;
 }
 
-export const themeValueMetaKey = "themeValue";
-
 /**
  * Привязывает мета-информацию о теме к Zod-схеме
  *
@@ -98,4 +98,4 @@ export const themeValueMetaKey = "themeValue";
 export const themed = <Value, Theme = ITheme>(
   scheme: ZodType<Value>,
   selectThemeValue: (theme: Theme) => Value
-) => scheme.meta({ [themeValueMetaKey]: selectThemeValue });
+) => scheme.meta({ [ESettingsSchemaMetaKey.themeValue]: selectThemeValue });

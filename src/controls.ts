@@ -361,7 +361,7 @@ export interface ITypedFormulaControl {
   type: EControlType.typedFormula;
   value: {
     formula: string;
-    dbDataType: string;
+    dbDataType?: string;
   };
   props: {
     disabled?: boolean;
@@ -372,8 +372,8 @@ export interface ITypedFormulaControl {
 export interface IFormattingControl {
   type: EControlType.formatting;
   value: {
-    format: TSchemaType<typeof FormatSchema>;
-    formatting: TSchemaType<typeof FormattingSchema>;
+    format?: TSchemaType<typeof FormatSchema>;
+    formatting?: TSchemaType<typeof FormattingSchema>;
   };
   props: {
     formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;

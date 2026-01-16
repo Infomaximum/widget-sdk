@@ -1,4 +1,4 @@
-import { fillTemplateSql } from "./fillTemplateString";
+import { fillTemplateSql } from "./fillTemplateSql";
 
 describe("fillTemplateSql", () => {
   const lastValueTemplate =

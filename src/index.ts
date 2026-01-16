@@ -27,6 +27,7 @@ export * from "./settings/baseWidget";
 export * from "./settings/values";
 export * from "./settings/values.schema";
 export * from "./settings/baseWidget.schema";
+export * from "./settings/const";
 export * from "./sorting";
 export * from "./sorting.schema";
 export * from "./widgetContext";

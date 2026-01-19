@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-view-theme.20](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.19...v6.0.0-view-theme.20) (2026-01-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* Требуется поддержка в виджетах
+
+### Features
+
+* ActionOnClickControl предоставлен новый API для кастомизации действий ([8860d8c](https://github.com/Infomaximum/widget-sdk/commit/8860d8c26b29b46015b226694489ecf16e4120d2))
+* добавлен новый тип действия ([16aac51](https://github.com/Infomaximum/widget-sdk/commit/16aac51507395a765016157100a31cc9f57d032f))
+
 ## [6.0.0-view-theme.19](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.18...v6.0.0-view-theme.19) (2026-01-15)
 
 

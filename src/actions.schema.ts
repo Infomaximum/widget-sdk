@@ -138,6 +138,9 @@ const ActionCommonSchema = (z: TZod) =>
     name: z.string(),
   });
 
+export const ActionDrillDownSchema = (z: TZod) =>
+  ActionCommonSchema(z).extend({ type: z.literal(EActionTypes.DRILL_DOWN) });
+
 export const ActionGoToURLSchema = (z: TZod) =>
   ActionCommonSchema(z).extend({
     type: z.literal(EActionTypes.OPEN_URL),
@@ -232,6 +235,7 @@ export const ActionsOnClickSchema = (z: TZod) =>
     ActionRunScriptSchema(z),
     ActionUpdateVariableSchema(z),
     ActionOpenViewSchema(z),
+    ActionDrillDownSchema(z),
   ]);
 
 const WidgetActionParameterCommonSchema = (z: TZod) =>

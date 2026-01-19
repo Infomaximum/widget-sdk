@@ -1,4 +1,4 @@
-import type { ParameterFromDataModelSchema, TSchemaType } from ".";
+import type { ActionDrillDownSchema, ParameterFromDataModelSchema, TSchemaType } from ".";
 import type {
   ActionButtonSchema,
   ActionGoToURLSchema,
@@ -43,6 +43,7 @@ export enum EActionTypes {
   UPDATE_VARIABLE = "UPDATE_VARIABLE",
   EXECUTE_SCRIPT = "EXECUTE_SCRIPT",
   OPEN_VIEW = "OPEN_VIEW",
+  DRILL_DOWN = "DRILL_DOWN",
 }
 
 export enum EViewMode {
@@ -106,6 +107,8 @@ export type TWidgetActionParameter = TSchemaType<typeof WidgetActionParameterSch
 export type TActionOnClickParameter = TSchemaType<typeof ActionOnClickParameterSchema>;
 
 export interface IActionGoToUrl extends TSchemaType<typeof ActionGoToURLSchema> {}
+
+export interface IActionDrillDown extends TSchemaType<typeof ActionDrillDownSchema> {}
 
 export interface IActionRunScript extends TSchemaType<typeof ActionRunScriptSchema> {}
 

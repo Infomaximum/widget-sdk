@@ -1,6 +1,28 @@
-import type { TExtendedFormulaFilterValue } from "./filtration";
-import type { IAutoIdentifiedArrayItem } from "./settings/baseWidget";
-import type { TColor } from "./color";
+import type { ActionDrillDownSchema, ParameterFromDataModelSchema, TSchemaType } from ".";
+import type {
+  ActionButtonSchema,
+  ActionGoToURLSchema,
+  ActionOnClickParameterSchema,
+  ActionOpenViewSchema,
+  ActionRunScriptSchema,
+  ActionSchema,
+  ActionsOnClickSchema,
+  ActionUpdateVariableSchema,
+  ParameterFromAggregationSchema,
+  ParameterFromColumnSchema,
+  ParameterFromDynamicListSchema,
+  ParameterFromEndEventSchema,
+  ParameterFromEventSchema,
+  ParameterFromFormulaSchema,
+  ParameterFromManualInputSchema,
+  ParameterFromStartEventSchema,
+  ParameterFromStaticListSchema,
+  ParameterFromVariableSchema,
+  ViewActionParameterSchema,
+  ViewActionSchema,
+  WidgetActionParameterSchema,
+  WidgetActionSchema,
+} from "./actions.schema";
 
 export enum EWidgetActionInputMethod {
   COLUMN = "COLUMN",
@@ -21,6 +43,7 @@ export enum EActionTypes {
   UPDATE_VARIABLE = "UPDATE_VARIABLE",
   EXECUTE_SCRIPT = "EXECUTE_SCRIPT",
   OPEN_VIEW = "OPEN_VIEW",
+  DRILL_DOWN = "DRILL_DOWN",
 }
 
 export enum EViewMode {
@@ -52,261 +75,63 @@ export enum EDataModelOption {
   COLUMN_LIST = "COLUMN_LIST",
 }
 
-export interface IParameterFromColumn {
-  inputMethod: EWidgetActionInputMethod.COLUMN;
-  tableName: string;
-  columnName: string;
-  dbDataType?: string;
-}
+export interface IParameterFromColumn extends TSchemaType<typeof ParameterFromColumnSchema> {}
 
-export interface IParameterFromVariable {
-  inputMethod: EWidgetActionInputMethod.VARIABLE;
-  sourceVariable: string;
-}
+export interface IParameterFromVariable extends TSchemaType<typeof ParameterFromVariableSchema> {}
 
-export interface IParameterFromFormula {
-  inputMethod: EWidgetActionInputMethod.FORMULA;
-  formula: string;
-  considerFilters: boolean;
-  dbDataType?: string;
-}
+export interface IParameterFromFormula extends TSchemaType<typeof ParameterFromFormulaSchema> {}
 
-export interface IParameterFromAggregation {
-  inputMethod: EWidgetActionInputMethod.AGGREGATION;
-  formula: string;
-  considerFilters: boolean;
-  dbDataType?: string;
-}
+export interface IParameterFromAggregation
+  extends TSchemaType<typeof ParameterFromAggregationSchema> {}
 
-export interface IParameterFromEvent {
-  inputMethod: EWidgetActionInputMethod.EVENT;
-}
+export interface IParameterFromEvent extends TSchemaType<typeof ParameterFromEventSchema> {}
 
-export interface IParameterFromStartEvent {
-  inputMethod: EWidgetActionInputMethod.START_EVENT;
-}
+export interface IParameterFromStartEvent
+  extends TSchemaType<typeof ParameterFromStartEventSchema> {}
 
-export interface IParameterFromEndEvent {
-  inputMethod: EWidgetActionInputMethod.FINISH_EVENT;
-}
+export interface IParameterFromEndEvent extends TSchemaType<typeof ParameterFromEndEventSchema> {}
 
-export interface IParameterFromManualInput {
-  inputMethod: EWidgetActionInputMethod.MANUALLY;
-  description: string;
-  defaultValue?: string;
-  dbDataType?: string;
-  filterByRows?: boolean;
-  validation?: string;
-  acceptEmptyValue?: boolean;
-}
+export interface IParameterFromManualInput
+  extends TSchemaType<typeof ParameterFromManualInputSchema> {}
 
-export interface IParameterFromStaticList {
-  inputMethod: EWidgetActionInputMethod.STATIC_LIST;
-  options: string;
-  defaultValue: string | string[];
-  acceptEmptyValue?: boolean;
-}
+export interface IParameterFromStaticList
+  extends TSchemaType<typeof ParameterFromStaticListSchema> {}
 
-export interface IParameterFromDynamicList {
-  inputMethod: EWidgetActionInputMethod.DYNAMIC_LIST;
-  options: string;
-  defaultValue: string;
-  dbDataType?: string;
-  displayOptions: string;
-  filters: TExtendedFormulaFilterValue[];
-  filterByRows?: boolean;
-  considerFilters: boolean;
-  insertAnyValues?: boolean;
-  validation?: string;
-  acceptEmptyValue?: boolean;
-}
+export interface IParameterFromDynamicList
+  extends TSchemaType<typeof ParameterFromDynamicListSchema> {}
 
-interface IParameterFromDataModelBase {
-  inputMethod: EWidgetActionInputMethod.DATA_MODEL;
-  option: EDataModelOption;
-}
+export type TParameterFromDataModel = TSchemaType<typeof ParameterFromDataModelSchema>;
 
-export interface IParameterColumnList extends IParameterFromDataModelBase {
-  option: EDataModelOption.COLUMN_LIST;
-  /* Название параметра, содержащего имя таблицы, от которой зависит текущий параметр   */
-  parent: string;
-}
+export type TWidgetActionParameter = TSchemaType<typeof WidgetActionParameterSchema>;
 
-export interface IParameterTableList extends IParameterFromDataModelBase {
-  option: EDataModelOption.TABLE_LIST;
-}
+export type TActionOnClickParameter = TSchemaType<typeof ActionOnClickParameterSchema>;
 
-export type TParameterFromDataModel = IParameterColumnList | IParameterTableList;
+export interface IActionGoToUrl extends TSchemaType<typeof ActionGoToURLSchema> {}
 
-interface IWidgetActionParameterCommon {
-  name: string;
-  displayName: string;
-  isHidden: boolean;
-}
+export interface IActionDrillDown extends TSchemaType<typeof ActionDrillDownSchema> {}
 
-export type TWidgetActionParameter = IWidgetActionParameterCommon &
-  (
-    | IParameterFromColumn
-    | IParameterFromVariable
-    | IParameterFromFormula
-    | IParameterFromManualInput
-    | IParameterFromStaticList
-    | IParameterFromDynamicList
-    | IParameterFromAggregation
-    | TParameterFromDataModel
-  );
+export interface IActionRunScript extends TSchemaType<typeof ActionRunScriptSchema> {}
 
-interface IActionOnClickParameterCommon extends IAutoIdentifiedArrayItem {
-  name: string;
-}
+export interface IActionUpdateVariable extends TSchemaType<typeof ActionUpdateVariableSchema> {}
 
-export type TActionOnClickParameter = IActionOnClickParameterCommon &
-  (
-    | IParameterFromColumn
-    | IParameterFromVariable
-    | IParameterFromFormula
-    | IParameterFromEvent
-    | IParameterFromStartEvent
-    | IParameterFromEndEvent
-    | IParameterFromAggregation
-    | IParameterFromManualInput
-    | IParameterFromStaticList
-    | IParameterFromDynamicList
-    | TParameterFromDataModel
-  );
+export type TActionOpenView = TSchemaType<typeof ActionOpenViewSchema>;
 
-interface IActionCommon extends IAutoIdentifiedArrayItem {
-  name: string;
-}
-
-export interface IActionGoToUrl extends IActionCommon {
-  type: EActionTypes.OPEN_URL;
-  url: string;
-  newWindow: boolean;
-}
-
-export interface IActionRunScript extends IActionCommon {
-  type: EActionTypes.EXECUTE_SCRIPT;
-  parameters: TActionOnClickParameter[];
-  scriptKey: string;
-  autoUpdate: EAutoUpdateMode;
-  hideInactiveButton?: boolean;
-  activateCondition?:
-    | {
-        mode: EActivateConditionMode.FORMULA;
-        formula: string;
-      }
-    | {
-        mode: EActivateConditionMode.VARIABLE;
-        variableName: string;
-        variableValue: string;
-      };
-  hint?: string;
-}
-
-export interface IActionUpdateVariable extends IActionCommon {
-  type: EActionTypes.UPDATE_VARIABLE;
-  variables: TActionOnClickParameter[];
-}
-
-type TActionOpenIn =
-  | {
-      openIn: EViewOpenIn.DRAWER_WINDOW;
-      alignment: EDrawerPlacement;
-      inheritFilter?: boolean;
-    }
-  | {
-      openIn: EViewOpenIn.PLACEHOLDER;
-      placeholderName: string;
-    }
-  | {
-      openIn: EViewOpenIn.MODAL_WINDOW;
-      positionByClick?: boolean;
-      inheritFilter?: boolean;
-    }
-  | {
-      openIn: EViewOpenIn.WINDOW;
-      newWindow: boolean;
-      inheritFilter?: boolean;
-    };
-
-export type TActionOpenView = IActionCommon & {
-  type: EActionTypes.OPEN_VIEW;
-} & (
-    | ({
-        mode: EViewMode.GENERATED_BY_SCRIPT;
-        scriptKey: string;
-        parameters: TActionOnClickParameter[];
-        displayName: string;
-      } & TActionOpenIn)
-    | ({
-        mode: EViewMode.EXISTED_VIEW;
-        viewKey: string;
-        parameters: TActionOnClickParameter[];
-      } & TActionOpenIn)
-    | ({
-        mode: EViewMode.EMPTY;
-        placeholderName: string;
-      } & Extract<TActionOpenIn, { openIn: EViewOpenIn.PLACEHOLDER }>)
-  );
-
-export type TActionsOnClick =
-  | IActionGoToUrl
-  | IActionRunScript
-  | IActionUpdateVariable
-  | TActionOpenView;
+export type TActionsOnClick = TSchemaType<typeof ActionsOnClickSchema>;
 
 export enum EActivateConditionMode {
   FORMULA = "FORMULA",
   VARIABLE = "VARIABLE",
 }
 
-export interface IWidgetAction extends IActionCommon {
-  parameters: TWidgetActionParameter[];
-  type: EActionTypes.EXECUTE_SCRIPT;
-  scriptKey: string;
-  autoUpdate: EAutoUpdateMode;
-  description: string;
-  hideInactiveButton?: boolean;
-  hint?: string;
-  activateCondition:
-    | {
-        mode: EActivateConditionMode.FORMULA;
-        formula: string;
-      }
-    | {
-        mode: EActivateConditionMode.VARIABLE;
-        variableName: string;
-        variableValue: string;
-      };
-}
+export interface IWidgetAction extends TSchemaType<typeof WidgetActionSchema> {}
 
-export interface IActionButton extends IAutoIdentifiedArrayItem {
-  name: string;
-  onClick: IWidgetAction[];
-  buttonType: EActionButtonsTypes;
-  backgroundColor?: TColor;
-  borderColor?: TColor;
-  color: TColor;
-  hint?: string;
-}
+export interface IActionButton extends TSchemaType<typeof ActionButtonSchema> {}
 
-export type TViewActionParameter = (IParameterFromAggregation | IParameterFromVariable) &
-  IAutoIdentifiedArrayItem & {
-    name: string;
-  };
+export type TViewActionParameter = TSchemaType<typeof ViewActionParameterSchema>;
 
-export interface IViewAction {
-  name: string;
-  buttonType: EActionButtonsTypes;
-  type: EActionTypes.EXECUTE_SCRIPT;
-  parameters: TViewActionParameter[];
-  scriptKey: string;
-  id?: number;
-  autoUpdate?: EAutoUpdateMode.NONE | EAutoUpdateMode.ALL_VIEWS;
-}
+export interface IViewAction extends TSchemaType<typeof ViewActionSchema> {}
 
-export type TAction = TActionsOnClick | IWidgetAction | IViewAction;
+export type TAction = TSchemaType<typeof ActionSchema>;
 
 export type TActionValidator = (action: TAction) => boolean;
 

@@ -1,6 +1,7 @@
 // Типы, используемые в значениях элементов управления.
 
-import type { TNullable } from "../utilityTypes";
+import type { TSchemaType } from "..";
+import type { DisplayConditionSchema, RangeSchema } from "./values.schema";
 
 export enum EWidgetFilterMode {
   DEFAULT = "DEFAULT",
@@ -27,27 +28,23 @@ export enum EDisplayConditionMode {
 }
 
 /** Условие отображения для компонента и меры */
-export type TDisplayCondition =
-  | {
-      mode: EDisplayConditionMode.DISABLED;
-    }
-  | {
-      mode: EDisplayConditionMode.FORMULA;
-      formula: TNullable<string>;
-    }
-  | {
-      mode: EDisplayConditionMode.VARIABLE;
-      variableName: TNullable<string>;
-      variableValue: TNullable<string>;
-    };
+export type TDisplayCondition = TSchemaType<typeof DisplayConditionSchema>;
 
-export interface IRange {
-  unit?: string;
-  min?: number;
-  max?: number;
-}
+export interface IRange extends TSchemaType<typeof RangeSchema> {}
 
 export enum EFontWeight {
   NORMAL = "NORMAL",
   BOLD = "BOLD",
+}
+
+export interface IGradient {
+  startColor: string;
+  endColor: string;
+}
+
+export type TTabsHorizontalAlignment = "left" | "center" | "right";
+
+export enum EHeightMode {
+  FIXED = "FIXED",
+  PERCENT = "PERCENT",
 }

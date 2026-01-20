@@ -8,31 +8,19 @@ import type { EWidgetFilterMode } from "./settings/values";
 import type {
   EDimensionAggregationTemplateName,
   EDimensionTemplateNames,
-  EMeasureAggregationTemplateName,
   EMeasureTemplateNames,
 } from "./indicatorsFormulas";
 import type { ESimpleDataType } from "./data";
 import type { EFormatTypes } from "./formatting";
 
-export interface ILens<T extends TNullable<object>, Value> {
-  get(obj: T): TNullable<Value>;
-  set(obj: T, value: Value): void;
-}
-
-/**
- * Линза, которая может вернуть Partial значение из get (будет обработано на стороне control'а),
- * но требует передачи в set полного значения
- */
-interface IPartialLens<T extends TNullable<object>, Value> {
-  get(obj: T): TNullable<Partial<Value>>;
-  set(obj: T, value: Value): void;
+export interface ILens<InputShape, Value> {
+  get(obj: InputShape): Value;
+  set(obj: InputShape, value: Value): void;
 }
 
 export type TValuePath = string | string[];
 
-export type TRecordAccessor<Settings extends object, Value> =
-  | TValuePath
-  | IPartialLens<Settings, Value>;
+export type TRecordAccessor<Settings extends object, Value> = TValuePath | ILens<Settings, Value>;
 
 export interface IDisplayPredicate<Settings> {
   (s: Settings): boolean;
@@ -225,6 +213,11 @@ type TWidgetIndicatorData = TWidgetDimensionData | TWidgetMeasureData;
  * Каждый объект в массиве - это группа настроек.
  *
  * Группа отображается в виде раскрываемой плашки, может представлять из себя разрез, меру, процесс и др.
+ *
+ * @remarks
+ * Если заменить createDataRecords и createDisplayRecords на общий createRecords:
+ * + Мета-описание станет более универсальным, проще писать код рендеринга.
+ * - Но если IGroupSetDescription нужен в >= 2-х вкладках - для каждой вкладки нужно дублировать IGroupSetDescription.
  */
 export interface IGroupSetDescription<Settings extends object, GroupSettings extends object> {
   /** Заголовок */
@@ -249,6 +242,7 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
    * - содержимого выпадающего списка.
    */
   getIndicatorData?: (settings: IInitialSettings) => EWidgetIndicatorType | TWidgetIndicatorData;
+
   /** Создать конфигурацию группы для вкладки настроек данных */
   createDataRecords?(group: IGroupSettings, index: number): TGroupLevelRecord<GroupSettings>[];
   /** Создать конфигурацию группы для вкладки настроек отображения */

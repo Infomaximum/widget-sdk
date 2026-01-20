@@ -3,8 +3,9 @@ import type { EColorMode, TColor } from "./color";
 import type { ESimpleDataType } from "./data";
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormattingPresets, EFormatTypes } from "./formatting";
+import { EActionTypes, type TSchemaType } from ".";
+import type { FormatSchema, FormattingSchema } from "./indicators.schema";
 import type {
-  EFormatOrFormattingMode,
   EOuterAggregation,
   IWidgetDimension,
   TColumnIndicatorValue,
@@ -134,15 +135,14 @@ export interface IControlRecord<
   /** Описание доступа к значению настройки */
   accessor: TRecordAccessor<Settings, T["value"]>;
   /**
-   * Определяет, нужно ли вызывать метод `fillSettings` виджета после изменения настройки
-   * через элемент управления (для сохранения согласованности зависимых настроек).
+   * Определяет, нужно ли повторно нормализовать `settings` виджета после их изменения
+   * через этот элемент управления (для сохранения согласованности зависимых настроек).
    *
    * @note
-   * В будущем, кроме boolean, может быть разрешено передавать функцию (локальный `fillSettings`),
-   * но сейчас это избыточно.
+   * В будущем, кроме boolean, может быть разрешено передавать функцию, но сейчас это избыточно.
    * @default false
    */
-  fillSettings?: boolean;
+  resolveSettings?: boolean;
   /**
    * Рекурсивное определение мета-описания, в элемент управления будет передана функция dive
    * для перехода в указанное мета-описание.
@@ -279,6 +279,7 @@ export interface ISwitchControl {
   value: boolean;
   props: {
     size?: "small" | "default";
+    disabled?: boolean;
   };
 }
 
@@ -304,6 +305,7 @@ export interface IRadioIconGroupControl<Icon = string> {
   type: EControlType.radioIconGroup;
   value: string;
   props: {
+    disabled?: boolean;
     options: {
       value: string;
       /** Иконка */
@@ -359,7 +361,7 @@ export interface ITypedFormulaControl {
   type: EControlType.typedFormula;
   value: {
     formula: string;
-    dbDataType: string;
+    dbDataType?: string;
   };
   props: {
     disabled?: boolean;
@@ -370,8 +372,8 @@ export interface ITypedFormulaControl {
 export interface IFormattingControl {
   type: EControlType.formatting;
   value: {
-    format: { value?: EFormatTypes; mode: EFormatOrFormattingMode };
-    formatting: { value?: EFormattingPresets; mode: EFormatOrFormattingMode };
+    format?: TSchemaType<typeof FormatSchema>;
+    formatting?: TSchemaType<typeof FormattingSchema>;
   };
   props: {
     formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;
@@ -389,13 +391,48 @@ export interface IFormattingTemplateControl {
   };
 }
 
+interface ICommonActionConfig {
+  /**
+   * Определяет доступность действия.
+   *
+   * - `true` - действие доступно для отображения и выполнения.
+   * - `false` - действие недоступно без указания причины.
+   * - `string` - действие недоступно. Значение содержит причину недоступности.
+   */
+  availability: boolean | string;
+  extraInputMethods?: EWidgetActionInputMethod[];
+}
+
+export type TActionsConfig = Partial<{
+  [EActionTypes.UPDATE_VARIABLE]: ICommonActionConfig;
+  [EActionTypes.OPEN_VIEW]: ICommonActionConfig;
+  [EActionTypes.DRILL_DOWN]: Omit<ICommonActionConfig, "extraInputMethods">;
+  [EActionTypes.OPEN_URL]: Omit<ICommonActionConfig, "extraInputMethods">;
+  [EActionTypes.EXECUTE_SCRIPT]: ICommonActionConfig & {
+    showActivateCondition?: boolean;
+  };
+}>;
+
+export const defaultActionsConfig = {
+  OPEN_URL: { availability: true },
+  UPDATE_VARIABLE: { availability: true },
+  EXECUTE_SCRIPT: { availability: true },
+  OPEN_VIEW: { availability: true },
+};
+
 export interface IActionOnClickControl {
   type: EControlType.actionOnClick;
   value: TActionsOnClick[];
   props: {
-    indicator: { name: string; onClick?: TActionsOnClick[] };
-    placeholder?: string;
+    /** Заголовок для отображения при проваливании */
+    diveTitle: string;
+    /** Общие способы ввода для всех действий с параметрами */
     inputMethods: EWidgetActionInputMethod[];
+    /**
+     * Объект точечной конфигурации действия по типу, отобразятся только те действия, которые описаны в нем
+     * @default {defaultActionsConfig}
+     */
+    actionsConfig?: TActionsConfig;
   };
 }
 
@@ -428,6 +465,7 @@ export interface IColorPickerControl {
     /** Цвет по умолчанию для режима BASE при переключении с другого режима */
     defaultColor?: string;
     dimension?: IWidgetDimension;
+    disabled?: boolean;
   };
 }
 

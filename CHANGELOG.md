@@ -195,6 +195,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [6.0.0-view-theme.10](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.9...v6.0.0-view-theme.10) (2025-11-20)
 
+## [6.0.0-18](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-17...v6.0.0-18) (2025-12-16)
+
 ## [6.0.0-17](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.8...v6.0.0-17) (2025-11-19)
 
 

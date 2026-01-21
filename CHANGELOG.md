@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-4](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-3...v7.0.0-4) (2026-01-21)
+
 ## [7.0.0-3](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-2...v7.0.0-3) (2026-01-21)
 
 

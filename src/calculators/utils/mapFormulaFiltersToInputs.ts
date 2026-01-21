@@ -9,7 +9,7 @@ import { type ICalculatorFilter } from "../calculator/calculator";
 import { compact, compactMap, isNil } from "../../utils/functions";
 import type { TNullable, valueof } from "../../utilityTypes";
 import { EClickHouseBaseTypes, parseClickHouseType } from "../../clickHouseTypes";
-import { EFormatTypes } from "../../formatting";
+import { EFormatTypes } from "@infomaximum/bi-formatting";
 import { fillTemplateSql } from "../../indicatorsFormulas";
 import { displayConditionTemplate } from "./displayCondition";
 import { ESimpleDataType } from "../../data";

@@ -119,6 +119,9 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
   displayMode: TDisplayMode;
   /** Доступность фильтрации */
   filtrationAccessibility: TFiltrationAccessibility;
+
+  /** Объект для форматирования значений */
+  formatting: IWidgetFormatting;
 }
 
 /** Манифест виджета */
@@ -161,8 +164,6 @@ export interface ICustomWidgetProps<
   manifest: Partial<IWidgetManifest>;
   /** body DOM элемент родительского приложения */
   bodyElement: HTMLBodyElement;
-  /** Объект для форматирования значений */
-  formatting: IWidgetFormatting;
   /** Функция для получения ресурса виджета по имени файла */
   getWidgetAsset: (fileName: string) => Promise<Blob | null>;
 }

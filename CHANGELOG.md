@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-3](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-2...v7.0.0-3) (2026-01-21)
+
+
+### Features
+
+* добавлена возможность запросить у системы ожидание завершения асинхронной работы перед запуском действия ([9a1b67f](https://github.com/Infomaximum/widget-sdk/commit/9a1b67fa1eec90833cf5553840431fceda431653))
+
 ## [7.0.0-2](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-1...v7.0.0-2) (2026-01-20)
 
 ## [7.0.0-1](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.21...v7.0.0-1) (2026-01-20)

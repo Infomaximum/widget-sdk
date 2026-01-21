@@ -86,8 +86,13 @@ export interface IWidgetProps<WidgetSettings extends IBaseWidgetSettings = IBase
   /** Объект для получения значений плейсхолдера */
   placeholderValues: IWidgetPlaceholderValues;
 
-  /** Функция для подписки на расфокусировку виджета (например, при фокусировке на другом виджете) */
-  subscribeOnFocusOut(subscriber: () => void): void;
+  /**
+   * Подписка на событие потери системного фокуса виджетом.
+   *
+   * Подписчик может вернуть Promise, чтобы запросить у системы ожидание завершения асинхронной
+   * работы перед запуском действия.
+   */
+  subscribeOnFocusOut(subscriber: () => Promise<void> | void): void;
   /** Функция для захвата фокуса виджетом: остальные виджеты будут оповещены о расфокусировке */
   captureFocus(options?: {
     /**

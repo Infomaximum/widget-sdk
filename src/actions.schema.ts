@@ -189,7 +189,7 @@ export const ActionOpenInSchema = (z: TZod) =>
     }),
     z.object({
       openIn: z.literal(EViewOpenIn.PLACEHOLDER),
-      placeholderName: z.string(),
+      placeholderName: z.string().optional(),
     }),
     z.object({
       openIn: z.literal(EViewOpenIn.MODAL_WINDOW),
@@ -211,18 +211,18 @@ export const ActionOpenViewSchema = (z: TZod) =>
     z.discriminatedUnion("mode", [
       ActionOpenViewCommonSchema(z).extend({
         mode: z.literal(EViewMode.GENERATED_BY_SCRIPT),
-        scriptKey: z.string(),
+        scriptKey: z.string().optional(),
         parameters: z.array(ActionOnClickParameterSchema(z)).default([]),
         displayName: z.string().default(""),
       }),
       ActionOpenViewCommonSchema(z).extend({
         mode: z.literal(EViewMode.EXISTED_VIEW),
-        viewKey: z.string(),
+        viewKey: z.string().optional(),
         parameters: z.array(ActionOnClickParameterSchema(z)).default([]),
       }),
       ActionOpenViewCommonSchema(z).extend({
         mode: z.literal(EViewMode.EMPTY),
-        placeholderName: z.string(),
+        placeholderName: z.string().optional(),
         openIn: z.literal(EViewOpenIn.PLACEHOLDER),
       }),
     ]),

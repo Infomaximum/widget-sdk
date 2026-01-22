@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-5](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-4...v7.0.0-5) (2026-01-22)
+
+
+### Bug Fixes
+
+* необязательные поля действия открытия образа сделаны опциональными ([dec55c5](https://github.com/Infomaximum/widget-sdk/commit/dec55c542be792ae579f9a97cf56e79be07c52f6))
+
 ## [7.0.0-4](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-3...v7.0.0-4) (2026-01-21)
 
 ## [7.0.0-3](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-2...v7.0.0-3) (2026-01-21)

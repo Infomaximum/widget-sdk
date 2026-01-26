@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-6](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-5...v7.0.0-6) (2026-01-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* Требуется поддержка в виджетах
+
+### Features
+
+* отказ от onComplete в параметрах launchAction ([37710b3](https://github.com/Infomaximum/widget-sdk/commit/37710b3ae721211c1600ae141575d99066d44644))
+
 ## [7.0.0-5](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-4...v7.0.0-5) (2026-01-22)
 
 

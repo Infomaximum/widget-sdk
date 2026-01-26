@@ -139,13 +139,17 @@ const ActionCommonSchema = (z: TZod) =>
   });
 
 export const ActionDrillDownSchema = (z: TZod) =>
-  ActionCommonSchema(z).extend({ type: z.literal(EActionTypes.DRILL_DOWN) });
+  ActionCommonSchema(z).extend({
+    type: z.literal(EActionTypes.DRILL_DOWN),
+    variables: z.array(ActionOnClickParameterSchema(z)).default([]),
+  });
 
 export const ActionGoToURLSchema = (z: TZod) =>
   ActionCommonSchema(z).extend({
     type: z.literal(EActionTypes.OPEN_URL),
     url: z.string(),
     newWindow: z.boolean().default(true),
+    variables: z.array(ActionOnClickParameterSchema(z)).default([]),
   });
 
 const ActivateConditionSchema = (z: TZod) =>
@@ -172,6 +176,7 @@ export const ActionRunScriptSchema = (z: TZod) =>
     hideInactiveButton: z.boolean().default(false),
     activateCondition: ActivateConditionSchema(z),
     hint: z.string().default(""),
+    variables: z.array(ActionOnClickParameterSchema(z)).default([]),
   });
 
 export const ActionUpdateVariableSchema = (z: TZod) =>
@@ -204,7 +209,10 @@ export const ActionOpenInSchema = (z: TZod) =>
   ]);
 
 const ActionOpenViewCommonSchema = (z: TZod) =>
-  ActionCommonSchema(z).extend({ type: z.literal(EActionTypes.OPEN_VIEW) });
+  ActionCommonSchema(z).extend({
+    type: z.literal(EActionTypes.OPEN_VIEW),
+    variables: z.array(ActionOnClickParameterSchema(z)).default([]),
+  });
 
 export const ActionOpenViewSchema = (z: TZod) =>
   z.intersection(
@@ -270,6 +278,7 @@ export const WidgetActionSchema = (z: TZod) =>
     hideInactiveButton: z.boolean().default(false),
     hint: z.string().default(""),
     activateCondition: ActivateConditionSchema(z),
+    variables: z.array(WidgetActionParameterSchema(z)).default([]),
   });
 
 export const ViewActionParameterSchema = (z: TZod) =>

@@ -14,16 +14,16 @@ import type { IViewContext } from "./viewContext";
 export type TLaunchActionParams = {
   /** Запускаемое действие */
   action: TAction;
-  /** Callback, вызываемый при успешном выполнении действия */
-  onComplete?: () => void;
   /** Callback, вызываемый при ошибке запуска или выполнения действия */
   onError?: () => void;
-  /** Callback, вызываемый при успешном запуске действия */
+  /** Callback, вызываемый при успешном завершении действия */
   onSuccess?: () => void;
-
-  /** Требуется ли подтверждение о запуске (откроется модальное окно) */
+  /**
+   * Требуется ли подтверждение о запуске (откроется модальное окно)
+   * на текущий момент поддержано только для действия с типом EXECUTE_SCRIPT
+   * для остальных типов действий будет выброшена ошибка
+   */
   needConfirmation?: boolean;
-
   /** Фильтрация для способов ввода COLUMN и FORMULA */
   filters: ICalculatorFilter[];
   /** Выбранные имена событий для способа ввода EVENT, START_EVENT и FINISH_EVENT */

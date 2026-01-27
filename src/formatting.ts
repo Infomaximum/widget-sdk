@@ -5,7 +5,8 @@ import type { IWidgetColumnIndicator } from "./indicators";
 export interface IWidgetFormatting {
   getFormattedValue: (
     value: string,
-    formatType: EFormatTypes,
+    /** При передаче строки, которая не соответствует EFormatTypes вернется `value`  */
+    formatType: EFormatTypes | string,
     formatting: IWidgetColumnIndicator["formatting"]
   ) => string;
 }

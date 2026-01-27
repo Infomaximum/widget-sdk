@@ -20,7 +20,7 @@ export const FormulaFilterValueSchema = (z: TZod) =>
     formula: z.string(),
     sliceIndex: z.number().optional(),
     dbDataType: z.string(),
-    format: z.enum(EFormatTypes),
+    format: z.union([z.enum(EFormatTypes), z.string()]).optional(),
     filteringMethod: z.enum(Object.values(formulaFilterMethods)),
     checkedValues: z.array(z.string().nullable()).optional(),
     formValues: z

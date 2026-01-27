@@ -32,10 +32,16 @@ export const WidgetIndicatorSchema = (z: TZod) =>
 
 export const FormatSchema = (z: TZod) =>
   z
-    .object({
-      mode: z.enum(EFormatOrFormattingMode),
-      value: z.enum(EFormatTypes).optional(),
-    })
+    .discriminatedUnion("mode", [
+      z.object({
+        mode: z.literal(EFormatOrFormattingMode.BASE),
+        value: z.enum(EFormatTypes).default(EFormatTypes.STRING).optional(),
+      }),
+      z.object({
+        mode: z.literal(EFormatOrFormattingMode.TEMPLATE),
+        value: z.string().default("").optional(),
+      }),
+    ])
     .default({ mode: EFormatOrFormattingMode.BASE, value: EFormatTypes.STRING });
 
 export const FormattingSchema = (z: TZod) =>

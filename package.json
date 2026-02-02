@@ -24,7 +24,7 @@
     "@infomaximum/base-filter": "^1.1.0",
     "@infomaximum/global-types": "^1.3.0",
     "@infomaximum/localization": "^1.1.0",
-    "@infomaximum/bi-formatting": "^1.1.0",
+    "@infomaximum/bi-formatting": "^1.2.0",
     "zod": "4.1.12"
   },
   "devDependencies": {

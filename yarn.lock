@@ -985,10 +985,10 @@
     "@infomaximum/localization" "^1.0.4"
     "@types/react" "^18.0.0"
 
-"@infomaximum/bi-formatting@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@infomaximum/bi-formatting/-/bi-formatting-1.1.0.tgz#dc9ad7442f1322cd5cfc0c04c0fbaa9728045590"
-  integrity sha512-WAYUvwF+3VXJIMa5lPjgHhQ5wdCVO6jU3TrUBKLftjmPF4nHywHsH1+rnRy17bCMQFYhFzj18higBWvNUZLFQg==
+"@infomaximum/bi-formatting@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@infomaximum/bi-formatting/-/bi-formatting-1.2.0.tgz#0b59ba7374b59d4b58fbdacdd4b506b386378b0e"
+  integrity sha512-q+uFh3e24W5t5JYOBcC2Ap8w5xPBUOUr5oBCUf8TFwiTVk1+8gZuevlZN7ah1tPzr3u8h4rNtAYInlZpQdTpSQ==
   dependencies:
     "@infomaximum/localization" "^1.1.0"
     "@infomaximum/utility" "^9.2.1"

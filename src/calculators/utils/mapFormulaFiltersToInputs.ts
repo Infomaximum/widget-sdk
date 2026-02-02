@@ -105,7 +105,7 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
   }
 
   function convertDurationRangeToSecond(
-    range: [number?, number?] = [undefined, undefined],
+    range: [number | null, number | null] = [null, null],
     rangeUnit?: EDurationUnit
   ): [string, string] {
     return range.map((value, index) => {

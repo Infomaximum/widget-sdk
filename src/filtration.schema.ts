@@ -28,8 +28,8 @@ export const FormulaFilterValueSchema = (z: TZod) =>
         [EFormulaFilterFieldKeys.date]: z.string().nullable(),
         [EFormulaFilterFieldKeys.dateRange]: z.tuple([z.string(), z.string()]),
         [EFormulaFilterFieldKeys.numberRange]: z.tuple([
-          z.number().optional(),
-          z.number().optional(),
+          z.number().nullable(),
+          z.number().nullable(),
         ]),
         [EFormulaFilterFieldKeys.string]: z.string(),
         // todo: отказаться от использования z.string(), оставить только z.number() [BI-15912]

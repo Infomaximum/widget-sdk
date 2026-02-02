@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-7](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-6...v7.0.0-7) (2026-02-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* Требуется поддержка в виджетах
+
+### Features
+
+* изменена типизация формата ([62a44fa](https://github.com/Infomaximum/widget-sdk/commit/62a44fa3e393b5ae14df05dc803e2d0b2c235911))
+
 ## [7.0.0-6](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-5...v7.0.0-6) (2026-01-26)
 
 

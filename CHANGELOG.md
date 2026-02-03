@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-8](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-7...v7.0.0-8) (2026-02-03)
+
+
+### Features
+
+* добавлено вложенное действие Обновить переменную для действий по клику ([48822f8](https://github.com/Infomaximum/widget-sdk/commit/48822f87fd34e82feb699e210809e7f492d0844c))
+
 ## [7.0.0-7](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-6...v7.0.0-7) (2026-02-02)
 
 

@@ -116,6 +116,7 @@ export const WidgetIndicatorAggregationValueSchema = (z: TZod) =>
     tableName: z.string().optional(),
     columnName: z.string().optional(),
     eventTimeFormula: FormulaNullableSchema(z).optional(),
+    innerTemplateName: z.string().optional(),
   });
 
 export const WidgetMeasureAggregationValueSchema = (z: TZod) =>

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-2601.1](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-2601.0...v7.0.0-2601.1) (2026-02-06)
+
+
+### Bug Fixes
+
+* исправлена схема numberRange в фильтре по формуле ([55dd72b](https://github.com/Infomaximum/widget-sdk/commit/55dd72b1964fb855e703a91be88c805bea307cff))
+
 ## [7.0.0-2601.0](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-7...v7.0.0-2601.0) (2026-02-03)
 
 ## [7.0.0-7](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-6...v7.0.0-7) (2026-02-02)

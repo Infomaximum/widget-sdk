@@ -9,7 +9,6 @@ export const WidgetPresetSettingsSchema = (z: TZod) =>
       titleColor: true,
       titleSize: true,
       titleWeight: true,
-      paddings: true,
     })
     .extend({
       textSize: z.number().default(12),

@@ -42,9 +42,5 @@ export const BaseWidgetSettingsSchema = (z: TZod) =>
     ignoreFilters: z.boolean().default(false),
     sorting: z.array(WidgetSortingIndicatorSchema(z)).default([]),
     actionButtons: z.array(ActionButtonSchema(z)).default([]),
-    paddings: themed(
-      z.union([z.number(), z.string()]).default(8),
-      (theme) => theme.widgets.paddings
-    ),
     viewTheme: z.boolean().default(false),
   });

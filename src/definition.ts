@@ -1,4 +1,4 @@
-import type { IGroupSettings, IPanelDescriptionCreator } from "./metaDescription";
+import type { IPanelDescriptionCreator } from "./metaDescription";
 import type { IWidgetPresetSettings } from "./preset";
 import type { IWidgetMigrator, IWidgetStruct, TMigrationStruct } from "./migrates";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
@@ -11,7 +11,7 @@ import type { ELanguages } from "@infomaximum/localization";
 /** Используется для вывода типа настроек виджета по описанной схеме в методе `createSettingsSchema`
  */
 export type TSettingsOf<
-  D extends IDefinition<B, any, any>,
+  D extends IDefinition<B, any>,
   B extends IBaseWidgetSettings = IBaseWidgetSettings,
 > = D["createSettingsSchema"] extends (z: typeof Zod) => infer Schema
   ? Schema extends ZodType
@@ -25,7 +25,6 @@ export interface ISchemaContext {
 
 export interface IDefinition<
   WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings,
-  GroupSettings extends IGroupSettings = IGroupSettings,
   MigrationStruct extends TMigrationStruct = IWidgetStruct,
 > {
   /** иконка виджета отображаемая в системе (в base64, svg или png) */
@@ -33,7 +32,7 @@ export interface IDefinition<
   /** возвращает zod-схему настроек виджета */
   createSettingsSchema: (z: typeof Zod, context: ISchemaContext) => ZodType<WidgetSettings>;
   /** возвращает конфигурацию панели настроек */
-  createPanelDescription: IPanelDescriptionCreator<WidgetSettings, GroupSettings>;
+  createPanelDescription: IPanelDescriptionCreator<WidgetSettings>;
   /** обеспечивает консистентность настроек */
   fillSettings?: IFillSettings<WidgetSettings>;
   /** получить начальные настройки виджета, используя заданный пользователем шаблон настроек */

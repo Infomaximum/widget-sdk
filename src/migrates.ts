@@ -45,7 +45,7 @@ export interface IWidgetStruct<Settings extends IBaseWidgetSettings = IBaseWidge
   apiVersion: TApiVersion;
   type: string;
   settings: Settings;
-  localApiVersion?: TVersion;
+  localApiVersion: TVersion;
 }
 
 export type TMigrateProcessor<T extends TMigrationStruct> = (struct: T) => void;

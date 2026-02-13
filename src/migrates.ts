@@ -53,7 +53,7 @@ export type TMigrateProcessor<T extends TMigrationStruct> = (struct: T) => void;
 export interface IMigrateContext {
   apiVersion: TApiVersion;
   localApiVersion?: TVersion;
-  type?: string;
+  type: string | undefined;
 }
 
 export interface IWidgetMigrator<T extends TMigrationStruct = IWidgetStruct> {

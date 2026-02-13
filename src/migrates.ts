@@ -30,6 +30,7 @@ export const apiVersions = [
   "16.1", // Для версии системы 250703
   "16.2", // Для версии системы 250709
   "17", // 2508
+  "18", // 2601
 ] as const satisfies ReadonlyArray<TVersion>;
 export type TApiVersion = (typeof apiVersions)[number];
 
@@ -44,7 +45,7 @@ export interface IWidgetStruct<Settings extends IBaseWidgetSettings = IBaseWidge
   apiVersion: TApiVersion;
   type: string;
   settings: Settings;
-  localApiVersion?: TVersion;
+  localApiVersion: TVersion;
 }
 
 export type TMigrateProcessor<T extends TMigrationStruct> = (struct: T) => void;
@@ -52,7 +53,7 @@ export type TMigrateProcessor<T extends TMigrationStruct> = (struct: T) => void;
 export interface IMigrateContext {
   apiVersion: TApiVersion;
   localApiVersion?: TVersion;
-  type?: string;
+  type: string | undefined;
 }
 
 export interface IWidgetMigrator<T extends TMigrationStruct = IWidgetStruct> {

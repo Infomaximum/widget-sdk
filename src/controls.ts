@@ -42,6 +42,30 @@ export type THintPlacement =
   | "rightTop"
   | "rightBottom";
 
+/**
+ * Props контрола.
+ * Единый контракт для встроенных и кастомных контролов.
+ */
+export interface IControlProps<
+  T extends { value: unknown; props: object } = { value: unknown; props: object },
+  DiveState = unknown,
+> {
+  title?: string;
+
+  value: T["value"];
+  setValue(arg: T["value"], resolveSettings?: boolean): void;
+  extraProps: T["props"];
+
+  /**
+   * Запрашивает погружение в тот же control с новым контекстом (diveState).
+   * Система выполняет навигацию и заново монтирует control -
+   * его жизненный цикл полностью сбрасывается.
+   */
+  dive?: (title: string, state?: DiveState) => void;
+  /** Состояние текущего погружения */
+  diveState?: DiveState;
+}
+
 export enum EControlType {
   /** Ввод текста */
   input = "input",

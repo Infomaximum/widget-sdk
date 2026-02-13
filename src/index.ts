@@ -45,6 +45,7 @@ export * from "./preset.schema";
 export { parseClickHouseType, EClickHouseBaseTypes } from "./clickHouseTypes";
 export * from "./theme";
 export * from "./color.schema";
+export * from "./utils/lifecycleRuntime";
 
 export type TDefineWidgetOptions = {
   manifest?: IWidgetManifest;

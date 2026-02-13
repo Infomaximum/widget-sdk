@@ -42,6 +42,15 @@ export type THintPlacement =
   | "rightTop"
   | "rightBottom";
 
+export interface IControlProps<
+  T extends { value: unknown; props: object } = { value: unknown; props: object },
+> {
+  value: T["value"];
+  setValue(arg: T["value"], resolveSettings?: boolean): void;
+  extraProps: T["props"];
+  title?: string;
+}
+
 export enum EControlType {
   /** Ввод текста */
   input = "input",
@@ -88,7 +97,7 @@ export enum EControlType {
   eventsColor = "eventsColor",
 }
 
-type ControlsMap = {
+type EmbeddedControlsMap = {
   [EControlType.input]: IInputControl;
   [EControlType.inputTemplate]: IInputTemplatedControl;
   [EControlType.inputMarkdown]: IInputMarkdownControl;
@@ -111,11 +120,19 @@ type ControlsMap = {
   [EControlType.eventsColor]: IEventsColorControl;
 };
 
-export type TControlUnion<Settings extends object> = {
-  [K in keyof ControlsMap]: IControlRecord<Settings, ControlsMap[K]>;
+export type TControlsMap = Record<PropertyKey, { value: unknown; props: object }>;
+
+export type TControlUnion<
+  Settings extends object,
+  ControlsMap extends TControlsMap = EmbeddedControlsMap,
+> = {
+  [K in keyof ControlsMap]: IControlRecord<
+    Settings,
+    { type: K; value: ControlsMap[K]["value"]; props: ControlsMap[K]["props"] }
+  >;
 }[keyof ControlsMap];
 
-type TControlConstraint = { type: string; value: unknown; props: object };
+type TControlConstraint = { type: PropertyKey; value: unknown; props: object };
 
 /** Конфигурация элемента управления настройкой */
 export interface IControlRecord<
@@ -191,7 +208,6 @@ interface IControlRecordPosition {
 }
 
 export interface IInputControl {
-  type: EControlType.input;
   value: string;
   props: {
     placeholder?: string;
@@ -209,19 +225,16 @@ export interface IInputControl {
 }
 
 export interface IInputTemplatedControl {
-  type: EControlType.inputTemplate;
   value: string;
   props: {};
 }
 
 export interface IInputMarkdownControl {
-  type: EControlType.inputMarkdown;
   value: string;
   props: {};
 }
 
 export interface IInputNumberControl {
-  type: EControlType.inputNumber;
   value: number | null;
   props: {
     min?: number;
@@ -244,7 +257,6 @@ export interface IInputNumberControl {
 }
 
 export interface IInputRangeControl {
-  type: EControlType.inputRange;
   value: IRange;
   props: {
     min?: number;
@@ -261,7 +273,6 @@ export enum EUnitMode {
 }
 
 export interface ISizeControl {
-  type: EControlType.size;
   value: { value: number | null; mode: EUnitMode };
   props: {
     placeholder?: string;
@@ -275,7 +286,6 @@ export interface ISizeControl {
 }
 
 export interface ISwitchControl {
-  type: EControlType.switch;
   value: boolean;
   props: {
     size?: "small" | "default";
@@ -284,7 +294,6 @@ export interface ISwitchControl {
 }
 
 export interface ISelectControl {
-  type: EControlType.select;
   value: TNullable<string>;
   props: {
     fetchOptions?: (
@@ -302,7 +311,6 @@ export interface ISelectControl {
 }
 
 export interface IRadioIconGroupControl<Icon = string> {
-  type: EControlType.radioIconGroup;
   value: string;
   props: {
     disabled?: boolean;
@@ -316,7 +324,6 @@ export interface IRadioIconGroupControl<Icon = string> {
 }
 
 export interface IFormulaControl {
-  type: EControlType.formula;
   value: {
     value:
       | TColumnIndicatorValue
@@ -358,7 +365,6 @@ export interface IFormulaControl {
 }
 
 export interface ITypedFormulaControl {
-  type: EControlType.typedFormula;
   value: {
     formula: string;
     dbDataType?: string;
@@ -370,7 +376,6 @@ export interface ITypedFormulaControl {
 }
 
 export interface IFormattingControl {
-  type: EControlType.formatting;
   value: {
     format?: TSchemaType<typeof FormatSchema>;
     formatting?: TSchemaType<typeof FormattingSchema>;
@@ -383,7 +388,6 @@ export interface IFormattingControl {
 }
 
 export interface IFormattingTemplateControl {
-  type: EControlType.formattingTemplate;
   value: string;
   props: {
     /** Используемый формат (влияет на контент подсказки) */
@@ -421,7 +425,6 @@ export const defaultActionsConfig = {
 };
 
 export interface IActionOnClickControl {
-  type: EControlType.actionOnClick;
   value: TActionsOnClick[];
   props: {
     /** Заголовок для отображения при проваливании */
@@ -437,7 +440,6 @@ export interface IActionOnClickControl {
 }
 
 export interface IFilterControl {
-  type: EControlType.filter;
   value: TExtendedFormulaFilterValue[];
   props: {
     buttonTitle?: string;
@@ -447,7 +449,6 @@ export interface IFilterControl {
 }
 
 export interface IDisplayConditionControl {
-  type: EControlType.displayCondition;
   value: TDisplayCondition;
   props: {
     isInMeasure?: boolean;
@@ -457,7 +458,6 @@ export interface IDisplayConditionControl {
 }
 
 export interface IColorPickerControl {
-  type: EControlType.colorPicker;
   value: TColor | undefined;
   props: {
     ruleModes?: EColorMode[];
@@ -470,7 +470,6 @@ export interface IColorPickerControl {
 }
 
 export interface ITagSetControl {
-  type: EControlType.tagSet;
   value: string[];
   props: {
     placeholder?: string;
@@ -479,7 +478,6 @@ export interface ITagSetControl {
 }
 
 export interface IEventsPickerControl {
-  type: EControlType.eventsPicker;
   value: (string | null)[];
   props: {
     process: IWidgetProcess | undefined;
@@ -488,7 +486,6 @@ export interface IEventsPickerControl {
 }
 
 export interface IEventsColorControl {
-  type: EControlType.eventsColor;
   value: {
     defaultColor: string;
     values: Record<string, { mode: EColorMode; value: string }>;

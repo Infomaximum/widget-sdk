@@ -42,6 +42,15 @@ export type THintPlacement =
   | "rightTop"
   | "rightBottom";
 
+export interface IControlProps<
+  T extends { value: unknown; props: object } = { value: unknown; props: object },
+> {
+  value: T["value"];
+  setValue(arg: T["value"], resolveSettings?: boolean): void;
+  extraProps: T["props"];
+  title?: string;
+}
+
 export enum EControlType {
   /** Ввод текста */
   input = "input",

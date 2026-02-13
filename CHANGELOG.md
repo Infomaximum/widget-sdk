@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-10](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-9...v7.0.0-10) (2026-02-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* требуется поддержка типизации в виджетах
+* требуется поддержка типизации в виджетах
+
+### Bug Fixes
+
+* исправлена схема WidgetIndicatorAggregationValueSchema ([d70deb5](https://github.com/Infomaximum/widget-sdk/commit/d70deb5e1fdf046a8c79d265a9a28294cbded811))
+
+
+* выполнен отказ от дженерика MigrationStruct в IDefinition ([193518b](https://github.com/Infomaximum/widget-sdk/commit/193518b7004454b61be4856e83d67ad494f04ac3))
+* произведен отказ от дженерика GroupSettings в мета-описании ([2032b9d](https://github.com/Infomaximum/widget-sdk/commit/2032b9db41ac0c5d305b548eeddf1ea8141375b4))
+
 ## [7.0.0-9](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-8...v7.0.0-9) (2026-02-06)
 
 

@@ -1,6 +1,5 @@
 /// <reference types="@infomaximum/global-types" />
 
-import type { IGroupSettings } from "./metaDescription";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
 import type { IWidgetEntity, IWidgetManifest } from "./widgetApi";
 import type { ZodType, z as zod } from "zod";
@@ -58,12 +57,9 @@ declare global {
     widget: {
       currentSdkVersion: number;
 
-      defineWidget: <
-        WidgetSettings extends IBaseWidgetSettings,
-        GroupSettings extends IGroupSettings,
-      >(
+      defineWidget: <WidgetSettings extends IBaseWidgetSettings>(
         uuid: string,
-        Widget: IWidgetEntity<WidgetSettings, GroupSettings>,
+        Widget: IWidgetEntity<WidgetSettings>,
         options?: TDefineWidgetOptions
       ) => void;
     };

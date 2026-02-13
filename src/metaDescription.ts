@@ -1,4 +1,3 @@
-import type { TNullable } from "./utilityTypes";
 import type { TControlUnion } from "./controls";
 import type { EWidgetIndicatorType } from "./indicators";
 import type { IGlobalContext } from "./widgetContext";
@@ -172,7 +171,10 @@ export type TAddButton = {
   initialSettings?: IInitialSettings;
 };
 
-export interface IGroupSettings extends IAutoIdentifiedArrayItem, Record<string, any> {}
+export interface IGroupSettings extends IAutoIdentifiedArrayItem {
+  /** Название группы (плашки), используемое по умолчанию (можно переопределить через getGroupTitle) */
+  name?: string;
+}
 
 /** Конфигурация разреза */
 export type TWidgetDimensionData = {
@@ -219,7 +221,10 @@ type TWidgetIndicatorData = TWidgetDimensionData | TWidgetMeasureData;
  * + Мета-описание станет более универсальным, проще писать код рендеринга.
  * - Но если IGroupSetDescription нужен в >= 2-х вкладках - для каждой вкладки нужно дублировать IGroupSetDescription.
  */
-export interface IGroupSetDescription<Settings extends object, GroupSettings extends object> {
+export interface IGroupSetDescription<
+  Settings extends object,
+  GroupSettings extends IGroupSettings = IGroupSettings,
+> {
   /** Заголовок */
   title?: string;
   /** Максимальное количество групп в наборе  */
@@ -268,10 +273,7 @@ export interface IGroupSetDescription<Settings extends object, GroupSettings ext
 }
 
 /** Конфигурация панели настроек виджета */
-export interface IPanelDescription<
-  Settings extends object,
-  GroupSettings extends IGroupSettings = IGroupSettings,
-> {
+export interface IPanelDescription<Settings extends object> {
   /** Добавить поле настройки заголовка */
   useTitle?: boolean;
   /** Добавить поле настройки описания */
@@ -286,7 +288,7 @@ export interface IPanelDescription<
    * Конфигурация наборов(каждый набор по своему ключу) с группами настроек.
    * Описанный набор групп можно вставить по ключу в нужное место внутри dataRecords и displayRecords.
    */
-  groupSetDescriptions?: Record<string, IGroupSetDescription<Settings, GroupSettings>>;
+  groupSetDescriptions?: Record<string, IGroupSetDescription<Settings>>;
 
   /** Добавить вкладку с настройками действий (по умолчанию false) */
   useActions?: boolean;
@@ -319,15 +321,10 @@ export interface IWidgetProcess {
 }
 
 /** Конфигурация левой панели при погружении на уровень вниз */
-export interface IDivePanelDescription<
-  Settings extends object,
-  GroupSettings extends IGroupSettings = IGroupSettings,
-> extends IPanelDescription<Settings, GroupSettings> {}
+export interface IDivePanelDescription<Settings extends object>
+  extends IPanelDescription<Settings> {}
 
-export interface IPanelDescriptionCreator<
-  Settings extends IBaseWidgetSettings,
-  GroupSettings extends IGroupSettings,
-> {
+export interface IPanelDescriptionCreator<Settings extends IBaseWidgetSettings> {
   (
     /** Глобальный контекст */
     context: IGlobalContext,
@@ -335,7 +332,7 @@ export interface IPanelDescriptionCreator<
     settings: Settings,
     /** Фабрика вычислителей */
     calculatorFactory: ICalculatorFactory
-  ): IPanelDescription<Settings, GroupSettings>;
+  ): IPanelDescription<Settings>;
 }
 
 //todo: заполнить в рамках BI-13985

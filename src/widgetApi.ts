@@ -1,5 +1,4 @@
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
-import type { IGroupSettings } from "./metaDescription";
 import type { IWidgetFiltration } from "./filtration";
 import type { IWidgetPlaceholderController, IWidgetPlaceholderValues } from "./placeholder";
 import type { IWidgetFormatting } from "./formatting";
@@ -214,10 +213,7 @@ export interface IFillSettings<WidgetSettings extends IBaseWidgetSettings> {
   ): void;
 }
 
-export interface IWidgetEntity<
-  WidgetSettings extends IBaseWidgetSettings,
-  GroupSettings extends IGroupSettings,
-> {
+export interface IWidgetEntity<WidgetSettings extends IBaseWidgetSettings> {
   new (): IWidget<WidgetSettings>;
-  definition: IDefinition<WidgetSettings, GroupSettings>;
+  definition: IDefinition<WidgetSettings>;
 }

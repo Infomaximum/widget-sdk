@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-2601.3](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-2601.2...v7.0.0-2601.3) (2026-02-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* необходимо поддержать поле type в зарегистрированных миграциях
+* требуется поддержка поле localApiVersion при создании структуры
+
+### Features
+
+* поле localApiVersion для структуры виджета теперь обязательно ([0110088](https://github.com/Infomaximum/widget-sdk/commit/0110088cb144bb78d01b085dd267513b3fba7704))
+* поле type для контекста миграции теперь обязательно ([50f66db](https://github.com/Infomaximum/widget-sdk/commit/50f66db9f99aceda124839f3d3d778f08fcb3c06))
+* увеличена версия системной миграции ([95c6c50](https://github.com/Infomaximum/widget-sdk/commit/95c6c50d9bda48f642c00fefc1e8f85942d5f5b5))
+
 ## [7.0.0-2601.2](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-2601.1...v7.0.0-2601.2) (2026-02-13)
 
 

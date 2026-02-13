@@ -1,6 +1,6 @@
 {
   "name": "@infomaximum/widget-sdk",
-  "version": "7.0.0-2601.2",
+  "version": "7.0.0-2601.3",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",

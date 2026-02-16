@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-11...v) (2026-02-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* отступы больше нельзя задавать в виджетах
+
+### Features
+
+* удалены отступы из настроек виджетов ([b5f1797](https://github.com/Infomaximum/widget-sdk/commit/b5f17973ee872c4d31b0fd07babc29ca83b1b72f))
+
 ## [7.0.0-11](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-10...v7.0.0-11) (2026-02-13)
 
 

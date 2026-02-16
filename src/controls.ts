@@ -88,32 +88,52 @@ export enum EControlType {
   eventsColor = "eventsColor",
 }
 
-type ControlsMap = {
-  [EControlType.input]: IInputControl;
-  [EControlType.inputTemplate]: IInputTemplatedControl;
-  [EControlType.inputMarkdown]: IInputMarkdownControl;
-  [EControlType.inputNumber]: IInputNumberControl;
-  [EControlType.inputRange]: IInputRangeControl;
-  [EControlType.size]: ISizeControl;
-  [EControlType.switch]: ISwitchControl;
-  [EControlType.select]: ISelectControl;
-  [EControlType.radioIconGroup]: IRadioIconGroupControl;
-  [EControlType.formula]: IFormulaControl;
-  [EControlType.typedFormula]: ITypedFormulaControl;
-  [EControlType.formatting]: IFormattingControl;
-  [EControlType.formattingTemplate]: IFormattingTemplateControl;
-  [EControlType.actionOnClick]: IActionOnClickControl;
-  [EControlType.filter]: IFilterControl;
-  [EControlType.displayCondition]: IDisplayConditionControl;
-  [EControlType.colorPicker]: IColorPickerControl;
-  [EControlType.tagSet]: ITagSetControl;
-  [EControlType.eventsPicker]: IEventsPickerControl;
-  [EControlType.eventsColor]: IEventsColorControl;
+/**
+ * Type-level registry контролов.
+ * Единый контракт для встроенных и кастомных контролов.
+ */
+export type TControlsMap = Record<string, { value: unknown; props: object }>;
+
+type TEmbeddedControl =
+  | IInputControl
+  | IInputTemplatedControl
+  | IInputMarkdownControl
+  | IInputNumberControl
+  | IInputRangeControl
+  | ISizeControl
+  | ISwitchControl
+  | ISelectControl
+  | IRadioIconGroupControl
+  | IFormulaControl
+  | ITypedFormulaControl
+  | IFormattingControl
+  | IFormattingTemplateControl
+  | IActionOnClickControl
+  | IFilterControl
+  | IDisplayConditionControl
+  | IColorPickerControl
+  | ITagSetControl
+  | IEventsPickerControl
+  | IEventsColorControl;
+
+/**
+ * Registry встроенных контролов, автоматически выведенный
+ * из discriminated union `TEmbeddedControl` по полю `type`.
+ */
+type TEmbeddedControlsMap = {
+  [C in TEmbeddedControl as C["type"]]: Omit<C, "type">;
 };
 
-export type TControlUnion<Settings extends object> = {
-  [K in keyof ControlsMap]: IControlRecord<Settings, ControlsMap[K]>;
-}[keyof ControlsMap];
+/**
+ * Генерирует union конфигураций контролов из registry.
+ * После выбора `type` - строго типизирует соответствующие `value` и `props`.
+ */
+export type TControlUnion<
+  Settings extends object,
+  ControlsMap extends TControlsMap = TEmbeddedControlsMap,
+> = {
+  [K in Extract<keyof ControlsMap, string>]: IControlRecord<Settings, { type: K } & ControlsMap[K]>;
+}[Extract<keyof ControlsMap, string>];
 
 type TControlConstraint = { type: string; value: unknown; props: object };
 

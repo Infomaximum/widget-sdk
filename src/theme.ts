@@ -31,7 +31,6 @@ export interface ITheme {
   widgets: {
     /** @remarks Заложено для будущего использования */
     color: string;
-    paddings: number | string;
     cornerRadius: number | undefined;
     titleColor: TLimitedColor;
     titleSize: number;

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-12](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-11...v7.0.0-12) (2026-02-20)
+
+
+### Features
+
+* registry factory-функций кастомных контролов выделен в отдельный интерфейс и экспортирован из библиотеки ([5746214](https://github.com/Infomaximum/widget-sdk/commit/57462145724b95a45a436621c43949d4d1e84fc8))
+* добавлен интерфейс IControlProps ([a0d38a1](https://github.com/Infomaximum/widget-sdk/commit/a0d38a1542a4c82b1cf8b544263afd1084024805))
+* добавлена возможность декларировать кастомные контролы в IDefinition ([4747b63](https://github.com/Infomaximum/widget-sdk/commit/4747b638c1b28ae366df1b4b27d5f928e8a09851))
+* добавлены интерфейсы для декларации рантайма с жизненным циклом ([c5a9843](https://github.com/Infomaximum/widget-sdk/commit/c5a9843d0acdc829d77f95d247bb37be03780f33))
+* поддержана типизация кастомных контролов в мета-описании ([29782d4](https://github.com/Infomaximum/widget-sdk/commit/29782d40b22328ea19a9d2ad516140a1417888fc))
+* поддержана типизация кастомных контролов при регистрации виджетов ([780c2a1](https://github.com/Infomaximum/widget-sdk/commit/780c2a1df4553d5c83475b0659d83bca5d794e01))
+
 ## [7.0.0-11](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-10...v7.0.0-11) (2026-02-13)
 
 

@@ -9,6 +9,7 @@ import type { ICalculatorFactory } from "./calculators";
 import type { IDefinition } from "./definition";
 import type { TContextMenu } from "./contextMenu";
 import type { IViewContext } from "./viewContext";
+import type { TControlsSpecMap } from "./controls";
 
 export type TLaunchActionParams = {
   /** Запускаемое действие */
@@ -213,7 +214,10 @@ export interface IFillSettings<WidgetSettings extends IBaseWidgetSettings> {
   ): void;
 }
 
-export interface IWidgetEntity<WidgetSettings extends IBaseWidgetSettings> {
+export interface IWidgetEntity<
+  WidgetSettings extends IBaseWidgetSettings,
+  ControlsSpecMap extends TControlsSpecMap = {},
+> {
   new (): IWidget<WidgetSettings>;
-  definition: IDefinition<WidgetSettings>;
+  definition: IDefinition<WidgetSettings, ControlsSpecMap>;
 }

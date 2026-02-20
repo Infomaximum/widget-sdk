@@ -4,96 +4,97 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [7.0.0-new-layout.0](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-11...v7.0.0-new-layout.0) (2026-02-16)
 
-
 ### ⚠ BREAKING CHANGES
 
-* отступы больше нельзя задавать в виджетах
+- отступы больше нельзя задавать в виджетах
 
 ### Features
 
-* удалены отступы из настроек виджетов ([b5f1797](https://github.com/Infomaximum/widget-sdk/commit/b5f17973ee872c4d31b0fd07babc29ca83b1b72f))
+- удалены отступы из настроек виджетов ([b5f1797](https://github.com/Infomaximum/widget-sdk/commit/b5f17973ee872c4d31b0fd07babc29ca83b1b72f))
+
+## [7.0.0-12](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-11...v7.0.0-12) (2026-02-20)
+
+### Features
+
+- registry factory-функций кастомных контролов выделен в отдельный интерфейс и экспортирован из библиотеки ([5746214](https://github.com/Infomaximum/widget-sdk/commit/57462145724b95a45a436621c43949d4d1e84fc8))
+- добавлен интерфейс IControlProps ([a0d38a1](https://github.com/Infomaximum/widget-sdk/commit/a0d38a1542a4c82b1cf8b544263afd1084024805))
+- добавлена возможность декларировать кастомные контролы в IDefinition ([4747b63](https://github.com/Infomaximum/widget-sdk/commit/4747b638c1b28ae366df1b4b27d5f928e8a09851))
+- добавлены интерфейсы для декларации рантайма с жизненным циклом ([c5a9843](https://github.com/Infomaximum/widget-sdk/commit/c5a9843d0acdc829d77f95d247bb37be03780f33))
+- поддержана типизация кастомных контролов в мета-описании ([29782d4](https://github.com/Infomaximum/widget-sdk/commit/29782d40b22328ea19a9d2ad516140a1417888fc))
+- поддержана типизация кастомных контролов при регистрации виджетов ([780c2a1](https://github.com/Infomaximum/widget-sdk/commit/780c2a1df4553d5c83475b0659d83bca5d794e01))
 
 ## [7.0.0-11](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-10...v7.0.0-11) (2026-02-13)
 
-
 ### ⚠ BREAKING CHANGES
 
-* необходимо поддержать поле type в зарегистрированных миграциях
-* требуется поддержка поле localApiVersion при создании структуры
+- необходимо поддержать поле type в зарегистрированных миграциях
+- требуется поддержка поле localApiVersion при создании структуры
 
 ### Features
 
-* поле localApiVersion для структуры виджета теперь обязательно ([5dd5d8d](https://github.com/Infomaximum/widget-sdk/commit/5dd5d8de9376f3eb0e4f7999c81023c32c343c58))
-* поле type для контекста миграции теперь обязательно ([93f6ab8](https://github.com/Infomaximum/widget-sdk/commit/93f6ab89400bb0e4c5b67330bcb5c4bfa144c205))
-* увеличена версия системной миграции ([f499658](https://github.com/Infomaximum/widget-sdk/commit/f49965890afca1a0836f77ae1c2f747cb93944e9))
+- поле localApiVersion для структуры виджета теперь обязательно ([5dd5d8d](https://github.com/Infomaximum/widget-sdk/commit/5dd5d8de9376f3eb0e4f7999c81023c32c343c58))
+- поле type для контекста миграции теперь обязательно ([93f6ab8](https://github.com/Infomaximum/widget-sdk/commit/93f6ab89400bb0e4c5b67330bcb5c4bfa144c205))
+- увеличена версия системной миграции ([f499658](https://github.com/Infomaximum/widget-sdk/commit/f49965890afca1a0836f77ae1c2f747cb93944e9))
 
 ## [7.0.0-10](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-9...v7.0.0-10) (2026-02-13)
 
-
 ### ⚠ BREAKING CHANGES
 
-* требуется поддержка типизации в виджетах
-* требуется поддержка типизации в виджетах
+- требуется поддержка типизации в виджетах
+- требуется поддержка типизации в виджетах
 
 ### Bug Fixes
 
-* исправлена схема WidgetIndicatorAggregationValueSchema ([d70deb5](https://github.com/Infomaximum/widget-sdk/commit/d70deb5e1fdf046a8c79d265a9a28294cbded811))
+- исправлена схема WidgetIndicatorAggregationValueSchema ([d70deb5](https://github.com/Infomaximum/widget-sdk/commit/d70deb5e1fdf046a8c79d265a9a28294cbded811))
 
-
-* выполнен отказ от дженерика MigrationStruct в IDefinition ([193518b](https://github.com/Infomaximum/widget-sdk/commit/193518b7004454b61be4856e83d67ad494f04ac3))
-* произведен отказ от дженерика GroupSettings в мета-описании ([2032b9d](https://github.com/Infomaximum/widget-sdk/commit/2032b9db41ac0c5d305b548eeddf1ea8141375b4))
+- выполнен отказ от дженерика MigrationStruct в IDefinition ([193518b](https://github.com/Infomaximum/widget-sdk/commit/193518b7004454b61be4856e83d67ad494f04ac3))
+- произведен отказ от дженерика GroupSettings в мета-описании ([2032b9d](https://github.com/Infomaximum/widget-sdk/commit/2032b9db41ac0c5d305b548eeddf1ea8141375b4))
 
 ## [7.0.0-9](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-8...v7.0.0-9) (2026-02-06)
 
-
 ### Bug Fixes
 
-* исправлена схема numberRange в фильтре по формуле ([89171bc](https://github.com/Infomaximum/widget-sdk/commit/89171bcfcdd8542aaf795812d12b23528ea8fdba))
+- исправлена схема numberRange в фильтре по формуле ([89171bc](https://github.com/Infomaximum/widget-sdk/commit/89171bcfcdd8542aaf795812d12b23528ea8fdba))
 
 ## [7.0.0-8](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-7...v7.0.0-8) (2026-02-03)
 
-
 ### Features
 
-* добавлено вложенное действие Обновить переменную для действий по клику ([48822f8](https://github.com/Infomaximum/widget-sdk/commit/48822f87fd34e82feb699e210809e7f492d0844c))
+- добавлено вложенное действие Обновить переменную для действий по клику ([48822f8](https://github.com/Infomaximum/widget-sdk/commit/48822f87fd34e82feb699e210809e7f492d0844c))
 
 ## [7.0.0-7](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-6...v7.0.0-7) (2026-02-02)
 
-
 ### ⚠ BREAKING CHANGES
 
-* Требуется поддержка в виджетах
+- Требуется поддержка в виджетах
 
 ### Features
 
-* изменена типизация формата ([62a44fa](https://github.com/Infomaximum/widget-sdk/commit/62a44fa3e393b5ae14df05dc803e2d0b2c235911))
+- изменена типизация формата ([62a44fa](https://github.com/Infomaximum/widget-sdk/commit/62a44fa3e393b5ae14df05dc803e2d0b2c235911))
 
 ## [7.0.0-6](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-5...v7.0.0-6) (2026-01-26)
 
-
 ### ⚠ BREAKING CHANGES
 
-* Требуется поддержка в виджетах
+- Требуется поддержка в виджетах
 
 ### Features
 
-* отказ от onComplete в параметрах launchAction ([37710b3](https://github.com/Infomaximum/widget-sdk/commit/37710b3ae721211c1600ae141575d99066d44644))
+- отказ от onComplete в параметрах launchAction ([37710b3](https://github.com/Infomaximum/widget-sdk/commit/37710b3ae721211c1600ae141575d99066d44644))
 
 ## [7.0.0-5](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-4...v7.0.0-5) (2026-01-22)
 
-
 ### Bug Fixes
 
-* необязательные поля действия открытия образа сделаны опциональными ([dec55c5](https://github.com/Infomaximum/widget-sdk/commit/dec55c542be792ae579f9a97cf56e79be07c52f6))
+- необязательные поля действия открытия образа сделаны опциональными ([dec55c5](https://github.com/Infomaximum/widget-sdk/commit/dec55c542be792ae579f9a97cf56e79be07c52f6))
 
 ## [7.0.0-4](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-3...v7.0.0-4) (2026-01-21)
 
 ## [7.0.0-3](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-2...v7.0.0-3) (2026-01-21)
 
-
 ### Features
 
-* добавлена возможность запросить у системы ожидание завершения асинхронной работы перед запуском действия ([9a1b67f](https://github.com/Infomaximum/widget-sdk/commit/9a1b67fa1eec90833cf5553840431fceda431653))
+- добавлена возможность запросить у системы ожидание завершения асинхронной работы перед запуском действия ([9a1b67f](https://github.com/Infomaximum/widget-sdk/commit/9a1b67fa1eec90833cf5553840431fceda431653))
 
 ## [7.0.0-2](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-1...v7.0.0-2) (2026-01-20)
 
@@ -109,37 +110,34 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [6.0.0-view-theme.20](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.19...v6.0.0-view-theme.20) (2026-01-19)
 
-
 ### ⚠ BREAKING CHANGES
 
-* Требуется поддержка в виджетах
+- Требуется поддержка в виджетах
 
 ### Features
 
-* ActionOnClickControl предоставлен новый API для кастомизации действий ([8860d8c](https://github.com/Infomaximum/widget-sdk/commit/8860d8c26b29b46015b226694489ecf16e4120d2))
-* добавлен новый тип действия ([16aac51](https://github.com/Infomaximum/widget-sdk/commit/16aac51507395a765016157100a31cc9f57d032f))
+- ActionOnClickControl предоставлен новый API для кастомизации действий ([8860d8c](https://github.com/Infomaximum/widget-sdk/commit/8860d8c26b29b46015b226694489ecf16e4120d2))
+- добавлен новый тип действия ([16aac51](https://github.com/Infomaximum/widget-sdk/commit/16aac51507395a765016157100a31cc9f57d032f))
 
 ## [6.0.0-view-theme.19](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.18...v6.0.0-view-theme.19) (2026-01-15)
 
-
 ### ⚠ BREAKING CHANGES
 
-* вместо удаленной функции в виджетах требуется использовать функцию fillTemplateSql
-* требуется поддержка в виджетах
+- вместо удаленной функции в виджетах требуется использовать функцию fillTemplateSql
+- требуется поддержка в виджетах
 
 ### Features
 
-* в схему формулы добавлена мета-информация о типе сущности ([45cb47f](https://github.com/Infomaximum/widget-sdk/commit/45cb47f79414d47c27529f4506bc507fee2d07cc))
-* из типа линзы убраны TNullable и Partial ([8f85239](https://github.com/Infomaximum/widget-sdk/commit/8f852393700b4914645eb6110fda3b55329cb83f))
-* метод createSettingsSchema сделан обязательным, а метод fillSettings - необязательным ([d0734a8](https://github.com/Infomaximum/widget-sdk/commit/d0734a8319e5abd96863ed345f35678170c0c0e3))
-* удалена функция fillTemplateString ([43a051d](https://github.com/Infomaximum/widget-sdk/commit/43a051dc6cdff3d774b06fe2e63f454b9f90a4d6))
+- в схему формулы добавлена мета-информация о типе сущности ([45cb47f](https://github.com/Infomaximum/widget-sdk/commit/45cb47f79414d47c27529f4506bc507fee2d07cc))
+- из типа линзы убраны TNullable и Partial ([8f85239](https://github.com/Infomaximum/widget-sdk/commit/8f852393700b4914645eb6110fda3b55329cb83f))
+- метод createSettingsSchema сделан обязательным, а метод fillSettings - необязательным ([d0734a8](https://github.com/Infomaximum/widget-sdk/commit/d0734a8319e5abd96863ed345f35678170c0c0e3))
+- удалена функция fillTemplateString ([43a051d](https://github.com/Infomaximum/widget-sdk/commit/43a051dc6cdff3d774b06fe2e63f454b9f90a4d6))
 
 ## [6.0.0-view-theme.18](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.17...v6.0.0-view-theme.18) (2026-01-13)
 
-
 ### Features
 
-* изменен api миграций ([ab086c6](https://github.com/Infomaximum/widget-sdk/commit/ab086c6c22ef489059b9a5ae01460af91b6f4782))
+- изменен api миграций ([ab086c6](https://github.com/Infomaximum/widget-sdk/commit/ab086c6c22ef489059b9a5ae01460af91b6f4782))
 
 ## [6.0.0-view-theme.17](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.16...v6.0.0-view-theme.17) (2025-12-18)
 
@@ -149,101 +147,90 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [6.0.0-view-theme.14](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.13...v6.0.0-view-theme.14) (2025-12-15)
 
-
 ### Bug Fixes
 
-* исправлена схема настроек форматирования ([22b9ac8](https://github.com/Infomaximum/widget-sdk/commit/22b9ac857486d55c201cb5259db1b1230c634692))
-* расширен тип схемы для поля lastTimeUnit в фильтре по формуле ([d41ee4e](https://github.com/Infomaximum/widget-sdk/commit/d41ee4e0aedc878da0b7fd153a71ea84373b9cd9))
+- исправлена схема настроек форматирования ([22b9ac8](https://github.com/Infomaximum/widget-sdk/commit/22b9ac857486d55c201cb5259db1b1230c634692))
+- расширен тип схемы для поля lastTimeUnit в фильтре по формуле ([d41ee4e](https://github.com/Infomaximum/widget-sdk/commit/d41ee4e0aedc878da0b7fd153a71ea84373b9cd9))
 
 ## [6.0.0-view-theme.13](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.12...v6.0.0-view-theme.13) (2025-12-01)
 
-
 ### Features
 
-* Добавлен и поддержан тип для разреза внутри иерархии ([#133](https://github.com/Infomaximum/widget-sdk/issues/133)) ([120150e](https://github.com/Infomaximum/widget-sdk/commit/120150e004ef7e691345bc50b8f37312c205d7b2))
+- Добавлен и поддержан тип для разреза внутри иерархии ([#133](https://github.com/Infomaximum/widget-sdk/issues/133)) ([120150e](https://github.com/Infomaximum/widget-sdk/commit/120150e004ef7e691345bc50b8f37312c205d7b2))
 
 ## [6.0.0-view-theme.12](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.11...v6.0.0-view-theme.12) (2025-11-27)
 
-
 ### ⚠ BREAKING CHANGES
 
-* требуется поддержка в виджетах
-* требуется поддержка в мета-описании виджетов, которые использовали этот флаг
+- требуется поддержка в виджетах
+- требуется поддержка в мета-описании виджетов, которые использовали этот флаг
 
 ### Features
 
-* выполнена ревизия дефолтных значения схем ([3c397d8](https://github.com/Infomaximum/widget-sdk/commit/3c397d8e77ba8fe76e58edca6bcb849ef5934338))
-* к схеме базовых настроек виджета привязана тема ([7ab52be](https://github.com/Infomaximum/widget-sdk/commit/7ab52becfa93f30b94fb5a3dcee3bee76c624d21))
-* флаг fillSettings переименован на resolveSettings, т.к. теперь активирует не только этап fillSettings. ([3448973](https://github.com/Infomaximum/widget-sdk/commit/3448973695a973011688fb29f80cc96d7946b6fd))
+- выполнена ревизия дефолтных значения схем ([3c397d8](https://github.com/Infomaximum/widget-sdk/commit/3c397d8e77ba8fe76e58edca6bcb849ef5934338))
+- к схеме базовых настроек виджета привязана тема ([7ab52be](https://github.com/Infomaximum/widget-sdk/commit/7ab52becfa93f30b94fb5a3dcee3bee76c624d21))
+- флаг fillSettings переименован на resolveSettings, т.к. теперь активирует не только этап fillSettings. ([3448973](https://github.com/Infomaximum/widget-sdk/commit/3448973695a973011688fb29f80cc96d7946b6fd))
 
 ## [6.0.0-view-theme.11](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.10...v6.0.0-view-theme.11) (2025-11-24)
 
-
 ### ⚠ BREAKING CHANGES
 
-* некоторые поля настроек виджетов сделаны обязательными
+- некоторые поля настроек виджетов сделаны обязательными
 
 ### Features
 
-* выполнен первый этап ревизии схем ([67f5efb](https://github.com/Infomaximum/widget-sdk/commit/67f5efb8b3cd4eef477f64efceba18942522789c))
+- выполнен первый этап ревизии схем ([67f5efb](https://github.com/Infomaximum/widget-sdk/commit/67f5efb8b3cd4eef477f64efceba18942522789c))
 
 ## [6.0.0-view-theme.10](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.9...v6.0.0-view-theme.10) (2025-11-20)
 
 ## [6.0.0-view-theme.9](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-17...v6.0.0-view-theme.9) (2025-11-19)
 
-
 ### Features
 
-* описана схема для WidgetPresetSettingsSchema ([bd1bdfc](https://github.com/Infomaximum/widget-sdk/commit/bd1bdfc28005122a774051589e3288c44272f9b2))
-* описана схема для WidgetPresetSettingsSchema ([ade690c](https://github.com/Infomaximum/widget-sdk/commit/ade690c2e6a61e46af419919cba59ab365eb4d4f))
-* схемы наполнены дефолтами ([3f7f99c](https://github.com/Infomaximum/widget-sdk/commit/3f7f99cbbd5e9795f8b676fe9f862052a31f4306))
+- описана схема для WidgetPresetSettingsSchema ([bd1bdfc](https://github.com/Infomaximum/widget-sdk/commit/bd1bdfc28005122a774051589e3288c44272f9b2))
+- описана схема для WidgetPresetSettingsSchema ([ade690c](https://github.com/Infomaximum/widget-sdk/commit/ade690c2e6a61e46af419919cba59ab365eb4d4f))
+- схемы наполнены дефолтами ([3f7f99c](https://github.com/Infomaximum/widget-sdk/commit/3f7f99cbbd5e9795f8b676fe9f862052a31f4306))
 
 ## [6.0.0-view-theme.8](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.7...v6.0.0-view-theme.8) (2025-11-14)
 
-
 ### Features
 
-* добавлен общий disabled для RadioIconGroupControl ([a000905](https://github.com/Infomaximum/widget-sdk/commit/a00090571e9c9109904c6df8dead94760047d108))
+- добавлен общий disabled для RadioIconGroupControl ([a000905](https://github.com/Infomaximum/widget-sdk/commit/a00090571e9c9109904c6df8dead94760047d108))
 
 ## [6.0.0-view-theme.7](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-16...v6.0.0-view-theme.7) (2025-11-13)
 
-
 ### Features
 
-* добавлен ISchemaContext в метод createSettingsSchema ([5a9475b](https://github.com/Infomaximum/widget-sdk/commit/5a9475bcc042b97ceb47146c8fa64c402824762c))
-* добавлена zod схема для процессного индикатора ([07f2788](https://github.com/Infomaximum/widget-sdk/commit/07f27881ea43f3278608b485a3088039dc0228a0))
+- добавлен ISchemaContext в метод createSettingsSchema ([5a9475b](https://github.com/Infomaximum/widget-sdk/commit/5a9475bcc042b97ceb47146c8fa64c402824762c))
+- добавлена zod схема для процессного индикатора ([07f2788](https://github.com/Infomaximum/widget-sdk/commit/07f27881ea43f3278608b485a3088039dc0228a0))
 
 ## [6.0.0-view-theme.6](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.5...v6.0.0-view-theme.6) (2025-11-07)
 
-
 ### Features
 
-* добавлены zod схемы для базовых настроек виджета ([b55eeb1](https://github.com/Infomaximum/widget-sdk/commit/b55eeb1b932fa5348b575fa220b61361e1defdd6))
+- добавлены zod схемы для базовых настроек виджета ([b55eeb1](https://github.com/Infomaximum/widget-sdk/commit/b55eeb1b932fa5348b575fa220b61361e1defdd6))
 
 ## [6.0.0-view-theme.5](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.4...v6.0.0-view-theme.5) (2025-11-01)
 
-
 ### Features
 
-* добавлен интерфейс ITheme [BI-15688] ([4c0821c](https://github.com/Infomaximum/widget-sdk/commit/4c0821cdee32900f6cd225da4e07b78082a243de))
-* добавлена функция для привязки мета-информации о теме к Zod-схеме ([731fd97](https://github.com/Infomaximum/widget-sdk/commit/731fd9784a9cce1586bf14cde2f747582a61371c))
-* удален флаг use_theme [BI-15617] ([f0fce3b](https://github.com/Infomaximum/widget-sdk/commit/f0fce3be7bcc1472fcd930f883b83f6702f839da))
+- добавлен интерфейс ITheme [BI-15688] ([4c0821c](https://github.com/Infomaximum/widget-sdk/commit/4c0821cdee32900f6cd225da4e07b78082a243de))
+- добавлена функция для привязки мета-информации о теме к Zod-схеме ([731fd97](https://github.com/Infomaximum/widget-sdk/commit/731fd9784a9cce1586bf14cde2f747582a61371c))
+- удален флаг use_theme [BI-15617] ([f0fce3b](https://github.com/Infomaximum/widget-sdk/commit/f0fce3be7bcc1472fcd930f883b83f6702f839da))
 
 ## [6.0.0-view-theme.4](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.3...v6.0.0-view-theme.4) (2025-10-24)
 
-
 ### Features
 
-* IDefinition расширен методом createSettingsScheme ([55e6569](https://github.com/Infomaximum/widget-sdk/commit/55e65694b9aa03bebaf638bf9156f719aa884cd1))
+- IDefinition расширен методом createSettingsScheme ([55e6569](https://github.com/Infomaximum/widget-sdk/commit/55e65694b9aa03bebaf638bf9156f719aa884cd1))
 
 ## [6.0.0-view-theme.3](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.2...v6.0.0-view-theme.3) (2025-10-07)
 
-
 ### Features
 
-* добавлен disabled для Control используемых в панели отображения [BI-15509] ([6c58001](https://github.com/Infomaximum/widget-sdk/commit/6c58001f88648b48f81dd86480cc1ec25022493b))
-* добавлена поддержка cleanupThemeProperties для кастомных виджетов [BI-15499] ([879c956](https://github.com/Infomaximum/widget-sdk/commit/879c956c9893b0379968eadd420912ccac8405fd))
-* флаг useTheme перенесен в конфиг виджета [BI-15072] ([5d9c187](https://github.com/Infomaximum/widget-sdk/commit/5d9c187af2b1ebe39b66bbd5853c6112b603e6c7))
+- добавлен disabled для Control используемых в панели отображения [BI-15509] ([6c58001](https://github.com/Infomaximum/widget-sdk/commit/6c58001f88648b48f81dd86480cc1ec25022493b))
+- добавлена поддержка cleanupThemeProperties для кастомных виджетов [BI-15499] ([879c956](https://github.com/Infomaximum/widget-sdk/commit/879c956c9893b0379968eadd420912ccac8405fd))
+- флаг useTheme перенесен в конфиг виджета [BI-15072] ([5d9c187](https://github.com/Infomaximum/widget-sdk/commit/5d9c187af2b1ebe39b66bbd5853c6112b603e6c7))
 
 ## [6.0.0-view-theme.2](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-15...v6.0.0-view-theme.2) (2025-10-02)
 
@@ -251,52 +238,47 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [6.0.0-view-theme.0](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-12...v6.0.0-view-theme.0) (2025-09-29)
 
-
 ### Features
 
-* поддержен флаг для темы [BI-15496] ([5196fa6](https://github.com/Infomaximum/widget-sdk/commit/5196fa6c69a521c4529a355e674bcb1f8c1aac39))
+- поддержен флаг для темы [BI-15496] ([5196fa6](https://github.com/Infomaximum/widget-sdk/commit/5196fa6c69a521c4529a355e674bcb1f8c1aac39))
 
 ## [6.0.0-view-theme.15](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.14...v6.0.0-view-theme.15) (2025-12-15)
 
 ## [6.0.0-view-theme.14](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.13...v6.0.0-view-theme.14) (2025-12-15)
 
-
 ### Bug Fixes
 
-* исправлена схема настроек форматирования ([22b9ac8](https://github.com/Infomaximum/widget-sdk/commit/22b9ac857486d55c201cb5259db1b1230c634692))
-* расширен тип схемы для поля lastTimeUnit в фильтре по формуле ([d41ee4e](https://github.com/Infomaximum/widget-sdk/commit/d41ee4e0aedc878da0b7fd153a71ea84373b9cd9))
+- исправлена схема настроек форматирования ([22b9ac8](https://github.com/Infomaximum/widget-sdk/commit/22b9ac857486d55c201cb5259db1b1230c634692))
+- расширен тип схемы для поля lastTimeUnit в фильтре по формуле ([d41ee4e](https://github.com/Infomaximum/widget-sdk/commit/d41ee4e0aedc878da0b7fd153a71ea84373b9cd9))
 
 ## [6.0.0-view-theme.13](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.12...v6.0.0-view-theme.13) (2025-12-01)
 
-
 ### Features
 
-* Добавлен и поддержан тип для разреза внутри иерархии ([#133](https://github.com/Infomaximum/widget-sdk/issues/133)) ([120150e](https://github.com/Infomaximum/widget-sdk/commit/120150e004ef7e691345bc50b8f37312c205d7b2))
+- Добавлен и поддержан тип для разреза внутри иерархии ([#133](https://github.com/Infomaximum/widget-sdk/issues/133)) ([120150e](https://github.com/Infomaximum/widget-sdk/commit/120150e004ef7e691345bc50b8f37312c205d7b2))
 
 ## [6.0.0-view-theme.12](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.11...v6.0.0-view-theme.12) (2025-11-27)
 
-
 ### ⚠ BREAKING CHANGES
 
-* требуется поддержка в виджетах
-* требуется поддержка в мета-описании виджетов, которые использовали этот флаг
+- требуется поддержка в виджетах
+- требуется поддержка в мета-описании виджетов, которые использовали этот флаг
 
 ### Features
 
-* выполнена ревизия дефолтных значения схем ([3c397d8](https://github.com/Infomaximum/widget-sdk/commit/3c397d8e77ba8fe76e58edca6bcb849ef5934338))
-* к схеме базовых настроек виджета привязана тема ([7ab52be](https://github.com/Infomaximum/widget-sdk/commit/7ab52becfa93f30b94fb5a3dcee3bee76c624d21))
-* флаг fillSettings переименован на resolveSettings, т.к. теперь активирует не только этап fillSettings. ([3448973](https://github.com/Infomaximum/widget-sdk/commit/3448973695a973011688fb29f80cc96d7946b6fd))
+- выполнена ревизия дефолтных значения схем ([3c397d8](https://github.com/Infomaximum/widget-sdk/commit/3c397d8e77ba8fe76e58edca6bcb849ef5934338))
+- к схеме базовых настроек виджета привязана тема ([7ab52be](https://github.com/Infomaximum/widget-sdk/commit/7ab52becfa93f30b94fb5a3dcee3bee76c624d21))
+- флаг fillSettings переименован на resolveSettings, т.к. теперь активирует не только этап fillSettings. ([3448973](https://github.com/Infomaximum/widget-sdk/commit/3448973695a973011688fb29f80cc96d7946b6fd))
 
 ## [6.0.0-view-theme.11](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.10...v6.0.0-view-theme.11) (2025-11-24)
 
-
 ### ⚠ BREAKING CHANGES
 
-* некоторые поля настроек виджетов сделаны обязательными
+- некоторые поля настроек виджетов сделаны обязательными
 
 ### Features
 
-* выполнен первый этап ревизии схем ([67f5efb](https://github.com/Infomaximum/widget-sdk/commit/67f5efb8b3cd4eef477f64efceba18942522789c))
+- выполнен первый этап ревизии схем ([67f5efb](https://github.com/Infomaximum/widget-sdk/commit/67f5efb8b3cd4eef477f64efceba18942522789c))
 
 ## [6.0.0-view-theme.10](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.9...v6.0.0-view-theme.10) (2025-11-20)
 
@@ -304,11 +286,10 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [6.0.0-17](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.8...v6.0.0-17) (2025-11-19)
 
-
 ### Features
 
-* добавлен innerTemplateName для шаблонов ([7980b8a](https://github.com/Infomaximum/widget-sdk/commit/7980b8a9a18b166c74b77f8ef5cf8f9e13ca711a))
-* добавлена возможность изменять список селлекта условий отображения ([dd0c1d7](https://github.com/Infomaximum/widget-sdk/commit/dd0c1d7b8df655ad23eea77c16cbb1baa44192f7))
+- добавлен innerTemplateName для шаблонов ([7980b8a](https://github.com/Infomaximum/widget-sdk/commit/7980b8a9a18b166c74b77f8ef5cf8f9e13ca711a))
+- добавлена возможность изменять список селлекта условий отображения ([dd0c1d7](https://github.com/Infomaximum/widget-sdk/commit/dd0c1d7b8df655ad23eea77c16cbb1baa44192f7))
 
 ## [6.0.0-view-theme.9](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-view-theme.8...v6.0.0-view-theme.9) (2025-11-19)
 

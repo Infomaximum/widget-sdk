@@ -1,4 +1,4 @@
-import type { TControlUnion } from "./controls";
+import { type TControlsSpecMap, type TControlUnion } from "./controls";
 import type { EWidgetIndicatorType } from "./indicators";
 import type { IGlobalContext } from "./widgetContext";
 import type { IAutoIdentifiedArrayItem, IBaseWidgetSettings } from "./settings/baseWidget";
@@ -48,18 +48,26 @@ export interface ICollapseRecord<Settings extends object = object> {
 export type TEmptyRecord = boolean | null | undefined;
 
 /** Набор конфигураций, которые могут встречаться на уровне виджета */
-export type TWidgetLevelRecord<Settings extends object> =
+export type TWidgetLevelRecord<
+  Settings extends object,
+  CustomControlsSpecMap extends TControlsSpecMap = {},
+> =
   | ICollapseRecord<Settings>
   | IDividerRecord<Settings>
   | IGroupSetRecord
   | TControlUnion<Settings>
+  | TControlUnion<Settings, CustomControlsSpecMap>
   | TEmptyRecord;
 
 /** Набор конфигураций, которые могут встречаться на уровне группы */
-export type TGroupLevelRecord<LevelGroupSettings extends object> =
+export type TGroupLevelRecord<
+  LevelGroupSettings extends object,
+  CustomControlsSpecMap extends TControlsSpecMap = {},
+> =
   | ICollapseRecord<LevelGroupSettings>
   | IDividerRecord<LevelGroupSettings>
   | TControlUnion<LevelGroupSettings>
+  | TControlUnion<LevelGroupSettings, CustomControlsSpecMap>
   | TEmptyRecord;
 
 export interface ISelectOption {
@@ -224,6 +232,7 @@ type TWidgetIndicatorData = TWidgetDimensionData | TWidgetMeasureData;
 export interface IGroupSetDescription<
   Settings extends object,
   GroupSettings extends IGroupSettings = IGroupSettings,
+  CustomControlsSpecMap extends TControlsSpecMap = {},
 > {
   /** Заголовок */
   title?: string;
@@ -249,9 +258,15 @@ export interface IGroupSetDescription<
   getIndicatorData?: (settings: IInitialSettings) => EWidgetIndicatorType | TWidgetIndicatorData;
 
   /** Создать конфигурацию группы для вкладки настроек данных */
-  createDataRecords?(group: IGroupSettings, index: number): TGroupLevelRecord<GroupSettings>[];
+  createDataRecords?(
+    group: IGroupSettings,
+    index: number
+  ): TGroupLevelRecord<GroupSettings, CustomControlsSpecMap>[];
   /** Создать конфигурацию группы для вкладки настроек отображения */
-  createDisplayRecords?(group: IGroupSettings, index: number): TGroupLevelRecord<GroupSettings>[];
+  createDisplayRecords?(
+    group: IGroupSettings,
+    index: number
+  ): TGroupLevelRecord<GroupSettings, CustomControlsSpecMap>[];
 
   /**
    * Автоматически добавить этот groupSet в dataRecords
@@ -273,22 +288,28 @@ export interface IGroupSetDescription<
 }
 
 /** Конфигурация панели настроек виджета */
-export interface IPanelDescription<Settings extends object> {
+export interface IPanelDescription<
+  Settings extends object,
+  CustomControlsSpecMap extends TControlsSpecMap = {},
+> {
   /** Добавить поле настройки заголовка */
   useTitle?: boolean;
   /** Добавить поле настройки описания */
   useMarkdown?: boolean;
 
   /** Конфигурация вкладки настроек данных */
-  dataRecords?: TWidgetLevelRecord<Settings>[];
+  dataRecords?: TWidgetLevelRecord<Settings, CustomControlsSpecMap>[];
   /** Конфигурация вкладки настроек отображения */
-  displayRecords?: TWidgetLevelRecord<Settings>[];
+  displayRecords?: TWidgetLevelRecord<Settings, CustomControlsSpecMap>[];
 
   /**
    * Конфигурация наборов(каждый набор по своему ключу) с группами настроек.
    * Описанный набор групп можно вставить по ключу в нужное место внутри dataRecords и displayRecords.
    */
-  groupSetDescriptions?: Record<string, IGroupSetDescription<Settings>>;
+  groupSetDescriptions?: Record<
+    string,
+    IGroupSetDescription<Settings, IGroupSettings, CustomControlsSpecMap>
+  >;
 
   /** Добавить вкладку с настройками действий (по умолчанию false) */
   useActions?: boolean;
@@ -296,7 +317,10 @@ export interface IPanelDescription<Settings extends object> {
   /** Добавить вкладку с настройками фильтрации (по умолчанию true) */
   useFiltration?: boolean;
   /** Конфигурация вкладки настроек фильтрации */
-  filtrationRecords?: Exclude<TWidgetLevelRecord<Settings>, IGroupSetRecord>[];
+  filtrationRecords?: Exclude<
+    TWidgetLevelRecord<Settings, CustomControlsSpecMap>,
+    IGroupSetRecord
+  >[];
   /** Доступные для выбора режимы фильтрации (во вкладке настроек фильтрации) */
   filtrationModes?: EWidgetFilterMode[];
 }
@@ -324,7 +348,10 @@ export interface IWidgetProcess {
 export interface IDivePanelDescription<Settings extends object>
   extends IPanelDescription<Settings> {}
 
-export interface IPanelDescriptionCreator<Settings extends IBaseWidgetSettings> {
+export interface IPanelDescriptionCreator<
+  Settings extends IBaseWidgetSettings,
+  CustomControlsSpecMap extends TControlsSpecMap = {},
+> {
   (
     /** Глобальный контекст */
     context: IGlobalContext,
@@ -332,7 +359,7 @@ export interface IPanelDescriptionCreator<Settings extends IBaseWidgetSettings> 
     settings: Settings,
     /** Фабрика вычислителей */
     calculatorFactory: ICalculatorFactory
-  ): IPanelDescription<Settings>;
+  ): IPanelDescription<Settings, CustomControlsSpecMap>;
 }
 
 //todo: заполнить в рамках BI-13985

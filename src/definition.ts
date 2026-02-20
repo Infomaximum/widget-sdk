@@ -7,9 +7,10 @@ import type { IFillSettings } from "./widgetApi";
 import type { IGlobalContext } from "./widgetContext";
 import type { z as Zod, ZodType } from "zod";
 import type { ELanguages } from "@infomaximum/localization";
+import type { IControlProps, TControlsSpecMap } from "./controls";
+import type { ILifecycleRuntimeFactory } from "./utils/lifecycleRuntime";
 
-/** Используется для вывода типа настроек виджета по описанной схеме в методе `createSettingsSchema`
- */
+/** Используется для вывода типа настроек виджета по описанной схеме в методе `createSettingsSchema` */
 export type TSettingsOf<
   D extends IDefinition<B>,
   B extends IBaseWidgetSettings = IBaseWidgetSettings,
@@ -23,13 +24,16 @@ export interface ISchemaContext {
   language: ELanguages;
 }
 
-export interface IDefinition<WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings> {
+export type IDefinition<
+  WidgetSettings extends IBaseWidgetSettings = IBaseWidgetSettings,
+  CustomControlsSpecMap extends TControlsSpecMap = {},
+> = {
   /** иконка виджета отображаемая в системе (в base64, svg или png) */
   icon?: string;
   /** возвращает zod-схему настроек виджета */
   createSettingsSchema: (z: typeof Zod, context: ISchemaContext) => ZodType<WidgetSettings>;
   /** возвращает конфигурацию панели настроек */
-  createPanelDescription: IPanelDescriptionCreator<WidgetSettings>;
+  createPanelDescription: IPanelDescriptionCreator<WidgetSettings, CustomControlsSpecMap>;
   /** обеспечивает консистентность настроек */
   fillSettings?: IFillSettings<WidgetSettings>;
   /** получить начальные настройки виджета, используя заданный пользователем шаблон настроек */
@@ -41,4 +45,23 @@ export interface IDefinition<WidgetSettings extends IBaseWidgetSettings = IBaseW
     migrator: IWidgetMigrator<IWidgetStruct>,
     globalContext: IGlobalContext
   ): void;
-}
+} & TCustomControlsCapability<CustomControlsSpecMap>;
+
+/**
+ * Условно добавляет поле `customControls` в контракт виджета.
+ *
+ * Логика:
+ * - Если `CustomControlsSpecMap` пустой - поле запрещено (`never`),
+ *   чтобы не допускать декларацию несуществующих контролов.
+ * - Если `CustomControlsSpecMap` содержит ключи - поле становится обязательным,
+ *   заставляя разработчика реализовать factory для каждого контрола.
+ */
+type TCustomControlsCapability<CustomControlsSpecMap extends TControlsSpecMap> =
+  keyof CustomControlsSpecMap extends never
+    ? { customControls?: never }
+    : { customControls: TCustomControlFactories<CustomControlsSpecMap> };
+
+/** Registry factory-функций, создающих runtime кастомных контролов */
+export type TCustomControlFactories<ControlsSpecMap extends TControlsSpecMap = TControlsSpecMap> = {
+  [K in keyof ControlsSpecMap]: ILifecycleRuntimeFactory<IControlProps<ControlsSpecMap[K]>>;
+};

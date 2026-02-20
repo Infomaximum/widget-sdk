@@ -42,6 +42,30 @@ export type THintPlacement =
   | "rightTop"
   | "rightBottom";
 
+/**
+ * Props контрола.
+ * Единый контракт для встроенных и кастомных контролов.
+ */
+export interface IControlProps<
+  T extends { value: unknown; props: object } = { value: unknown; props: object },
+  DiveState = unknown,
+> {
+  title?: string;
+
+  value: T["value"];
+  setValue(arg: T["value"], resolveSettings?: boolean): void;
+  extraProps: T["props"];
+
+  /**
+   * Запрашивает погружение в тот же control с новым контекстом (diveState).
+   * Система выполняет навигацию и заново монтирует control -
+   * его жизненный цикл полностью сбрасывается.
+   */
+  dive?: (title: string, state?: DiveState) => void;
+  /** Состояние текущего погружения */
+  diveState?: DiveState;
+}
+
 export enum EControlType {
   /** Ввод текста */
   input = "input",
@@ -88,32 +112,56 @@ export enum EControlType {
   eventsColor = "eventsColor",
 }
 
-type ControlsMap = {
-  [EControlType.input]: IInputControl;
-  [EControlType.inputTemplate]: IInputTemplatedControl;
-  [EControlType.inputMarkdown]: IInputMarkdownControl;
-  [EControlType.inputNumber]: IInputNumberControl;
-  [EControlType.inputRange]: IInputRangeControl;
-  [EControlType.size]: ISizeControl;
-  [EControlType.switch]: ISwitchControl;
-  [EControlType.select]: ISelectControl;
-  [EControlType.radioIconGroup]: IRadioIconGroupControl;
-  [EControlType.formula]: IFormulaControl;
-  [EControlType.typedFormula]: ITypedFormulaControl;
-  [EControlType.formatting]: IFormattingControl;
-  [EControlType.formattingTemplate]: IFormattingTemplateControl;
-  [EControlType.actionOnClick]: IActionOnClickControl;
-  [EControlType.filter]: IFilterControl;
-  [EControlType.displayCondition]: IDisplayConditionControl;
-  [EControlType.colorPicker]: IColorPickerControl;
-  [EControlType.tagSet]: ITagSetControl;
-  [EControlType.eventsPicker]: IEventsPickerControl;
-  [EControlType.eventsColor]: IEventsColorControl;
+/**
+ * Type-level registry спецификаций контролов.
+ * Единый контракт для встроенных и кастомных контролов.
+ */
+export type TControlsSpecMap = Record<string, { value: unknown; props: object }>;
+
+type TEmbeddedControlSpec =
+  | IInputControl
+  | IInputTemplatedControl
+  | IInputMarkdownControl
+  | IInputNumberControl
+  | IInputRangeControl
+  | ISizeControl
+  | ISwitchControl
+  | ISelectControl
+  | IRadioIconGroupControl
+  | IFormulaControl
+  | ITypedFormulaControl
+  | IFormattingControl
+  | IFormattingTemplateControl
+  | IActionOnClickControl
+  | IFilterControl
+  | IDisplayConditionControl
+  | IColorPickerControl
+  | ITagSetControl
+  | IEventsPickerControl
+  | IEventsColorControl;
+
+/**
+ * Registry спецификаций встроенных контролов, автоматически выведенный
+ * из discriminated union `TEmbeddedControlSpec` по полю `type`.
+ */
+type TEmbeddedControlsSpecMap = {
+  [C in TEmbeddedControlSpec as C["type"]]: Omit<C, "type">;
 };
 
-export type TControlUnion<Settings extends object> = {
-  [K in keyof ControlsMap]: IControlRecord<Settings, ControlsMap[K]>;
-}[keyof ControlsMap];
+// todo: переименовать в TControlRecordUnion [BI-16135]
+/**
+ * Генерирует union конфигураций контролов из registry.
+ * После выбора `type` - строго типизирует соответствующие `value` и `props`.
+ */
+export type TControlUnion<
+  Settings extends object,
+  ControlsSpecMap extends TControlsSpecMap = TEmbeddedControlsSpecMap,
+> = {
+  [K in Extract<keyof ControlsSpecMap, string>]: IControlRecord<
+    Settings,
+    { type: K } & ControlsSpecMap[K]
+  >;
+}[Extract<keyof ControlsSpecMap, string>];
 
 type TControlConstraint = { type: string; value: unknown; props: object };
 
@@ -189,6 +237,8 @@ interface IControlRecordPosition {
    */
   insertAfter?: string;
 }
+
+// todo: переименовать интерфейсы спецификаций контролов или организовать в общий registry [BI-16135]
 
 export interface IInputControl {
   type: EControlType.input;

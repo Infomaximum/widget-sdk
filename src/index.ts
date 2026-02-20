@@ -1,5 +1,6 @@
 /// <reference types="@infomaximum/global-types" />
 
+import type { TControlsSpecMap } from "./controls";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
 import type { IWidgetEntity, IWidgetManifest } from "./widgetApi";
 import type { ZodType, z as zod } from "zod";
@@ -44,6 +45,7 @@ export * from "./preset.schema";
 export { parseClickHouseType, EClickHouseBaseTypes } from "./clickHouseTypes";
 export * from "./theme";
 export * from "./color.schema";
+export * from "./utils/lifecycleRuntime";
 
 export type TDefineWidgetOptions = {
   manifest?: IWidgetManifest;
@@ -57,9 +59,12 @@ declare global {
     widget: {
       currentSdkVersion: number;
 
-      defineWidget: <WidgetSettings extends IBaseWidgetSettings>(
+      defineWidget: <
+        WidgetSettings extends IBaseWidgetSettings,
+        ControlsSpecMap extends TControlsSpecMap = {},
+      >(
         uuid: string,
-        Widget: IWidgetEntity<WidgetSettings>,
+        Widget: IWidgetEntity<WidgetSettings, ControlsSpecMap>,
         options?: TDefineWidgetOptions
       ) => void;
     };

@@ -1,5 +1,6 @@
 /// <reference types="@infomaximum/global-types" />
 
+import type { TControlsMap } from "./controls";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
 import type { IWidgetEntity, IWidgetManifest } from "./widgetApi";
 import type { ZodType, z as zod } from "zod";
@@ -57,9 +58,12 @@ declare global {
     widget: {
       currentSdkVersion: number;
 
-      defineWidget: <WidgetSettings extends IBaseWidgetSettings>(
+      defineWidget: <
+        WidgetSettings extends IBaseWidgetSettings,
+        ControlsMap extends TControlsMap = {},
+      >(
         uuid: string,
-        Widget: IWidgetEntity<WidgetSettings>,
+        Widget: IWidgetEntity<WidgetSettings, ControlsMap>,
         options?: TDefineWidgetOptions
       ) => void;
     };

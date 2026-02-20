@@ -113,12 +113,12 @@ export enum EControlType {
 }
 
 /**
- * Type-level registry контролов.
+ * Type-level registry спецификаций контролов.
  * Единый контракт для встроенных и кастомных контролов.
  */
-export type TControlsMap = Record<string, { value: unknown; props: object }>;
+export type TControlsSpecMap = Record<string, { value: unknown; props: object }>;
 
-type TEmbeddedControl =
+type TEmbeddedControlSpec =
   | IInputControl
   | IInputTemplatedControl
   | IInputMarkdownControl
@@ -141,23 +141,27 @@ type TEmbeddedControl =
   | IEventsColorControl;
 
 /**
- * Registry встроенных контролов, автоматически выведенный
- * из discriminated union `TEmbeddedControl` по полю `type`.
+ * Registry спецификаций встроенных контролов, автоматически выведенный
+ * из discriminated union `TEmbeddedControlSpec` по полю `type`.
  */
-type TEmbeddedControlsMap = {
-  [C in TEmbeddedControl as C["type"]]: Omit<C, "type">;
+type TEmbeddedControlsSpecMap = {
+  [C in TEmbeddedControlSpec as C["type"]]: Omit<C, "type">;
 };
 
+// todo: переименовать в TControlRecordUnion [BI-16135]
 /**
  * Генерирует union конфигураций контролов из registry.
  * После выбора `type` - строго типизирует соответствующие `value` и `props`.
  */
 export type TControlUnion<
   Settings extends object,
-  ControlsMap extends TControlsMap = TEmbeddedControlsMap,
+  ControlsSpecMap extends TControlsSpecMap = TEmbeddedControlsSpecMap,
 > = {
-  [K in Extract<keyof ControlsMap, string>]: IControlRecord<Settings, { type: K } & ControlsMap[K]>;
-}[Extract<keyof ControlsMap, string>];
+  [K in Extract<keyof ControlsSpecMap, string>]: IControlRecord<
+    Settings,
+    { type: K } & ControlsSpecMap[K]
+  >;
+}[Extract<keyof ControlsSpecMap, string>];
 
 type TControlConstraint = { type: string; value: unknown; props: object };
 
@@ -233,6 +237,8 @@ interface IControlRecordPosition {
    */
   insertAfter?: string;
 }
+
+// todo: переименовать интерфейсы спецификаций контролов или организовать в общий registry [BI-16135]
 
 export interface IInputControl {
   type: EControlType.input;

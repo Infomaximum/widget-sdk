@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-new-layout.1](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-12...v7.0.0-new-layout.1) (2026-02-20)
+
+
+### Features
+
+* повышена apiVersion ([5adcca1](https://github.com/Infomaximum/widget-sdk/commit/5adcca17c14c746b20f0ca6eb3ea1d524d6a47a4))
+* удалены отступы из темы ([b840210](https://github.com/Infomaximum/widget-sdk/commit/b8402106f85794f19d86d255558f81fe8e3a007c))
+
+## [7.0.0-new-layout.0](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-11...v7.0.0-new-layout.0) (2026-02-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* отступы больше нельзя задавать в виджетах
+
+### Features
+
+* удалены отступы из настроек виджетов ([b5f1797](https://github.com/Infomaximum/widget-sdk/commit/b5f17973ee872c4d31b0fd07babc29ca83b1b72f))
+
 ## [7.0.0-new-layout.0](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-11...v7.0.0-new-layout.0) (2026-02-16)
 
 ### ⚠ BREAKING CHANGES

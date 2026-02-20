@@ -59,11 +59,9 @@ export type IDefinition<
 type TCustomControlsCapability<CustomControlsSpecMap extends TControlsSpecMap> =
   keyof CustomControlsSpecMap extends never
     ? { customControls?: never }
-    : {
-        /** Кастомные контролы */
-        customControls: {
-          [K in keyof CustomControlsSpecMap]: ILifecycleRuntimeFactory<
-            IControlProps<CustomControlsSpecMap[K]>
-          >;
-        };
-      };
+    : { customControls: TCustomControlFactories<CustomControlsSpecMap> };
+
+/** Registry factory-функций, создающих runtime кастомных контролов */
+export type TCustomControlFactories<ControlsSpecMap extends TControlsSpecMap = TControlsSpecMap> = {
+  [K in keyof ControlsSpecMap]: ILifecycleRuntimeFactory<IControlProps<ControlsSpecMap[K]>>;
+};

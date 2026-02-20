@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-new-layout.2](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.1...v7.0.0-new-layout.2) (2026-02-20)
+
+
+### Features
+
+* в настройки виджета добавлен цвет фона ([00ad777](https://github.com/Infomaximum/widget-sdk/commit/00ad7777d201918048b0610016751acf7b5c28e2))
+
 ## [7.0.0-new-layout.1](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-12...v7.0.0-new-layout.1) (2026-02-20)
 
 

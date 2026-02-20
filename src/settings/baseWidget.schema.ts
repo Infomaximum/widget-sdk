@@ -1,4 +1,4 @@
-import { ColorSchema, EColorMode, EFontWeight, EWidgetFilterMode, themed, type TZod } from "..";
+import { ColorSchema, EFontWeight, EWidgetFilterMode, themed, type TZod } from "..";
 import { ActionButtonSchema } from "../actions.schema";
 import { SettingsFilterSchema } from "../filtration.schema";
 import { MarkdownMeasureSchema, WidgetSortingIndicatorSchema } from "../indicators.schema";
@@ -43,4 +43,5 @@ export const BaseWidgetSettingsSchema = (z: TZod) =>
     sorting: z.array(WidgetSortingIndicatorSchema(z)).default([]),
     actionButtons: z.array(ActionButtonSchema(z)).default([]),
     viewTheme: z.boolean().default(false),
+    backgroundColor: themed(z.string().default("#FFFFFF"), (theme) => theme.widgets.color),
   });

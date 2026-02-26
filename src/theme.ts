@@ -26,8 +26,6 @@ export interface ITheme {
     value?: number;
   };
   backgroundColor: string;
-  backgroundInEdit: boolean;
-  spacing: boolean;
   widgets: {
     /** @remarks Заложено для будущего использования */
     color: string;

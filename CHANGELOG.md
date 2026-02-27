@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-new-layout.3](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.2...v7.0.0-new-layout.3) (2026-02-27)
+
+
+### Features
+
+* отказ от настроек backgroundInEdit и spacing в темах ([ae5dc49](https://github.com/Infomaximum/widget-sdk/commit/ae5dc49bede1aefcd4f65692cb596810a2692a69))
+
 ## [7.0.0-new-layout.2](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.1...v7.0.0-new-layout.2) (2026-02-20)
 
 

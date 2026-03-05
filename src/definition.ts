@@ -1,5 +1,4 @@
 import type { IPanelDescriptionCreator } from "./metaDescription";
-import type { IWidgetPresetSettings } from "./preset";
 import type { IWidgetMigrator, IWidgetStruct } from "./migrates";
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
 import type { StringKeyOf } from "./utilityTypes";
@@ -36,8 +35,6 @@ export type IDefinition<
   createPanelDescription: IPanelDescriptionCreator<WidgetSettings, CustomControlsSpecMap>;
   /** обеспечивает консистентность настроек */
   fillSettings?: IFillSettings<WidgetSettings>;
-  /** получить начальные настройки виджета, используя заданный пользователем шаблон настроек */
-  getInitialSettings?: (settings: Partial<IWidgetPresetSettings>) => Partial<IBaseWidgetSettings>;
   /** возвращает ключи показателей(разрезов или мер), для которых должна работать системная сортировка */
   getSortableIndicatorsKeys?(): Readonly<StringKeyOf<WidgetSettings>[]>;
   /** Регистрация миграторов виджета */

@@ -41,3 +41,15 @@ export function memoize<T extends string | number | null | undefined, R>(
     return result;
   };
 }
+
+export const clamp = (value: number, min: number, max: number): number => {
+  if (value < min) {
+    return min;
+  }
+
+  if (value > max) {
+    return max;
+  }
+
+  return value;
+};

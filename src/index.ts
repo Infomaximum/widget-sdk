@@ -39,10 +39,10 @@ export * from "./widgetContext";
 export * from "./indicatorsFormulas";
 export * from "./dimensionSelection";
 export * from "./viewContext";
-export * from "./color";
+export * from "./color/index";
 export { parseClickHouseType, EClickHouseBaseTypes } from "./clickHouseTypes";
 export * from "./theme";
-export * from "./color.schema";
+export * from "./color/color.schema";
 export * from "./utils/lifecycleRuntime";
 
 export type TDefineWidgetOptions = {

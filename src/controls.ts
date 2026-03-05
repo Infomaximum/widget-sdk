@@ -1,9 +1,8 @@
 import type { EWidgetActionInputMethod, TActionsOnClick } from "./actions";
-import type { EColorMode, TColor } from "./color";
 import type { ESimpleDataType } from "./data";
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormattingPresets, EFormatTypes } from "@infomaximum/bi-formatting";
-import { EActionTypes, type TSchemaType } from ".";
+import { EActionTypes, EColorMode, type TColor, type TSchemaType } from ".";
 import type { FormatSchema, FormattingSchema } from "./indicators.schema";
 import type {
   EOuterAggregation,

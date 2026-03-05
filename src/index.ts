@@ -40,8 +40,6 @@ export * from "./indicatorsFormulas";
 export * from "./dimensionSelection";
 export * from "./viewContext";
 export * from "./color";
-export * from "./preset";
-export * from "./preset.schema";
 export { parseClickHouseType, EClickHouseBaseTypes } from "./clickHouseTypes";
 export * from "./theme";
 export * from "./color.schema";

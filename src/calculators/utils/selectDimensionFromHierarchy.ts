@@ -19,11 +19,8 @@ export function selectDimensionFromHierarchy<
   H extends IWidgetDimensionHierarchy<I>,
   D extends IWidgetDimension,
   I extends IWidgetDimensionInHierarchy,
->(
-  hierarchy: H,
-  filters: ICalculatorFilter[]
-): TNullable<D | TConditionalDimensionInHierarchy<IWidgetDimensionInHierarchy>> {
-  const { hierarchyDimensions, displayCondition } = hierarchy;
+>(hierarchy: H, filters: ICalculatorFilter[]): TNullable<D | TConditionalDimensionInHierarchy<I>> {
+  const { hierarchyDimensions } = hierarchy;
 
   for (let i = hierarchyDimensions.length - 1; i >= 0; i--) {
     const dimension = hierarchyDimensions[i]!;

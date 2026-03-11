@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-new-layout.4](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.3...v7.0.0-new-layout.4) (2026-03-11)
+
+
+### Features
+
+* добавлен тип фильтрации в контекст образа ([5421745](https://github.com/Infomaximum/widget-sdk/commit/54217452772fddf6703f28e2f60162a098fa5817))
+
 ## [7.0.0-new-layout.3](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.2...v7.0.0-new-layout.3) (2026-02-27)
 
 

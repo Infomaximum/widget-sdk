@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-new-layout.5](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.4...v7.0.0-new-layout.5) (2026-03-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* Требуется поддержка в виджетах
+
+### Features
+
+* удалены  WidgetPresetSettings ([1a5fe99](https://github.com/Infomaximum/widget-sdk/commit/1a5fe99228b4bc7e6b874758f312a4d6f8a3140c))
+
 ## [7.0.0-new-layout.4](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.3...v7.0.0-new-layout.4) (2026-03-11)
 
 

@@ -46,6 +46,7 @@ export * from "./theme";
 export * from "./color.schema";
 export * from "./utils/lifecycleRuntime";
 export * from "./zod.types";
+export { SchemaRegistryReader } from "./schemaRegistry";
 
 export type TDefineWidgetOptions = {
   manifest?: IWidgetManifest;

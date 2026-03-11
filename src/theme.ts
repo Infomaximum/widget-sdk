@@ -1,5 +1,4 @@
 import type { ZodType } from "zod";
-import type { EColorMode, TColor } from "./color";
 import type {
   EFontWeight,
   EHeightMode,
@@ -7,6 +6,7 @@ import type {
   TTabsHorizontalAlignment,
 } from "./settings/values";
 import { ESettingsSchemaMetaKey } from "./settings/const";
+import type { EColorMode, TColor } from "./color";
 
 export type TLimitedColor = Extract<TColor, { mode: EColorMode.AUTO } | { mode: EColorMode.BASE }>;
 

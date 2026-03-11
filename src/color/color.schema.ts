@@ -1,5 +1,4 @@
-import { FormulaSchema, type TZod } from ".";
-import { EColorMode } from "./color";
+import { EColorMode, FormulaSchema, type TZod } from "..";
 
 export const ColorBaseSchema = (z: TZod) =>
   z.object({

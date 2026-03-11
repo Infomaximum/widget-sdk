@@ -41,3 +41,11 @@ export function memoize<T extends string | number | null | undefined, R>(
     return result;
   };
 }
+
+/** Добавляет свойства к функции */
+export function assignPropsToFn<
+  F extends (...args: any[]) => any,
+  P extends Record<string, unknown>,
+>(fn: F, props: P): F & P {
+  return Object.assign(fn, props) as F & P;
+}

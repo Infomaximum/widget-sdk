@@ -2,7 +2,6 @@
 
 import type { IBaseWidgetSettings } from "./settings/baseWidget";
 import type { IWidgetEntity, IWidgetManifest } from "./widgetApi";
-import type { ZodType, z as zod } from "zod";
 export { ELanguages } from "@infomaximum/localization";
 export { EFilteringMethodValues } from "@infomaximum/base-filter";
 
@@ -44,13 +43,12 @@ export * from "./preset.schema";
 export { parseClickHouseType, EClickHouseBaseTypes } from "./clickHouseTypes";
 export * from "./theme";
 export * from "./color.schema";
+export * from "./zod.types";
+export { SchemaRegistryReader } from "./schemaRegistry";
 
 export type TDefineWidgetOptions = {
   manifest?: IWidgetManifest;
 };
-
-export type TZod = typeof zod;
-export type TSchemaType<T extends (z: TZod, ...params: any) => ZodType> = zod.infer<ReturnType<T>>;
 
 declare global {
   interface Infomaximum {

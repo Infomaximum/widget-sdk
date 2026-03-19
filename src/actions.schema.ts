@@ -177,6 +177,7 @@ export const ActionRunScriptSchema = (z: TZod) =>
     activateCondition: ActivateConditionSchema(z),
     hint: z.string().default(""),
     variables: z.array(ActionOnClickParameterSchema(z)).default([]),
+    runButtonText: z.string().default(""),
   });
 
 export const ActionUpdateVariableSchema = (z: TZod) =>
@@ -279,6 +280,7 @@ export const WidgetActionSchema = (z: TZod) =>
     hint: z.string().default(""),
     activateCondition: ActivateConditionSchema(z),
     variables: z.array(WidgetActionParameterSchema(z)).default([]),
+    runButtonText: z.string().default(""),
   });
 
 export const ViewActionParameterSchema = (z: TZod) =>

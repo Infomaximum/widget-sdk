@@ -1,4 +1,4 @@
-import type { EWidgetActionInputMethod, TActionsOnClick } from "./actions";
+import type { EWidgetActionInputMethod, IActionRunScript, TActionsOnClick } from "./actions";
 import type { EColorMode, TColor } from "./color";
 import type { ESimpleDataType } from "./data";
 import type { TExtendedFormulaFilterValue } from "./filtration";
@@ -460,6 +460,7 @@ export type TActionsConfig = Partial<{
   [EActionTypes.OPEN_URL]: Omit<ICommonActionConfig, "extraInputMethods">;
   [EActionTypes.EXECUTE_SCRIPT]: ICommonActionConfig & {
     showActivateCondition?: boolean;
+    enableRunButtonText?: (parameters: IActionRunScript["parameters"]) => boolean;
   };
 }>;
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-13](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-12...v7.0.0-13) (2026-03-24)
+
+
+### Features
+
+* Добавлено поле для изменения подписи кнопки запуска скрипта из модального окна ([f2aa4ae](https://github.com/Infomaximum/widget-sdk/commit/f2aa4ae35feaa4547b02a9820f2c1aeffd5ecd1c))
+
 ## [7.0.0-12](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-11...v7.0.0-12) (2026-02-20)
 
 

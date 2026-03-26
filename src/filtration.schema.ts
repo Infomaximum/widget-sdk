@@ -7,6 +7,7 @@ import {
   EOuterAggregation,
   EWidgetIndicatorValueModes,
   formulaFilterMethods,
+  FormulaSchema,
   type TZod,
 } from ".";
 import {
@@ -22,12 +23,12 @@ export const FormulaFilterValueSchema = SchemaRegistry.define({
     "17": (z: TZod) =>
       z.object({
         name: z.string().nullish(),
-        formula: z.string(),
+        formula: FormulaSchema.forVersion("17")(z),
         sliceIndex: z.number().optional(),
         dbDataType: z.string(),
         format: z.union([z.enum(EFormatTypes), z.string()]).optional(),
         filteringMethod: z.enum(Object.values(formulaFilterMethods)),
-        checkedValues: z.array(z.string().nullable()).optional(),
+        checkedValues: z.array(z.string().nullable()).default([]).optional(),
         formValues: z
           .object({
             [EFormulaFilterFieldKeys.date]: z.string().nullable(),
@@ -53,7 +54,10 @@ export const ExtendedFormulaFilterValueSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      z.union([FormulaFilterValueSchema.forVersion("17")(z), z.object({ formula: z.string() })]),
+      z.union([
+        FormulaFilterValueSchema.forVersion("17")(z),
+        z.object({ formula: FormulaSchema.forVersion("17")(z) }),
+      ]),
   },
 });
 
@@ -73,7 +77,7 @@ export const DimensionProcessFilterSchema = SchemaRegistry.define({
           WidgetIndicatorTimeValueSchema.forVersion("17")(z),
           z.object({
             mode: z.literal(EWidgetIndicatorValueModes.FORMULA),
-            formula: z.string().optional(),
+            formula: FormulaSchema.forVersion("17")(z).optional(),
           }),
         ]),
         dbDataType: z.string(),

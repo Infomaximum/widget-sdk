@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-14](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-13...v7.0.0-14) (2026-03-27)
+
+
+### Features
+
+* добавлена возможность включить множественное добавление разрезов ([fab926d](https://github.com/Infomaximum/widget-sdk/commit/fab926d1dfa526dfff24b950a0f7daee1b5a0d9c))
+
 ## [7.0.0-13](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-12...v7.0.0-13) (2026-03-24)
 
 

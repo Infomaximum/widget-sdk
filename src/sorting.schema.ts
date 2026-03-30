@@ -1,4 +1,4 @@
-import { ESortDirection, ESortingValueModes, FormulaSchema, type TZod } from ".";
+import { ESortDirection, ESortingMode, ESortingValueModes, FormulaSchema, type TZod } from ".";
 import { SchemaRegistry } from "./schemaRegistry";
 
 export const SortDirectionSchema = SchemaRegistry.define({
@@ -43,6 +43,26 @@ export const WidgetSortingValueSchema = SchemaRegistry.define({
           mode: z.literal(ESortingValueModes.IN_WIDGET),
           group: z.string(),
           index: z.number(),
+        }),
+      ]),
+  },
+});
+
+export const SortingValueSchema = SchemaRegistry.define({
+  key: "SortingValueSchema",
+  latestVersion: "19",
+  history: {
+    "19": (z: TZod) =>
+      z.discriminatedUnion("mode", [
+        z.object({
+          mode: z.literal(ESortingMode.BY_VALUES),
+          direction: SortDirectionSchema(z).default(ESortDirection.ascend),
+        }),
+        z.object({
+          mode: z.literal(ESortingMode.FORMULA),
+          direction: SortDirectionSchema(z).default(ESortDirection.ascend),
+          formula: FormulaSchema.forVersion("17")(z),
+          dbDataType: z.string().optional(),
         }),
       ]),
   },

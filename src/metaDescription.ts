@@ -158,14 +158,24 @@ export interface IMeasureAddButtonProps extends IWidgetIndicatorAddButtonProps {
   options?: TMeasureAddButtonSelectOption[];
 }
 
+export interface IDimensionAddButtonProps {
+  enableMultipleAdd?: boolean;
+}
+
 export interface ISortingAddButtonProps extends IWidgetIndicatorAddButtonProps {}
 
 export interface IInitialSettings extends Record<string, any> {}
 
+export type TAddButtonProps =
+  | ICustomAddButtonProps
+  | IMeasureAddButtonProps
+  | IDimensionAddButtonProps
+  | ISortingAddButtonProps;
+
 /** Кнопка добавления группы в набор */
 export type TAddButton = {
   title: string;
-  props?: (ICustomAddButtonProps | IMeasureAddButtonProps | ISortingAddButtonProps) & {
+  props?: TAddButtonProps & {
     /** Ключи процессов для фильтрации таблиц, доступных для выбора */
     processKeys?: Iterable<string>;
   };

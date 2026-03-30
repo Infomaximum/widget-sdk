@@ -6,61 +6,54 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [7.0.0-new-layout.6](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.5...v7.0.0-new-layout.6) (2026-03-16)
 
-
 ### Features
 
-* реализованы функции адаптации цветов ([01eb0e2](https://github.com/Infomaximum/widget-sdk/commit/01eb0e2e2dd208fa27ea057f640b80487c0a8ba1))
+- реализованы функции адаптации цветов ([01eb0e2](https://github.com/Infomaximum/widget-sdk/commit/01eb0e2e2dd208fa27ea057f640b80487c0a8ba1))
 
 ## [7.0.0-new-layout.5](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.4...v7.0.0-new-layout.5) (2026-03-11)
 
-
 ### ⚠ BREAKING CHANGES
 
-* Требуется поддержка в виджетах
+- Требуется поддержка в виджетах
 
 ### Features
 
-* удалены  WidgetPresetSettings ([1a5fe99](https://github.com/Infomaximum/widget-sdk/commit/1a5fe99228b4bc7e6b874758f312a4d6f8a3140c))
+- удалены WidgetPresetSettings ([1a5fe99](https://github.com/Infomaximum/widget-sdk/commit/1a5fe99228b4bc7e6b874758f312a4d6f8a3140c))
 
 ## [7.0.0-new-layout.4](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.3...v7.0.0-new-layout.4) (2026-03-11)
 
-
 ### Features
 
-* добавлен тип фильтрации в контекст образа ([5421745](https://github.com/Infomaximum/widget-sdk/commit/54217452772fddf6703f28e2f60162a098fa5817))
+- добавлен тип фильтрации в контекст образа ([5421745](https://github.com/Infomaximum/widget-sdk/commit/54217452772fddf6703f28e2f60162a098fa5817))
 
 ## [7.0.0-new-layout.3](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.2...v7.0.0-new-layout.3) (2026-02-27)
 
-
 ### Features
 
-* отказ от настроек backgroundInEdit и spacing в темах ([ae5dc49](https://github.com/Infomaximum/widget-sdk/commit/ae5dc49bede1aefcd4f65692cb596810a2692a69))
+- отказ от настроек backgroundInEdit и spacing в темах ([ae5dc49](https://github.com/Infomaximum/widget-sdk/commit/ae5dc49bede1aefcd4f65692cb596810a2692a69))
 
 ## [7.0.0-new-layout.2](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.1...v7.0.0-new-layout.2) (2026-02-20)
 
-
 ### Features
 
-* в настройки виджета добавлен цвет фона ([00ad777](https://github.com/Infomaximum/widget-sdk/commit/00ad7777d201918048b0610016751acf7b5c28e2))
+- в настройки виджета добавлен цвет фона ([00ad777](https://github.com/Infomaximum/widget-sdk/commit/00ad7777d201918048b0610016751acf7b5c28e2))
 
 ## [7.0.0-new-layout.1](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-12...v7.0.0-new-layout.1) (2026-02-20)
 
-
 ### Features
 
-* повышена apiVersion ([5adcca1](https://github.com/Infomaximum/widget-sdk/commit/5adcca17c14c746b20f0ca6eb3ea1d524d6a47a4))
-* удалены отступы из темы ([b840210](https://github.com/Infomaximum/widget-sdk/commit/b8402106f85794f19d86d255558f81fe8e3a007c))
+- повышена apiVersion ([5adcca1](https://github.com/Infomaximum/widget-sdk/commit/5adcca17c14c746b20f0ca6eb3ea1d524d6a47a4))
+- удалены отступы из темы ([b840210](https://github.com/Infomaximum/widget-sdk/commit/b8402106f85794f19d86d255558f81fe8e3a007c))
 
 ## [7.0.0-new-layout.0](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-11...v7.0.0-new-layout.0) (2026-02-16)
 
-
 ### ⚠ BREAKING CHANGES
 
-* отступы больше нельзя задавать в виджетах
+- отступы больше нельзя задавать в виджетах
 
 ### Features
 
-* удалены отступы из настроек виджетов ([b5f1797](https://github.com/Infomaximum/widget-sdk/commit/b5f17973ee872c4d31b0fd07babc29ca83b1b72f))
+- удалены отступы из настроек виджетов ([b5f1797](https://github.com/Infomaximum/widget-sdk/commit/b5f17973ee872c4d31b0fd07babc29ca83b1b72f))
 
 ## [7.0.0-new-layout.0](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-11...v7.0.0-new-layout.0) (2026-02-16)
 

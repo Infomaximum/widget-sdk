@@ -87,7 +87,7 @@ export const WidgetColumnIndicatorSchema = SchemaRegistry.define({
         format: FormatSchema.forVersion("17")(z).optional(),
         formatting: FormattingSchema.forVersion("17")(z).optional(),
         displayCondition: DisplayConditionSchema.forVersion("17")(z),
-        onClick: z.array(ActionsOnClickSchema.forVersion("17")(z)).optional(),
+        onClick: z.array(ActionsOnClickSchema.forVersion("17")(z)).default([]).optional(),
       }),
   },
 });

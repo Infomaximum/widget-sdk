@@ -24,216 +24,350 @@ import {
   NameNullableSchema,
 } from "./settings/values.schema";
 import type { ZodType } from "zod";
+import { SchemaRegistry } from "./schemaRegistry";
 
-export const WidgetIndicatorSchema = (z: TZod) =>
-  AutoIdentifiedArrayItemSchema(z).extend({
-    name: z.string(),
-  });
-
-export const FormatSchema = (z: TZod) =>
-  z
-    .discriminatedUnion("mode", [
-      z.object({
-        mode: z.literal(EFormatOrFormattingMode.BASE),
-        value: z.enum(EFormatTypes).default(EFormatTypes.STRING).optional(),
+export const WidgetIndicatorSchema = SchemaRegistry.define({
+  key: "WidgetIndicator",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      AutoIdentifiedArrayItemSchema.forVersion("17")(z).extend({
+        name: z.string(),
       }),
-      z.object({
-        mode: z.literal(EFormatOrFormattingMode.TEMPLATE),
-        value: z.string().default("").optional(),
+  },
+});
+
+export const FormatSchema = SchemaRegistry.define({
+  key: "Format",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      z
+        .discriminatedUnion("mode", [
+          z.object({
+            mode: z.literal(EFormatOrFormattingMode.BASE),
+            value: z.enum(EFormatTypes).default(EFormatTypes.STRING).optional(),
+          }),
+          z.object({
+            mode: z.literal(EFormatOrFormattingMode.TEMPLATE),
+            value: z.string().default("").optional(),
+          }),
+        ])
+        .default({ mode: EFormatOrFormattingMode.BASE, value: EFormatTypes.STRING }),
+  },
+});
+
+export const FormattingSchema = SchemaRegistry.define({
+  key: "Formatting",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      z
+        .discriminatedUnion("mode", [
+          z.object({
+            mode: z.literal(EFormatOrFormattingMode.BASE),
+            value: z.enum(EFormattingPresets).default(EFormattingPresets.AUTO),
+          }),
+          z.object({
+            mode: z.literal(EFormatOrFormattingMode.TEMPLATE),
+            value: z.string().default(""),
+          }),
+        ])
+        .default({ mode: EFormatOrFormattingMode.BASE, value: EFormattingPresets.AUTO }),
+  },
+});
+
+export const WidgetColumnIndicatorSchema = SchemaRegistry.define({
+  key: "WidgetColumnIndicator",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      WidgetIndicatorSchema.forVersion("17")(z).extend({
+        dbDataType: z.string().optional(),
+        format: FormatSchema.forVersion("17")(z).optional(),
+        formatting: FormattingSchema.forVersion("17")(z).optional(),
+        displayCondition: DisplayConditionSchema.forVersion("17")(z),
+        onClick: z.array(ActionsOnClickSchema.forVersion("17")(z)).default([]).optional(),
       }),
-    ])
-    .default({ mode: EFormatOrFormattingMode.BASE, value: EFormatTypes.STRING });
+  },
+});
 
-export const FormattingSchema = (z: TZod) =>
-  z
-    .discriminatedUnion("mode", [
+export const WidgetIndicatorFormulaValueSchema = SchemaRegistry.define({
+  key: "WidgetIndicatorFormulaValue",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
       z.object({
-        mode: z.literal(EFormatOrFormattingMode.BASE),
-        value: z.enum(EFormattingPresets).default(EFormattingPresets.AUTO),
+        mode: z.literal(EWidgetIndicatorValueModes.FORMULA),
+        formula: FormulaSchema.forVersion("17")(z).optional(),
       }),
+  },
+});
+
+export const WidgetIndicatorTemplateValueSchema = SchemaRegistry.define({
+  key: "WidgetIndicatorTemplateValue",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
       z.object({
-        mode: z.literal(EFormatOrFormattingMode.TEMPLATE),
-        value: z.string().default(""),
+        mode: z.literal(EWidgetIndicatorValueModes.TEMPLATE),
+        /** Имя шаблонной формулы, использующей колонку таблицы */
+        templateName: z.string().optional(),
+        /** Имя таблицы */
+        tableName: z.string().optional(),
+        /** Имя колонки */
+        columnName: z.string().optional(),
       }),
-    ])
-    .default({ mode: EFormatOrFormattingMode.BASE, value: EFormattingPresets.AUTO });
+  },
+});
 
-export const WidgetColumnIndicatorSchema = (z: TZod) =>
-  WidgetIndicatorSchema(z).extend({
-    dbDataType: z.string().optional(),
-    format: FormatSchema(z).optional(),
-    formatting: FormattingSchema(z).optional(),
-    displayCondition: DisplayConditionSchema(z),
-    onClick: z.array(ActionsOnClickSchema(z)).optional(),
-  });
+export const ColumnIndicatorValueSchema = SchemaRegistry.define({
+  key: "ColumnIndicatorValue",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      z.union([MeasureValueSchema.forVersion("17")(z), DimensionValueSchema.forVersion("17")(z)]),
+  },
+});
 
-export const WidgetIndicatorFormulaValueSchema = (z: TZod) =>
-  z.object({
-    mode: z.literal(EWidgetIndicatorValueModes.FORMULA),
-    formula: FormulaSchema(z).optional(),
-  });
-
-export const WidgetIndicatorTemplateValueSchema = (z: TZod) =>
-  z.object({
-    mode: z.literal(EWidgetIndicatorValueModes.TEMPLATE),
-    /** Имя шаблонной формулы, использующей колонку таблицы */
-    templateName: z.string().optional(),
-    /** Имя таблицы */
-    tableName: z.string().optional(),
-    /** Имя колонки */
-    columnName: z.string().optional(),
-  });
-
-export const ColumnIndicatorValueSchema = (z: TZod) =>
-  z.union([MeasureValueSchema(z), DimensionValueSchema(z)]);
-
-export const MeasureValueSchema = (z: TZod) =>
-  z.discriminatedUnion("mode", [
-    WidgetIndicatorFormulaValueSchema(z),
-    WidgetIndicatorTemplateValueSchema(z).extend({
-      innerTemplateName: z.enum(EMeasureInnerTemplateNames).optional(),
-    }),
-  ]);
-
-export const DimensionValueSchema = (z: TZod) =>
-  z.discriminatedUnion("mode", [
-    WidgetIndicatorFormulaValueSchema(z),
-    WidgetIndicatorTemplateValueSchema(z).extend({
-      innerTemplateName: z.never().optional(),
-    }),
-  ]);
-
-export const WidgetIndicatorAggregationValueSchema = (z: TZod) =>
-  z.object({
-    mode: z.literal(EWidgetIndicatorValueModes.AGGREGATION),
-    templateName: z.string(),
-    processKey: KeyNullableSchema(z),
-    eventName: NameNullableSchema(z),
-    eventNameFormula: FormulaNullableSchema(z),
-    anyEvent: z.literal(true).optional(),
-    caseCaseIdFormula: FormulaNullableSchema(z),
-    filters: z.array(ExtendedFormulaFilterValueSchema(z)).default([]),
-    tableName: z.string().optional(),
-    columnName: z.string().optional(),
-    eventTimeFormula: FormulaNullableSchema(z).optional(),
-    innerTemplateName: z.string().optional(),
-  });
-
-export const WidgetMeasureAggregationValueSchema = (z: TZod) =>
-  WidgetIndicatorAggregationValueSchema(z).extend({ outerAggregation: z.enum(EOuterAggregation) });
-
-export const WidgetIndicatorTimeValueSchema = (z: TZod) =>
-  z.object({
-    templateName: z.string(),
-    mode: z.union([
-      z.literal(EWidgetIndicatorValueModes.START_TIME),
-      z.literal(EWidgetIndicatorValueModes.END_TIME),
-    ]),
-    processKey: KeyNullableSchema(z),
-    eventName: NameNullableSchema(z),
-    eventTimeFormula: FormulaNullableSchema(z),
-    caseCaseIdFormula: FormulaNullableSchema(z),
-    eventNameFormula: FormulaNullableSchema(z),
-    filters: z.array(ExtendedFormulaFilterValueSchema(z)).default([]),
-  });
-
-export const WidgetDimensionSchema = (z: TZod) =>
-  WidgetColumnIndicatorSchema(z).extend({
-    value: z
-      .discriminatedUnion("mode", [
-        DimensionValueSchema(z),
-        WidgetIndicatorAggregationValueSchema(z).extend({
-          innerTemplateName: z.string().optional(),
+export const MeasureValueSchema = SchemaRegistry.define({
+  key: "MeasureValue",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      z.discriminatedUnion("mode", [
+        WidgetIndicatorFormulaValueSchema.forVersion("17")(z),
+        WidgetIndicatorTemplateValueSchema.forVersion("17")(z).extend({
+          innerTemplateName: z.enum(EMeasureInnerTemplateNames).optional(),
         }),
-        WidgetIndicatorTimeValueSchema(z),
-      ])
-      .optional(),
-    hideEmptyValues: z.boolean().default(false),
-  });
+      ]),
+  },
+});
 
-export const WidgetDimensionInHierarchySchema = (z: TZod) =>
-  WidgetDimensionSchema(z).omit({ displayCondition: true });
+export const DimensionValueSchema = SchemaRegistry.define({
+  key: "DimensionValue",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      z.discriminatedUnion("mode", [
+        WidgetIndicatorFormulaValueSchema.forVersion("17")(z),
+        WidgetIndicatorTemplateValueSchema.forVersion("17")(z).extend({
+          innerTemplateName: z.never().optional(),
+        }),
+      ]),
+  },
+});
 
-export const WidgetDimensionHierarchySchema = <
-  D extends TSchemaType<typeof WidgetDimensionInHierarchySchema>,
->(
-  z: TZod,
-  dimensionSchema: ZodType<D>
-) =>
-  AutoIdentifiedArrayItemSchema(z).extend({
-    name: z.string(),
-    // Для иерархии является дискриминатором, для него нельзя задавать дефолтное значение.
-    hierarchyDimensions: z.array(dimensionSchema),
-    displayCondition: DisplayConditionSchema(z),
-  });
+export const WidgetIndicatorAggregationValueSchema = SchemaRegistry.define({
+  key: "WidgetIndicatorAggregationValue",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      z.object({
+        mode: z.literal(EWidgetIndicatorValueModes.AGGREGATION),
+        templateName: z.string(),
+        processKey: KeyNullableSchema.forVersion("17")(z),
+        eventName: NameNullableSchema.forVersion("17")(z),
+        eventNameFormula: FormulaNullableSchema.forVersion("17")(z),
+        anyEvent: z.literal(true).optional(),
+        caseCaseIdFormula: FormulaNullableSchema.forVersion("17")(z),
+        filters: z.array(ExtendedFormulaFilterValueSchema.forVersion("17")(z)).default([]),
+        tableName: z.string().optional(),
+        columnName: z.string().optional(),
+        eventTimeFormula: FormulaNullableSchema.forVersion("17")(z).optional(),
+        innerTemplateName: z.string().optional(),
+      }),
+  },
+});
 
-export const WidgetIndicatorConversionValueSchema = (z: TZod) =>
-  z.object({
-    mode: z.literal(EWidgetIndicatorValueModes.CONVERSION),
+export const WidgetMeasureAggregationValueSchema = SchemaRegistry.define({
+  key: "WidgetMeasureAggregationValue",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      WidgetIndicatorAggregationValueSchema.forVersion("17")(z).extend({
+        outerAggregation: z.enum(EOuterAggregation),
+      }),
+  },
+});
 
-    startEventNameFormula: FormulaNullableSchema(z),
-    startEventProcessKey: KeyNullableSchema(z),
-    startEventName: NameNullableSchema(z),
-    startEventFilters: z.array(ExtendedFormulaFilterValueSchema(z)).default([]),
-    startEventTimeFormula: FormulaNullableSchema(z),
+export const WidgetIndicatorTimeValueSchema = SchemaRegistry.define({
+  key: "WidgetIndicatorTimeValue",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      z.object({
+        templateName: z.string(),
+        mode: z.union([
+          z.literal(EWidgetIndicatorValueModes.START_TIME),
+          z.literal(EWidgetIndicatorValueModes.END_TIME),
+        ]),
+        processKey: KeyNullableSchema.forVersion("17")(z),
+        eventName: NameNullableSchema.forVersion("17")(z),
+        eventTimeFormula: FormulaNullableSchema.forVersion("17")(z),
+        caseCaseIdFormula: FormulaNullableSchema.forVersion("17")(z),
+        eventNameFormula: FormulaNullableSchema.forVersion("17")(z),
+        filters: z.array(ExtendedFormulaFilterValueSchema.forVersion("17")(z)).default([]),
+      }),
+  },
+});
 
-    endEventNameFormula: FormulaNullableSchema(z),
-    endEventProcessKey: KeyNullableSchema(z),
-    endEventName: NameNullableSchema(z),
-    endEventFilters: z.array(ExtendedFormulaFilterValueSchema(z)).default([]),
-    endCaseCaseIdFormula: FormulaNullableSchema(z),
-    endEventTimeFormula: FormulaNullableSchema(z),
-  });
+export const WidgetDimensionSchema = SchemaRegistry.define({
+  key: "WidgetDimension",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      WidgetColumnIndicatorSchema.forVersion("17")(z).extend({
+        value: z
+          .discriminatedUnion("mode", [
+            DimensionValueSchema.forVersion("17")(z),
+            WidgetIndicatorAggregationValueSchema.forVersion("17")(z).extend({
+              innerTemplateName: z.string().optional(),
+            }),
+            WidgetIndicatorTimeValueSchema.forVersion("17")(z),
+          ])
+          .optional(),
+        hideEmptyValues: z.boolean().default(false),
+      }),
+  },
+});
 
-export const WidgetIndicatorDurationValueSchema = (z: TZod) =>
-  WidgetIndicatorConversionValueSchema(z).extend({
-    mode: z.literal(EWidgetIndicatorValueModes.DURATION),
-    templateName: z.string(),
-    startEventAppearances: z.enum(EEventAppearances),
-    endEventAppearances: z.enum(EEventAppearances),
-  });
+export const WidgetDimensionInHierarchySchema = SchemaRegistry.define({
+  key: "WidgetDimensionInHierarchy",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) => WidgetDimensionSchema.forVersion("17")(z).omit({ displayCondition: true }),
+  },
+});
 
-export const WidgetMeasureSchema = (z: TZod) =>
-  WidgetColumnIndicatorSchema(z).extend({
-    value: z
-      .discriminatedUnion("mode", [
-        MeasureValueSchema(z),
-        WidgetMeasureAggregationValueSchema(z),
-        WidgetIndicatorConversionValueSchema(z),
-        WidgetIndicatorDurationValueSchema(z),
-      ])
-      .optional(),
-  });
+export const WidgetDimensionHierarchySchema = SchemaRegistry.define({
+  key: "WidgetDimensionHierarchy",
+  latestVersion: "17",
+  history: {
+    "17": <D extends TSchemaType<typeof WidgetDimensionInHierarchySchema>>(
+      z: TZod,
+      dimensionSchema: ZodType<D>
+    ) =>
+      AutoIdentifiedArrayItemSchema.forVersion("17")(z).extend({
+        name: z.string(),
+        // Для иерархии является дискриминатором, для него нельзя задавать дефолтное значение.
+        hierarchyDimensions: z.array(dimensionSchema),
+        displayCondition: DisplayConditionSchema.forVersion("17")(z),
+      }),
+  },
+});
 
-export const MarkdownMeasureSchema = (z: TZod) =>
-  WidgetMeasureSchema(z).extend({
-    displaySign: z.enum(EMarkdownDisplayMode).default(EMarkdownDisplayMode.NONE),
-  });
+export const WidgetIndicatorConversionValueSchema = SchemaRegistry.define({
+  key: "WidgetIndicatorConversionValue",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      z.object({
+        mode: z.literal(EWidgetIndicatorValueModes.CONVERSION),
 
-export const WidgetSortingIndicatorSchema = (z: TZod) =>
-  WidgetIndicatorSchema(z).extend({
-    direction: SortDirectionSchema(z),
-    value: WidgetSortingValueSchema(z),
-  });
+        startEventNameFormula: FormulaNullableSchema.forVersion("17")(z),
+        startEventProcessKey: KeyNullableSchema.forVersion("17")(z),
+        startEventName: NameNullableSchema.forVersion("17")(z),
+        startEventFilters: z
+          .array(ExtendedFormulaFilterValueSchema.forVersion("17")(z))
+          .default([]),
+        startEventTimeFormula: FormulaNullableSchema.forVersion("17")(z),
 
-export const ProcessIndicatorValueSchema = (z: TZod) =>
-  z.discriminatedUnion("mode", [
-    z.object({
-      mode: z.literal(EWidgetIndicatorValueModes.FORMULA),
-      formula: FormulaSchema(z),
-    }),
-    z.object({
-      mode: z.literal(EWidgetIndicatorValueModes.TEMPLATE),
-      /** Имя шаблонной формулы, использующей колонку таблицы */
-      templateName: z.string(),
-    }),
-  ]);
+        endEventNameFormula: FormulaNullableSchema.forVersion("17")(z),
+        endEventProcessKey: KeyNullableSchema.forVersion("17")(z),
+        endEventName: NameNullableSchema.forVersion("17")(z),
+        endEventFilters: z.array(ExtendedFormulaFilterValueSchema.forVersion("17")(z)).default([]),
+        endCaseCaseIdFormula: FormulaNullableSchema.forVersion("17")(z),
+        endEventTimeFormula: FormulaNullableSchema.forVersion("17")(z),
+      }),
+  },
+});
 
-export const ProcessIndicatorSchema = (z: TZod) =>
-  WidgetIndicatorSchema(z).extend({
-    value: ProcessIndicatorValueSchema(z).optional(),
-    dbDataType: z.string().optional(),
-    format: FormatSchema(z).optional(),
-    formatting: FormattingSchema(z).optional(),
-    displayCondition: DisplayConditionSchema(z),
-  });
+export const WidgetIndicatorDurationValueSchema = SchemaRegistry.define({
+  key: "WidgetIndicatorDurationValue",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      WidgetIndicatorConversionValueSchema.forVersion("17")(z).extend({
+        mode: z.literal(EWidgetIndicatorValueModes.DURATION),
+        templateName: z.string(),
+        startEventAppearances: z.enum(EEventAppearances),
+        endEventAppearances: z.enum(EEventAppearances),
+      }),
+  },
+});
+
+export const WidgetMeasureSchema = SchemaRegistry.define({
+  key: "WidgetMeasure",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      WidgetColumnIndicatorSchema.forVersion("17")(z).extend({
+        value: z
+          .discriminatedUnion("mode", [
+            MeasureValueSchema.forVersion("17")(z),
+            WidgetMeasureAggregationValueSchema.forVersion("17")(z),
+            WidgetIndicatorConversionValueSchema.forVersion("17")(z),
+            WidgetIndicatorDurationValueSchema.forVersion("17")(z),
+          ])
+          .optional(),
+      }),
+  },
+});
+
+export const MarkdownMeasureSchema = SchemaRegistry.define({
+  key: "MarkdownMeasure",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      WidgetMeasureSchema.forVersion("17")(z).extend({
+        displaySign: z.enum(EMarkdownDisplayMode).default(EMarkdownDisplayMode.NONE),
+      }),
+  },
+});
+
+export const WidgetSortingIndicatorSchema = SchemaRegistry.define({
+  key: "WidgetSortingIndicator",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      WidgetIndicatorSchema.forVersion("17")(z).extend({
+        direction: SortDirectionSchema.forVersion("17")(z),
+        value: WidgetSortingValueSchema.forVersion("17")(z),
+      }),
+  },
+});
+
+export const ProcessIndicatorValueSchema = SchemaRegistry.define({
+  key: "ProcessIndicatorValue",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      z.discriminatedUnion("mode", [
+        z.object({
+          mode: z.literal(EWidgetIndicatorValueModes.FORMULA),
+          formula: FormulaSchema.forVersion("17")(z),
+        }),
+        z.object({
+          mode: z.literal(EWidgetIndicatorValueModes.TEMPLATE),
+          /** Имя шаблонной формулы, использующей колонку таблицы */
+          templateName: z.string(),
+        }),
+      ]),
+  },
+});
+
+export const ProcessIndicatorSchema = SchemaRegistry.define({
+  key: "ProcessIndicator",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      WidgetIndicatorSchema.forVersion("17")(z).extend({
+        value: ProcessIndicatorValueSchema.forVersion("17")(z).optional(),
+        dbDataType: z.string().optional(),
+        format: FormatSchema.forVersion("17")(z).optional(),
+        formatting: FormattingSchema.forVersion("17")(z).optional(),
+        displayCondition: DisplayConditionSchema.forVersion("17")(z),
+      }),
+  },
+});

@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-2602.0](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-12...v7.0.0-2602.0) (2026-04-06)
+
+
+### Features
+
+* внесены доработки в схемы фильтров ([feb5ac2](https://github.com/Infomaximum/widget-sdk/commit/feb5ac285aca460ef01897bd9b92fa5baf3d4109))
+* во внутренние вспомогательные функции добавлена функция assignPropsToFn ([c7fa220](https://github.com/Infomaximum/widget-sdk/commit/c7fa220d6f279787fddc1ca2f2e34816833c6bb6))
+* добавлен API для декларирования истории схем виджетами ([56a0b0a](https://github.com/Infomaximum/widget-sdk/commit/56a0b0ad4f8a96355a379471aae2a0a559e10651))
+* добавлен класс для регистрации версионированных схем ([b2b5c03](https://github.com/Infomaximum/widget-sdk/commit/b2b5c030e2ff515c19fc2ac973baed6dbfa33c36))
+* описана история схем ([bf7f55e](https://github.com/Infomaximum/widget-sdk/commit/bf7f55ede2a7bdb367ef8dab17abe76f67527c19))
+
+
+### Bug Fixes
+
+* обработано значение по умолчанию для действий по клику внутри показателей ([afa64df](https://github.com/Infomaximum/widget-sdk/commit/afa64dfb76f6d87066bf0b2abe1d53f4896a329c))
+
 ## [7.0.0-12](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-11...v7.0.0-12) (2026-02-20)
 
 

@@ -8,57 +8,67 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [7.0.0-new-layout.6](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.5...v7.0.0-new-layout.6) (2026-03-16)
 
+## [7.0.0-15](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-14...v7.0.0-15) (2026-04-06)
 
 ### Features
 
-* реализованы функции адаптации цветов ([01eb0e2](https://github.com/Infomaximum/widget-sdk/commit/01eb0e2e2dd208fa27ea057f640b80487c0a8ba1))
+- внесены доработки в схемы фильтров ([5d70cfe](https://github.com/Infomaximum/widget-sdk/commit/5d70cfe65f30a634cb111d28f7863eec2fc7d135))
+- во внутренние вспомогательные функции добавлена функция assignPropsToFn ([1395853](https://github.com/Infomaximum/widget-sdk/commit/1395853c70ba2a7fb37d6e470990d0fb8c4f03f9))
+- добавлен API для декларирования истории схем виджетами ([b4e9358](https://github.com/Infomaximum/widget-sdk/commit/b4e935814642b23ff561dbf0b08fc022815cc6f1))
+- добавлен класс для регистрации версионированных схем ([40011be](https://github.com/Infomaximum/widget-sdk/commit/40011bedf509e976744bac36d51e8fd3a5addc0c))
+- описана история схем ([cdf21d5](https://github.com/Infomaximum/widget-sdk/commit/cdf21d5939cfd24525669a4322413fddb459bc4c))
+
+### Bug Fixes
+
+- обработано значение по умолчанию для действий по клику внутри показателей ([df27b1c](https://github.com/Infomaximum/widget-sdk/commit/df27b1cb9caf42f17ef932b6d98645fe033cfe0c))
+
+## [7.0.0-14](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-13...v7.0.0-14) (2026-03-27)
+
+### Features
+
+- реализованы функции адаптации цветов ([01eb0e2](https://github.com/Infomaximum/widget-sdk/commit/01eb0e2e2dd208fa27ea057f640b80487c0a8ba1))
 
 ## [7.0.0-new-layout.5](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.4...v7.0.0-new-layout.5) (2026-03-11)
 
 ## [7.0.0-new-layout.4](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.3...v7.0.0-new-layout.4) (2026-03-11)
 
-
 ### ⚠ BREAKING CHANGES
 
-* Требуется поддержка в виджетах
+- Требуется поддержка в виджетах
 
 ### Features
 
-* добавлен тип фильтрации в контекст образа ([5421745](https://github.com/Infomaximum/widget-sdk/commit/54217452772fddf6703f28e2f60162a098fa5817))
-* удалены  WidgetPresetSettings ([1a5fe99](https://github.com/Infomaximum/widget-sdk/commit/1a5fe99228b4bc7e6b874758f312a4d6f8a3140c))
+- добавлен тип фильтрации в контекст образа ([5421745](https://github.com/Infomaximum/widget-sdk/commit/54217452772fddf6703f28e2f60162a098fa5817))
+- удалены WidgetPresetSettings ([1a5fe99](https://github.com/Infomaximum/widget-sdk/commit/1a5fe99228b4bc7e6b874758f312a4d6f8a3140c))
 
 ## [7.0.0-new-layout.3](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.2...v7.0.0-new-layout.3) (2026-02-27)
 
-
 ### Features
 
-* отказ от настроек backgroundInEdit и spacing в темах ([ae5dc49](https://github.com/Infomaximum/widget-sdk/commit/ae5dc49bede1aefcd4f65692cb596810a2692a69))
+- отказ от настроек backgroundInEdit и spacing в темах ([ae5dc49](https://github.com/Infomaximum/widget-sdk/commit/ae5dc49bede1aefcd4f65692cb596810a2692a69))
 
 ## [7.0.0-new-layout.2](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.1...v7.0.0-new-layout.2) (2026-02-20)
 
-
 ### Features
 
-* в настройки виджета добавлен цвет фона ([00ad777](https://github.com/Infomaximum/widget-sdk/commit/00ad7777d201918048b0610016751acf7b5c28e2))
+- в настройки виджета добавлен цвет фона ([00ad777](https://github.com/Infomaximum/widget-sdk/commit/00ad7777d201918048b0610016751acf7b5c28e2))
 
 ## [7.0.0-new-layout.1](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-12...v7.0.0-new-layout.1) (2026-02-20)
 
-
 ### Features
 
-* повышена apiVersion ([5adcca1](https://github.com/Infomaximum/widget-sdk/commit/5adcca17c14c746b20f0ca6eb3ea1d524d6a47a4))
-* удалены отступы из темы ([b840210](https://github.com/Infomaximum/widget-sdk/commit/b8402106f85794f19d86d255558f81fe8e3a007c))
+- повышена apiVersion ([5adcca1](https://github.com/Infomaximum/widget-sdk/commit/5adcca17c14c746b20f0ca6eb3ea1d524d6a47a4))
+- удалены отступы из темы ([b840210](https://github.com/Infomaximum/widget-sdk/commit/b8402106f85794f19d86d255558f81fe8e3a007c))
 
 ## [7.0.0-new-layout.0](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-11...v7.0.0-new-layout.0) (2026-02-16)
 
-
 ### ⚠ BREAKING CHANGES
 
-* отступы больше нельзя задавать в виджетах
+- отступы больше нельзя задавать в виджетах
 
 ### Features
 
-* удалены отступы из настроек виджетов ([b5f1797](https://github.com/Infomaximum/widget-sdk/commit/b5f17973ee872c4d31b0fd07babc29ca83b1b72f))
+- удалены отступы из настроек виджетов ([b5f1797](https://github.com/Infomaximum/widget-sdk/commit/b5f17973ee872c4d31b0fd07babc29ca83b1b72f))
 
 ## [7.0.0-new-layout.7](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-new-layout.6...v7.0.0-new-layout.7) (2026-03-25)
 

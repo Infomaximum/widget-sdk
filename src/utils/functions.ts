@@ -53,3 +53,11 @@ export const clamp = (value: number, min: number, max: number): number => {
 
   return value;
 };
+
+/** Добавляет свойства к функции */
+export function assignPropsToFn<
+  F extends (...args: any[]) => any,
+  P extends Record<string, unknown>,
+>(fn: F, props: P): F & P {
+  return Object.assign(fn, props) as F & P;
+}

@@ -1,6 +1,7 @@
 import { clamp } from "../../utils/functions";
 import type { TRGBTuple } from "../types";
-import { hexToRgb, rgbToHex } from ".";
+import { hexToRgb } from "./hexToRgb";
+import { rgbToHex } from "./rgbToHex";
 
 const lerp = (a: number, b: number, t: number): number => a + (b - a) * t;
 

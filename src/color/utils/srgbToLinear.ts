@@ -1,4 +1,4 @@
-import { RGB_MAX } from "../consts";
+export const RGB_MAX = 255;
 
 export const SRGB_GAMMA = 2.4;
 export const SRGB_THRESHOLD = 0.03928;

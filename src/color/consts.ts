@@ -1,11 +1,3 @@
-// RGB
-export const RGB_MAX = 255;
-
-export const MIN_CONTRAST = 3.2;
-export const MAX_ITER = 10;
-export const DARKEN = 0.95;
-export const LIGHTEN = 1.35;
-
 export const colors = [
   "#222F3E",
   "#00D2D3",

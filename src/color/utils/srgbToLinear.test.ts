@@ -1,5 +1,5 @@
-import { RGB_MAX } from "../consts";
 import {
+  RGB_MAX,
   SRGB_GAMMA,
   srgbToLinear,
   SRGB_THRESHOLD,

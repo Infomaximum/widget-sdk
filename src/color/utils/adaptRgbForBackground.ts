@@ -1,8 +1,12 @@
-import { LIGHTEN, DARKEN, MAX_ITER, MIN_CONTRAST } from "../consts";
 import type { TRGBTuple } from "../types";
 import { contrast } from "./contrast";
 import { luminance } from "./luminance";
 import { scaleRgb } from "./scaleRgb";
+
+export const MIN_CONTRAST = 3.2;
+const MAX_ITER = 10;
+const DARKEN = 0.95;
+const LIGHTEN = 1.35;
 
 /**
  * универсальная функция адаптации цвета к фону

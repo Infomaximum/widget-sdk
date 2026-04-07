@@ -1,6 +1,10 @@
-import { adaptRgbForBackground, hexToRgb, rgbToHex } from "./utils";
+import { adaptRgbForBackground } from "./utils/adaptRgbForBackground";
+import { hexToRgb } from "./utils/hexToRgb";
+import { rgbToHex } from "./utils/rgbToHex";
 
 /**
+ * @deprecated ожидается решение со стороны проектирования
+ *
  * Адаптирует цвет для обеспечения минимального контраста с фоном
  * Итеративно осветляет или затемняет цвет до тех пор, пока не достигнет требуемого контраста
  *
@@ -11,7 +15,7 @@ import { adaptRgbForBackground, hexToRgb, rgbToHex } from "./utils";
  *
  * @returns HEX цвет с достаточным контрастом
  */
-export const adaptColorForBackground = (colorHex: string, backgroundHex: string): string => {
+const adaptColorForBackground = (colorHex: string, backgroundHex: string): string => {
   const color = hexToRgb(colorHex);
   const bg = hexToRgb(backgroundHex);
 

@@ -1,6 +1,7 @@
-import { adaptRgbForBackground, contrast, luminance } from "../utils";
 import type { TRGBTuple } from "../types";
-import { MIN_CONTRAST } from "../consts";
+import { adaptRgbForBackground, MIN_CONTRAST } from "./adaptRgbForBackground";
+import { contrast } from "./contrast";
+import { luminance } from "./luminance";
 
 describe("adaptRgbListForBackground", () => {
   const black: TRGBTuple = [0, 0, 0];

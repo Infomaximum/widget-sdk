@@ -1,7 +1,10 @@
-import { DARKEN, LIGHTEN, MAX_ITER, MIN_CONTRAST } from "./consts";
-import { adaptRgbForBackground, hexToRgb, rgbToHex } from "./utils";
+import { adaptRgbForBackground } from "./utils/adaptRgbForBackground";
+import { hexToRgb } from "./utils/hexToRgb";
+import { rgbToHex } from "./utils/rgbToHex";
 
 /**
+ * @deprecated ожидается решение со стороны проектирования
+ *
  * Адаптирует цвета начала и конца градиента для обеспечения минимального контраста с фоном
  * Итеративно осветляет или затемняет градиент до тех пор, пока оба конца не достигнут требуемого контраста
  *
@@ -9,7 +12,7 @@ import { adaptRgbForBackground, hexToRgb, rgbToHex } from "./utils";
  * @param endHex цвет конца градиента
  * @param bgHex цвет фона
  */
-export const adaptGradientEdges = (
+const adaptGradientEdges = (
   startHex: string,
   endHex: string,
   bgHex: string

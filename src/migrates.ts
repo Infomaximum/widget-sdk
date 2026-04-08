@@ -51,9 +51,13 @@ export interface IWidgetStruct<Settings extends IBaseWidgetSettings = IBaseWidge
 
 export type TMigrateProcessor<T extends TMigrationStruct> = (struct: T) => void;
 
+/** Контекст шага миграции виджета */
 export interface IMigrateContext {
+  /** Целевая системная версия */
   apiVersion: TApiVersion;
+  /** Целевая локальная версия виджета */
   localApiVersion?: TVersion;
+  /** Начальный тип виджета (актуальный перед миграцией) */
   type: string | undefined;
 }
 

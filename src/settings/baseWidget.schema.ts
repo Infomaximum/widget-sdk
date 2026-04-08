@@ -30,6 +30,14 @@ export const AutoIdentifiedArrayItemSchema = SchemaRegistry.define({
   },
 });
 
+export const WidgetFilterModeSchema = SchemaRegistry.define({
+  key: "WidgetFilterMode",
+  latestVersion: "19",
+  history: {
+    "19": (z: TZod) => z.enum(EWidgetFilterMode).default(EWidgetFilterMode.DEFAULT),
+  },
+});
+
 export const BaseWidgetSettingsSchema = SchemaRegistry.define({
   key: "BaseWidgetSettings",
   latestVersion: "19",
@@ -59,7 +67,12 @@ export const BaseWidgetSettingsSchema = SchemaRegistry.define({
 
     return {
       "17": v17,
-      "19": (z: TZod) => v17(z).omit({ paddings: true }),
+      "19": (z: TZod) =>
+        v17(z)
+          .omit({ paddings: true })
+          .extend({
+            filterMode: WidgetFilterModeSchema.forVersion("19")(z),
+          }),
     };
   },
 });

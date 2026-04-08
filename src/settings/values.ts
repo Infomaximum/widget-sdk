@@ -3,7 +3,13 @@
 import type { TSchemaType } from "..";
 import type { DisplayConditionSchema, RangeSchema } from "./values.schema";
 
+export enum EIgnoreFilterMode {
+  ENABLE = "ENABLE",
+  DISABLED = "DISABLED",
+}
+
 export enum EWidgetFilterMode {
+  INHERITED = "INHERITED",
   DEFAULT = "DEFAULT",
   SINGLE = "SINGLE",
   DISABLED = "DISABLED",

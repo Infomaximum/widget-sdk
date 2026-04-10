@@ -57,14 +57,6 @@ export const NameNullableSchema = SchemaRegistry.define({
   },
 });
 
-/**
- * Перечисление системных типов сущностей в схеме настроек виджетов.
- * @note при расширении лучше положить на более общий уровень.
- */
-enum EEntity {
-  formula = "formula",
-}
-
 /** Схема формулы */
 export const FormulaSchema = SchemaRegistry.define({
   key: "Formula",
@@ -84,6 +76,6 @@ export const FormulaNullableSchema = SchemaRegistry.define({
   key: "FormulaNullable",
   latestVersion: "17",
   history: {
-    "17": (z: TZod) => z.string().nullable().default(null),
+    "17": (z: TZod) => FormulaSchema.forVersion("17")(z).nullable().default(null),
   },
 });

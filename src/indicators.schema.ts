@@ -1,11 +1,14 @@
-import { AutoIdentifiedArrayItemSchema } from "./settings/baseWidget.schema";
+import {
+  AutoIdentifiedArrayItemSchema,
+  WidgetFilterModeSchema,
+} from "./settings/baseWidget.schema";
 import {
   EEventAppearances,
   EFormatOrFormattingMode,
   EOuterAggregation,
   EWidgetIndicatorValueModes,
 } from "./indicators";
-import { EMarkdownDisplayMode } from "./settings/values";
+import { EMarkdownDisplayMode, EWidgetFilterMode } from "./settings/values";
 import {
   EFormattingPresets,
   EFormatTypes,
@@ -214,9 +217,9 @@ export const WidgetIndicatorTimeValueSchema = SchemaRegistry.define({
 
 export const WidgetDimensionSchema = SchemaRegistry.define({
   key: "WidgetDimension",
-  latestVersion: "17",
-  history: {
-    "17": (z: TZod) =>
+  latestVersion: "19",
+  get history() {
+    const v17 = (z: TZod) =>
       WidgetColumnIndicatorSchema.forVersion("17")(z).extend({
         value: z
           .discriminatedUnion("mode", [
@@ -228,23 +231,34 @@ export const WidgetDimensionSchema = SchemaRegistry.define({
           ])
           .optional(),
         hideEmptyValues: z.boolean().default(false),
-      }),
+      });
+
+    return {
+      "17": v17,
+      "19": (z: TZod) =>
+        v17(z).extend({
+          filterMode: WidgetFilterModeSchema.forVersion("19")(z).default(
+            EWidgetFilterMode.INHERITED
+          ),
+        }),
+    };
   },
 });
 
 export const WidgetDimensionInHierarchySchema = SchemaRegistry.define({
   key: "WidgetDimensionInHierarchy",
-  latestVersion: "17",
+  latestVersion: "19",
   history: {
     "17": (z: TZod) => WidgetDimensionSchema.forVersion("17")(z).omit({ displayCondition: true }),
+    "19": (z: TZod) => WidgetDimensionSchema.forVersion("19")(z).omit({ displayCondition: true }),
   },
 });
 
 export const WidgetDimensionHierarchySchema = SchemaRegistry.define({
   key: "WidgetDimensionHierarchy",
-  latestVersion: "17",
-  history: {
-    "17": <D extends TSchemaType<typeof WidgetDimensionInHierarchySchema>>(
+  latestVersion: "19",
+  get history() {
+    const v17 = <D extends TSchemaType<typeof WidgetDimensionInHierarchySchema>>(
       z: TZod,
       dimensionSchema: ZodType<D>
     ) =>
@@ -253,7 +267,12 @@ export const WidgetDimensionHierarchySchema = SchemaRegistry.define({
         // Для иерархии является дискриминатором, для него нельзя задавать дефолтное значение.
         hierarchyDimensions: z.array(dimensionSchema),
         displayCondition: DisplayConditionSchema.forVersion("17")(z),
-      }),
+      });
+
+    return {
+      "17": v17,
+      "19": v17,
+    };
   },
 });
 

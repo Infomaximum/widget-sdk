@@ -13,7 +13,7 @@ import {
   EFormattingPresets,
   EFormatTypes,
   EMeasureInnerTemplateNames,
-  type TSchemaType,
+  type TSchemaTypeForVersion,
   type TZod,
 } from ".";
 import { ActionsOnClickSchema } from "./actions.schema";
@@ -258,10 +258,7 @@ export const WidgetDimensionHierarchySchema = SchemaRegistry.define({
   key: "WidgetDimensionHierarchy",
   latestVersion: "19",
   get history() {
-    const v17 = <D extends TSchemaType<typeof WidgetDimensionInHierarchySchema>>(
-      z: TZod,
-      dimensionSchema: ZodType<D>
-    ) =>
+    const buildHierarchy = <D>(z: TZod, dimensionSchema: ZodType<D>) =>
       AutoIdentifiedArrayItemSchema.forVersion("17")(z).extend({
         name: z.string(),
         // Для иерархии является дискриминатором, для него нельзя задавать дефолтное значение.
@@ -269,9 +266,15 @@ export const WidgetDimensionHierarchySchema = SchemaRegistry.define({
         displayCondition: DisplayConditionSchema.forVersion("17")(z),
       });
 
+    const forVersionedBuilder = <const V extends "17" | "19">(version: V) =>
+      <D extends TSchemaTypeForVersion<typeof WidgetDimensionInHierarchySchema, V>>(
+        z: TZod,
+        dimensionSchema: ZodType<D>
+      ) => buildHierarchy(z, dimensionSchema);
+
     return {
-      "17": v17,
-      "19": v17,
+      "17": forVersionedBuilder("17"),
+      "19": forVersionedBuilder("19"),
     };
   },
 });

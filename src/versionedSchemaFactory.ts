@@ -1,5 +1,5 @@
 import { assignPropsToFn, mapValues } from "./utils/functions";
-import type { ISchemaFactory, TZod } from "./zod.types";
+import type { ISchemaFactory, TSchemaType, TZod } from "./zod.types";
 
 /**
  * Версионированная схема.
@@ -172,3 +172,19 @@ export class VersionedSchemaFactory {
     return schema as TVersionedSchema<THistory, TLatestVersion>;
   }
 }
+
+/**
+ * Извлекает TypeScript-тип схемы для конкретной версии версионированной схемы.
+ *
+ * @example
+ * // Получить тип WidgetDimensionSchema версии "17"
+ * type TDimV17 = TSchemaTypeForVersion<typeof WidgetDimensionSchema, "17">;
+ */
+export type TSchemaTypeForVersion<
+  TSchema extends TVersionedSchema,
+  TVersion extends string,
+> = TSchema extends TVersionedSchema<infer THistory, any>
+  ? TVersion extends keyof THistory
+    ? TSchemaType<THistory[TVersion]>
+    : never
+  : never;

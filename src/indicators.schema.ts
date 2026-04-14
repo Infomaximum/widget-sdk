@@ -266,11 +266,13 @@ export const WidgetDimensionHierarchySchema = SchemaRegistry.define({
         displayCondition: DisplayConditionSchema.forVersion("17")(z),
       });
 
-    const forVersionedBuilder = <const V extends "17" | "19">(version: V) =>
+    const forVersionedBuilder =
+      <const V extends "17" | "19">(version: V) =>
       <D extends TSchemaTypeForVersion<typeof WidgetDimensionInHierarchySchema, V>>(
         z: TZod,
         dimensionSchema: ZodType<D>
-      ) => buildHierarchy(z, dimensionSchema);
+      ) =>
+        buildHierarchy(z, dimensionSchema);
 
     return {
       "17": forVersionedBuilder("17"),

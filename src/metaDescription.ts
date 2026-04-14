@@ -4,6 +4,7 @@ import type { IGlobalContext } from "./widgetContext";
 import type { IAutoIdentifiedArrayItem, IBaseWidgetSettings } from "./settings/baseWidget";
 import type { ICalculatorFactory } from "./calculators";
 import type { EWidgetFilterMode } from "./settings/values";
+import type { IViewContext } from "./viewContext";
 import type {
   EDimensionAggregationTemplateName,
   EDimensionTemplateNames,
@@ -333,6 +334,8 @@ export interface IPanelDescription<
   >[];
   /** Доступные для выбора режимы фильтрации (во вкладке настроек фильтрации) */
   filtrationModes?: EWidgetFilterMode[];
+  /** Текущий режим фильтрации образа — используется для отображения в опции «Из образа (...)» */
+  viewFilterMode?: EWidgetFilterMode;
 }
 
 export interface IWidgetProcess {
@@ -368,7 +371,9 @@ export interface IPanelDescriptionCreator<
     /** Настройки виджета */
     settings: Settings,
     /** Фабрика вычислителей */
-    calculatorFactory: ICalculatorFactory
+    calculatorFactory: ICalculatorFactory,
+    /** Контекст образа — используется для динамического отображения параметров образа в настройках */
+    viewContext: IViewContext
   ): IPanelDescription<Settings, CustomControlsSpecMap>;
 }
 

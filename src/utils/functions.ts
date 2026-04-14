@@ -54,6 +54,15 @@ export const clamp = (value: number, min: number, max: number): number => {
   return value;
 };
 
+export function mapValues<T extends Record<string, unknown>, U>(
+  obj: T,
+  fn: (value: T[keyof T], key: string) => U
+): Record<keyof T, U> {
+  return Object.fromEntries(
+    Object.entries(obj).map(([key, value]) => [key, fn(value as T[keyof T], key)])
+  ) as Record<keyof T, U>;
+}
+
 /** Добавляет свойства к функции */
 export function assignPropsToFn<
   F extends (...args: any[]) => any,

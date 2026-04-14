@@ -124,6 +124,83 @@ describe("VersionedSchemaFactory", () => {
   });
 });
 
+describe("кеширование результатов фабрики", () => {
+  const zStub = { object: (v: any) => ({ value: v }) } as any;
+
+  test("повторный вызов schema(z) возвращает тот же объект", () => {
+    const schema = VersionedSchemaFactory.build({
+      latestVersion: "1",
+      history: { "1": (z: any) => z.object({ v: 1 }) },
+    });
+
+    expect(schema(zStub)).toBe(schema(zStub));
+  });
+
+  test("повторный вызов forVersion()(z) возвращает тот же объект", () => {
+    const schema = VersionedSchemaFactory.build({
+      latestVersion: "2",
+      history: {
+        "1": (z: any) => z.object({ v: 1 }),
+        "2": (z: any) => z.object({ v: 2 }),
+      },
+    });
+
+    expect(schema.forVersion("1")(zStub)).toBe(schema.forVersion("1")(zStub));
+  });
+
+  test("повторные forVersion('X') возвращают одну и ту же фабрику", () => {
+    const schema = VersionedSchemaFactory.build({
+      latestVersion: "1",
+      history: { "1": (z: any) => z.object({ v: 1 }) },
+    });
+
+    expect(schema.forVersion("1")).toBe(schema.forVersion("1"));
+  });
+
+  test("фабрика вызывается ровно один раз при нескольких schema(z)", () => {
+    const factory = jest.fn((z: any) => z.object({ v: 1 }));
+
+    const schema = VersionedSchemaFactory.build({
+      latestVersion: "1",
+      history: { "1": factory },
+    });
+
+    schema(zStub);
+    schema(zStub);
+    schema(zStub);
+
+    expect(factory).toHaveBeenCalledTimes(1);
+  });
+
+  test("фабрика вызывается ровно один раз при нескольких forVersion()(z)", () => {
+    const factory = jest.fn((z: any) => z.object({ v: 1 }));
+
+    const schema = VersionedSchemaFactory.build({
+      latestVersion: "1",
+      history: { "1": factory },
+    });
+
+    schema.forVersion("1")(zStub);
+    schema.forVersion("1")(zStub);
+
+    expect(factory).toHaveBeenCalledTimes(1);
+  });
+
+  test("вызовы с restArgs не кешируются", () => {
+    const factory = jest.fn((z: any, n: number) => z.object({ n }));
+
+    const schema = VersionedSchemaFactory.build({
+      latestVersion: "1",
+      history: { "1": factory },
+    });
+
+    schema(zStub, 1);
+    schema(zStub, 2);
+
+    expect(factory).toHaveBeenCalledTimes(2);
+  });
+});
+
 describe("findClosestVersion", () => {
   const findClosestVersion = VersionedSchemaFactory["findClosestVersion"];
   const compare = (a: number, b: number) => a - b;

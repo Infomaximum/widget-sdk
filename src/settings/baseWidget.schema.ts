@@ -67,12 +67,7 @@ export const BaseWidgetSettingsSchema = SchemaRegistry.define({
 
     return {
       "17": v17,
-      "19": (z: TZod) =>
-        v17(z)
-          .omit({ paddings: true })
-          .extend({
-            filterMode: WidgetFilterModeSchema.forVersion("19")(z),
-          }),
+      "19": (z: TZod) => v17(z).omit({ paddings: true, filterMode: true }),
     };
   },
 });

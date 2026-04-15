@@ -334,8 +334,6 @@ export interface IPanelDescription<
   >[];
   /** Доступные для выбора режимы фильтрации (во вкладке настроек фильтрации) */
   filtrationModes?: EWidgetFilterMode[];
-  /** Текущий режим фильтрации образа — используется для отображения в опции «Из образа (...)» */
-  viewFilterMode?: EWidgetFilterMode;
 }
 
 export interface IWidgetProcess {
@@ -365,16 +363,16 @@ export interface IPanelDescriptionCreator<
   Settings extends IBaseWidgetSettings,
   CustomControlsSpecMap extends TControlsSpecMap = {},
 > {
-  (
+  (args: {
     /** Глобальный контекст */
-    context: IGlobalContext,
+    context: IGlobalContext;
     /** Настройки виджета */
-    settings: Settings,
+    settings: Settings;
     /** Фабрика вычислителей */
-    calculatorFactory: ICalculatorFactory,
+    calculatorFactory: ICalculatorFactory;
     /** Контекст образа — используется для динамического отображения параметров образа в настройках */
     viewContext: IViewContext
-  ): IPanelDescription<Settings, CustomControlsSpecMap>;
+}): IPanelDescription<Settings, CustomControlsSpecMap>;
 }
 
 //todo: заполнить в рамках BI-13985

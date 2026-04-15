@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-2603.1](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-2603.0...v7.0.0-2603.1) (2026-04-15)
+
+
+### Features
+
+* добавлена вспомогательная функция mapValues (для внутреннего использования) ([6673ff9](https://github.com/Infomaximum/widget-sdk/commit/6673ff97aece9e50a831a1b96540f03de7f0c354))
+* добавлено кеширование результатов вызова фабрик схем ([23698e3](https://github.com/Infomaximum/widget-sdk/commit/23698e3c53924dc41efd2d56c96c0a234217f79b))
+
 ## [7.0.0-2603.0](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-14...v7.0.0-2603.0) (2026-04-06)
 
 

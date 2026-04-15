@@ -1,4 +1,4 @@
-import { assignPropsToFn } from "./utils/functions";
+import { assignPropsToFn, mapValues } from "./utils/functions";
 import type { ISchemaFactory, TZod } from "./zod.types";
 
 /**
@@ -96,6 +96,31 @@ export class VersionedSchemaFactory {
       ((z: TZod, ...restArgs) => schemaFactory(z, ...restArgs).meta(meta)) as T;
   }
 
+  /**
+   * Оборачивает фабрику схемы, добавляя кеширование результата.
+   *
+   * Предполагается, что `z` — синглтон (один экземпляр на всё приложение),
+   * поэтому достаточно закешировать единственный результат.
+   *
+   * Вызовы с дополнительными аргументами (restArgs) не кешируются,
+   * так как результат может зависеть от их значений.
+   */
+  private static withCache<T extends ISchemaFactory>(schemaFactory: T): T {
+    let cached: ReturnType<T> | undefined;
+
+    return ((z: TZod, ...restArgs: unknown[]) => {
+      if (restArgs.length > 0) {
+        return schemaFactory(z, ...restArgs);
+      }
+
+      if (cached === undefined) {
+        cached = schemaFactory(z) as ReturnType<T>;
+      }
+
+      return cached;
+    }) as T;
+  }
+
   /** Построить версионированную схему */
   public static build<
     THistory extends Record<string, ISchemaFactory>,
@@ -114,29 +139,33 @@ export class VersionedSchemaFactory {
       throw new Error("Не найдено записи в 'history' по 'latestVersion'");
     }
 
-    const map = this.annotateSchema(meta);
+    const annotate = this.annotateSchema(meta);
 
-    const schema = assignPropsToFn(map(latestFactory), {
+    const preparedHistory = mapValues(history, (factory) =>
+      this.withCache(annotate(factory))
+    ) as THistory;
+
+    const schema = assignPropsToFn(preparedHistory[latestVersion], {
       forVersion: (targetVersion: string | null | undefined): THistory[keyof THistory] => {
         if (targetVersion === null || targetVersion === undefined) {
-          return map(latestFactory);
+          return preparedHistory[latestVersion];
         }
 
-        if (targetVersion in history) {
-          return map(history[targetVersion] as THistory[keyof THistory]);
+        if (targetVersion in preparedHistory) {
+          return preparedHistory[targetVersion] as THistory[keyof THistory];
         }
 
         const closestVersion = this.findClosestVersion(
-          Object.keys(history),
+          Object.keys(preparedHistory),
           targetVersion,
           VersionedSchemaFactory.compareVersions
         );
 
-        if (closestVersion === undefined || !(closestVersion in history)) {
+        if (closestVersion === undefined || !(closestVersion in preparedHistory)) {
           throw new Error(`Не найдено подходящей схемы для версии '${targetVersion}'`);
         }
 
-        return map(history[closestVersion] as THistory[keyof THistory]);
+        return preparedHistory[closestVersion] as THistory[keyof THistory];
       },
     });
 

@@ -266,6 +266,8 @@ export const WidgetDimensionHierarchySchema = SchemaRegistry.define({
         displayCondition: DisplayConditionSchema.forVersion("17")(z),
       });
 
+    // Тело buildHierarchy одинаково для v17/v19 — версии нужны только для ограничения типа D,
+    // чтобы вызывающий код мог передавать dimension-схему нужной версии без ручного приведения.
     const forVersionedBuilder =
       <const V extends "17" | "19">(version: V) =>
       <D extends TSchemaTypeForVersion<typeof WidgetDimensionInHierarchySchema, V>>(

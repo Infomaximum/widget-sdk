@@ -8,6 +8,12 @@ export enum EIgnoreFilterMode {
   DISABLED = "DISABLED",
 }
 
+export enum EWidgetIgnoreFilterMode {
+  DISABLED = "DISABLED",
+  ENABLE = "ENABLE",
+  INHERITED = "INHERITED",
+}
+
 export enum EWidgetFilterMode {
   INHERITED = "INHERITED",
   DEFAULT = "DEFAULT",

@@ -371,8 +371,8 @@ export interface IPanelDescriptionCreator<
     /** Фабрика вычислителей */
     calculatorFactory: ICalculatorFactory;
     /** Контекст образа — используется для динамического отображения параметров образа в настройках */
-    viewContext: IViewContext
-}): IPanelDescription<Settings, CustomControlsSpecMap>;
+    viewContext: IViewContext;
+  }): IPanelDescription<Settings, CustomControlsSpecMap>;
 }
 
 //todo: заполнить в рамках BI-13985

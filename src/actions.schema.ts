@@ -6,12 +6,15 @@ import {
   EAutoUpdateMode,
   EDataModelOption,
   EDrawerPlacement,
+  ESortDirection,
+  ESortingMode,
   EViewMode,
   EViewOpenIn,
   EWidgetActionInputMethod,
   FormulaSchema,
   KeyNullableSchema,
   NameNullableSchema,
+  SortingValueSchema,
   type TZod,
 } from ".";
 import { ExtendedFormulaFilterValueSchema } from "./filtration.schema";
@@ -167,6 +170,12 @@ export const ParameterFromDynamicListSchema = SchemaRegistry.define({
         insertAnyValues: z.boolean().default(false),
         validation: FormulaSchema.forVersion("17")(z),
         acceptEmptyValue: z.boolean().default(false),
+        sorting: SortingValueSchema.forVersion("17")(z)
+          .default({
+            direction: ESortDirection.ascend,
+            mode: ESortingMode.BY_VALUES,
+          })
+          .optional(),
       }),
   },
 });

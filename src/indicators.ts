@@ -17,7 +17,7 @@ import type {
   WidgetSortingIndicatorSchema,
 } from "./indicators.schema";
 import type { TNullable } from "./utilityTypes";
-import type { TSchemaType } from ".";
+import type { TSchemaType, TSortingValue } from ".";
 
 export enum EWidgetIndicatorType {
   MEASURE = "MEASURE",
@@ -208,6 +208,7 @@ export interface IWidgetDynamicListVariable extends IBaseWidgetVariable {
   filters: TExtendedFormulaFilterValue[];
   /** Флаг применения фильтров отчета для отображаемого списка */
   considerFilters: boolean;
+  sorting?: TSortingValue;
 }
 
 export interface IWidgetColumnListVariable extends IBaseWidgetVariable {

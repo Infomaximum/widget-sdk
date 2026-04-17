@@ -2,7 +2,7 @@ import type { EWidgetActionInputMethod, IActionRunScript, TActionsOnClick } from
 import type { ESimpleDataType } from "./data";
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormattingPresets, EFormatTypes } from "@infomaximum/bi-formatting";
-import { EActionTypes, EColorMode, type TColor, type TSchemaType } from ".";
+import { EActionTypes, EColorMode, type TColor, type TSchemaType, type TSortingValue } from ".";
 import type { FormatSchema, FormattingSchema } from "./indicators.schema";
 import type {
   EOuterAggregation,
@@ -109,6 +109,8 @@ export enum EControlType {
    * Ввод цветов для событий процесса.
    */
   eventsColor = "eventsColor",
+  /** Сортировка */
+  sorting = "sorting",
 }
 
 /**
@@ -137,7 +139,8 @@ type TEmbeddedControlSpec =
   | IColorPickerControl
   | ITagSetControl
   | IEventsPickerControl
-  | IEventsColorControl;
+  | IEventsColorControl
+  | ISortingControl;
 
 /**
  * Registry спецификаций встроенных контролов, автоматически выведенный
@@ -547,4 +550,10 @@ export interface IEventsColorControl {
     defaultColor?: ((eventName: string) => string) | string;
     processName: string;
   };
+}
+
+export interface ISortingControl {
+  type: EControlType.sorting;
+  value: TSortingValue;
+  props: {};
 }

@@ -4,6 +4,7 @@ import type { IGlobalContext } from "./widgetContext";
 import type { IAutoIdentifiedArrayItem, IBaseWidgetSettings } from "./settings/baseWidget";
 import type { ICalculatorFactory } from "./calculators";
 import type { EWidgetFilterMode } from "./settings/values";
+import type { IViewContext } from "./viewContext";
 import type {
   EDimensionAggregationTemplateName,
   EDimensionTemplateNames,
@@ -362,14 +363,16 @@ export interface IPanelDescriptionCreator<
   Settings extends IBaseWidgetSettings,
   CustomControlsSpecMap extends TControlsSpecMap = {},
 > {
-  (
+  (args: {
     /** Глобальный контекст */
-    context: IGlobalContext,
+    context: IGlobalContext;
     /** Настройки виджета */
-    settings: Settings,
+    settings: Settings;
     /** Фабрика вычислителей */
-    calculatorFactory: ICalculatorFactory
-  ): IPanelDescription<Settings, CustomControlsSpecMap>;
+    calculatorFactory: ICalculatorFactory;
+    /** Контекст образа — используется для динамического отображения параметров образа в настройках */
+    viewContext: IViewContext;
+  }): IPanelDescription<Settings, CustomControlsSpecMap>;
 }
 
 //todo: заполнить в рамках BI-13985

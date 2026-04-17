@@ -1,4 +1,11 @@
-import { ColorSchema, EFontWeight, EWidgetFilterMode, themed, type TZod } from "..";
+import {
+  ColorSchema,
+  EFontWeight,
+  EWidgetFilterMode,
+  EWidgetIgnoreFilterMode,
+  themed,
+  type TZod,
+} from "..";
 import { ActionButtonSchema } from "../actions.schema";
 import { SettingsFilterSchema } from "../filtration.schema";
 import { MarkdownMeasureSchema, WidgetSortingIndicatorSchema } from "../indicators.schema";
@@ -27,6 +34,29 @@ export const AutoIdentifiedArrayItemSchema = SchemaRegistry.define({
           .default(-1)
           .transform((currentId) => (currentId === -1 ? id++ : currentId)),
       }),
+  },
+});
+
+export const WidgetIgnoreFilterModeSchema = SchemaRegistry.define({
+  key: "WidgetIgnoreFilterMode",
+  latestVersion: "19",
+  history: {
+    "19": (z: TZod) =>
+      z
+        .union([
+          z.literal(true).transform(() => EWidgetIgnoreFilterMode.ENABLE),
+          z.literal(false).transform(() => EWidgetIgnoreFilterMode.DISABLED),
+          z.enum(EWidgetIgnoreFilterMode),
+        ])
+        .default(EWidgetIgnoreFilterMode.INHERITED),
+  },
+});
+
+export const WidgetFilterModeSchema = SchemaRegistry.define({
+  key: "WidgetFilterMode",
+  latestVersion: "19",
+  history: {
+    "19": (z: TZod) => z.enum(EWidgetFilterMode).default(EWidgetFilterMode.INHERITED),
   },
 });
 
@@ -59,7 +89,10 @@ export const BaseWidgetSettingsSchema = SchemaRegistry.define({
 
     return {
       "17": v17,
-      "19": (z: TZod) => v17(z).omit({ paddings: true }),
+      "19": (z: TZod) =>
+        v17(z)
+          .omit({ paddings: true, filterMode: true })
+          .extend({ ignoreFilters: WidgetIgnoreFilterModeSchema.forVersion("19")(z) }),
     };
   },
 });

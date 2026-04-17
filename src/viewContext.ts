@@ -5,4 +5,5 @@ import type { EWidgetFilterMode } from "./settings/values";
 export interface IViewContext {
   filters: TSettingsFilter[];
   filterMode: EWidgetFilterMode;
+  disableFilter: boolean;
 }

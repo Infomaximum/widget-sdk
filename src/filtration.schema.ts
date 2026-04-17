@@ -15,6 +15,7 @@ import {
   WidgetIndicatorTimeValueSchema,
 } from "./indicators.schema";
 import { SchemaRegistry } from "./schemaRegistry";
+import { extendWithMeta } from "./utils/schemaMeta";
 
 export const FormulaFilterValueSchema = SchemaRegistry.define({
   key: "FormulaFilterValue",
@@ -68,10 +69,10 @@ export const DimensionProcessFilterSchema = SchemaRegistry.define({
     "17": (z: TZod) =>
       z.object({
         value: z.union([
-          WidgetIndicatorAggregationValueSchema.forVersion("17")(z).extend({
+          extendWithMeta(WidgetIndicatorAggregationValueSchema.forVersion("17")(z), {
             outerAggregation: z.enum(EOuterAggregation),
           }),
-          WidgetIndicatorAggregationValueSchema.forVersion("17")(z).extend({
+          extendWithMeta(WidgetIndicatorAggregationValueSchema.forVersion("17")(z), {
             innerTemplateName: z.string().optional(),
           }),
           WidgetIndicatorTimeValueSchema.forVersion("17")(z),

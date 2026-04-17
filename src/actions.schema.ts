@@ -17,13 +17,14 @@ import {
 import { ExtendedFormulaFilterValueSchema } from "./filtration.schema";
 import { SchemaRegistry } from "./schemaRegistry";
 import { AutoIdentifiedArrayItemSchema } from "./settings/baseWidget.schema";
+import { extendWithMeta } from "./utils/schemaMeta";
 
 const ActionOnClickParameterCommonSchema = SchemaRegistry.define({
   key: "ActionOnClickParameterCommon",
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      AutoIdentifiedArrayItemSchema.forVersion("17")(z).extend({
+      extendWithMeta(AutoIdentifiedArrayItemSchema.forVersion("17")(z), {
         name: z.string(),
       }),
   },
@@ -217,7 +218,7 @@ const ActionCommonSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      AutoIdentifiedArrayItemSchema.forVersion("17")(z).extend({
+      extendWithMeta(AutoIdentifiedArrayItemSchema.forVersion("17")(z), {
         name: z.string(),
       }),
   },
@@ -228,7 +229,7 @@ export const ActionDrillDownSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      ActionCommonSchema.forVersion("17")(z).extend({
+      extendWithMeta(ActionCommonSchema.forVersion("17")(z), {
         type: z.literal(EActionTypes.DRILL_DOWN),
         variables: z.array(ActionOnClickParameterSchema.forVersion("17")(z)).default([]),
       }),
@@ -240,7 +241,7 @@ export const ActionGoToURLSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      ActionCommonSchema.forVersion("17")(z).extend({
+      extendWithMeta(ActionCommonSchema.forVersion("17")(z), {
         type: z.literal(EActionTypes.OPEN_URL),
         url: z.string(),
         newWindow: z.boolean().default(true),
@@ -275,7 +276,7 @@ export const ActionRunScriptSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      ActionCommonSchema.forVersion("17")(z).extend({
+      extendWithMeta(ActionCommonSchema.forVersion("17")(z), {
         type: z.literal(EActionTypes.EXECUTE_SCRIPT),
         parameters: z.array(ActionOnClickParameterSchema.forVersion("17")(z)).default([]),
         scriptKey: z.string(),
@@ -294,7 +295,7 @@ export const ActionUpdateVariableSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      ActionCommonSchema.forVersion("17")(z).extend({
+      extendWithMeta(ActionCommonSchema.forVersion("17")(z), {
         type: z.literal(EActionTypes.UPDATE_VARIABLE),
         variables: z.array(ActionOnClickParameterSchema.forVersion("17")(z)).default([]),
       }),
@@ -335,7 +336,7 @@ const ActionOpenViewCommonSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      ActionCommonSchema.forVersion("17")(z).extend({
+      extendWithMeta(ActionCommonSchema.forVersion("17")(z), {
         type: z.literal(EActionTypes.OPEN_VIEW),
         variables: z.array(ActionOnClickParameterSchema.forVersion("17")(z)).default([]),
       }),
@@ -349,18 +350,18 @@ export const ActionOpenViewSchema = SchemaRegistry.define({
     "17": (z: TZod) =>
       z.intersection(
         z.discriminatedUnion("mode", [
-          ActionOpenViewCommonSchema.forVersion("17")(z).extend({
+          extendWithMeta(ActionOpenViewCommonSchema.forVersion("17")(z), {
             mode: z.literal(EViewMode.GENERATED_BY_SCRIPT),
             scriptKey: z.string().optional(),
             parameters: z.array(ActionOnClickParameterSchema.forVersion("17")(z)).default([]),
             displayName: z.string().default(""),
           }),
-          ActionOpenViewCommonSchema.forVersion("17")(z).extend({
+          extendWithMeta(ActionOpenViewCommonSchema.forVersion("17")(z), {
             mode: z.literal(EViewMode.EXISTED_VIEW),
             viewKey: z.string().optional(),
             parameters: z.array(ActionOnClickParameterSchema.forVersion("17")(z)).default([]),
           }),
-          ActionOpenViewCommonSchema.forVersion("17")(z).extend({
+          extendWithMeta(ActionOpenViewCommonSchema.forVersion("17")(z), {
             mode: z.literal(EViewMode.EMPTY),
             placeholderName: z.string().optional(),
             openIn: z.literal(EViewOpenIn.PLACEHOLDER),
@@ -391,7 +392,7 @@ const WidgetActionParameterCommonSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      AutoIdentifiedArrayItemSchema.forVersion("17")(z).extend({
+      extendWithMeta(AutoIdentifiedArrayItemSchema.forVersion("17")(z), {
         name: z.string(),
         displayName: z.string().default(""),
         isHidden: z.boolean().default(false),
@@ -425,7 +426,7 @@ export const WidgetActionSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      ActionCommonSchema.forVersion("17")(z).extend({
+      extendWithMeta(ActionCommonSchema.forVersion("17")(z), {
         parameters: z.array(WidgetActionParameterSchema.forVersion("17")(z)).default([]),
         type: z.literal(EActionTypes.EXECUTE_SCRIPT),
         scriptKey: z.string(),
@@ -446,7 +447,7 @@ export const ViewActionParameterSchema = SchemaRegistry.define({
   history: {
     "17": (z: TZod) =>
       z.intersection(
-        AutoIdentifiedArrayItemSchema.forVersion("17")(z).extend({ name: z.string() }),
+        extendWithMeta(AutoIdentifiedArrayItemSchema.forVersion("17")(z), { name: z.string() }),
         z.discriminatedUnion("inputMethod", [
           ParameterFromAggregationSchema.forVersion("17")(z),
           ParameterFromVariableSchema.forVersion("17")(z),
@@ -460,7 +461,7 @@ export const ViewActionSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      AutoIdentifiedArrayItemSchema.forVersion("17")(z).extend({
+      extendWithMeta(AutoIdentifiedArrayItemSchema.forVersion("17")(z), {
         name: z.string(),
         buttonType: z.enum(EActionButtonsTypes).default(EActionButtonsTypes.BASE),
         type: z.literal(EActionTypes.EXECUTE_SCRIPT).default(EActionTypes.EXECUTE_SCRIPT),
@@ -491,7 +492,7 @@ export const ActionButtonSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      AutoIdentifiedArrayItemSchema.forVersion("17")(z).extend({
+      extendWithMeta(AutoIdentifiedArrayItemSchema.forVersion("17")(z), {
         name: z.string(),
         onClick: z.array(WidgetActionSchema.forVersion("17")(z)).default([]),
         buttonType: z.enum(EActionButtonsTypes).default(EActionButtonsTypes.BASE),

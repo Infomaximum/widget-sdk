@@ -44,6 +44,7 @@ export { parseClickHouseType, EClickHouseBaseTypes } from "./clickHouseTypes";
 export * from "./theme";
 export * from "./color/color.schema";
 export * from "./utils/lifecycleRuntime";
+export * from "./utils/schemaMeta";
 export * from "./zod.types";
 export { SchemaRegistryReader } from "./schemaRegistry";
 export { VersionedSchemaFactory } from "./versionedSchemaFactory";

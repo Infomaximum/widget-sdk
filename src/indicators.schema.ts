@@ -25,13 +25,14 @@ import {
 } from "./settings/values.schema";
 import type { ZodType } from "zod";
 import { SchemaRegistry } from "./schemaRegistry";
+import { extendWithMeta, omitWithMeta } from "./utils/schemaMeta";
 
 export const WidgetIndicatorSchema = SchemaRegistry.define({
   key: "WidgetIndicator",
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      AutoIdentifiedArrayItemSchema.forVersion("17")(z).extend({
+      extendWithMeta(AutoIdentifiedArrayItemSchema.forVersion("17")(z), {
         name: z.string(),
       }),
   },
@@ -82,7 +83,7 @@ export const WidgetColumnIndicatorSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      WidgetIndicatorSchema.forVersion("17")(z).extend({
+      extendWithMeta(WidgetIndicatorSchema.forVersion("17")(z), {
         dbDataType: z.string().optional(),
         format: FormatSchema.forVersion("17")(z).optional(),
         formatting: FormattingSchema.forVersion("17")(z).optional(),
@@ -137,7 +138,7 @@ export const MeasureValueSchema = SchemaRegistry.define({
     "17": (z: TZod) =>
       z.discriminatedUnion("mode", [
         WidgetIndicatorFormulaValueSchema.forVersion("17")(z),
-        WidgetIndicatorTemplateValueSchema.forVersion("17")(z).extend({
+        extendWithMeta(WidgetIndicatorTemplateValueSchema.forVersion("17")(z), {
           innerTemplateName: z.enum(EMeasureInnerTemplateNames).optional(),
         }),
       ]),
@@ -151,7 +152,7 @@ export const DimensionValueSchema = SchemaRegistry.define({
     "17": (z: TZod) =>
       z.discriminatedUnion("mode", [
         WidgetIndicatorFormulaValueSchema.forVersion("17")(z),
-        WidgetIndicatorTemplateValueSchema.forVersion("17")(z).extend({
+        extendWithMeta(WidgetIndicatorTemplateValueSchema.forVersion("17")(z), {
           innerTemplateName: z.never().optional(),
         }),
       ]),
@@ -185,7 +186,7 @@ export const WidgetMeasureAggregationValueSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      WidgetIndicatorAggregationValueSchema.forVersion("17")(z).extend({
+      extendWithMeta(WidgetIndicatorAggregationValueSchema.forVersion("17")(z), {
         outerAggregation: z.enum(EOuterAggregation),
       }),
   },
@@ -217,11 +218,11 @@ export const WidgetDimensionSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      WidgetColumnIndicatorSchema.forVersion("17")(z).extend({
+      extendWithMeta(WidgetColumnIndicatorSchema.forVersion("17")(z), {
         value: z
           .discriminatedUnion("mode", [
             DimensionValueSchema.forVersion("17")(z),
-            WidgetIndicatorAggregationValueSchema.forVersion("17")(z).extend({
+            extendWithMeta(WidgetIndicatorAggregationValueSchema.forVersion("17")(z), {
               innerTemplateName: z.string().optional(),
             }),
             WidgetIndicatorTimeValueSchema.forVersion("17")(z),
@@ -236,7 +237,8 @@ export const WidgetDimensionInHierarchySchema = SchemaRegistry.define({
   key: "WidgetDimensionInHierarchy",
   latestVersion: "17",
   history: {
-    "17": (z: TZod) => WidgetDimensionSchema.forVersion("17")(z).omit({ displayCondition: true }),
+    "17": (z: TZod) =>
+      omitWithMeta(WidgetDimensionSchema.forVersion("17")(z), { displayCondition: true }),
   },
 });
 
@@ -248,7 +250,7 @@ export const WidgetDimensionHierarchySchema = SchemaRegistry.define({
       z: TZod,
       dimensionSchema: ZodType<D>
     ) =>
-      AutoIdentifiedArrayItemSchema.forVersion("17")(z).extend({
+      extendWithMeta(AutoIdentifiedArrayItemSchema.forVersion("17")(z), {
         name: z.string(),
         // Для иерархии является дискриминатором, для него нельзя задавать дефолтное значение.
         hierarchyDimensions: z.array(dimensionSchema),
@@ -288,7 +290,7 @@ export const WidgetIndicatorDurationValueSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      WidgetIndicatorConversionValueSchema.forVersion("17")(z).extend({
+      extendWithMeta(WidgetIndicatorConversionValueSchema.forVersion("17")(z), {
         mode: z.literal(EWidgetIndicatorValueModes.DURATION),
         templateName: z.string(),
         startEventAppearances: z.enum(EEventAppearances),
@@ -302,7 +304,7 @@ export const WidgetMeasureSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      WidgetColumnIndicatorSchema.forVersion("17")(z).extend({
+      extendWithMeta(WidgetColumnIndicatorSchema.forVersion("17")(z), {
         value: z
           .discriminatedUnion("mode", [
             MeasureValueSchema.forVersion("17")(z),
@@ -320,7 +322,7 @@ export const MarkdownMeasureSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      WidgetMeasureSchema.forVersion("17")(z).extend({
+      extendWithMeta(WidgetMeasureSchema.forVersion("17")(z), {
         displaySign: z.enum(EMarkdownDisplayMode).default(EMarkdownDisplayMode.NONE),
       }),
   },
@@ -331,7 +333,7 @@ export const WidgetSortingIndicatorSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      WidgetIndicatorSchema.forVersion("17")(z).extend({
+      extendWithMeta(WidgetIndicatorSchema.forVersion("17")(z), {
         direction: SortDirectionSchema.forVersion("17")(z),
         value: WidgetSortingValueSchema.forVersion("17")(z),
       }),
@@ -362,7 +364,7 @@ export const ProcessIndicatorSchema = SchemaRegistry.define({
   latestVersion: "17",
   history: {
     "17": (z: TZod) =>
-      WidgetIndicatorSchema.forVersion("17")(z).extend({
+      extendWithMeta(WidgetIndicatorSchema.forVersion("17")(z), {
         value: ProcessIndicatorValueSchema.forVersion("17")(z).optional(),
         dbDataType: z.string().optional(),
         format: FormatSchema.forVersion("17")(z).optional(),

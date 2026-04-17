@@ -12,7 +12,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
-    "lint": "tsc --noEmit",
+    "lint": "tsc --noEmit && eslint src --ext .ts",
     "release": "standard-version",
     "release:rc": "standard-version -p",
     "release:prev": "node ./scripts/re-release.mjs",
@@ -37,6 +37,9 @@
     "@rollup/plugin-typescript": "11.1.5",
     "@types/jest": "^29.5.14",
     "@types/semver": "^7.7.0",
+    "@typescript-eslint/eslint-plugin": "^8",
+    "@typescript-eslint/parser": "^8",
+    "eslint": "^8",
     "core-js": "^3.38.0",
     "jest": "^29.7.0",
     "prettier": "3.2.5",

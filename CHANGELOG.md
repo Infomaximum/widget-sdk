@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-18](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-17...v7.0.0-18) (2026-04-20)
+
+
+### Features
+
+* внедрены extendWithMeta и omitWithMeta в схемы ([5f9cddd](https://github.com/Infomaximum/widget-sdk/commit/5f9cdddec5a78b38a61f831fde705741a03da243))
+* добавлены утилиты для работы с мета-цепочкой Zod-схем ([949b27d](https://github.com/Infomaximum/widget-sdk/commit/949b27d1e8822976d051caa361c766bceabd7d67))
+
 ## [7.0.0-17](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-16...v7.0.0-17) (2026-04-15)
 
 

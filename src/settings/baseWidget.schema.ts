@@ -1,6 +1,6 @@
 import { ColorSchema, EFontWeight, EWidgetFilterMode, themed, type TZod } from "..";
 import { ActionButtonSchema } from "../actions.schema";
-import { SettingsFilterSchema } from "../filtration.schema";
+import { SettingsFilterSchema, WidgetIgnoreFilterModeSchema } from "../filtration.schema";
 import { MarkdownMeasureSchema, WidgetSortingIndicatorSchema } from "../indicators.schema";
 import { SchemaRegistry } from "../schemaRegistry";
 
@@ -59,7 +59,10 @@ export const BaseWidgetSettingsSchema = SchemaRegistry.define({
 
     return {
       "17": v17,
-      "19": (z: TZod) => v17(z).omit({ paddings: true }),
+      "19": (z: TZod) =>
+        v17(z)
+          .omit({ paddings: true, filterMode: true })
+          .extend({ ignoreFilters: WidgetIgnoreFilterModeSchema.forVersion("19")(z) }),
     };
   },
 });

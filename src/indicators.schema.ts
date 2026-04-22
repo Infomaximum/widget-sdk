@@ -5,16 +5,16 @@ import {
   EOuterAggregation,
   EWidgetIndicatorValueModes,
 } from "./indicators";
-import { EMarkdownDisplayMode } from "./settings/values";
+import { EMarkdownDisplayMode, EWidgetFilterMode } from "./settings/values";
 import {
   EFormattingPresets,
   EFormatTypes,
   EMeasureInnerTemplateNames,
-  type TSchemaType,
+  type TSchemaTypeForVersion,
   type TZod,
 } from ".";
 import { ActionsOnClickSchema } from "./actions.schema";
-import { ExtendedFormulaFilterValueSchema } from "./filtration.schema";
+import { ExtendedFormulaFilterValueSchema, WidgetFilterModeSchema } from "./filtration.schema";
 import { SortDirectionSchema, WidgetSortingValueSchema } from "./sorting.schema";
 import {
   DisplayConditionSchema,
@@ -215,9 +215,9 @@ export const WidgetIndicatorTimeValueSchema = SchemaRegistry.define({
 
 export const WidgetDimensionSchema = SchemaRegistry.define({
   key: "WidgetDimension",
-  latestVersion: "17",
-  history: {
-    "17": (z: TZod) =>
+  latestVersion: "19",
+  get history() {
+    const v17 = (z: TZod) =>
       extendWithMeta(WidgetColumnIndicatorSchema.forVersion("17")(z), {
         value: z
           .discriminatedUnion("mode", [
@@ -229,33 +229,57 @@ export const WidgetDimensionSchema = SchemaRegistry.define({
           ])
           .optional(),
         hideEmptyValues: z.boolean().default(false),
-      }),
+      });
+
+    return {
+      "17": v17,
+      "19": (z: TZod) =>
+        extendWithMeta(v17(z), {
+          filterMode: WidgetFilterModeSchema.forVersion("19")(z).default(
+            EWidgetFilterMode.INHERITED
+          ),
+        }),
+    };
   },
 });
 
 export const WidgetDimensionInHierarchySchema = SchemaRegistry.define({
   key: "WidgetDimensionInHierarchy",
-  latestVersion: "17",
+  latestVersion: "19",
   history: {
     "17": (z: TZod) =>
       omitWithMeta(WidgetDimensionSchema.forVersion("17")(z), { displayCondition: true }),
+    "19": (z: TZod) =>
+      omitWithMeta(WidgetDimensionSchema.forVersion("19")(z), { displayCondition: true }),
   },
 });
 
 export const WidgetDimensionHierarchySchema = SchemaRegistry.define({
   key: "WidgetDimensionHierarchy",
-  latestVersion: "17",
-  history: {
-    "17": <D extends TSchemaType<typeof WidgetDimensionInHierarchySchema>>(
-      z: TZod,
-      dimensionSchema: ZodType<D>
-    ) =>
+  latestVersion: "19",
+  get history() {
+    // Тело buildHierarchy одинаково для v17/v19 — версии нужны только для ограничения типа D,
+    // чтобы вызывающий код мог передавать dimension-схему нужной версии без ручного приведения.
+    const buildHierarchy = <D>(z: TZod, dimensionSchema: ZodType<D>) =>
       extendWithMeta(AutoIdentifiedArrayItemSchema.forVersion("17")(z), {
         name: z.string(),
         // Для иерархии является дискриминатором, для него нельзя задавать дефолтное значение.
         hierarchyDimensions: z.array(dimensionSchema),
         displayCondition: DisplayConditionSchema.forVersion("17")(z),
-      }),
+      });
+
+    const forVersionedBuilder =
+      <const V extends "17" | "19">(_version: V) =>
+      <D extends TSchemaTypeForVersion<typeof WidgetDimensionInHierarchySchema, V>>(
+        z: TZod,
+        dimensionSchema: ZodType<D>
+      ) =>
+        buildHierarchy(z, dimensionSchema);
+
+    return {
+      "17": forVersionedBuilder("17"),
+      "19": forVersionedBuilder("19"),
+    };
   },
 });
 

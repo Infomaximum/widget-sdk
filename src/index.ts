@@ -47,7 +47,7 @@ export * from "./utils/lifecycleRuntime";
 export * from "./utils/schemaMeta";
 export * from "./zod.types";
 export { SchemaRegistryReader } from "./schemaRegistry";
-export { VersionedSchemaFactory } from "./versionedSchemaFactory";
+export { VersionedSchemaFactory, type TSchemaTypeForVersion } from "./versionedSchemaFactory";
 
 export type TDefineWidgetOptions = {
   manifest?: IWidgetManifest;

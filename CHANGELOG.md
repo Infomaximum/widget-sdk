@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-19](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-18...v7.0.0-19) (2026-04-27)
+
+
+### Features
+
+* реализован новый контрол sorting ([abb46d9](https://github.com/Infomaximum/widget-sdk/commit/abb46d920d1ace3f66f59c9820c53c119b2417e6))
+
 ## [7.0.0-18](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-17...v7.0.0-18) (2026-04-20)
 
 

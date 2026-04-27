@@ -5,6 +5,8 @@ import {
   EFormulaFilterFieldKeys,
   ELastTimeUnit,
   EOuterAggregation,
+  EWidgetFilterMode,
+  EWidgetIgnoreFilterMode,
   EWidgetIndicatorValueModes,
   formulaFilterMethods,
   FormulaSchema,
@@ -100,5 +102,21 @@ export const SettingsFilterSchema = SchemaRegistry.define({
         ExtendedFormulaFilterValueSchema.forVersion("17")(z),
         DimensionProcessFilterSchema.forVersion("17")(z),
       ]),
+  },
+});
+
+export const WidgetIgnoreFilterModeSchema = SchemaRegistry.define({
+  key: "WidgetIgnoreFilterMode",
+  latestVersion: "19",
+  history: {
+    "19": (z: TZod) => z.enum(EWidgetIgnoreFilterMode).default(EWidgetIgnoreFilterMode.INHERITED),
+  },
+});
+
+export const WidgetFilterModeSchema = SchemaRegistry.define({
+  key: "WidgetFilterMode",
+  latestVersion: "19",
+  history: {
+    "19": (z: TZod) => z.enum(EWidgetFilterMode).default(EWidgetFilterMode.INHERITED),
   },
 });

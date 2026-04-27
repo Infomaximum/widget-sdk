@@ -3,18 +3,26 @@
 import type { TSchemaType } from "..";
 import type { DisplayConditionSchema, RangeSchema } from "./values.schema";
 
+/** Режим игнорирования фильтрации */
+export enum EIgnoreFilterMode {
+  ENABLED = "ENABLED",
+  DISABLED = "DISABLED",
+}
+
+/** Режим игнорирования фильтрации (с возможностью наследования) */
+export enum EWidgetIgnoreFilterMode {
+  INHERITED = "INHERITED",
+  ENABLED = "ENABLED",
+  DISABLED = "DISABLED",
+}
+
+/** Режим фильтрации (с возможностью наследования) */
 export enum EWidgetFilterMode {
+  INHERITED = "INHERITED",
   DEFAULT = "DEFAULT",
   SINGLE = "SINGLE",
   DISABLED = "DISABLED",
 }
-
-export type TWidgetFiltering =
-  | {
-      ignore: true;
-      mode: EWidgetFilterMode.SINGLE;
-    }
-  | { ignore: false; mode: EWidgetFilterMode };
 
 export enum EMarkdownDisplayMode {
   NONE = "NONE",

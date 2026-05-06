@@ -97,8 +97,8 @@ export const SettingsFilterSchema = SchemaRegistry.define({
   history: {
     "17": (z: TZod) =>
       z.union([
-        ExtendedFormulaFilterValueSchema.forVersion("17")(z),
         DimensionProcessFilterSchema.forVersion("17")(z),
+        ExtendedFormulaFilterValueSchema.forVersion("17")(z),
       ]),
   },
 });

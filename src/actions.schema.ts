@@ -252,7 +252,7 @@ export const ActionGoToURLSchema = SchemaRegistry.define({
     "17": (z: TZod) =>
       extendWithMeta(ActionCommonSchema.forVersion("17")(z), {
         type: z.literal(EActionTypes.OPEN_URL),
-        url: z.string(),
+        url: FormulaSchema.forVersion("17")(z),
         newWindow: z.boolean().default(true),
         variables: z.array(ActionOnClickParameterSchema.forVersion("17")(z)).default([]),
       }),

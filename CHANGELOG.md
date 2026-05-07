@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-20](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-19...v7.0.0-20) (2026-05-07)
+
+
+### Bug Fixes
+
+* исправлен порядок схем в union SettingsFilterSchema. В ColorRuleSchema отказ от FormulaSchema. Поле url размечено схемой формулы ([59e7479](https://github.com/Infomaximum/widget-sdk/commit/59e74799dc2e093efb801ed22c22a7227b302848))
+
 ## [7.0.0-19](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-18...v7.0.0-19) (2026-04-27)
 
 

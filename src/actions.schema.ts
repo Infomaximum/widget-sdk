@@ -489,8 +489,11 @@ export const ActionSchema = SchemaRegistry.define({
   history: {
     "17": (z: TZod) =>
       z.union([
-        ActionsOnClickSchema.forVersion("17")(z),
+        /* Изменение порядка схем связано с отсутствием strict
+          Strict будет добавлен в BI-16355
+        */
         WidgetActionSchema.forVersion("17")(z),
+        ActionsOnClickSchema.forVersion("17")(z),
         ViewActionSchema.forVersion("17")(z),
       ]),
   },

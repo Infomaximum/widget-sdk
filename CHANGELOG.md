@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-2603.2](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-2603.1...v7.0.0-2603.2) (2026-05-13)
+
+
+### Bug Fixes
+
+* исправлен порядок схем в union ActionSchema, влиял на парсинг по схеме ([24cd4be](https://github.com/Infomaximum/widget-sdk/commit/24cd4be69ddc788496501318fa0328053d4b4ee2))
+
 ## [7.0.0-2603.1](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-2603.0...v7.0.0-2603.1) (2026-04-15)
 
 

@@ -1,17 +1,19 @@
 import {
   EDurationTemplateName,
   EWidgetIndicatorValueModes,
+  type TDurationTemplateName,
   type IWidgetMeasure,
 } from "../../indicators";
 import { fillTemplateSql, generateColumnFormula } from "../shared";
 import {
-  EMeasureAggregationTemplateName,
+  type TMeasureAggregationTemplateName,
   prepareMeasureAggregationParams,
 } from "./aggregationTemplates";
 import {
   measureInnerTemplateFormulas,
   measureTemplateFormulas,
-  type EMeasureTemplateNames,
+  type TMeasureTemplateNames,
+  type TMeasureInnerTemplateNames,
 } from "./baseTemplates";
 import { conversionTemplate, prepareConversionParams } from "./conversionTemplates";
 import { durationTemplates, prepareDurationParams } from "./durationTemplates";
@@ -29,16 +31,19 @@ export function getMeasureFormula({ value }: Pick<IWidgetMeasure, "value">): str
   if (value.mode === EWidgetIndicatorValueModes.TEMPLATE) {
     const { templateName, tableName, columnName, innerTemplateName } = value;
 
-    const templateFormula = measureTemplateFormulas[templateName as EMeasureTemplateNames];
+    const templateFormula = measureTemplateFormulas[templateName as TMeasureTemplateNames];
 
     if (!templateFormula || !tableName || !columnName) {
       return "";
     }
 
     const columnFormula = innerTemplateName
-      ? fillTemplateSql(measureInnerTemplateFormulas[innerTemplateName], {
-          columnFormula: generateColumnFormula(tableName, columnName),
-        })
+      ? fillTemplateSql(
+          measureInnerTemplateFormulas[innerTemplateName as TMeasureInnerTemplateNames],
+          {
+            columnFormula: generateColumnFormula(tableName, columnName),
+          }
+        )
       : generateColumnFormula(tableName, columnName);
 
     return fillTemplateSql(templateFormula, {
@@ -51,7 +56,7 @@ export function getMeasureFormula({ value }: Pick<IWidgetMeasure, "value">): str
 
     return preparedParams
       ? fillTemplateSql(
-          createAggregationTemplate(value.templateName as EMeasureAggregationTemplateName, {
+          createAggregationTemplate(value.templateName as TMeasureAggregationTemplateName, {
             outerAggregation: preparedParams.outerAggregation,
             anyEvent: value.anyEvent,
           }),
@@ -78,7 +83,7 @@ export function getMeasureFormula({ value }: Pick<IWidgetMeasure, "value">): str
     }
 
     return fillTemplateSql(
-      durationTemplates[value.templateName as EDurationTemplateName],
+      durationTemplates[value.templateName as TDurationTemplateName],
       preparedParams
     );
   }

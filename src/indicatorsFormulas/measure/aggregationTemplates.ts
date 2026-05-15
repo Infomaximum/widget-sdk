@@ -1,29 +1,40 @@
 import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuotes";
 import { convertFiltersToFormula } from "../../calculators/utils/filters";
-import { type EWidgetIndicatorValueModes, type IWidgetMeasure } from "../../indicators";
+import { EWidgetIndicatorValueModes, type IWidgetMeasure } from "../../indicators";
 import { generateColumnFormula } from "../shared";
+import { VersionedEnum } from "../../versionedEnum";
 
-export enum EMeasureAggregationTemplateName {
-  agvIf = "agvIf",
-  medianIf = "medianIf",
-  countIf = "countIf",
-  countIfDistinct = "countIfDistinct",
-  minIf = "minIf",
-  maxIf = "maxIf",
-  sumIf = "sumIf",
-  top = "top",
-  firstValue = "firstValue",
-  lastValue = "lastValue",
-  countExecutions = "countExecutions",
-  countReworks = "countReworks",
-}
+export const EMeasureAggregationTemplateName = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      agvIf: "agvIf",
+      medianIf: "medianIf",
+      countIf: "countIf",
+      countIfDistinct: "countIfDistinct",
+      minIf: "minIf",
+      maxIf: "maxIf",
+      sumIf: "sumIf",
+      top: "top",
+      firstValue: "firstValue",
+      lastValue: "lastValue",
+      countExecutions: "countExecutions",
+      countReworks: "countReworks",
+    } as const,
+  },
+});
+
+export type TMeasureAggregationTemplateName = Extract<
+  (typeof EMeasureAggregationTemplateName)[keyof typeof EMeasureAggregationTemplateName],
+  string
+>;
 
 /** На основе значения режима AGGREGATION подготовить параметры для подстановки в шаблонную формулу */
 export const prepareMeasureAggregationParams = (
   value: Extract<
     IWidgetMeasure["value"],
     {
-      mode: EWidgetIndicatorValueModes.AGGREGATION;
+      mode: typeof EWidgetIndicatorValueModes.AGGREGATION;
     }
   >
 ) => {

@@ -1,4 +1,8 @@
-import { EOuterAggregation, type TWidgetIndicatorAggregationValue } from "../../indicators";
+import {
+  EOuterAggregation,
+  type TOuterAggregation,
+  type TWidgetIndicatorAggregationValue,
+} from "../../indicators";
 import {
   countExecutionsTemplate,
   countReworksTemplate,
@@ -6,7 +10,10 @@ import {
   lastValueTemplate,
   topTemplate,
 } from "../shared/aggregationTemplates";
-import { EMeasureAggregationTemplateName } from "./aggregationTemplates";
+import {
+  EMeasureAggregationTemplateName,
+  type TMeasureAggregationTemplateName,
+} from "./aggregationTemplates";
 
 function createAnyEventTemplate(aggregatePart: string) {
   return `{outerAggregation}(process(${aggregatePart}, {caseCaseIdFormula}))`;
@@ -17,19 +24,19 @@ function createSpecificEventTemplate(fn: string, additionalFn?: string) {
 }
 
 function createTopLikeTemplate(template: string) {
-  return (outerAggregation: EOuterAggregation) =>
+  return (outerAggregation: TOuterAggregation) =>
     outerAggregation === EOuterAggregation.top
       ? `{outerAggregation}K(1)(${template})[1]`
       : `{outerAggregation}(${template})`;
 }
 
 function createAggregationTemplate(
-  templateName: EMeasureAggregationTemplateName,
+  templateName: TMeasureAggregationTemplateName,
   {
     outerAggregation,
     anyEvent,
   }: Pick<TWidgetIndicatorAggregationValue, "anyEvent"> & {
-    outerAggregation: EOuterAggregation;
+    outerAggregation: TOuterAggregation;
   }
 ) {
   switch (templateName) {

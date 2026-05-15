@@ -14,18 +14,32 @@ import { fillTemplateSql } from "../../indicatorsFormulas";
 import { displayConditionTemplate } from "./displayCondition";
 import { ESimpleDataType } from "../../data";
 import { prepareFormulaForSql } from "./prepareFormulaForSql";
+import { VersionedEnum } from "../../versionedEnum";
 
-export enum ELastTimeUnit {
-  DAYS = "DAYS",
-  MONTHS = "MONTHS",
-  YEARS = "YEARS",
-}
-export enum EDurationUnit {
-  DAYS = "DAYS",
-  HOURS = "HOURS",
-  MINUTES = "MINUTES",
-  SECONDS = "SECONDS",
-}
+export const ELastTimeUnit = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      DAYS: "DAYS",
+      MONTHS: "MONTHS",
+      YEARS: "YEARS",
+    } as const,
+  },
+});
+export type TLastTimeUnit = Extract<(typeof ELastTimeUnit)[keyof typeof ELastTimeUnit], string>;
+
+export const EDurationUnit = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      DAYS: "DAYS",
+      HOURS: "HOURS",
+      MINUTES: "MINUTES",
+      SECONDS: "SECONDS",
+    } as const,
+  },
+});
+export type TDurationUnit = Extract<(typeof EDurationUnit)[keyof typeof EDurationUnit], string>;
 
 const isRangeFilteringMethod = (filteringMethod: valueof<typeof formulaFilterMethods>) =>
   filteringMethod === formulaFilterMethods.IN_RANGE ||
@@ -47,7 +61,7 @@ const convertDateToClickHouse = (date: Date, showTime: boolean) => {
   return showTime ? `${dateString} ${timeString}` : `${dateString}`;
 };
 
-const subtractDurationFromDate = (date: Date, value: number, unitTime: ELastTimeUnit) => {
+const subtractDurationFromDate = (date: Date, value: number, unitTime: TLastTimeUnit) => {
   switch (unitTime) {
     case ELastTimeUnit.DAYS:
       date.setDate(date.getDate() - value);
@@ -63,7 +77,7 @@ const subtractDurationFromDate = (date: Date, value: number, unitTime: ELastTime
   return date;
 };
 
-const convertToSeconds = (value: number, rangeUnit?: EDurationUnit) => {
+const convertToSeconds = (value: number, rangeUnit?: TDurationUnit) => {
   if (rangeUnit === undefined) {
     return value;
   }
@@ -106,7 +120,7 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
 
   function convertDurationRangeToSecond(
     range: [number | null, number | null] = [null, null],
-    rangeUnit?: EDurationUnit
+    rangeUnit?: TDurationUnit
   ): [string, string] {
     return range.map((value, index) => {
       if (isNil(value)) {
@@ -139,7 +153,7 @@ const getFormulaFilterValues = (filterValue: IFormulaFilterValue): (string | nul
             subtractDurationFromDate(
               new Date(),
               Number(lastTimeValue ?? 0),
-              lastTimeUnit as ELastTimeUnit
+              lastTimeUnit as TLastTimeUnit
             ),
             showTime
           ),

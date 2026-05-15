@@ -2,16 +2,16 @@ import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuot
 import { convertFiltersToFormula } from "../../calculators/utils/filters";
 import { EWidgetIndicatorValueModes, type TWidgetIndicatorTimeValue } from "../../indicators";
 import { fillTemplateSql } from "../shared";
-import { dimensionTemplateFormulas, type EDimensionTemplateNames } from "./baseTemplates";
+import { dimensionTemplateFormulas, type TDimensionTemplateNames } from "./baseTemplates";
 
 /** Шаблоны процессных метрик разреза с режимами START_TIME/END_TIME */
 export const timeTemplates = (() => {
   const generateTemplates = (innerTemplate: string) => {
-    const templates = {} as Record<EDimensionTemplateNames, string>;
+    const templates = {} as Record<TDimensionTemplateNames, string>;
 
     for (const key in dimensionTemplateFormulas) {
-      templates[key as EDimensionTemplateNames] = fillTemplateSql(
-        dimensionTemplateFormulas[key as EDimensionTemplateNames],
+      templates[key as TDimensionTemplateNames] = fillTemplateSql(
+        dimensionTemplateFormulas[key as TDimensionTemplateNames],
         { columnFormula: innerTemplate }
       );
     }

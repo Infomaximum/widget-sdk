@@ -1,5 +1,5 @@
 import type { ICalculatorFilter } from "./calculators";
-import { EWidgetFilterMode } from "./settings/values";
+import { EWidgetFilterMode, type TWidgetFilterMode } from "./settings/values";
 
 export interface IDimensionSelection {
   values: Set<string | null>;
@@ -25,7 +25,7 @@ const findFilterByFormula = (filters: ICalculatorFilter[], formula: string) => {
 
 const getSelectionItemValues = (
   value: string,
-  filterMode: EWidgetFilterMode,
+  filterMode: TWidgetFilterMode,
   currentSelectionItemValues?: Set<string | null>
 ) => {
   let selectionItemValues = new Set(currentSelectionItemValues);

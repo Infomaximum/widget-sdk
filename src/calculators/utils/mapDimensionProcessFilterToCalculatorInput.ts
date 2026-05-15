@@ -3,12 +3,13 @@ import {
   EDimensionProcessFilterTimeUnit,
   formulaFilterMethods,
   type IDimensionProcessFilter,
+  type TDimensionProcessFilterTimeUnit,
 } from "../../filtration";
 import { EWidgetIndicatorValueModes } from "../../indicators";
 import { getProcessDimensionValueFormula } from "../../indicatorsFormulas";
 import type { ICalculatorFilter } from "../calculator";
 
-const intervalByUnit: Record<EDimensionProcessFilterTimeUnit, string> = {
+const intervalByUnit: Record<TDimensionProcessFilterTimeUnit, string> = {
   [EDimensionProcessFilterTimeUnit.YEARS]: "year",
   [EDimensionProcessFilterTimeUnit.MONTHS]: "month",
   [EDimensionProcessFilterTimeUnit.DAYS]: "day",
@@ -37,7 +38,7 @@ export function mapDimensionProcessFilterToCalculatorInput(
 
     return {
       dbDataType: EClickHouseBaseTypes.Bool,
-      formula: `date_diff('${intervalByUnit[timeUnit]}', ${formula}, now())`,
+      formula: `date_diff('${intervalByUnit[timeUnit as TDimensionProcessFilterTimeUnit]}', ${formula}, now())`,
       values,
       filteringMethod: formulaFilterMethods.LESS_THAN_OR_EQUAL_TO,
     };

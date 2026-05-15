@@ -1,7 +1,19 @@
-export enum ETransitionMeasureTemplateNames {
-  transitionsCount = "transitionsCount",
-  medianTime = "medianTime",
-}
+import { VersionedEnum } from "../../versionedEnum";
+
+export const ETransitionMeasureTemplateNames = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      transitionsCount: "transitionsCount",
+      medianTime: "medianTime",
+    } as const,
+  },
+});
+
+export type TTransitionMeasureTemplateNames = Extract<
+  (typeof ETransitionMeasureTemplateNames)[keyof typeof ETransitionMeasureTemplateNames],
+  string
+>;
 
 export const transitionMeasureTemplateFormulas = {
   [ETransitionMeasureTemplateNames.transitionsCount]: `count()`,

@@ -8,6 +8,10 @@ import {
   EWidgetIndicatorValueModes,
   formulaFilterMethods,
   FormulaSchema,
+  VersionedEnum,
+  type TDimensionProcessFilterTimeUnit,
+  type TDurationUnit,
+  type TLastTimeUnit,
   type TZod,
 } from ".";
 import {
@@ -41,8 +45,12 @@ export const FormulaFilterValueSchema = SchemaRegistry.define({
             [EFormulaFilterFieldKeys.string]: z.string(),
             // todo: отказаться от использования z.string(), оставить только z.number() [BI-15912]
             [EFormulaFilterFieldKeys.lastTimeValue]: z.number().or(z.string()),
-            [EFormulaFilterFieldKeys.lastTimeUnit]: z.enum(ELastTimeUnit),
-            [EFormulaFilterFieldKeys.durationUnit]: z.enum(EDurationUnit),
+            [EFormulaFilterFieldKeys.lastTimeUnit]: z.enum(
+              Object.values(ELastTimeUnit) as [TLastTimeUnit, ...TLastTimeUnit[]]
+            ),
+            [EFormulaFilterFieldKeys.durationUnit]: z.enum(
+              Object.values(EDurationUnit) as [TDurationUnit, ...TDurationUnit[]]
+            ),
           })
           .partial()
           .optional(),
@@ -70,7 +78,7 @@ export const DimensionProcessFilterSchema = SchemaRegistry.define({
       z.object({
         value: z.union([
           extendWithMeta(WidgetIndicatorAggregationValueSchema.forVersion("17")(z), {
-            outerAggregation: z.enum(EOuterAggregation),
+            outerAggregation: z.enum(EOuterAggregation[VersionedEnum.forVersion]("17")),
           }),
           extendWithMeta(WidgetIndicatorAggregationValueSchema.forVersion("17")(z), {
             innerTemplateName: z.string().optional(),
@@ -84,7 +92,14 @@ export const DimensionProcessFilterSchema = SchemaRegistry.define({
         dbDataType: z.string(),
         condition: z.object({
           filteringMethod: z.enum(Object.values(formulaFilterMethods)),
-          timeUnit: z.enum(EDimensionProcessFilterTimeUnit).optional(),
+          timeUnit: z
+            .enum(
+              Object.values(EDimensionProcessFilterTimeUnit) as [
+                TDimensionProcessFilterTimeUnit,
+                ...TDimensionProcessFilterTimeUnit[],
+              ]
+            )
+            .optional(),
           values: z.array(z.string().nullable()),
         }),
       }),

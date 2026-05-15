@@ -1,54 +1,69 @@
-import { ESimpleDataType, type IParsedDbType, type TDbTypeContainer } from "./data";
+import {
+  ESimpleDataType,
+  type IParsedDbType,
+  type TDbTypeContainer,
+  type TSimpleDataType,
+} from "./data";
 import type { TNullable } from "./utilityTypes";
 import { isNil, memoize } from "./utils/functions";
+import { VersionedEnum } from "./versionedEnum";
 
-export enum EClickHouseBaseTypes {
-  // DATE
-  Date = "Date",
-  Date32 = "Date32",
+export const EClickHouseBaseTypes = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      // DATE
+      Date: "Date",
+      Date32: "Date32",
 
-  // DATETIME
-  DateTime = "DateTime",
-  DateTime32 = "DateTime32",
+      // DATETIME
+      DateTime: "DateTime",
+      DateTime32: "DateTime32",
 
-  // DATETIME64
-  DateTime64 = "DateTime64",
+      // DATETIME64
+      DateTime64: "DateTime64",
 
-  // STRING
-  FixedString = "FixedString",
-  String = "String",
+      // STRING
+      FixedString: "FixedString",
+      String: "String",
 
-  // FLOAT
-  Decimal = "Decimal",
-  Decimal32 = "Decimal32",
-  Decimal64 = "Decimal64",
-  Decimal128 = "Decimal128",
-  Decimal256 = "Decimal256",
-  Float32 = "Float32",
-  Float64 = "Float64",
+      // FLOAT
+      Decimal: "Decimal",
+      Decimal32: "Decimal32",
+      Decimal64: "Decimal64",
+      Decimal128: "Decimal128",
+      Decimal256: "Decimal256",
+      Float32: "Float32",
+      Float64: "Float64",
 
-  // INTEGER
-  Int8 = "Int8",
-  Int16 = "Int16",
-  Int32 = "Int32",
-  Int64 = "Int64",
-  Int128 = "Int128",
-  Int256 = "Int256",
-  UInt8 = "UInt8",
-  UInt16 = "UInt16",
-  UInt32 = "UInt32",
-  UInt64 = "UInt64",
-  UInt128 = "UInt128",
-  UInt256 = "UInt256",
+      // INTEGER
+      Int8: "Int8",
+      Int16: "Int16",
+      Int32: "Int32",
+      Int64: "Int64",
+      Int128: "Int128",
+      Int256: "Int256",
+      UInt8: "UInt8",
+      UInt16: "UInt16",
+      UInt32: "UInt32",
+      UInt64: "UInt64",
+      UInt128: "UInt128",
+      UInt256: "UInt256",
 
-  // BOOLEAN
-  Bool = "Bool",
-}
+      // BOOLEAN
+      Bool: "Bool",
+    } as const,
+  },
+});
+export type TClickHouseBaseTypes = Extract<
+  (typeof EClickHouseBaseTypes)[keyof typeof EClickHouseBaseTypes],
+  string
+>;
 
 const stringTypes = ["String", "FixedString"];
 
 export const parseClickHouseType = memoize(
-  (type: TNullable<string>): IParsedDbType<EClickHouseBaseTypes | undefined> => {
+  (type: TNullable<string>): IParsedDbType<TClickHouseBaseTypes | undefined> => {
     if (isNil(type)) {
       return {
         simpleBaseType: ESimpleDataType.OTHER,
@@ -90,12 +105,12 @@ const extractInnerType = (type: string) => {
     tokens.pop();
   }
 
-  const dbBaseDataType = tokens.pop() as EClickHouseBaseTypes;
+  const dbBaseDataType = tokens.pop() as TClickHouseBaseTypes;
 
   return { containers: tokens as TDbTypeContainer[], dbBaseDataType };
 };
 
-const simplifyBaseType = (dbBaseType: string): ESimpleDataType => {
+const simplifyBaseType = (dbBaseType: string): TSimpleDataType => {
   const isSourceTypeStartsWith = (prefix: string) => dbBaseType.startsWith(prefix);
 
   if (isSourceTypeStartsWith("Int") || isSourceTypeStartsWith("UInt")) {

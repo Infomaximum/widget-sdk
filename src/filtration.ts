@@ -1,6 +1,6 @@
 import type { ICalculatorFilter } from "./calculators/calculator/calculator";
 import type { TNullable } from "./utilityTypes";
-import { ECalculatorFilterMethods } from "./calculators/calculator";
+import { ECalculatorFilterMethods, type TCalculatorFilterMethods } from "./calculators/calculator";
 import type { TSchemaType } from ".";
 import type {
   DimensionProcessFilterSchema,
@@ -8,24 +8,35 @@ import type {
   FormulaFilterValueSchema,
   SettingsFilterSchema,
 } from "./filtration.schema";
+import { VersionedEnum } from "./versionedEnum";
 
 export type TSelectivePartial<T, Keys extends keyof T> = Omit<T, Keys> & Partial<Pick<T, Keys>>;
 
-export const formulaFilterMethods = {
-  ...ECalculatorFilterMethods,
+export const formulaFilterMethods: Record<TCalculatorFilterMethods | "LAST_TIME", string> = {
+  ...Object.fromEntries(Object.entries(ECalculatorFilterMethods).map(([k, v]) => [k, v])),
   LAST_TIME: "LAST_TIME",
-} as const;
+} as Record<TCalculatorFilterMethods | "LAST_TIME", string>;
 
-export enum EProcessFilterNames {
-  /** Наличие события */
-  presenceOfEvent = "presenceOfEvent",
-  /** Количество повторов события */
-  repetitionOfEvent = "repetitionOfEvent",
-  /** Наличие перехода */
-  presenceOfTransition = "presenceOfTransition",
-  /** Длительность перехода */
-  durationOfTransition = "durationOfTransition",
-}
+export const EProcessFilterNames = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      /** Наличие события */
+      presenceOfEvent: "presenceOfEvent",
+      /** Количество повторов события */
+      repetitionOfEvent: "repetitionOfEvent",
+      /** Наличие перехода */
+      presenceOfTransition: "presenceOfTransition",
+      /** Длительность перехода */
+      durationOfTransition: "durationOfTransition",
+    } as const,
+  },
+});
+
+export type TProcessFilterNames = Extract<
+  (typeof EProcessFilterNames)[keyof typeof EProcessFilterNames],
+  string
+>;
 
 /**
  * Параметры, которые влияют на отображаемый контент в окне настройки процессного фильтра,
@@ -68,7 +79,7 @@ interface IPositionConfig extends IClickPosition {
 
 export interface IAddPresenceOfEventFilter {
   (
-    name: EProcessFilterNames.presenceOfEvent,
+    name: typeof EProcessFilterNames.presenceOfEvent,
     value: IProcessEventFilterValue,
     positionConfig?: IPositionConfig,
     previewParams?: IProcessFilterPreviewParams
@@ -77,7 +88,7 @@ export interface IAddPresenceOfEventFilter {
 
 export interface IAddRepetitionOfEventFilter {
   (
-    name: EProcessFilterNames.repetitionOfEvent,
+    name: typeof EProcessFilterNames.repetitionOfEvent,
     value: IProcessEventFilterValue,
     positionConfig?: IPositionConfig,
     previewParams?: IProcessFilterPreviewParams
@@ -86,7 +97,7 @@ export interface IAddRepetitionOfEventFilter {
 
 export interface IAddPresenceOfTransitionFilter {
   (
-    name: EProcessFilterNames.presenceOfTransition,
+    name: typeof EProcessFilterNames.presenceOfTransition,
     value: IProcessTransitionFilterValue,
     positionConfig?: IPositionConfig,
     previewParams?: IProcessFilterPreviewParams
@@ -95,32 +106,52 @@ export interface IAddPresenceOfTransitionFilter {
 
 export interface IAddDurationOfTransitionFilter {
   (
-    name: EProcessFilterNames.durationOfTransition,
+    name: typeof EProcessFilterNames.durationOfTransition,
     value: IProcessTransitionFilterValue,
     positionConfig?: IPositionConfig,
     previewParams?: IProcessFilterPreviewParams
   ): void;
 }
 
-export enum EFormulaFilterFieldKeys {
-  date = "date",
-  dateRange = "dateRange",
-  numberRange = "numberRange",
-  string = "string",
-  lastTimeValue = "lastTimeValue",
-  lastTimeUnit = "lastTimeUnit",
-  durationUnit = "durationUnit",
-}
+export const EFormulaFilterFieldKeys = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      date: "date",
+      dateRange: "dateRange",
+      numberRange: "numberRange",
+      string: "string",
+      lastTimeValue: "lastTimeValue",
+      lastTimeUnit: "lastTimeUnit",
+      durationUnit: "durationUnit",
+    } as const,
+  },
+});
+
+export type TFormulaFilterFieldKeys = Extract<
+  (typeof EFormulaFilterFieldKeys)[keyof typeof EFormulaFilterFieldKeys],
+  string
+>;
 
 export interface IFormulaFilterValue extends TSchemaType<typeof FormulaFilterValueSchema> {}
 
-export enum EDimensionProcessFilterTimeUnit {
-  YEARS = "YEARS",
-  MONTHS = "MONTHS",
-  HOURS = "HOURS",
-  DAYS = "DAYS",
-  MINUTES = "MINUTES",
-}
+export const EDimensionProcessFilterTimeUnit = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      YEARS: "YEARS",
+      MONTHS: "MONTHS",
+      HOURS: "HOURS",
+      DAYS: "DAYS",
+      MINUTES: "MINUTES",
+    } as const,
+  },
+});
+
+export type TDimensionProcessFilterTimeUnit = Extract<
+  (typeof EDimensionProcessFilterTimeUnit)[keyof typeof EDimensionProcessFilterTimeUnit],
+  string
+>;
 export interface IDimensionProcessFilter extends TSchemaType<typeof DimensionProcessFilterSchema> {}
 
 export type TExtendedFormulaFilterValue = TSchemaType<typeof ExtendedFormulaFilterValueSchema>;

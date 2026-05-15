@@ -5,11 +5,13 @@ import {
   EOuterAggregation,
   EWidgetIndicatorValueModes,
 } from "./indicators";
-import { EMarkdownDisplayMode } from "./settings/values";
+import { VersionedEnum } from "./versionedEnum";
+import { EMarkdownDisplayMode, type TMarkdownDisplayMode } from "./settings/values";
 import {
   EFormattingPresets,
   EFormatTypes,
   EMeasureInnerTemplateNames,
+  type TMeasureInnerTemplateNames,
   type TSchemaType,
   type TZod,
 } from ".";
@@ -139,7 +141,14 @@ export const MeasureValueSchema = SchemaRegistry.define({
       z.discriminatedUnion("mode", [
         WidgetIndicatorFormulaValueSchema.forVersion("17")(z),
         extendWithMeta(WidgetIndicatorTemplateValueSchema.forVersion("17")(z), {
-          innerTemplateName: z.enum(EMeasureInnerTemplateNames).optional(),
+          innerTemplateName: z
+            .enum(
+              Object.values(EMeasureInnerTemplateNames) as [
+                TMeasureInnerTemplateNames,
+                ...TMeasureInnerTemplateNames[],
+              ]
+            )
+            .optional(),
         }),
       ]),
   },
@@ -187,7 +196,7 @@ export const WidgetMeasureAggregationValueSchema = SchemaRegistry.define({
   history: {
     "17": (z: TZod) =>
       extendWithMeta(WidgetIndicatorAggregationValueSchema.forVersion("17")(z), {
-        outerAggregation: z.enum(EOuterAggregation),
+        outerAggregation: z.enum(EOuterAggregation[VersionedEnum.forVersion]("17")),
       }),
   },
 });
@@ -293,8 +302,8 @@ export const WidgetIndicatorDurationValueSchema = SchemaRegistry.define({
       extendWithMeta(WidgetIndicatorConversionValueSchema.forVersion("17")(z), {
         mode: z.literal(EWidgetIndicatorValueModes.DURATION),
         templateName: z.string(),
-        startEventAppearances: z.enum(EEventAppearances),
-        endEventAppearances: z.enum(EEventAppearances),
+        startEventAppearances: z.enum(EEventAppearances[VersionedEnum.forVersion]("17")),
+        endEventAppearances: z.enum(EEventAppearances[VersionedEnum.forVersion]("17")),
       }),
   },
 });
@@ -321,10 +330,20 @@ export const MarkdownMeasureSchema = SchemaRegistry.define({
   key: "MarkdownMeasure",
   latestVersion: "17",
   history: {
-    "17": (z: TZod) =>
-      extendWithMeta(WidgetMeasureSchema.forVersion("17")(z), {
-        displaySign: z.enum(EMarkdownDisplayMode).default(EMarkdownDisplayMode.NONE),
-      }),
+    "17": (z: TZod) => {
+      const v17MarkdownDisplayMode = EMarkdownDisplayMode[VersionedEnum.forVersion]("17");
+
+      return extendWithMeta(WidgetMeasureSchema.forVersion("17")(z), {
+        displaySign: z
+          .enum(
+            Object.values(v17MarkdownDisplayMode) as [
+              TMarkdownDisplayMode,
+              ...TMarkdownDisplayMode[],
+            ]
+          )
+          .default(v17MarkdownDisplayMode.NONE),
+      });
+    },
   },
 });
 

@@ -1,19 +1,31 @@
-export enum EDimensionTemplateNames {
-  dateTime = "dateTime",
-  date = "date",
-  year = "year",
-  yearAndQuarter = "yearAndQuarter",
-  quarter = "quarter",
-  yearAndMonth = "yearAndMonth",
-  dayOfMonth = "dayOfMonth",
-  month = "month",
-  week = "week",
-  dayOfWeek = "dayOfWeek",
-  hour = "hour",
-}
+import { VersionedEnum } from "../../versionedEnum";
+
+export const EDimensionTemplateNames = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      dateTime: "dateTime",
+      date: "date",
+      year: "year",
+      yearAndQuarter: "yearAndQuarter",
+      quarter: "quarter",
+      yearAndMonth: "yearAndMonth",
+      dayOfMonth: "dayOfMonth",
+      month: "month",
+      week: "week",
+      dayOfWeek: "dayOfWeek",
+      hour: "hour",
+    } as const,
+  },
+});
+
+export type TDimensionTemplateNames = Extract<
+  (typeof EDimensionTemplateNames)[keyof typeof EDimensionTemplateNames],
+  string
+>;
 
 /** Стандартные шаблоны разреза */
-export const dimensionTemplateFormulas: Record<EDimensionTemplateNames, string> = {
+export const dimensionTemplateFormulas: Record<TDimensionTemplateNames, string> = {
   [EDimensionTemplateNames.dateTime]: `toDateTime({columnFormula})`,
   [EDimensionTemplateNames.date]: `toDate({columnFormula})`,
   [EDimensionTemplateNames.year]: `if(defaultValueOfArgumentType({columnFormula}) = {columnFormula}, 0, toYear({columnFormula}))`,

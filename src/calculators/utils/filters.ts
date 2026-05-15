@@ -1,5 +1,5 @@
 import { parseClickHouseType } from "../../clickHouseTypes";
-import { ESimpleDataType } from "../../data";
+import { ESimpleDataType, type TSimpleDataType } from "../../data";
 import {
   formulaFilterMethods,
   isFormulaFilterValue,
@@ -12,13 +12,17 @@ import { escapeSingularQuotes } from "./escapeSingularQuotes";
 import { mapFormulaFilterToCalculatorInput } from "./mapFormulaFiltersToInputs";
 import { prepareFormulaForSql } from "./prepareFormulaForSql";
 
-function isDateSimpleType(simpleType: ESimpleDataType) {
-  return [ESimpleDataType.DATE, ESimpleDataType.DATETIME, ESimpleDataType.DATETIME64].includes(
-    simpleType
-  );
+function isDateSimpleType(simpleType: TSimpleDataType) {
+  return (
+    [
+      ESimpleDataType.DATE,
+      ESimpleDataType.DATETIME,
+      ESimpleDataType.DATETIME64,
+    ] as readonly string[]
+  ).includes(simpleType);
 }
 
-const castToDateValue = (simpleType: ESimpleDataType) => (value: string | null) => {
+const castToDateValue = (simpleType: TSimpleDataType) => (value: string | null) => {
   return simpleType === ESimpleDataType.DATE ? `toDate('${value}')` : `toDateTime('${value}')`;
 };
 

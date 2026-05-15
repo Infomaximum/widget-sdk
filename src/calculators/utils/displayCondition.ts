@@ -38,17 +38,22 @@ export const replaceDisplayCondition = <I extends IWidgetColumnIndicator>(
 };
 
 /**
- * Шаблон формулы для проверки условия отображения.
+ * Шаблон формулы для приведения произвольного выражения к Boolean.
+ * Используется и для display-condition виджетов/вкладок/инпутов,
+ * и для фильтров по формуле.
  *
+ * NULL отсекается явной проверкой isNotNull (трактуется как false).
+ * Остальные непреобразуемые к Boolean значения подпадают под дефолт true.
+ *
+ * - null -> false (явная проверка isNotNull)
  * - 0 -> false
  * - 1 -> true
  * - 15 -> true
- * - '0' ->	false
+ * - '0' -> false
  * - '1' -> true
- * - '15' ->	true (значение по умолчанию, т.к. не преобразуется к Boolean)
+ * - '15' -> true (значение по умолчанию, т.к. не преобразуется к Boolean)
  * - 'false' -> false
  * - 'true' -> true
  * - 'abc' -> true (значение по умолчанию, т.к. не преобразуется к Boolean)
- * - null -> true (значение по умолчанию, т.к. не преобразуется к Boolean)
  */
-export const displayConditionTemplate = `accurateCastOrDefault({formula}, 'Boolean', true)`;
+export const displayConditionTemplate = `isNotNull({formula}) AND accurateCastOrDefault({formula}, 'Boolean', true)`;

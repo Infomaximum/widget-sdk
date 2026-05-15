@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-2509.0](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-13...v6.0.0-2509.0) (2026-05-15)
+
+
+### Bug Fixes
+
+* исправлен пропуск NULL-строк в фильтре по формуле [BI-16341] ([9e5da85](https://github.com/Infomaximum/widget-sdk/commit/9e5da85249aba553337988207c2cfd904301ef3d))
+
 ## [6.0.0-13](https://github.com/Infomaximum/widget-sdk/compare/v6.0.0-12...v6.0.0-13) (2025-10-01)
 
 

@@ -9,9 +9,7 @@ import {
   formulaFilterMethods,
   FormulaSchema,
   VersionedEnum,
-  type TDimensionProcessFilterTimeUnit,
-  type TDurationUnit,
-  type TLastTimeUnit,
+  zodEnumLike,
   type TZod,
 } from ".";
 import {
@@ -45,12 +43,8 @@ export const FormulaFilterValueSchema = SchemaRegistry.define({
             [EFormulaFilterFieldKeys.string]: z.string(),
             // todo: отказаться от использования z.string(), оставить только z.number() [BI-15912]
             [EFormulaFilterFieldKeys.lastTimeValue]: z.number().or(z.string()),
-            [EFormulaFilterFieldKeys.lastTimeUnit]: z.enum(
-              Object.values(ELastTimeUnit) as [TLastTimeUnit, ...TLastTimeUnit[]]
-            ),
-            [EFormulaFilterFieldKeys.durationUnit]: z.enum(
-              Object.values(EDurationUnit) as [TDurationUnit, ...TDurationUnit[]]
-            ),
+            [EFormulaFilterFieldKeys.lastTimeUnit]: z.enum(zodEnumLike(ELastTimeUnit)),
+            [EFormulaFilterFieldKeys.durationUnit]: z.enum(zodEnumLike(EDurationUnit)),
           })
           .partial()
           .optional(),
@@ -92,14 +86,7 @@ export const DimensionProcessFilterSchema = SchemaRegistry.define({
         dbDataType: z.string(),
         condition: z.object({
           filteringMethod: z.enum(Object.values(formulaFilterMethods)),
-          timeUnit: z
-            .enum(
-              Object.values(EDimensionProcessFilterTimeUnit) as [
-                TDimensionProcessFilterTimeUnit,
-                ...TDimensionProcessFilterTimeUnit[],
-              ]
-            )
-            .optional(),
+          timeUnit: z.enum(zodEnumLike(EDimensionProcessFilterTimeUnit)).optional(),
           values: z.array(z.string().nullable()),
         }),
       }),

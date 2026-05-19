@@ -14,7 +14,7 @@ import { fillTemplateSql } from "../../indicatorsFormulas";
 import { displayConditionTemplate } from "./displayCondition";
 import { ESimpleDataType } from "../../data";
 import { prepareFormulaForSql } from "./prepareFormulaForSql";
-import { VersionedEnum } from "../../versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "../../versionedEnum";
 
 export const ELastTimeUnit = VersionedEnum.build({
   latestVersion: "17",
@@ -26,7 +26,7 @@ export const ELastTimeUnit = VersionedEnum.build({
     } as const,
   },
 });
-export type TLastTimeUnit = Extract<(typeof ELastTimeUnit)[keyof typeof ELastTimeUnit], string>;
+export type TLastTimeUnit = TVersionedEnumValues<typeof ELastTimeUnit>;
 
 export const EDurationUnit = VersionedEnum.build({
   latestVersion: "17",
@@ -39,7 +39,7 @@ export const EDurationUnit = VersionedEnum.build({
     } as const,
   },
 });
-export type TDurationUnit = Extract<(typeof EDurationUnit)[keyof typeof EDurationUnit], string>;
+export type TDurationUnit = TVersionedEnumValues<typeof EDurationUnit>;
 
 const isRangeFilteringMethod = (filteringMethod: valueof<typeof formulaFilterMethods>) =>
   filteringMethod === formulaFilterMethods.IN_RANGE ||

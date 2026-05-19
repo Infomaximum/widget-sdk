@@ -1,5 +1,5 @@
 import type { TNullable } from "./utilityTypes";
-import { VersionedEnum } from "./versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 
 export const ESimpleDataType = VersionedEnum.build({
   latestVersion: "17",
@@ -17,10 +17,7 @@ export const ESimpleDataType = VersionedEnum.build({
   },
 });
 
-export type TSimpleDataType = Extract<
-  (typeof ESimpleDataType)[keyof typeof ESimpleDataType],
-  string
->;
+export type TSimpleDataType = TVersionedEnumValues<typeof ESimpleDataType>;
 
 export type TDbTypeContainer = "Array" | "Nullable";
 

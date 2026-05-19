@@ -3,10 +3,9 @@ import {
   EFontWeight,
   EWidgetFilterMode,
   themed,
-  type TFontWeight,
-  type TWidgetFilterMode,
   type TZod,
   VersionedEnum,
+  zodEnumLike,
 } from "..";
 import { ActionButtonSchema } from "../actions.schema";
 import { SettingsFilterSchema } from "../filtration.schema";
@@ -52,9 +51,7 @@ export const BaseWidgetSettingsSchema = SchemaRegistry.define({
         titleSize: themed(z.number().default(14), (theme) => theme.widgets.titleSize),
         titleColor: themed(ColorSchema.forVersion("17")(z), (theme) => theme.widgets.titleColor),
         titleWeight: themed(
-          z
-            .enum(Object.values(v17FontWeight) as [TFontWeight, ...TFontWeight[]])
-            .default(v17FontWeight.NORMAL),
+          z.enum(zodEnumLike(v17FontWeight)).default(v17FontWeight.NORMAL),
           (theme) => theme.widgets.titleWeight
         ),
         stateName: z.string().nullable().default(null),
@@ -63,9 +60,7 @@ export const BaseWidgetSettingsSchema = SchemaRegistry.define({
         markdownText: z.string().default(""),
         markdownTextSize: z.number().default(14),
         filters: z.array(SettingsFilterSchema.forVersion("17")(z)).default([]),
-        filterMode: z
-          .enum(Object.values(v17FilterMode) as [TWidgetFilterMode, ...TWidgetFilterMode[]])
-          .default(v17FilterMode.DEFAULT),
+        filterMode: z.enum(zodEnumLike(v17FilterMode)).default(v17FilterMode.DEFAULT),
         ignoreFilters: z.boolean().default(false),
         sorting: z.array(WidgetSortingIndicatorSchema.forVersion("17")(z)).default([]),
         actionButtons: z.array(ActionButtonSchema.forVersion("17")(z)).default([]),
@@ -80,9 +75,7 @@ export const BaseWidgetSettingsSchema = SchemaRegistry.define({
         v17(z)
           .omit({ paddings: true, filterMode: true })
           .extend({
-            filterMode: z
-              .enum(Object.values(EWidgetFilterMode) as [TWidgetFilterMode, ...TWidgetFilterMode[]])
-              .default(EWidgetFilterMode.DEFAULT),
+            filterMode: z.enum(zodEnumLike(EWidgetFilterMode)).default(EWidgetFilterMode.DEFAULT),
           }),
     };
   },

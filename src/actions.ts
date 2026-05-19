@@ -23,7 +23,7 @@ import type {
   WidgetActionParameterSchema,
   WidgetActionSchema,
 } from "./actions.schema";
-import { VersionedEnum } from "./versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 
 export const EWidgetActionInputMethod = VersionedEnum.build({
   latestVersion: "17",
@@ -44,10 +44,7 @@ export const EWidgetActionInputMethod = VersionedEnum.build({
   },
 });
 
-export type TWidgetActionInputMethod = Extract<
-  (typeof EWidgetActionInputMethod)[keyof typeof EWidgetActionInputMethod],
-  string
->;
+export type TWidgetActionInputMethod = TVersionedEnumValues<typeof EWidgetActionInputMethod>;
 
 export const EActionTypes = VersionedEnum.build({
   latestVersion: "17",
@@ -62,7 +59,7 @@ export const EActionTypes = VersionedEnum.build({
   },
 });
 
-export type TActionTypes = Extract<(typeof EActionTypes)[keyof typeof EActionTypes], string>;
+export type TActionTypes = TVersionedEnumValues<typeof EActionTypes>;
 
 export const EViewMode = VersionedEnum.build({
   latestVersion: "17",
@@ -75,7 +72,7 @@ export const EViewMode = VersionedEnum.build({
   },
 });
 
-export type TViewMode = Extract<(typeof EViewMode)[keyof typeof EViewMode], string>;
+export type TViewMode = TVersionedEnumValues<typeof EViewMode>;
 
 export const EViewOpenIn = VersionedEnum.build({
   latestVersion: "17",
@@ -89,7 +86,7 @@ export const EViewOpenIn = VersionedEnum.build({
   },
 });
 
-export type TViewOpenIn = Extract<(typeof EViewOpenIn)[keyof typeof EViewOpenIn], string>;
+export type TViewOpenIn = TVersionedEnumValues<typeof EViewOpenIn>;
 
 export const EDrawerPlacement = VersionedEnum.build({
   latestVersion: "17",
@@ -101,10 +98,7 @@ export const EDrawerPlacement = VersionedEnum.build({
   },
 });
 
-export type TDrawerPlacement = Extract<
-  (typeof EDrawerPlacement)[keyof typeof EDrawerPlacement],
-  string
->;
+export type TDrawerPlacement = TVersionedEnumValues<typeof EDrawerPlacement>;
 
 export const EAutoUpdateMode = VersionedEnum.build({
   latestVersion: "17",
@@ -117,10 +111,7 @@ export const EAutoUpdateMode = VersionedEnum.build({
   },
 });
 
-export type TAutoUpdateMode = Extract<
-  (typeof EAutoUpdateMode)[keyof typeof EAutoUpdateMode],
-  string
->;
+export type TAutoUpdateMode = TVersionedEnumValues<typeof EAutoUpdateMode>;
 
 export const EDataModelOption = VersionedEnum.build({
   latestVersion: "17",
@@ -132,10 +123,7 @@ export const EDataModelOption = VersionedEnum.build({
   },
 });
 
-export type TDataModelOption = Extract<
-  (typeof EDataModelOption)[keyof typeof EDataModelOption],
-  string
->;
+export type TDataModelOption = TVersionedEnumValues<typeof EDataModelOption>;
 
 export interface IParameterFromColumn extends TSchemaType<typeof ParameterFromColumnSchema> {}
 
@@ -190,10 +178,7 @@ export const EActivateConditionMode = VersionedEnum.build({
   },
 });
 
-export type TActivateConditionMode = Extract<
-  (typeof EActivateConditionMode)[keyof typeof EActivateConditionMode],
-  string
->;
+export type TActivateConditionMode = TVersionedEnumValues<typeof EActivateConditionMode>;
 
 export interface IWidgetAction extends TSchemaType<typeof WidgetActionSchema> {}
 
@@ -218,7 +203,4 @@ export const EActionButtonsTypes = VersionedEnum.build({
   },
 });
 
-export type TActionButtonsTypes = Extract<
-  (typeof EActionButtonsTypes)[keyof typeof EActionButtonsTypes],
-  string
->;
+export type TActionButtonsTypes = TVersionedEnumValues<typeof EActionButtonsTypes>;

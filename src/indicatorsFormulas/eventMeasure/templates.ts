@@ -1,4 +1,4 @@
-import { VersionedEnum } from "../../versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "../../versionedEnum";
 
 export const EEventMeasureTemplateNames = VersionedEnum.build({
   latestVersion: "17",
@@ -10,10 +10,7 @@ export const EEventMeasureTemplateNames = VersionedEnum.build({
   },
 });
 
-export type TEventMeasureTemplateNames = Extract<
-  (typeof EEventMeasureTemplateNames)[keyof typeof EEventMeasureTemplateNames],
-  string
->;
+export type TEventMeasureTemplateNames = TVersionedEnumValues<typeof EEventMeasureTemplateNames>;
 
 export const eventMeasureTemplateFormulas = {
   [EEventMeasureTemplateNames.eventsCount]: `count()`,

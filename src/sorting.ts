@@ -5,7 +5,7 @@ import type {
   SortOrderSchema,
   WidgetSortingValueSchema,
 } from "./sorting.schema";
-import { VersionedEnum } from "./versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 
 export const ESortDirection = VersionedEnum.build({
   latestVersion: "17",
@@ -19,10 +19,7 @@ export const ESortDirection = VersionedEnum.build({
   },
 });
 
-export type TSortDirectionEnum = Extract<
-  (typeof ESortDirection)[keyof typeof ESortDirection],
-  string
->;
+export type TSortDirectionEnum = TVersionedEnumValues<typeof ESortDirection>;
 
 export const ESortingMode = VersionedEnum.build({
   latestVersion: "17",
@@ -34,7 +31,7 @@ export const ESortingMode = VersionedEnum.build({
   },
 });
 
-export type TSortingMode = Extract<(typeof ESortingMode)[keyof typeof ESortingMode], string>;
+export type TSortingMode = TVersionedEnumValues<typeof ESortingMode>;
 
 export type TSortDirection = TSchemaType<typeof SortDirectionSchema>;
 export type TWidgetSortingValue = TSchemaType<typeof WidgetSortingValueSchema>;

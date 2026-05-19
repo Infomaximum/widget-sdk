@@ -5,13 +5,12 @@ import {
   EOuterAggregation,
   EWidgetIndicatorValueModes,
 } from "./indicators";
-import { VersionedEnum } from "./versionedEnum";
-import { EMarkdownDisplayMode, type TMarkdownDisplayMode } from "./settings/values";
+import { VersionedEnum, zodEnumLike } from "./versionedEnum";
+import { EMarkdownDisplayMode } from "./settings/values";
 import {
   EFormattingPresets,
   EFormatTypes,
   EMeasureInnerTemplateNames,
-  type TMeasureInnerTemplateNames,
   type TSchemaType,
   type TZod,
 } from ".";
@@ -141,14 +140,7 @@ export const MeasureValueSchema = SchemaRegistry.define({
       z.discriminatedUnion("mode", [
         WidgetIndicatorFormulaValueSchema.forVersion("17")(z),
         extendWithMeta(WidgetIndicatorTemplateValueSchema.forVersion("17")(z), {
-          innerTemplateName: z
-            .enum(
-              Object.values(EMeasureInnerTemplateNames) as [
-                TMeasureInnerTemplateNames,
-                ...TMeasureInnerTemplateNames[],
-              ]
-            )
-            .optional(),
+          innerTemplateName: z.enum(zodEnumLike(EMeasureInnerTemplateNames)).optional(),
         }),
       ]),
   },
@@ -335,12 +327,7 @@ export const MarkdownMeasureSchema = SchemaRegistry.define({
 
       return extendWithMeta(WidgetMeasureSchema.forVersion("17")(z), {
         displaySign: z
-          .enum(
-            Object.values(v17MarkdownDisplayMode) as [
-              TMarkdownDisplayMode,
-              ...TMarkdownDisplayMode[],
-            ]
-          )
+          .enum(zodEnumLike(v17MarkdownDisplayMode))
           .default(v17MarkdownDisplayMode.NONE),
       });
     },

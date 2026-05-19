@@ -3,7 +3,7 @@ import type { TSimpleDataType } from "./data";
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormattingPresets, EFormatTypes } from "@infomaximum/bi-formatting";
 import { EActionTypes, type TColor, type TSchemaType, type TSortingValue } from ".";
-import { VersionedEnum } from "./versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 import type { FormatSchema, FormattingSchema } from "./indicators.schema";
 import type {
   TOuterAggregation,
@@ -120,7 +120,7 @@ export const EControlType = VersionedEnum.build({
   },
 });
 
-export type TControlType = Extract<(typeof EControlType)[keyof typeof EControlType], string>;
+export type TControlType = TVersionedEnumValues<typeof EControlType>;
 
 /**
  * Type-level registry спецификаций контролов.
@@ -328,7 +328,7 @@ export const EUnitMode = VersionedEnum.build({
   },
 });
 
-export type TUnitMode = Extract<(typeof EUnitMode)[keyof typeof EUnitMode], string>;
+export type TUnitMode = TVersionedEnumValues<typeof EUnitMode>;
 
 export interface ISizeControl {
   type: typeof EControlType.size;

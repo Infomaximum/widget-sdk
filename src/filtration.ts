@@ -8,14 +8,14 @@ import type {
   FormulaFilterValueSchema,
   SettingsFilterSchema,
 } from "./filtration.schema";
-import { VersionedEnum } from "./versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 
 export type TSelectivePartial<T, Keys extends keyof T> = Omit<T, Keys> & Partial<Pick<T, Keys>>;
 
-export const formulaFilterMethods: Record<TCalculatorFilterMethods | "LAST_TIME", string> = {
+export const formulaFilterMethods = {
   ...Object.fromEntries(Object.entries(ECalculatorFilterMethods).map(([k, v]) => [k, v])),
   LAST_TIME: "LAST_TIME",
-} as Record<TCalculatorFilterMethods | "LAST_TIME", string>;
+} as { readonly [K in TCalculatorFilterMethods | "LAST_TIME"]: K };
 
 export const EProcessFilterNames = VersionedEnum.build({
   latestVersion: "17",
@@ -33,10 +33,7 @@ export const EProcessFilterNames = VersionedEnum.build({
   },
 });
 
-export type TProcessFilterNames = Extract<
-  (typeof EProcessFilterNames)[keyof typeof EProcessFilterNames],
-  string
->;
+export type TProcessFilterNames = TVersionedEnumValues<typeof EProcessFilterNames>;
 
 /**
  * Параметры, которые влияют на отображаемый контент в окне настройки процессного фильтра,
@@ -128,10 +125,7 @@ export const EFormulaFilterFieldKeys = VersionedEnum.build({
   },
 });
 
-export type TFormulaFilterFieldKeys = Extract<
-  (typeof EFormulaFilterFieldKeys)[keyof typeof EFormulaFilterFieldKeys],
-  string
->;
+export type TFormulaFilterFieldKeys = TVersionedEnumValues<typeof EFormulaFilterFieldKeys>;
 
 export interface IFormulaFilterValue extends TSchemaType<typeof FormulaFilterValueSchema> {}
 
@@ -148,10 +142,7 @@ export const EDimensionProcessFilterTimeUnit = VersionedEnum.build({
   },
 });
 
-export type TDimensionProcessFilterTimeUnit = Extract<
-  (typeof EDimensionProcessFilterTimeUnit)[keyof typeof EDimensionProcessFilterTimeUnit],
-  string
->;
+export type TDimensionProcessFilterTimeUnit = TVersionedEnumValues<typeof EDimensionProcessFilterTimeUnit>;
 export interface IDimensionProcessFilter extends TSchemaType<typeof DimensionProcessFilterSchema> {}
 
 export type TExtendedFormulaFilterValue = TSchemaType<typeof ExtendedFormulaFilterValueSchema>;

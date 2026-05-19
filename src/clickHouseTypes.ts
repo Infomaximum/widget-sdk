@@ -6,7 +6,7 @@ import {
 } from "./data";
 import type { TNullable } from "./utilityTypes";
 import { isNil, memoize } from "./utils/functions";
-import { VersionedEnum } from "./versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 
 export const EClickHouseBaseTypes = VersionedEnum.build({
   latestVersion: "17",
@@ -55,10 +55,7 @@ export const EClickHouseBaseTypes = VersionedEnum.build({
     } as const,
   },
 });
-export type TClickHouseBaseTypes = Extract<
-  (typeof EClickHouseBaseTypes)[keyof typeof EClickHouseBaseTypes],
-  string
->;
+export type TClickHouseBaseTypes = TVersionedEnumValues<typeof EClickHouseBaseTypes>;
 
 const stringTypes = ["String", "FixedString"];
 

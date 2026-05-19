@@ -11,7 +11,7 @@ import type {
 } from "./indicatorsFormulas";
 import type { TSimpleDataType } from "./data";
 import type { EFormatTypes } from "@infomaximum/bi-formatting";
-import { VersionedEnum } from "./versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 
 export interface ILens<InputShape, Value> {
   get(obj: InputShape): Value;
@@ -90,10 +90,7 @@ export const ESelectOptionTypes = VersionedEnum.build({
     } as const,
   },
 });
-export type TSelectOptionTypes = Extract<
-  (typeof ESelectOptionTypes)[keyof typeof ESelectOptionTypes],
-  string
->;
+export type TSelectOptionTypes = TVersionedEnumValues<typeof ESelectOptionTypes>;
 
 export const ECustomSelectTemplates = VersionedEnum.build({
   latestVersion: "17",
@@ -104,10 +101,7 @@ export const ECustomSelectTemplates = VersionedEnum.build({
     } as const,
   },
 });
-export type TCustomSelectTemplates = Extract<
-  (typeof ECustomSelectTemplates)[keyof typeof ECustomSelectTemplates],
-  string
->;
+export type TCustomSelectTemplates = TVersionedEnumValues<typeof ECustomSelectTemplates>;
 
 export interface ISelectDividerOption {
   type: typeof ESelectOptionTypes.DIVIDER;
@@ -401,7 +395,4 @@ export const ESystemRecordKey = VersionedEnum.build({
     } as const,
   },
 });
-export type TSystemRecordKey = Extract<
-  (typeof ESystemRecordKey)[keyof typeof ESystemRecordKey],
-  string
->;
+export type TSystemRecordKey = TVersionedEnumValues<typeof ESystemRecordKey>;

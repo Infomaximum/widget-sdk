@@ -166,3 +166,56 @@ export class VersionedEnum {
     return Object.freeze(result) as TVersionedEnum<THistory, TLatestVersion>;
   }
 }
+
+/**
+ * Union строковых значений `VersionedEnum`, его исторического среза
+ * или плоского `Record<string, string>`. Заменяет повторяющийся паттерн
+ * `Extract<(typeof E)[keyof typeof E], string>` — нужен, чтобы отсечь
+ * Symbol-ключ `forVersion` из `TVersionedEnum`.
+ *
+ * @example
+ * export type TFontWeight = TVersionedEnumValues<typeof EFontWeight>;
+ * export type TMarkdownDisplayMode = TVersionedEnumValues<typeof EMarkdownDisplayMode>;
+ */
+export type TVersionedEnumValues<T extends Readonly<Record<string, string>>> = Extract<
+  T[keyof T],
+  string
+>;
+
+/** Сужает ключи мапы до строковых — отбрасывает Symbol/number, если есть. */
+type TStringKeyed<T> = { [K in keyof T as K extends string ? K : never]: T[K] };
+
+/**
+ * Готовит аргумент для `z.enum(...)` из `VersionedEnum`, его исторического среза
+ * или плоского `Record<string, string>`.
+ *
+ * Решает структурную несовместимость `TVersionedEnum` (имеет non-enumerable
+ * Symbol-ключ `forVersion`) с `EnumLike`-типом zod: на уровне типов отбрасывает
+ * не-строковые ключи, на уровне runtime спред также не копирует non-enumerable
+ * Symbol. Литералы значений сохраняются.
+ *
+ * @example
+ * z.enum(zodEnumLike(EFontWeight))
+ * z.enum(zodEnumLike(EFilterMode[VersionedEnum.forVersion]("17")))
+ */
+export function zodEnumLike<T extends Readonly<Record<string, string>>>(
+  source: T
+): TStringKeyed<T> {
+  return { ...source } as unknown as TStringKeyed<T>;
+}
+
+/**
+ * Возвращает массив значений `VersionedEnum` или его исторического среза,
+ * сохраняя literal union как тип элемента. Безопаснее, чем
+ * `Object.values(E) as TValue[]` — спред отсекает Symbol-ключ `forVersion`
+ * на runtime, а тип возвращает union литералов вместо `string`.
+ *
+ * @example
+ * const modes = versionedEnumValues(EFontWeight); // TFontWeight[]
+ * for (const mode of versionedEnumValues(EDataModelOption)) { ... }
+ */
+export function versionedEnumValues<T extends Readonly<Record<string, string>>>(
+  source: T
+): TVersionedEnumValues<T>[] {
+  return Object.values({ ...source }) as TVersionedEnumValues<T>[];
+}

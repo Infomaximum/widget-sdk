@@ -52,8 +52,12 @@ export * from "./utils/schemaMeta";
 export * from "./zod.types";
 export { SchemaRegistryReader } from "./schemaRegistry";
 export { VersionedSchemaFactory } from "./versionedSchemaFactory";
-export { VersionedEnum } from "./versionedEnum";
-export type { TVersionedEnum, IVersionedEnumBuildParams } from "./versionedEnum";
+export { VersionedEnum, zodEnumLike, versionedEnumValues } from "./versionedEnum";
+export type {
+  TVersionedEnum,
+  TVersionedEnumValues,
+  IVersionedEnumBuildParams,
+} from "./versionedEnum";
 
 export type TDefineWidgetOptions = {
   manifest?: IWidgetManifest;

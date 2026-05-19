@@ -2,7 +2,7 @@
 
 import type { TSchemaType } from "..";
 import type { DisplayConditionSchema, RangeSchema } from "./values.schema";
-import { VersionedEnum } from "../versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "../versionedEnum";
 
 export const EWidgetFilterMode = VersionedEnum.build({
   latestVersion: "19",
@@ -25,10 +25,7 @@ export const EWidgetFilterMode = VersionedEnum.build({
   },
 });
 
-export type TWidgetFilterMode = Extract<
-  (typeof EWidgetFilterMode)[keyof typeof EWidgetFilterMode],
-  string
->;
+export type TWidgetFilterMode = TVersionedEnumValues<typeof EWidgetFilterMode>;
 
 export type TWidgetFiltering =
   | {
@@ -47,10 +44,7 @@ export const EMarkdownDisplayMode = VersionedEnum.build({
   },
 });
 
-export type TMarkdownDisplayMode = Extract<
-  (typeof EMarkdownDisplayMode)[keyof typeof EMarkdownDisplayMode],
-  string
->;
+export type TMarkdownDisplayMode = TVersionedEnumValues<typeof EMarkdownDisplayMode>;
 
 export const EDisplayConditionMode = VersionedEnum.build({
   latestVersion: "17",
@@ -63,10 +57,7 @@ export const EDisplayConditionMode = VersionedEnum.build({
   },
 });
 
-export type TDisplayConditionMode = Extract<
-  (typeof EDisplayConditionMode)[keyof typeof EDisplayConditionMode],
-  string
->;
+export type TDisplayConditionMode = TVersionedEnumValues<typeof EDisplayConditionMode>;
 
 /** Условие отображения для компонента и меры */
 export type TDisplayCondition = TSchemaType<typeof DisplayConditionSchema>;
@@ -83,7 +74,7 @@ export const EFontWeight = VersionedEnum.build({
   },
 });
 
-export type TFontWeight = Extract<(typeof EFontWeight)[keyof typeof EFontWeight], string>;
+export type TFontWeight = TVersionedEnumValues<typeof EFontWeight>;
 
 export interface IGradient {
   startColor: string;
@@ -102,4 +93,4 @@ export const EHeightMode = VersionedEnum.build({
   },
 });
 
-export type THeightMode = Extract<(typeof EHeightMode)[keyof typeof EHeightMode], string>;
+export type THeightMode = TVersionedEnumValues<typeof EHeightMode>;

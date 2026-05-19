@@ -1,4 +1,4 @@
-import { VersionedEnum } from "../../versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "../../versionedEnum";
 
 export const EMeasureTemplateNames = VersionedEnum.build({
   latestVersion: "17",
@@ -15,10 +15,7 @@ export const EMeasureTemplateNames = VersionedEnum.build({
   },
 });
 
-export type TMeasureTemplateNames = Extract<
-  (typeof EMeasureTemplateNames)[keyof typeof EMeasureTemplateNames],
-  string
->;
+export type TMeasureTemplateNames = TVersionedEnumValues<typeof EMeasureTemplateNames>;
 
 export const EMeasureInnerTemplateNames = VersionedEnum.build({
   latestVersion: "17",
@@ -30,10 +27,7 @@ export const EMeasureInnerTemplateNames = VersionedEnum.build({
   },
 });
 
-export type TMeasureInnerTemplateNames = Extract<
-  (typeof EMeasureInnerTemplateNames)[keyof typeof EMeasureInnerTemplateNames],
-  string
->;
+export type TMeasureInnerTemplateNames = TVersionedEnumValues<typeof EMeasureInnerTemplateNames>;
 
 /** Стандартные шаблоны меры */
 export const measureTemplateFormulas = {

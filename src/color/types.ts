@@ -5,7 +5,7 @@ import type {
   ColorRuleSchema,
   ColorSchema,
 } from "./color.schema";
-import { VersionedEnum } from "../versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "../versionedEnum";
 
 export const EColorMode = VersionedEnum.build({
   latestVersion: "17",
@@ -31,7 +31,7 @@ export const EColorMode = VersionedEnum.build({
   },
 });
 
-export type TColorMode = Extract<(typeof EColorMode)[keyof typeof EColorMode], string>;
+export type TColorMode = TVersionedEnumValues<typeof EColorMode>;
 
 export type TColorBase = TSchemaType<typeof ColorBaseSchema>;
 export type TColorRule = TSchemaType<typeof ColorRuleSchema>;

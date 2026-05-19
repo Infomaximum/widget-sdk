@@ -2,7 +2,7 @@ import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuot
 import { convertFiltersToFormula } from "../../calculators/utils/filters";
 import { EWidgetIndicatorValueModes, type IWidgetMeasure } from "../../indicators";
 import { generateColumnFormula } from "../shared";
-import { VersionedEnum } from "../../versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "../../versionedEnum";
 
 export const EMeasureAggregationTemplateName = VersionedEnum.build({
   latestVersion: "17",
@@ -24,10 +24,7 @@ export const EMeasureAggregationTemplateName = VersionedEnum.build({
   },
 });
 
-export type TMeasureAggregationTemplateName = Extract<
-  (typeof EMeasureAggregationTemplateName)[keyof typeof EMeasureAggregationTemplateName],
-  string
->;
+export type TMeasureAggregationTemplateName = TVersionedEnumValues<typeof EMeasureAggregationTemplateName>;
 
 /** На основе значения режима AGGREGATION подготовить параметры для подстановки в шаблонную формулу */
 export const prepareMeasureAggregationParams = (

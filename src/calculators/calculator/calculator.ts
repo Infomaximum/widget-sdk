@@ -1,6 +1,6 @@
 import type { TNullable, valueof } from "../../utilityTypes";
 import type { formulaFilterMethods } from "../../filtration";
-import { VersionedEnum } from "../../versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "../../versionedEnum";
 
 export interface ICalculator<Input, Output> {
   /** Запрос к вычислителю */
@@ -65,10 +65,7 @@ export const ECalculatorFilterMethods = VersionedEnum.build({
     } as const,
   },
 });
-export type TCalculatorFilterMethods = Extract<
-  (typeof ECalculatorFilterMethods)[keyof typeof ECalculatorFilterMethods],
-  string
->;
+export type TCalculatorFilterMethods = TVersionedEnumValues<typeof ECalculatorFilterMethods>;
 
 export interface ICalculatorFilter {
   /** Формула фильтра */

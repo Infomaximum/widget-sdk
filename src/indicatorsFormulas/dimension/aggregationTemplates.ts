@@ -16,7 +16,7 @@ import {
 } from "../shared/aggregationTemplates";
 import { generateColumnFormula } from "../shared";
 import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuotes";
-import { VersionedEnum } from "../../versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "../../versionedEnum";
 
 export const EDimensionAggregationTemplateName = VersionedEnum.build({
   latestVersion: "17",
@@ -38,10 +38,7 @@ export const EDimensionAggregationTemplateName = VersionedEnum.build({
   },
 });
 
-export type TDimensionAggregationTemplateName = Extract<
-  (typeof EDimensionAggregationTemplateName)[keyof typeof EDimensionAggregationTemplateName],
-  string
->;
+export type TDimensionAggregationTemplateName = TVersionedEnumValues<typeof EDimensionAggregationTemplateName>;
 
 /** Шаблоны процессных метрик разреза с режимом AGGREGATION */
 export const dimensionAggregationTemplates: Record<TDimensionAggregationTemplateName, string> = {

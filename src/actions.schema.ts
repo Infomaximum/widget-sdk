@@ -15,14 +15,7 @@ import {
   KeyNullableSchema,
   NameNullableSchema,
   SortingValueSchema,
-  type TActionButtonsTypes,
-  type TActivateConditionMode,
-  type TAutoUpdateMode,
-  type TDataModelOption,
-  type TDrawerPlacement,
-  type TViewMode,
-  type TViewOpenIn,
-  type TWidgetActionInputMethod,
+  zodEnumLike,
   type TZod,
 } from ".";
 import { ExtendedFormulaFilterValueSchema } from "./filtration.schema";
@@ -196,9 +189,7 @@ export const ParameterFromDataModelSchema = SchemaRegistry.define({
     "17": (z: TZod) =>
       z.object({
         inputMethod: z.literal(EWidgetActionInputMethod.DATA_MODEL),
-        option: z
-          .enum(Object.values(EDataModelOption) as [TDataModelOption, ...TDataModelOption[]])
-          .default(EDataModelOption.TABLE_LIST),
+        option: z.enum(zodEnumLike(EDataModelOption)).default(EDataModelOption.TABLE_LIST),
         /**
          * Используется только при COLUMN_LIST. Не делаем union по option, чтобы сохранить
          * одновременно default для option и работоспособность внешнего discriminated union.
@@ -299,9 +290,7 @@ export const ActionRunScriptSchema = SchemaRegistry.define({
         type: z.literal(EActionTypes.EXECUTE_SCRIPT),
         parameters: z.array(ActionOnClickParameterSchema.forVersion("17")(z)).default([]),
         scriptKey: z.string(),
-        autoUpdate: z
-          .enum(Object.values(EAutoUpdateMode) as [TAutoUpdateMode, ...TAutoUpdateMode[]])
-          .default(EAutoUpdateMode.THIS_WIDGET),
+        autoUpdate: z.enum(zodEnumLike(EAutoUpdateMode)).default(EAutoUpdateMode.THIS_WIDGET),
         hideInactiveButton: z.boolean().default(false),
         activateCondition: ActivateConditionSchema.forVersion("17")(z),
         hint: z.string().default(""),
@@ -331,9 +320,7 @@ export const ActionOpenInSchema = SchemaRegistry.define({
       z.discriminatedUnion("openIn", [
         z.object({
           openIn: z.literal(EViewOpenIn.DRAWER_WINDOW),
-          alignment: z
-            .enum(Object.values(EDrawerPlacement) as [TDrawerPlacement, ...TDrawerPlacement[]])
-            .default(EDrawerPlacement.RIGHT),
+          alignment: z.enum(zodEnumLike(EDrawerPlacement)).default(EDrawerPlacement.RIGHT),
           inheritFilter: z.boolean().default(true),
         }),
         z.object({
@@ -453,9 +440,7 @@ export const WidgetActionSchema = SchemaRegistry.define({
         parameters: z.array(WidgetActionParameterSchema.forVersion("17")(z)).default([]),
         type: z.literal(EActionTypes.EXECUTE_SCRIPT),
         scriptKey: z.string(),
-        autoUpdate: z
-          .enum(Object.values(EAutoUpdateMode) as [TAutoUpdateMode, ...TAutoUpdateMode[]])
-          .default(EAutoUpdateMode.THIS_WIDGET),
+        autoUpdate: z.enum(zodEnumLike(EAutoUpdateMode)).default(EAutoUpdateMode.THIS_WIDGET),
         description: z.string().default(""),
         hideInactiveButton: z.boolean().default(false),
         hint: z.string().default(""),
@@ -488,11 +473,7 @@ export const ViewActionSchema = SchemaRegistry.define({
     "17": (z: TZod) =>
       extendWithMeta(AutoIdentifiedArrayItemSchema.forVersion("17")(z), {
         name: z.string(),
-        buttonType: z
-          .enum(
-            Object.values(EActionButtonsTypes) as [TActionButtonsTypes, ...TActionButtonsTypes[]]
-          )
-          .default(EActionButtonsTypes.BASE),
+        buttonType: z.enum(zodEnumLike(EActionButtonsTypes)).default(EActionButtonsTypes.BASE),
         type: z.literal(EActionTypes.EXECUTE_SCRIPT).default(EActionTypes.EXECUTE_SCRIPT),
         parameters: z.array(ViewActionParameterSchema.forVersion("17")(z)).default([]),
         scriptKey: KeyNullableSchema.forVersion("17")(z),
@@ -527,11 +508,7 @@ export const ActionButtonSchema = SchemaRegistry.define({
       extendWithMeta(AutoIdentifiedArrayItemSchema.forVersion("17")(z), {
         name: z.string(),
         onClick: z.array(WidgetActionSchema.forVersion("17")(z)).default([]),
-        buttonType: z
-          .enum(
-            Object.values(EActionButtonsTypes) as [TActionButtonsTypes, ...TActionButtonsTypes[]]
-          )
-          .default(EActionButtonsTypes.BASE),
+        buttonType: z.enum(zodEnumLike(EActionButtonsTypes)).default(EActionButtonsTypes.BASE),
         backgroundColor: ColorSchema.forVersion("17")(z),
         borderColor: ColorSchema.forVersion("17")(z),
         color: ColorSchema.forVersion("17")(z),

@@ -1,4 +1,4 @@
-import { VersionedEnum } from "../../versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "../../versionedEnum";
 
 export const ETransitionMeasureTemplateNames = VersionedEnum.build({
   latestVersion: "17",
@@ -10,10 +10,7 @@ export const ETransitionMeasureTemplateNames = VersionedEnum.build({
   },
 });
 
-export type TTransitionMeasureTemplateNames = Extract<
-  (typeof ETransitionMeasureTemplateNames)[keyof typeof ETransitionMeasureTemplateNames],
-  string
->;
+export type TTransitionMeasureTemplateNames = TVersionedEnumValues<typeof ETransitionMeasureTemplateNames>;
 
 export const transitionMeasureTemplateFormulas = {
   [ETransitionMeasureTemplateNames.transitionsCount]: `count()`,

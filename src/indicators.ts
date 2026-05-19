@@ -18,7 +18,7 @@ import type {
 } from "./indicators.schema";
 import type { TNullable } from "./utilityTypes";
 import type { TSchemaType, TSortingValue } from ".";
-import { VersionedEnum } from "./versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 
 export const EWidgetIndicatorType = VersionedEnum.build({
   latestVersion: "17",
@@ -33,10 +33,7 @@ export const EWidgetIndicatorType = VersionedEnum.build({
   },
 });
 
-export type TWidgetIndicatorType = Extract<
-  (typeof EWidgetIndicatorType)[keyof typeof EWidgetIndicatorType],
-  string
->;
+export type TWidgetIndicatorType = TVersionedEnumValues<typeof EWidgetIndicatorType>;
 
 export const EOuterAggregation = VersionedEnum.build({
   latestVersion: "17",
@@ -54,10 +51,7 @@ export const EOuterAggregation = VersionedEnum.build({
   },
 });
 
-export type TOuterAggregation = Extract<
-  (typeof EOuterAggregation)[keyof typeof EOuterAggregation],
-  string
->;
+export type TOuterAggregation = TVersionedEnumValues<typeof EOuterAggregation>;
 
 export interface IWidgetIndicator extends TSchemaType<typeof WidgetIndicatorSchema> {}
 
@@ -89,10 +83,7 @@ export const EWidgetIndicatorValueModes = VersionedEnum.build({
   },
 });
 
-export type TWidgetIndicatorValueModes = Extract<
-  (typeof EWidgetIndicatorValueModes)[keyof typeof EWidgetIndicatorValueModes],
-  string
->;
+export type TWidgetIndicatorValueModes = TVersionedEnumValues<typeof EWidgetIndicatorValueModes>;
 
 /** Режимы сортировки (на что ссылается сортировка) */
 export const ESortingValueModes = VersionedEnum.build({
@@ -107,10 +98,7 @@ export const ESortingValueModes = VersionedEnum.build({
   },
 });
 
-export type TSortingValueModes = Extract<
-  (typeof ESortingValueModes)[keyof typeof ESortingValueModes],
-  string
->;
+export type TSortingValueModes = TVersionedEnumValues<typeof ESortingValueModes>;
 
 export interface ICommonState {
   name: string;
@@ -138,10 +126,7 @@ export const EFormatOrFormattingMode = VersionedEnum.build({
   },
 });
 
-export type TFormatOrFormattingMode = Extract<
-  (typeof EFormatOrFormattingMode)[keyof typeof EFormatOrFormattingMode],
-  string
->;
+export type TFormatOrFormattingMode = TVersionedEnumValues<typeof EFormatOrFormattingMode>;
 
 /** Общий интерфейс разреза и меры */
 export interface IWidgetColumnIndicator extends TSchemaType<typeof WidgetColumnIndicatorSchema> {}
@@ -204,7 +189,7 @@ export const EIndicatorType = VersionedEnum.build({
   },
 });
 
-export type TIndicatorType = Extract<(typeof EIndicatorType)[keyof typeof EIndicatorType], string>;
+export type TIndicatorType = TVersionedEnumValues<typeof EIndicatorType>;
 
 interface IBaseWidgetVariable {
   /** Имя переменной */
@@ -232,10 +217,7 @@ export const ESimpleInputType = VersionedEnum.build({
   },
 });
 
-export type TSimpleInputType = Extract<
-  (typeof ESimpleInputType)[keyof typeof ESimpleInputType],
-  string
->;
+export type TSimpleInputType = TVersionedEnumValues<typeof ESimpleInputType>;
 
 export interface IWidgetStaticVariable extends IBaseWidgetVariable {
   /** Тип переменной */
@@ -316,10 +298,7 @@ export const OuterAggregation = VersionedEnum.build({
   },
 });
 
-export type TOuterAggregationIf = Extract<
-  (typeof OuterAggregation)[keyof typeof OuterAggregation],
-  string
->;
+export type TOuterAggregationIf = TVersionedEnumValues<typeof OuterAggregation>;
 
 export const EDurationTemplateName = VersionedEnum.build({
   latestVersion: "17",
@@ -331,10 +310,7 @@ export const EDurationTemplateName = VersionedEnum.build({
   },
 });
 
-export type TDurationTemplateName = Extract<
-  (typeof EDurationTemplateName)[keyof typeof EDurationTemplateName],
-  string
->;
+export type TDurationTemplateName = TVersionedEnumValues<typeof EDurationTemplateName>;
 
 export type TWidgetIndicatorAggregationValue = TSchemaType<
   typeof WidgetIndicatorAggregationValueSchema
@@ -350,10 +326,7 @@ export const EEventAppearances = VersionedEnum.build({
   },
 });
 
-export type TEventAppearances = Extract<
-  (typeof EEventAppearances)[keyof typeof EEventAppearances],
-  string
->;
+export type TEventAppearances = TVersionedEnumValues<typeof EEventAppearances>;
 
 export type TWidgetIndicatorConversionValue = TSchemaType<
   typeof WidgetIndicatorConversionValueSchema

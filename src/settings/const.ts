@@ -1,4 +1,4 @@
-import { VersionedEnum } from "../versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "../versionedEnum";
 
 /** Ключи мета-данных внутри схем настроек */
 export const ESettingsSchemaMetaKey = VersionedEnum.build({
@@ -13,7 +13,4 @@ export const ESettingsSchemaMetaKey = VersionedEnum.build({
   },
 });
 
-export type TSettingsSchemaMetaKey = Extract<
-  (typeof ESettingsSchemaMetaKey)[keyof typeof ESettingsSchemaMetaKey],
-  string
->;
+export type TSettingsSchemaMetaKey = TVersionedEnumValues<typeof ESettingsSchemaMetaKey>;

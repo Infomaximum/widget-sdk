@@ -12,14 +12,14 @@ import { escapeSingularQuotes } from "./escapeSingularQuotes";
 import { mapFormulaFilterToCalculatorInput } from "./mapFormulaFiltersToInputs";
 import { prepareFormulaForSql } from "./prepareFormulaForSql";
 
+const dateSimpleTypes: readonly TSimpleDataType[] = [
+  ESimpleDataType.DATE,
+  ESimpleDataType.DATETIME,
+  ESimpleDataType.DATETIME64,
+];
+
 function isDateSimpleType(simpleType: TSimpleDataType) {
-  return (
-    [
-      ESimpleDataType.DATE,
-      ESimpleDataType.DATETIME,
-      ESimpleDataType.DATETIME64,
-    ] as readonly string[]
-  ).includes(simpleType);
+  return dateSimpleTypes.includes(simpleType);
 }
 
 const castToDateValue = (simpleType: TSimpleDataType) => (value: string | null) => {

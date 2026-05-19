@@ -38,7 +38,7 @@ export function mapDimensionProcessFilterToCalculatorInput(
 
     return {
       dbDataType: EClickHouseBaseTypes.Bool,
-      formula: `date_diff('${intervalByUnit[timeUnit as TDimensionProcessFilterTimeUnit]}', ${formula}, now())`,
+      formula: `date_diff('${intervalByUnit[timeUnit]}', ${formula}, now())`,
       values,
       filteringMethod: formulaFilterMethods.LESS_THAN_OR_EQUAL_TO,
     };

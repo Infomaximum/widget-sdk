@@ -1,4 +1,4 @@
-import { VersionedEnum } from "../../versionedEnum";
+import { VersionedEnum, type TVersionedEnumValues } from "../../versionedEnum";
 
 export const EDimensionTemplateNames = VersionedEnum.build({
   latestVersion: "17",
@@ -19,10 +19,7 @@ export const EDimensionTemplateNames = VersionedEnum.build({
   },
 });
 
-export type TDimensionTemplateNames = Extract<
-  (typeof EDimensionTemplateNames)[keyof typeof EDimensionTemplateNames],
-  string
->;
+export type TDimensionTemplateNames = TVersionedEnumValues<typeof EDimensionTemplateNames>;
 
 /** Стандартные шаблоны разреза */
 export const dimensionTemplateFormulas: Record<TDimensionTemplateNames, string> = {

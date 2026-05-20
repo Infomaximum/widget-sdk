@@ -1028,12 +1028,11 @@
   resolved "https://registry.yarnpkg.com/@infomaximum/assert/-/assert-1.1.3.tgz#b4eb30914b7a27dbee51171733a3ffd4ada931f8"
   integrity sha512-dxMNhHZjGV0ylOU772tWkZ4fH+O+bLUA8xt6BgxOGMTC01VvUeOnCzgnChtAyifF/Bi9T+cISdwvJwf0jfLDLw==
 
-"@infomaximum/base-filter@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@infomaximum/base-filter/-/base-filter-1.1.0.tgz#b00a1c7125c7c4a2608faf2988366389cf721c86"
-  integrity sha512-hLAePIeFHEFDcf9kP/hvpYw0SDTep9ejdwpC/XGqh2YuvnpPSLtef3KrUIn5BGu+N0xi4EXnOuhyt5RsHppdyA==
+"@infomaximum/base-filter@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@infomaximum/base-filter/-/base-filter-2.0.0.tgz#d99eee1ca29ea5fab5f4366273bb10617c84f88f"
+  integrity sha512-7WrGGF0It0dS2QUt+z3D02lBn/4d0vXm3DLW1GK+I3ZHqlaBf+IYWohHk7gSLZjsKJ53vaJk8B95XvXWlZfe8w==
   dependencies:
-    "@infomaximum/localization" "^1.0.4"
     "@types/react" "^18.0.0"
 
 "@infomaximum/bi-formatting@^1.2.0":
@@ -1064,13 +1063,6 @@
   dependencies:
     "@infomaximum/assert" "^1.0.0"
     lodash.get "^4.4.2"
-
-"@infomaximum/localization@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@infomaximum/localization/-/localization-1.0.4.tgz#252d2170dc6392688ce065ef8588a0b67d5128c0"
-  integrity sha512-mwN79GRRDg3tQLNTXcUO8Ry5BMTm6vXMQkm0y/n6bvfjqjmUHKSH84d6mT1IHjpDiiKyctkQw5sEzUgWV7ntqg==
-  dependencies:
-    "@infomaximum/assert" "^1.0.0"
 
 "@infomaximum/localization@^1.1.0":
   version "1.1.0"

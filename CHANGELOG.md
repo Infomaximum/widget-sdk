@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-23](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-22...v7.0.0-23) (2026-05-20)
+
+
+### Bug Fixes
+
+* обновление зависимости @infomaximum/base-filter до версии 2.0.0 ([c2a834b](https://github.com/Infomaximum/widget-sdk/commit/c2a834bee9127d727b13bdd7bf3720f492da3701))
+
 ## [7.0.0-22](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-21...v7.0.0-22) (2026-05-15)
 
 

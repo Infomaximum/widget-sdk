@@ -43,6 +43,7 @@ export const ParameterFromColumnSchema = SchemaRegistry.define({
         tableName: z.string().nullable().default(null),
         columnName: z.string().nullable().default(null),
         dbDataType: z.string().optional(),
+        value: z.string().nullable().optional(),
       }),
   },
 });
@@ -198,6 +199,22 @@ export const ParameterFromDataModelSchema = SchemaRegistry.define({
   },
 });
 
+/**
+ * Значение берётся из редактируемого текста виджета в момент сохранения.
+ * Используется только в `onSave` виджета `editable-text-widget`.
+ */
+export const ParameterFromEditableTextValueSchema = SchemaRegistry.define({
+  key: "ParameterFromEditableTextValue",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      z.object({
+        inputMethod: z.literal(EWidgetActionInputMethod.EDITABLE_TEXT_VALUE),
+        value: z.string().optional(),
+      }),
+  },
+});
+
 export const ActionOnClickParameterSchema = SchemaRegistry.define({
   key: "ActionOnClickParameter",
   latestVersion: "17",
@@ -217,6 +234,7 @@ export const ActionOnClickParameterSchema = SchemaRegistry.define({
           ParameterFromStaticListSchema.forVersion("17")(z),
           ParameterFromDynamicListSchema.forVersion("17")(z),
           ParameterFromDataModelSchema.forVersion("17")(z),
+          ParameterFromEditableTextValueSchema.forVersion("17")(z),
         ])
       ),
   },

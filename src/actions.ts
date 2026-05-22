@@ -11,6 +11,7 @@ import type {
   ParameterFromAggregationSchema,
   ParameterFromColumnSchema,
   ParameterFromDynamicListSchema,
+  ParameterFromEditableTextValueSchema,
   ParameterFromEndEventSchema,
   ParameterFromEventSchema,
   ParameterFromFormulaSchema,
@@ -36,6 +37,8 @@ export enum EWidgetActionInputMethod {
   FINISH_EVENT = "FINISH_EVENT",
   AGGREGATION = "AGGREGATION",
   DATA_MODEL = "DATA_MODEL",
+  /** Значение берётся из редактируемого текста виджета в момент сохранения */
+  EDITABLE_TEXT_VALUE = "EDITABLE_TEXT_VALUE",
 }
 
 export enum EActionTypes {
@@ -99,6 +102,9 @@ export interface IParameterFromStaticList
 
 export interface IParameterFromDynamicList
   extends TSchemaType<typeof ParameterFromDynamicListSchema> {}
+
+export interface IParameterFromEditableTextValue
+  extends TSchemaType<typeof ParameterFromEditableTextValueSchema> {}
 
 export type TParameterFromDataModel = TSchemaType<typeof ParameterFromDataModelSchema>;
 

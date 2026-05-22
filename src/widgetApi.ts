@@ -30,6 +30,12 @@ export type TLaunchActionParams = {
   eventNames?: [string] | [string, string];
   /** Callback вызывается при успешном открытии модального окна подтверждения или при прерывании открытия */
   onConfirmationOpenSettled?: () => void;
+  /**
+   * Режим запуска действия:
+   * - "id" (по умолчанию) — действие ищется по id в preparedSettings виджета, чтобы получить свежие значения переменных
+   * - "inline" — действие используется из params.action как есть, без поиска по id. Применяется когда виджет сам разрешает значения параметров перед вызовом
+   */
+  actionMode?: "id" | "inline";
 };
 
 export type TWidgetContainer = {

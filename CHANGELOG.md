@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-25](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-24...v7.0.0-25) (2026-05-26)
+
+
+### Features
+
+* добавлена поддержка подсказки в ISwitchControl [BI-16364] ([8a92e05](https://github.com/Infomaximum/widget-sdk/commit/8a92e0531a741f2d9e3c62955a3be148670b3799))
+
 ## [7.0.0-24](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-23...v7.0.0-24) (2026-05-20)
 
 ## [7.0.0-23](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-22...v7.0.0-23) (2026-05-20)

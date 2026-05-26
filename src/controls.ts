@@ -41,6 +41,11 @@ export type THintPlacement =
   | "rightTop"
   | "rightBottom";
 
+export interface IHintTooltipProps {
+  hintText?: string;
+  hintPlacement?: THintPlacement;
+}
+
 /**
  * Props контрола.
  * Единый контракт для встроенных и кастомных контролов.
@@ -255,9 +260,7 @@ export interface IInputControl {
     /** Использовать ли уменьшенный размер заголовка */
     isSmallTitle?: boolean;
     disabled?: boolean;
-    hintText?: string;
-    hintPlacement?: THintPlacement;
-  };
+  } & IHintTooltipProps;
 }
 
 export interface IInputTemplatedControl {
@@ -332,7 +335,7 @@ export interface ISwitchControl {
   props: {
     size?: "small" | "default";
     disabled?: boolean;
-  };
+  } & IHintTooltipProps;
 }
 
 export interface ISelectControl {

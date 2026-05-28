@@ -3,11 +3,13 @@ import { convertFiltersToFormula } from "../../calculators/utils/filters";
 import {
   EDurationTemplateName,
   EEventAppearances,
+  type TDurationTemplateName,
+  type TEventAppearances,
   type TWidgetIndicatorDurationValue,
 } from "../../indicators";
 
 /** Шаблоны процессных метрик меры с режимом DURATION */
-export const durationTemplates: Record<EDurationTemplateName, string> = (() => {
+export const durationTemplates: Record<TDurationTemplateName, string> = (() => {
   const innerTemplate = `
     timeDiff(
         process(
@@ -70,7 +72,7 @@ export const prepareDurationParams = (value: TWidgetIndicatorDurationValue) => {
     return null;
   }
 
-  const getAggregationNameByAppearances = (appearance: EEventAppearances) =>
+  const getAggregationNameByAppearances = (appearance: TEventAppearances) =>
     appearance === EEventAppearances.FIRST ? "minIf" : "maxIf";
 
   return {

@@ -1,6 +1,6 @@
-import { ESimpleDataType } from "../../data";
+import { ESimpleDataType, type TSimpleDataType } from "../../data";
 
-export const prepareValuesForSql = (simpleType: ESimpleDataType, values: (string | null)[]) =>
+export const prepareValuesForSql = (simpleType: TSimpleDataType, values: (string | null)[]) =>
   simpleType === ESimpleDataType.INTEGER ||
   simpleType === ESimpleDataType.FLOAT ||
   simpleType === ESimpleDataType.BOOLEAN

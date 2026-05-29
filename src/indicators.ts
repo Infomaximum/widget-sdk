@@ -18,25 +18,40 @@ import type {
 } from "./indicators.schema";
 import type { TNullable } from "./utilityTypes";
 import type { TSchemaType, TSortingValue } from ".";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 
-export enum EWidgetIndicatorType {
-  MEASURE = "MEASURE",
-  EVENT_INDICATOR = "EVENT_INDICATOR",
-  TRANSITION_INDICATOR = "TRANSITION_INDICATOR",
-  DIMENSION = "DIMENSION",
-  SORTING = "SORTING",
-}
+export const EWidgetIndicatorType = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      MEASURE: "MEASURE",
+      EVENT_INDICATOR: "EVENT_INDICATOR",
+      TRANSITION_INDICATOR: "TRANSITION_INDICATOR",
+      DIMENSION: "DIMENSION",
+      SORTING: "SORTING",
+    } as const,
+  },
+});
 
-export enum EOuterAggregation {
-  avg = "avg",
-  median = "median",
-  count = "count",
-  countDistinct = "countDistinct",
-  min = "min",
-  max = "max",
-  sum = "sum",
-  top = "top",
-}
+export type TWidgetIndicatorType = TVersionedEnumValues<typeof EWidgetIndicatorType>;
+
+export const EOuterAggregation = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      avg: "avg",
+      median: "median",
+      count: "count",
+      countDistinct: "countDistinct",
+      min: "min",
+      max: "max",
+      sum: "sum",
+      top: "top",
+    } as const,
+  },
+});
+
+export type TOuterAggregation = TVersionedEnumValues<typeof EOuterAggregation>;
 
 export interface IWidgetIndicator extends TSchemaType<typeof WidgetIndicatorSchema> {}
 
@@ -51,25 +66,39 @@ export interface IProcessTransitionIndicator extends IProcessIndicator {}
 export interface IWidgetSortingIndicator extends TSchemaType<typeof WidgetSortingIndicatorSchema> {}
 
 /** Режимы значения показателя (на основе чего генерируется формула) */
-export enum EWidgetIndicatorValueModes {
-  /** Готовая формула (как правило, введенная пользователем через редактор формул) */
-  FORMULA = "FORMULA",
-  /** Шаблон формулы, предоставляемый системой */
-  TEMPLATE = "TEMPLATE",
-  AGGREGATION = "AGGREGATION",
-  DURATION = "DURATION",
-  CONVERSION = "CONVERSION",
-  START_TIME = "START_TIME",
-  END_TIME = "END_TIME",
-}
+export const EWidgetIndicatorValueModes = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      /** Готовая формула (как правило, введенная пользователем через редактор формул) */
+      FORMULA: "FORMULA",
+      /** Шаблон формулы, предоставляемый системой */
+      TEMPLATE: "TEMPLATE",
+      AGGREGATION: "AGGREGATION",
+      DURATION: "DURATION",
+      CONVERSION: "CONVERSION",
+      START_TIME: "START_TIME",
+      END_TIME: "END_TIME",
+    } as const,
+  },
+});
+
+export type TWidgetIndicatorValueModes = TVersionedEnumValues<typeof EWidgetIndicatorValueModes>;
 
 /** Режимы сортировки (на что ссылается сортировка) */
-export enum ESortingValueModes {
-  /** Сортировка по формуле */
-  FORMULA = "FORMULA",
-  /** Сортировка по показателю(разрезу или мере) виджета */
-  IN_WIDGET = "IN_WIDGET",
-}
+export const ESortingValueModes = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      /** Сортировка по формуле */
+      FORMULA: "FORMULA",
+      /** Сортировка по показателю(разрезу или мере) виджета */
+      IN_WIDGET: "IN_WIDGET",
+    } as const,
+  },
+});
+
+export type TSortingValueModes = TVersionedEnumValues<typeof ESortingValueModes>;
 
 export interface ICommonState {
   name: string;
@@ -87,10 +116,17 @@ export interface ICommonDimensions {
 
 export type TColumnIndicatorValue = TSchemaType<typeof ColumnIndicatorValueSchema>;
 
-export enum EFormatOrFormattingMode {
-  BASE = "BASE",
-  TEMPLATE = "TEMPLATE",
-}
+export const EFormatOrFormattingMode = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      BASE: "BASE",
+      TEMPLATE: "TEMPLATE",
+    } as const,
+  },
+});
+
+export type TFormatOrFormattingMode = TVersionedEnumValues<typeof EFormatOrFormattingMode>;
 
 /** Общий интерфейс разреза и меры */
 export interface IWidgetColumnIndicator extends TSchemaType<typeof WidgetColumnIndicatorSchema> {}
@@ -127,26 +163,33 @@ export interface IWidgetMeasure extends TSchemaType<typeof WidgetMeasureSchema> 
 export interface IMarkdownMeasure extends TSchemaType<typeof MarkdownMeasureSchema> {}
 
 /** Тип показателя */
-export enum EIndicatorType {
-  /** Показатели процесса */
-  PROCESS_MEASURE = "PROCESS_MEASURE",
-  /** Вводимое значение */
-  STATIC = "STATIC",
-  /** Статический список */
-  STATIC_LIST = "STATIC_LIST",
-  /** Динамический список */
-  DYNAMIC_LIST = "DYNAMIC_LIST",
-  /** Список колонок */
-  COLUMN_LIST = "COLUMN_LIST",
-  /** Разрез */
-  DIMENSION = "DIMENSION",
-  /** Мера */
-  MEASURE = "MEASURE",
-  /** Иерархия */
-  DYNAMIC_DIMENSION = "DYNAMIC_DIMENSION",
-  /** Пользовательская сортировка */
-  USER_SORTING = "USER_SORTING",
-}
+export const EIndicatorType = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      /** Показатели процесса */
+      PROCESS_MEASURE: "PROCESS_MEASURE",
+      /** Вводимое значение */
+      STATIC: "STATIC",
+      /** Статический список */
+      STATIC_LIST: "STATIC_LIST",
+      /** Динамический список */
+      DYNAMIC_LIST: "DYNAMIC_LIST",
+      /** Список колонок */
+      COLUMN_LIST: "COLUMN_LIST",
+      /** Разрез */
+      DIMENSION: "DIMENSION",
+      /** Мера */
+      MEASURE: "MEASURE",
+      /** Иерархия */
+      DYNAMIC_DIMENSION: "DYNAMIC_DIMENSION",
+      /** Пользовательская сортировка */
+      USER_SORTING: "USER_SORTING",
+    } as const,
+  },
+});
+
+export type TIndicatorType = TVersionedEnumValues<typeof EIndicatorType>;
 
 interface IBaseWidgetVariable {
   /** Имя переменной */
@@ -154,28 +197,35 @@ interface IBaseWidgetVariable {
 }
 
 /** Обобщенные типы значений переменных */
-export enum ESimpleInputType {
-  /** Число (точность Float64) */
-  NUMBER = "FLOAT",
-  /** Целое число (точность Int64) */
-  INTEGER_NUMBER = "INTEGER",
-  /** Текст */
-  TEXT = "STRING",
-  /** Дата (точность Date) */
-  DATE = "DATE",
-  /** Дата и время (точность DateTime64) */
-  DATE_AND_TIME = "DATETIME",
-  /** Логический тип */
-  BOOLEAN = "BOOLEAN",
-}
+export const ESimpleInputType = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      /** Число (точность Float64) */
+      NUMBER: "FLOAT",
+      /** Целое число (точность Int64) */
+      INTEGER_NUMBER: "INTEGER",
+      /** Текст */
+      TEXT: "STRING",
+      /** Дата (точность Date) */
+      DATE: "DATE",
+      /** Дата и время (точность DateTime64) */
+      DATE_AND_TIME: "DATETIME",
+      /** Логический тип */
+      BOOLEAN: "BOOLEAN",
+    } as const,
+  },
+});
+
+export type TSimpleInputType = TVersionedEnumValues<typeof ESimpleInputType>;
 
 export interface IWidgetStaticVariable extends IBaseWidgetVariable {
   /** Тип переменной */
-  type: EIndicatorType.STATIC;
+  type: typeof EIndicatorType.STATIC;
   /** Значение */
   value: string | null;
   /** Обобщенный тип данных */
-  simpleInputType: ESimpleInputType;
+  simpleInputType: TSimpleInputType;
 }
 export interface IStaticListLabeledOption {
   value: string;
@@ -184,7 +234,7 @@ export interface IStaticListLabeledOption {
 
 export interface IWidgetStaticListVariable extends IBaseWidgetVariable {
   /** Тип переменной */
-  type: EIndicatorType.STATIC_LIST;
+  type: typeof EIndicatorType.STATIC_LIST;
   /** Значение */
   value: string | string[] | null;
   /** Объект ключ значение для статического списка  */
@@ -195,7 +245,7 @@ export interface IWidgetStaticListVariable extends IBaseWidgetVariable {
 
 export interface IWidgetDynamicListVariable extends IBaseWidgetVariable {
   /** Тип переменной */
-  type: EIndicatorType.DYNAMIC_LIST;
+  type: typeof EIndicatorType.DYNAMIC_LIST;
   /** Значение */
   value: string | (string | null)[] | null;
   /** Формула для отображения списка */
@@ -214,7 +264,7 @@ export interface IWidgetDynamicListVariable extends IBaseWidgetVariable {
 
 export interface IWidgetColumnListVariable extends IBaseWidgetVariable {
   /** Тип переменной */
-  type: EIndicatorType.COLUMN_LIST;
+  type: typeof EIndicatorType.COLUMN_LIST;
   /** Имя таблицы */
   tableName: string;
   /** Значение (имя колонки) */
@@ -233,29 +283,50 @@ export function isDimensionsHierarchy(
   return "hierarchyDimensions" in indicator;
 }
 
-export enum OuterAggregation {
-  avg = "avgIf",
-  median = "medianIf",
-  count = "countIf",
-  countDistinct = "countIfDistinct",
-  min = "minIf",
-  max = "maxIf",
-  sum = "sumIf",
-}
+export const OuterAggregation = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      avg: "avgIf",
+      median: "medianIf",
+      count: "countIf",
+      countDistinct: "countIfDistinct",
+      min: "minIf",
+      max: "maxIf",
+      sum: "sumIf",
+    } as const,
+  },
+});
 
-export enum EDurationTemplateName {
-  avg = "avg",
-  median = "median",
-}
+export type TOuterAggregationIf = TVersionedEnumValues<typeof OuterAggregation>;
+
+export const EDurationTemplateName = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      avg: "avg",
+      median: "median",
+    } as const,
+  },
+});
+
+export type TDurationTemplateName = TVersionedEnumValues<typeof EDurationTemplateName>;
 
 export type TWidgetIndicatorAggregationValue = TSchemaType<
   typeof WidgetIndicatorAggregationValueSchema
 >;
 
-export enum EEventAppearances {
-  FIRST = "FIRST",
-  LAST = "LAST",
-}
+export const EEventAppearances = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      FIRST: "FIRST",
+      LAST: "LAST",
+    } as const,
+  },
+});
+
+export type TEventAppearances = TVersionedEnumValues<typeof EEventAppearances>;
 
 export type TWidgetIndicatorConversionValue = TSchemaType<
   typeof WidgetIndicatorConversionValueSchema

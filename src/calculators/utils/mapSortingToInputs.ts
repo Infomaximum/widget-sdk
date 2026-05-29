@@ -103,7 +103,7 @@ interface IMapSortingToInputsParams<Settings extends TSettings, Indicator> {
   getIndicatorType(
     key: string,
     indicator: Indicator
-  ): EWidgetIndicatorType.DIMENSION | EWidgetIndicatorType.MEASURE;
+  ): typeof EWidgetIndicatorType.DIMENSION | typeof EWidgetIndicatorType.MEASURE;
 }
 
 type TSettings = Pick<IBaseWidgetSettings, "sorting">;

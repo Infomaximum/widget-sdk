@@ -5,6 +5,8 @@ export {
   mapFormulaFiltersToInputs,
   ELastTimeUnit,
   EDurationUnit,
+  type TLastTimeUnit,
+  type TDurationUnit,
 } from "./mapFormulaFiltersToInputs";
 export { mapSettingsFiltersToInputs } from "./mapSettingsFiltersToInputs";
 export {

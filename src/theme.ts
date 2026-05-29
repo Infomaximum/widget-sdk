@@ -1,28 +1,30 @@
 import type { ZodType } from "zod";
 import type {
-  EFontWeight,
-  EHeightMode,
+  TFontWeight,
+  THeightMode,
   IGradient,
   TTabsHorizontalAlignment,
 } from "./settings/values";
 import { ESettingsSchemaMetaKey } from "./settings/const";
 import type { EColorMode, TColor } from "./color";
 
-export type TLimitedColor = Extract<TColor, { mode: EColorMode.AUTO } | { mode: EColorMode.BASE }>;
+export type TLimitedColor =
+  | Extract<TColor, { mode: typeof EColorMode.AUTO }>
+  | Extract<TColor, { mode: typeof EColorMode.BASE }>;
 
 export type TWidgetsPaletteValue =
-  | Extract<TColor, { mode: EColorMode.AUTO }>
-  | { mode: EColorMode.BASE; values: string[] };
+  | Extract<TColor, { mode: typeof EColorMode.AUTO }>
+  | { mode: typeof EColorMode.BASE; values: string[] };
 
 export type TGradientsSetValue =
-  | Extract<TColor, { mode: EColorMode.AUTO }>
-  | { mode: EColorMode.BASE; values: IGradient[] };
+  | Extract<TColor, { mode: typeof EColorMode.AUTO }>
+  | { mode: typeof EColorMode.BASE; values: IGradient[] };
 
 export interface ITheme {
   apiVersion: string;
   maxWidth?: number;
   dividersHeight: {
-    mode: EHeightMode;
+    mode: THeightMode;
     value?: number;
   };
   backgroundColor: string;
@@ -32,7 +34,7 @@ export interface ITheme {
     cornerRadius: number | undefined;
     titleColor: TLimitedColor;
     titleSize: number;
-    titleWeight: EFontWeight;
+    titleWeight: TFontWeight;
     textColor: TLimitedColor;
     textSize: number;
     axesColor: TLimitedColor;
@@ -55,12 +57,12 @@ export interface ITheme {
     tables: {
       header: {
         color: TLimitedColor;
-        textWeight: EFontWeight;
+        textWeight: TFontWeight;
         textColor: TLimitedColor;
       };
       total: {
         color: TLimitedColor;
-        textWeight: EFontWeight;
+        textWeight: TFontWeight;
         textColor: TLimitedColor;
       };
     };

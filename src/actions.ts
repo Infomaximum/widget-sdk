@@ -23,57 +23,107 @@ import type {
   WidgetActionParameterSchema,
   WidgetActionSchema,
 } from "./actions.schema";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 
-export enum EWidgetActionInputMethod {
-  COLUMN = "COLUMN",
-  VARIABLE = "VARIABLE",
-  STATIC_LIST = "STATIC_LIST",
-  DYNAMIC_LIST = "DYNAMIC_LIST",
-  FORMULA = "FORMULA",
-  MANUALLY = "MANUALLY",
-  EVENT = "EVENT",
-  START_EVENT = "START_EVENT",
-  FINISH_EVENT = "FINISH_EVENT",
-  AGGREGATION = "AGGREGATION",
-  DATA_MODEL = "DATA_MODEL",
-}
+export const EWidgetActionInputMethod = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      COLUMN: "COLUMN",
+      VARIABLE: "VARIABLE",
+      STATIC_LIST: "STATIC_LIST",
+      DYNAMIC_LIST: "DYNAMIC_LIST",
+      FORMULA: "FORMULA",
+      MANUALLY: "MANUALLY",
+      EVENT: "EVENT",
+      START_EVENT: "START_EVENT",
+      FINISH_EVENT: "FINISH_EVENT",
+      AGGREGATION: "AGGREGATION",
+      DATA_MODEL: "DATA_MODEL",
+    } as const,
+  },
+});
 
-export enum EActionTypes {
-  OPEN_URL = "OPEN_URL",
-  UPDATE_VARIABLE = "UPDATE_VARIABLE",
-  EXECUTE_SCRIPT = "EXECUTE_SCRIPT",
-  OPEN_VIEW = "OPEN_VIEW",
-  DRILL_DOWN = "DRILL_DOWN",
-}
+export type TWidgetActionInputMethod = TVersionedEnumValues<typeof EWidgetActionInputMethod>;
 
-export enum EViewMode {
-  EXISTED_VIEW = "EXISTED_VIEW",
-  GENERATED_BY_SCRIPT = "GENERATED_BY_SCRIPT",
-  EMPTY = "EMPTY",
-}
+export const EActionTypes = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      OPEN_URL: "OPEN_URL",
+      UPDATE_VARIABLE: "UPDATE_VARIABLE",
+      EXECUTE_SCRIPT: "EXECUTE_SCRIPT",
+      OPEN_VIEW: "OPEN_VIEW",
+      DRILL_DOWN: "DRILL_DOWN",
+    } as const,
+  },
+});
 
-export enum EViewOpenIn {
-  WINDOW = "WINDOW",
-  PLACEHOLDER = "PLACEHOLDER",
-  MODAL_WINDOW = "MODAL_WINDOW",
-  DRAWER_WINDOW = "DRAWER_WINDOW",
-}
+export type TActionTypes = TVersionedEnumValues<typeof EActionTypes>;
 
-export enum EDrawerPlacement {
-  LEFT = "LEFT",
-  RIGHT = "RIGHT",
-}
+export const EViewMode = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      EXISTED_VIEW: "EXISTED_VIEW",
+      GENERATED_BY_SCRIPT: "GENERATED_BY_SCRIPT",
+      EMPTY: "EMPTY",
+    } as const,
+  },
+});
 
-export enum EAutoUpdateMode {
-  NONE = "NONE",
-  THIS_WIDGET = "THIS_WIDGET",
-  ALL_VIEWS = "ALL_VIEWS",
-}
+export type TViewMode = TVersionedEnumValues<typeof EViewMode>;
 
-export enum EDataModelOption {
-  TABLE_LIST = "TABLE_LIST",
-  COLUMN_LIST = "COLUMN_LIST",
-}
+export const EViewOpenIn = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      WINDOW: "WINDOW",
+      PLACEHOLDER: "PLACEHOLDER",
+      MODAL_WINDOW: "MODAL_WINDOW",
+      DRAWER_WINDOW: "DRAWER_WINDOW",
+    } as const,
+  },
+});
+
+export type TViewOpenIn = TVersionedEnumValues<typeof EViewOpenIn>;
+
+export const EDrawerPlacement = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      LEFT: "LEFT",
+      RIGHT: "RIGHT",
+    } as const,
+  },
+});
+
+export type TDrawerPlacement = TVersionedEnumValues<typeof EDrawerPlacement>;
+
+export const EAutoUpdateMode = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      NONE: "NONE",
+      THIS_WIDGET: "THIS_WIDGET",
+      ALL_VIEWS: "ALL_VIEWS",
+    } as const,
+  },
+});
+
+export type TAutoUpdateMode = TVersionedEnumValues<typeof EAutoUpdateMode>;
+
+export const EDataModelOption = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      TABLE_LIST: "TABLE_LIST",
+      COLUMN_LIST: "COLUMN_LIST",
+    } as const,
+  },
+});
+
+export type TDataModelOption = TVersionedEnumValues<typeof EDataModelOption>;
 
 export interface IParameterFromColumn extends TSchemaType<typeof ParameterFromColumnSchema> {}
 
@@ -118,10 +168,17 @@ export type TActionOpenView = TSchemaType<typeof ActionOpenViewSchema>;
 
 export type TActionsOnClick = TSchemaType<typeof ActionsOnClickSchema>;
 
-export enum EActivateConditionMode {
-  FORMULA = "FORMULA",
-  VARIABLE = "VARIABLE",
-}
+export const EActivateConditionMode = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      FORMULA: "FORMULA",
+      VARIABLE: "VARIABLE",
+    } as const,
+  },
+});
+
+export type TActivateConditionMode = TVersionedEnumValues<typeof EActivateConditionMode>;
 
 export interface IWidgetAction extends TSchemaType<typeof WidgetActionSchema> {}
 
@@ -135,8 +192,15 @@ export type TAction = TSchemaType<typeof ActionSchema>;
 
 export type TActionValidator = (action: TAction) => boolean;
 
-export enum EActionButtonsTypes {
-  LINK = "link",
-  BASE = "primary",
-  SECONDARY = "primary-outlined",
-}
+export const EActionButtonsTypes = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      LINK: "link",
+      BASE: "primary",
+      SECONDARY: "primary-outlined",
+    } as const,
+  },
+});
+
+export type TActionButtonsTypes = TVersionedEnumValues<typeof EActionButtonsTypes>;

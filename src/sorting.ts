@@ -5,18 +5,33 @@ import type {
   SortOrderSchema,
   WidgetSortingValueSchema,
 } from "./sorting.schema";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 
-export enum ESortDirection {
-  descend = "DESC",
-  ascend = "ASC",
-  ASC = "ascend",
-  DESC = "descend",
-}
+export const ESortDirection = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      descend: "DESC",
+      ascend: "ASC",
+      ASC: "ascend",
+      DESC: "descend",
+    } as const,
+  },
+});
 
-export enum ESortingMode {
-  BY_VALUES = "BY_VALUES",
-  FORMULA = "FORMULA",
-}
+export type TSortDirectionEnum = TVersionedEnumValues<typeof ESortDirection>;
+
+export const ESortingMode = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      BY_VALUES: "BY_VALUES",
+      FORMULA: "FORMULA",
+    } as const,
+  },
+});
+
+export type TSortingMode = TVersionedEnumValues<typeof ESortingMode>;
 
 export type TSortDirection = TSchemaType<typeof SortDirectionSchema>;
 export type TWidgetSortingValue = TSchemaType<typeof WidgetSortingValueSchema>;

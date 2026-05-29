@@ -1,16 +1,17 @@
 import { type TControlsSpecMap, type TControlUnion } from "./controls";
-import type { EWidgetIndicatorType } from "./indicators";
+import { EWidgetIndicatorType, type TWidgetIndicatorType } from "./indicators";
 import type { IGlobalContext } from "./widgetContext";
 import type { IAutoIdentifiedArrayItem, IBaseWidgetSettings } from "./settings/baseWidget";
 import type { ICalculatorFactory } from "./calculators";
-import type { EWidgetFilterMode } from "./settings/values";
+import type { TWidgetFilterMode } from "./settings/values";
 import type {
-  EDimensionAggregationTemplateName,
-  EDimensionTemplateNames,
-  EMeasureTemplateNames,
+  TDimensionAggregationTemplateName,
+  TDimensionTemplateNames,
+  TMeasureTemplateNames,
 } from "./indicatorsFormulas";
-import type { ESimpleDataType } from "./data";
+import type { TSimpleDataType } from "./data";
 import type { EFormatTypes } from "@infomaximum/bi-formatting";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 
 export interface ILens<InputShape, Value> {
   get(obj: InputShape): Value;
@@ -77,29 +78,42 @@ export interface ISelectOption {
   rightIcon?: "fx" | string;
 }
 
-export enum ESelectOptionTypes {
-  DIVIDER = "DIVIDER",
-  SYSTEM = "SYSTEM",
-  GROUP = "GROUP",
-  BRANCH = "BRANCH",
-  LEAF = "LEAF",
-}
-export enum ECustomSelectTemplates {
-  FORMULA = "FORMULA",
-  DIMENSION_GROUPS = "DIMENSION_GROUPS",
-}
+export const ESelectOptionTypes = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      DIVIDER: "DIVIDER",
+      SYSTEM: "SYSTEM",
+      GROUP: "GROUP",
+      BRANCH: "BRANCH",
+      LEAF: "LEAF",
+    } as const,
+  },
+});
+export type TSelectOptionTypes = TVersionedEnumValues<typeof ESelectOptionTypes>;
+
+export const ECustomSelectTemplates = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      FORMULA: "FORMULA",
+      DIMENSION_GROUPS: "DIMENSION_GROUPS",
+    } as const,
+  },
+});
+export type TCustomSelectTemplates = TVersionedEnumValues<typeof ECustomSelectTemplates>;
 
 export interface ISelectDividerOption {
-  type: ESelectOptionTypes.DIVIDER;
+  type: typeof ESelectOptionTypes.DIVIDER;
 }
 
 export interface ISelectSystemOption<T extends string = string> {
-  type: ESelectOptionTypes.SYSTEM;
+  type: typeof ESelectOptionTypes.SYSTEM;
   template: T;
 }
 
 export interface ISelectGroupOption {
-  type: ESelectOptionTypes.GROUP;
+  type: typeof ESelectOptionTypes.GROUP;
   label: string;
   options: IAddButtonSelectOption[];
   icon: string;
@@ -114,7 +128,7 @@ export type TSelectFetchNodes = (searchText?: string) => Promise<ISelectNode>;
 export type TSelectChildOptions = TCustomAddButtonSelectOption[] | TSelectFetchNodes;
 
 export interface ISelectBranchOption {
-  type: ESelectOptionTypes.BRANCH;
+  type: typeof ESelectOptionTypes.BRANCH;
   label: string;
   options: TSelectChildOptions;
   icon?: string;
@@ -122,7 +136,7 @@ export interface ISelectBranchOption {
 }
 
 export interface ISelectLeafOption<U extends object> {
-  type: ESelectOptionTypes.LEAF;
+  type: typeof ESelectOptionTypes.LEAF;
   label: string;
   value: string;
   onSelect: (value: string, update: (f: (prevItems: U) => U) => void) => void;
@@ -138,7 +152,7 @@ export type IAddButtonSelectOption =
   | ISelectLeafOption<object[]>;
 
 export type TCustomAddButtonSelectOption =
-  | ISelectSystemOption<ECustomSelectTemplates>
+  | ISelectSystemOption<TCustomSelectTemplates>
   | IAddButtonSelectOption;
 
 export type TMeasureAddButtonSelectOption = IAddButtonSelectOption;
@@ -196,31 +210,31 @@ export interface IGroupSettings extends IAutoIdentifiedArrayItem {
 
 /** Конфигурация разреза */
 export type TWidgetDimensionData = {
-  type: EWidgetIndicatorType.DIMENSION;
+  type: typeof EWidgetIndicatorType.DIMENSION;
   /** Обобщенные типы данных, поддерживаемые разрезом */
-  simpleTypes?: ESimpleDataType[];
+  simpleTypes?: TSimpleDataType[];
   /**
    * Шаблоны формул, доступные к выбору шаблоны на основе колонок (по типу колонки)
    * Фильтрация применяется только для указанных типов колонки
    */
   templates?: Partial<
-    Record<ESimpleDataType, (EDimensionTemplateNames | EDimensionAggregationTemplateName)[]>
+    Record<TSimpleDataType, (TDimensionTemplateNames | TDimensionAggregationTemplateName)[]>
   >;
   /**
    * Шаблоны формул, доступные к выбору в процессных разрезах по времени
    */
-  processTimeTemplates?: EDimensionTemplateNames[];
+  processTimeTemplates?: TDimensionTemplateNames[];
   /** Переопределение доступных форматов */
-  formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;
+  formats?: Partial<Record<TSimpleDataType, EFormatTypes[]>>;
 };
 
 /** Конфигурация меры */
 export type TWidgetMeasureData = {
-  type: EWidgetIndicatorType.MEASURE;
+  type: typeof EWidgetIndicatorType.MEASURE;
   /** Переопределение доступных форматов */
-  formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;
+  formats?: Partial<Record<TSimpleDataType, EFormatTypes[]>>;
   /** Шаблоны формул, доступные для выбора в мере */
-  templates?: Partial<Record<ESimpleDataType, EMeasureTemplateNames[]>>;
+  templates?: Partial<Record<TSimpleDataType, TMeasureTemplateNames[]>>;
 };
 
 /** Конфигурация показателя */
@@ -265,7 +279,7 @@ export interface IGroupSetDescription<
    * - предустановленного мета-описания показателя.
    * - содержимого выпадающего списка.
    */
-  getIndicatorData?: (settings: IInitialSettings) => EWidgetIndicatorType | TWidgetIndicatorData;
+  getIndicatorData?: (settings: IInitialSettings) => TWidgetIndicatorType | TWidgetIndicatorData;
 
   /** Создать конфигурацию группы для вкладки настроек данных */
   createDataRecords?(
@@ -332,7 +346,7 @@ export interface IPanelDescription<
     IGroupSetRecord
   >[];
   /** Доступные для выбора режимы фильтрации (во вкладке настроек фильтрации) */
-  filtrationModes?: EWidgetFilterMode[];
+  filtrationModes?: TWidgetFilterMode[];
 }
 
 export interface IWidgetProcess {
@@ -373,6 +387,12 @@ export interface IPanelDescriptionCreator<
 }
 
 //todo: заполнить в рамках BI-13985
-export enum ESystemRecordKey {
-  formatting = "formatting",
-}
+export const ESystemRecordKey = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      formatting: "formatting",
+    } as const,
+  },
+});
+export type TSystemRecordKey = TVersionedEnumValues<typeof ESystemRecordKey>;

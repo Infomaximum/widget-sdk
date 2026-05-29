@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-26](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-25...v7.0.0-26) (2026-05-29)
+
+
+### Features
+
+* **VersionedEnum:** добавлена утилита версионирования enum + миграция всех 49 enum на VersionedEnum.build + регресс-тесты ([4a6f79d](https://github.com/Infomaximum/widget-sdk/commit/4a6f79d5686eff8dea0d8424615e2899015c59db))
+* **VersionedEnum:** добавлены zodEnumLike, versionedEnumValues, TVersionedEnumValues ([2d20079](https://github.com/Infomaximum/widget-sdk/commit/2d20079178decef123bc1ca49068b330ce3755af))
+
 ## [7.0.0-25](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-24...v7.0.0-25) (2026-05-26)
 
 

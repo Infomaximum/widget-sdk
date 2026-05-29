@@ -1,11 +1,12 @@
-import type { EWidgetActionInputMethod, IActionRunScript, TActionsOnClick } from "./actions";
-import type { ESimpleDataType } from "./data";
+import type { IActionRunScript, TActionsOnClick, TWidgetActionInputMethod } from "./actions";
+import type { TSimpleDataType } from "./data";
 import type { TExtendedFormulaFilterValue } from "./filtration";
 import type { EFormattingPresets, EFormatTypes } from "@infomaximum/bi-formatting";
-import { EActionTypes, EColorMode, type TColor, type TSchemaType, type TSortingValue } from ".";
+import { EActionTypes, type TColor, type TSchemaType, type TSortingValue } from ".";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 import type { FormatSchema, FormattingSchema } from "./indicators.schema";
 import type {
-  EOuterAggregation,
+  TOuterAggregation,
   IWidgetDimension,
   TColumnIndicatorValue,
   TWidgetIndicatorAggregationValue,
@@ -13,7 +14,7 @@ import type {
   TWidgetIndicatorDurationValue,
   TWidgetIndicatorTimeValue,
 } from "./indicators";
-import type { EMeasureInnerTemplateNames } from "./indicatorsFormulas";
+import type { TMeasureInnerTemplateNames } from "./indicatorsFormulas";
 import type {
   IDisplayPredicate,
   IDivePanelDescription,
@@ -24,7 +25,8 @@ import type {
   TWidgetDimensionData,
   TWidgetMeasureData,
 } from "./metaDescription";
-import type { EDisplayConditionMode, IRange, TDisplayCondition } from "./settings/values";
+import type { IRange, TDisplayCondition, TDisplayConditionMode } from "./settings/values";
+import type { TColorMode } from "./color/types";
 import type { TNullable } from "./utilityTypes";
 
 export type THintPlacement =
@@ -40,6 +42,11 @@ export type THintPlacement =
   | "leftBottom"
   | "rightTop"
   | "rightBottom";
+
+export interface IHintTooltipProps {
+  hintText?: string;
+  hintPlacement?: THintPlacement;
+}
 
 /**
  * Props контрола.
@@ -65,53 +72,60 @@ export interface IControlProps<
   diveState?: DiveState;
 }
 
-export enum EControlType {
-  /** Ввод текста */
-  input = "input",
-  /** Ввод текста с поддержкой шаблонной вставки сущностей */
-  inputTemplate = "inputTemplate",
-  /** Ввод текста в формате markdown */
-  inputMarkdown = "inputMarkdown",
-  /** Ввод числа */
-  inputNumber = "inputNumber",
-  /** Выбор диапазона чисел */
-  inputRange = "inputRange",
-  /** Ввод размера (число + единица измерения) */
-  size = "size",
-  /** Выбор boolean значения через переключатель */
-  switch = "switch",
-  /** Выбор варианта из выпадающего списка */
-  select = "select",
-  /** Выбор одного из вариантов, представленных через иконки */
-  radioIconGroup = "radioIconGroup",
-  /** Ввод значения показателя */
-  formula = "formula",
-  /** Ввод формулы и ее типа */
-  typedFormula = "typedFormula",
-  /** Выбор настроек форматирования */
-  formatting = "formatting",
-  /** Ввод шаблона форматирования */
-  formattingTemplate = "formattingTemplate",
-  /** Выбор действий по клику */
-  actionOnClick = "actionOnClick",
-  /** Ввод фильтров */
-  filter = "filter",
-  /** Ввод условия отображения */
-  displayCondition = "displayCondition",
-  /** Ввод цвета */
-  colorPicker = "colorPicker",
-  /** Отображение тегов с возможностью "провалиться" внутрь */
-  tagSet = "tagSet",
-  /** Множественный выбор событий процесса */
-  eventsPicker = "eventsPicker",
-  /**
-   * @deprecated используется только для виджета "Маршруты", будет перенесено на уровень виджета.
-   * Ввод цветов для событий процесса.
-   */
-  eventsColor = "eventsColor",
-  /** Сортировка */
-  sorting = "sorting",
-}
+export const EControlType = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      /** Ввод текста */
+      input: "input",
+      /** Ввод текста с поддержкой шаблонной вставки сущностей */
+      inputTemplate: "inputTemplate",
+      /** Ввод текста в формате markdown */
+      inputMarkdown: "inputMarkdown",
+      /** Ввод числа */
+      inputNumber: "inputNumber",
+      /** Выбор диапазона чисел */
+      inputRange: "inputRange",
+      /** Ввод размера (число + единица измерения) */
+      size: "size",
+      /** Выбор boolean значения через переключатель */
+      switch: "switch",
+      /** Выбор варианта из выпадающего списка */
+      select: "select",
+      /** Выбор одного из вариантов, представленных через иконки */
+      radioIconGroup: "radioIconGroup",
+      /** Ввод значения показателя */
+      formula: "formula",
+      /** Ввод формулы и ее типа */
+      typedFormula: "typedFormula",
+      /** Выбор настроек форматирования */
+      formatting: "formatting",
+      /** Ввод шаблона форматирования */
+      formattingTemplate: "formattingTemplate",
+      /** Выбор действий по клику */
+      actionOnClick: "actionOnClick",
+      /** Ввод фильтров */
+      filter: "filter",
+      /** Ввод условия отображения */
+      displayCondition: "displayCondition",
+      /** Ввод цвета */
+      colorPicker: "colorPicker",
+      /** Отображение тегов с возможностью "провалиться" внутрь */
+      tagSet: "tagSet",
+      /** Множественный выбор событий процесса */
+      eventsPicker: "eventsPicker",
+      /**
+       * @deprecated используется только для виджета "Маршруты", будет перенесено на уровень виджета.
+       * Ввод цветов для событий процесса.
+       */
+      eventsColor: "eventsColor",
+      /** Сортировка */
+      sorting: "sorting",
+    } as const,
+  },
+});
+
+export type TControlType = TVersionedEnumValues<typeof EControlType>;
 
 /**
  * Type-level registry спецификаций контролов.
@@ -199,7 +213,9 @@ export interface IControlRecord<
    *
    * Возможность работает только для элемента управления EControlType.tagSet.
    */
-  description?: T["type"] extends EControlType.tagSet ? IDivePanelDescription<Settings> : never;
+  description?: T["type"] extends typeof EControlType.tagSet
+    ? IDivePanelDescription<Settings>
+    : never;
   /**
    * Предикат, позволяющий скрыть элемент управления.
    * Предоставлен для удобства разработки. Скрыть элемент можно и условно добавляя его в мета-описание.
@@ -243,7 +259,7 @@ interface IControlRecordPosition {
 // todo: переименовать интерфейсы спецификаций контролов или организовать в общий registry [BI-16135]
 
 export interface IInputControl {
-  type: EControlType.input;
+  type: typeof EControlType.input;
   value: string;
   props: {
     placeholder?: string;
@@ -255,25 +271,23 @@ export interface IInputControl {
     /** Использовать ли уменьшенный размер заголовка */
     isSmallTitle?: boolean;
     disabled?: boolean;
-    hintText?: string;
-    hintPlacement?: THintPlacement;
-  };
+  } & IHintTooltipProps;
 }
 
 export interface IInputTemplatedControl {
-  type: EControlType.inputTemplate;
+  type: typeof EControlType.inputTemplate;
   value: string;
   props: {};
 }
 
 export interface IInputMarkdownControl {
-  type: EControlType.inputMarkdown;
+  type: typeof EControlType.inputMarkdown;
   value: string;
   props: {};
 }
 
 export interface IInputNumberControl {
-  type: EControlType.inputNumber;
+  type: typeof EControlType.inputNumber;
   value: number | null;
   props: {
     min?: number;
@@ -296,7 +310,7 @@ export interface IInputNumberControl {
 }
 
 export interface IInputRangeControl {
-  type: EControlType.inputRange;
+  type: typeof EControlType.inputRange;
   value: IRange;
   props: {
     min?: number;
@@ -307,36 +321,42 @@ export interface IInputRangeControl {
   };
 }
 
-export enum EUnitMode {
-  PIXEL = "PIXEL",
-  PERCENT = "PERCENT",
-}
+export const EUnitMode = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      PIXEL: "PIXEL",
+      PERCENT: "PERCENT",
+    } as const,
+  },
+});
+
+export type TUnitMode = TVersionedEnumValues<typeof EUnitMode>;
 
 export interface ISizeControl {
-  type: EControlType.size;
-  value: { value: number | null; mode: EUnitMode };
+  type: typeof EControlType.size;
+  value: { value: number | null; mode: TUnitMode };
   props: {
     placeholder?: string;
     disabled?: boolean;
     isClearable?: boolean;
     minMaxByMode?: {
-      [EUnitMode.PIXEL]: { min?: number; max?: number };
-      [EUnitMode.PERCENT]: { min?: number; max?: number };
+      [K in typeof EUnitMode.PIXEL | typeof EUnitMode.PERCENT]: { min?: number; max?: number };
     };
   };
 }
 
 export interface ISwitchControl {
-  type: EControlType.switch;
+  type: typeof EControlType.switch;
   value: boolean;
   props: {
     size?: "small" | "default";
     disabled?: boolean;
-  };
+  } & IHintTooltipProps;
 }
 
 export interface ISelectControl {
-  type: EControlType.select;
+  type: typeof EControlType.select;
   value: TNullable<string>;
   props: {
     fetchOptions?: (
@@ -354,7 +374,7 @@ export interface ISelectControl {
 }
 
 export interface IRadioIconGroupControl<Icon = string> {
-  type: EControlType.radioIconGroup;
+  type: typeof EControlType.radioIconGroup;
   value: string;
   props: {
     disabled?: boolean;
@@ -368,12 +388,12 @@ export interface IRadioIconGroupControl<Icon = string> {
 }
 
 export interface IFormulaControl {
-  type: EControlType.formula;
+  type: typeof EControlType.formula;
   value: {
     value:
       | TColumnIndicatorValue
       | (TWidgetIndicatorAggregationValue & {
-          outerAggregation: EOuterAggregation;
+          outerAggregation: TOuterAggregation;
         })
       | (TWidgetIndicatorAggregationValue & { innerTemplateName?: string })
       | TWidgetIndicatorConversionValue
@@ -386,7 +406,7 @@ export interface IFormulaControl {
       | ({
           type: "measure";
           templates?: TWidgetMeasureData["templates"];
-          innerTemplateNames?: EMeasureInnerTemplateNames[];
+          innerTemplateNames?: TMeasureInnerTemplateNames[];
         } & {
           /** @deprecated временное решение для виджета "Воронка", не следует использовать [BI-14710] */
           allowClear?: boolean;
@@ -410,7 +430,7 @@ export interface IFormulaControl {
 }
 
 export interface ITypedFormulaControl {
-  type: EControlType.typedFormula;
+  type: typeof EControlType.typedFormula;
   value: {
     formula: string;
     dbDataType?: string;
@@ -422,20 +442,20 @@ export interface ITypedFormulaControl {
 }
 
 export interface IFormattingControl {
-  type: EControlType.formatting;
+  type: typeof EControlType.formatting;
   value: {
     format?: TSchemaType<typeof FormatSchema>;
     formatting?: TSchemaType<typeof FormattingSchema>;
   };
   props: {
-    formats?: Partial<Record<ESimpleDataType, EFormatTypes[]>>;
+    formats?: Partial<Record<TSimpleDataType, EFormatTypes[]>>;
     formatting?: Partial<Record<EFormatTypes, EFormattingPresets[]>>;
     dbDataType: TNullable<string>;
   };
 }
 
 export interface IFormattingTemplateControl {
-  type: EControlType.formattingTemplate;
+  type: typeof EControlType.formattingTemplate;
   value: string;
   props: {
     /** Используемый формат (влияет на контент подсказки) */
@@ -452,19 +472,25 @@ interface ICommonActionConfig {
    * - `string` - действие недоступно. Значение содержит причину недоступности.
    */
   availability: boolean | string;
-  extraInputMethods?: EWidgetActionInputMethod[];
+  extraInputMethods?: TWidgetActionInputMethod[];
 }
 
-export type TActionsConfig = Partial<{
-  [EActionTypes.UPDATE_VARIABLE]: ICommonActionConfig;
-  [EActionTypes.OPEN_VIEW]: ICommonActionConfig;
-  [EActionTypes.DRILL_DOWN]: Omit<ICommonActionConfig, "extraInputMethods">;
-  [EActionTypes.OPEN_URL]: Omit<ICommonActionConfig, "extraInputMethods">;
-  [EActionTypes.EXECUTE_SCRIPT]: ICommonActionConfig & {
-    showActivateCondition?: boolean;
-    enableRunButtonText?: (parameters: IActionRunScript["parameters"]) => boolean;
-  };
-}>;
+export type TActionsConfig = Partial<
+  {
+    [K in typeof EActionTypes.UPDATE_VARIABLE]: ICommonActionConfig;
+  } & {
+    [K in typeof EActionTypes.OPEN_VIEW]: ICommonActionConfig;
+  } & {
+    [K in typeof EActionTypes.DRILL_DOWN]: Omit<ICommonActionConfig, "extraInputMethods">;
+  } & {
+    [K in typeof EActionTypes.OPEN_URL]: Omit<ICommonActionConfig, "extraInputMethods">;
+  } & {
+    [K in typeof EActionTypes.EXECUTE_SCRIPT]: ICommonActionConfig & {
+      showActivateCondition?: boolean;
+      enableRunButtonText?: (parameters: IActionRunScript["parameters"]) => boolean;
+    };
+  }
+>;
 
 export const defaultActionsConfig = {
   OPEN_URL: { availability: true },
@@ -474,13 +500,13 @@ export const defaultActionsConfig = {
 };
 
 export interface IActionOnClickControl {
-  type: EControlType.actionOnClick;
+  type: typeof EControlType.actionOnClick;
   value: TActionsOnClick[];
   props: {
     /** Заголовок для отображения при проваливании */
     diveTitle: string;
     /** Общие способы ввода для всех действий с параметрами */
-    inputMethods: EWidgetActionInputMethod[];
+    inputMethods: TWidgetActionInputMethod[];
     /**
      * Объект точечной конфигурации действия по типу, отобразятся только те действия, которые описаны в нем
      * @default {defaultActionsConfig}
@@ -505,7 +531,7 @@ export interface IActionOnClickControl {
 }
 
 export interface IFilterControl {
-  type: EControlType.filter;
+  type: typeof EControlType.filter;
   value: TExtendedFormulaFilterValue[];
   props: {
     buttonTitle?: string;
@@ -515,21 +541,21 @@ export interface IFilterControl {
 }
 
 export interface IDisplayConditionControl {
-  type: EControlType.displayCondition;
+  type: typeof EControlType.displayCondition;
   value: TDisplayCondition;
   props: {
     isInMeasure?: boolean;
     labelFontSize?: number;
-    modes?: EDisplayConditionMode[];
+    modes?: TDisplayConditionMode[];
   };
 }
 
 export interface IColorPickerControl {
-  type: EControlType.colorPicker;
+  type: typeof EControlType.colorPicker;
   value: TColor | undefined;
   props: {
-    ruleModes?: EColorMode[];
-    modes?: EColorMode[];
+    ruleModes?: TColorMode[];
+    modes?: TColorMode[];
     /** Цвет по умолчанию для режима BASE при переключении с другого режима */
     defaultColor?: string;
     dimension?: IWidgetDimension;
@@ -538,7 +564,7 @@ export interface IColorPickerControl {
 }
 
 export interface ITagSetControl {
-  type: EControlType.tagSet;
+  type: typeof EControlType.tagSet;
   value: string[];
   props: {
     placeholder?: string;
@@ -547,7 +573,7 @@ export interface ITagSetControl {
 }
 
 export interface IEventsPickerControl {
-  type: EControlType.eventsPicker;
+  type: typeof EControlType.eventsPicker;
   value: (string | null)[];
   props: {
     process: IWidgetProcess | undefined;
@@ -556,10 +582,10 @@ export interface IEventsPickerControl {
 }
 
 export interface IEventsColorControl {
-  type: EControlType.eventsColor;
+  type: typeof EControlType.eventsColor;
   value: {
     defaultColor: string;
-    values: Record<string, { mode: EColorMode; value: string }>;
+    values: Record<string, { mode: TColorMode; value: string }>;
   };
   props: Omit<IColorPickerControl["props"], "defaultColor"> & {
     defaultColor?: ((eventName: string) => string) | string;
@@ -568,7 +594,7 @@ export interface IEventsColorControl {
 }
 
 export interface ISortingControl {
-  type: EControlType.sorting;
+  type: typeof EControlType.sorting;
   value: TSortingValue;
   props: {};
 }

@@ -7,10 +7,10 @@ import {
 import { fillTemplateSql, generateColumnFormula } from "../shared";
 import {
   dimensionAggregationTemplates,
-  EDimensionAggregationTemplateName,
+  type TDimensionAggregationTemplateName,
   prepareDimensionAggregationParams,
 } from "./aggregationTemplates";
-import { dimensionTemplateFormulas, type EDimensionTemplateNames } from "./baseTemplates";
+import { dimensionTemplateFormulas, type TDimensionTemplateNames } from "./baseTemplates";
 import { prepareTimeParams, timeTemplates } from "./timeTemplates";
 
 export function getDimensionFormula({ value }: TWidgetDimensionUnion): string {
@@ -25,7 +25,7 @@ export function getDimensionFormula({ value }: TWidgetDimensionUnion): string {
   if (value.mode === EWidgetIndicatorValueModes.TEMPLATE) {
     const { templateName, tableName, columnName } = value;
 
-    const templateFormula = dimensionTemplateFormulas[templateName as EDimensionTemplateNames];
+    const templateFormula = dimensionTemplateFormulas[templateName as TDimensionTemplateNames];
 
     if (!templateFormula || !tableName || !columnName) {
       return "";
@@ -54,7 +54,7 @@ export function getProcessDimensionValueFormula(
     }
 
     const innerTemplate = value.innerTemplateName
-      ? dimensionTemplateFormulas[value.innerTemplateName as EDimensionTemplateNames]
+      ? dimensionTemplateFormulas[value.innerTemplateName as TDimensionTemplateNames]
       : null;
 
     const columnFormula = innerTemplate
@@ -62,7 +62,7 @@ export function getProcessDimensionValueFormula(
       : preparedParams.columnFormula;
 
     const dimensionAggregationTemplate =
-      dimensionAggregationTemplates[value.templateName as EDimensionAggregationTemplateName];
+      dimensionAggregationTemplates[value.templateName as TDimensionAggregationTemplateName];
 
     return fillTemplateSql(dimensionAggregationTemplate, {
       ...preparedParams,
@@ -81,7 +81,7 @@ export function getProcessDimensionValueFormula(
     }
 
     const templateFormula =
-      timeTemplates[value.mode][value.templateName as EDimensionTemplateNames];
+      timeTemplates[value.mode][value.templateName as TDimensionTemplateNames];
 
     return fillTemplateSql(templateFormula, preparedParams);
   }

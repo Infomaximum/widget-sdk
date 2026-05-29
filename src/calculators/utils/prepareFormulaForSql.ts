@@ -1,7 +1,7 @@
-import { ESimpleDataType } from "../../data";
+import { ESimpleDataType, type TSimpleDataType } from "../../data";
 import { sanitizeSingleLineComment } from "../../sanitizeSingleLineComment";
 
-export const prepareFormulaForSql = (formula: string, simpleType?: ESimpleDataType) => {
+export const prepareFormulaForSql = (formula: string, simpleType?: TSimpleDataType) => {
   formula = sanitizeSingleLineComment(formula, true);
 
   return simpleType === ESimpleDataType.OTHER ? `toString(${formula})` : formula;

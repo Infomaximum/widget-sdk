@@ -1,5 +1,6 @@
 import type { TNullable, valueof } from "../../utilityTypes";
 import type { formulaFilterMethods } from "../../filtration";
+import { VersionedEnum, type TVersionedEnumValues } from "../../versionedEnum";
 
 export interface ICalculator<Input, Output> {
   /** Запрос к вычислителю */
@@ -41,24 +42,30 @@ export interface ICalculatorMeasureOutput extends ICalculatorIndicatorOutput {
   additionalValues: Map<string, (string | null)[]>;
 }
 
-export enum ECalculatorFilterMethods {
-  EQUAL_TO = "EQUAL_TO",
-  NOT_EQUAL_TO = "NOT_EQUAL_TO",
-  GREATER_THAN = "GREATER_THAN",
-  LESS_THAN = "LESS_THAN",
-  GREATER_THAN_OR_EQUAL_TO = "GREATER_THAN_OR_EQUAL_TO",
-  LESS_THAN_OR_EQUAL_TO = "LESS_THAN_OR_EQUAL_TO",
-  STARTS_WITH = "STARTS_WITH",
-  ENDS_WITH = "ENDS_WITH",
-  CONTAINS = "CONTAINS",
-  NOT_CONTAINS = "NOT_CONTAINS",
-  IN_RANGE = "IN_RANGE",
-  NOT_IN_RANGE = "NOT_IN_RANGE",
-  INCLUDE = "INCLUDE",
-  EXCLUDE = "EXCLUDE",
-  NONEMPTY = "NONEMPTY",
-  EMPTY = "EMPTY",
-}
+export const ECalculatorFilterMethods = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      EQUAL_TO: "EQUAL_TO",
+      NOT_EQUAL_TO: "NOT_EQUAL_TO",
+      GREATER_THAN: "GREATER_THAN",
+      LESS_THAN: "LESS_THAN",
+      GREATER_THAN_OR_EQUAL_TO: "GREATER_THAN_OR_EQUAL_TO",
+      LESS_THAN_OR_EQUAL_TO: "LESS_THAN_OR_EQUAL_TO",
+      STARTS_WITH: "STARTS_WITH",
+      ENDS_WITH: "ENDS_WITH",
+      CONTAINS: "CONTAINS",
+      NOT_CONTAINS: "NOT_CONTAINS",
+      IN_RANGE: "IN_RANGE",
+      NOT_IN_RANGE: "NOT_IN_RANGE",
+      INCLUDE: "INCLUDE",
+      EXCLUDE: "EXCLUDE",
+      NONEMPTY: "NONEMPTY",
+      EMPTY: "EMPTY",
+    } as const,
+  },
+});
+export type TCalculatorFilterMethods = TVersionedEnumValues<typeof ECalculatorFilterMethods>;
 
 export interface ICalculatorFilter {
   /** Формула фильтра */

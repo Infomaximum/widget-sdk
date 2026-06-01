@@ -10,4 +10,4 @@ export type {
   IExportColumnOrder,
 } from "./calculator";
 
-export { ECalculatorFilterMethods } from "./calculator";
+export { ECalculatorFilterMethods, type TCalculatorFilterMethods } from "./calculator";

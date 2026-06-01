@@ -2,40 +2,79 @@
 
 import type { TSchemaType } from "..";
 import type { DisplayConditionSchema, RangeSchema } from "./values.schema";
+import { VersionedEnum, type TVersionedEnumValues } from "../versionedEnum";
 
-export enum EWidgetFilterMode {
-  DEFAULT = "DEFAULT",
-  SINGLE = "SINGLE",
-  DISABLED = "DISABLED",
-}
+export const EWidgetFilterMode = VersionedEnum.build({
+  latestVersion: "19",
+  get history() {
+    const v17 = {
+      DEFAULT: "DEFAULT",
+      SINGLE: "SINGLE",
+      MULTI: "MULTI",
+      DISABLED: "DISABLED",
+    } as const;
+
+    return {
+      "17": v17,
+      "19": {
+        DEFAULT: "DEFAULT",
+        SINGLE: "SINGLE",
+        DISABLED: "DISABLED",
+      } as const,
+    };
+  },
+});
+
+export type TWidgetFilterMode = TVersionedEnumValues<typeof EWidgetFilterMode>;
 
 export type TWidgetFiltering =
   | {
       ignore: true;
-      mode: EWidgetFilterMode.SINGLE;
+      mode: typeof EWidgetFilterMode.SINGLE;
     }
-  | { ignore: false; mode: EWidgetFilterMode };
+  | { ignore: false; mode: TWidgetFilterMode };
 
-export enum EMarkdownDisplayMode {
-  NONE = "NONE",
-  INDICATOR = "INDICATOR",
-}
+export const EMarkdownDisplayMode = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      NONE: "NONE",
+      INDICATOR: "INDICATOR",
+    } as const,
+  },
+});
 
-export enum EDisplayConditionMode {
-  DISABLED = "DISABLED",
-  FORMULA = "FORMULA",
-  VARIABLE = "VARIABLE",
-}
+export type TMarkdownDisplayMode = TVersionedEnumValues<typeof EMarkdownDisplayMode>;
+
+export const EDisplayConditionMode = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      DISABLED: "DISABLED",
+      FORMULA: "FORMULA",
+      VARIABLE: "VARIABLE",
+    } as const,
+  },
+});
+
+export type TDisplayConditionMode = TVersionedEnumValues<typeof EDisplayConditionMode>;
 
 /** Условие отображения для компонента и меры */
 export type TDisplayCondition = TSchemaType<typeof DisplayConditionSchema>;
 
 export interface IRange extends TSchemaType<typeof RangeSchema> {}
 
-export enum EFontWeight {
-  NORMAL = "NORMAL",
-  BOLD = "BOLD",
-}
+export const EFontWeight = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      NORMAL: "NORMAL",
+      BOLD: "BOLD",
+    } as const,
+  },
+});
+
+export type TFontWeight = TVersionedEnumValues<typeof EFontWeight>;
 
 export interface IGradient {
   startColor: string;
@@ -44,7 +83,14 @@ export interface IGradient {
 
 export type TTabsHorizontalAlignment = "left" | "center" | "right";
 
-export enum EHeightMode {
-  FIXED = "FIXED",
-  PERCENT = "PERCENT",
-}
+export const EHeightMode = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      FIXED: "FIXED",
+      PERCENT: "PERCENT",
+    } as const,
+  },
+});
+
+export type THeightMode = TVersionedEnumValues<typeof EHeightMode>;

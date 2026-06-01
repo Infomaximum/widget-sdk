@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-26](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-25...v7.0.0-26) (2026-05-29)
+
+
+### Features
+
+* **VersionedEnum:** добавлена утилита версионирования enum + миграция всех 49 enum на VersionedEnum.build + регресс-тесты ([4a6f79d](https://github.com/Infomaximum/widget-sdk/commit/4a6f79d5686eff8dea0d8424615e2899015c59db))
+* **VersionedEnum:** добавлены zodEnumLike, versionedEnumValues, TVersionedEnumValues ([2d20079](https://github.com/Infomaximum/widget-sdk/commit/2d20079178decef123bc1ca49068b330ce3755af))
+
+## [7.0.0-25](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-24...v7.0.0-25) (2026-05-26)
+
+
+### Features
+
+* добавлена поддержка подсказки в ISwitchControl [BI-16364] ([8a92e05](https://github.com/Infomaximum/widget-sdk/commit/8a92e0531a741f2d9e3c62955a3be148670b3799))
+
+## [7.0.0-24](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-23...v7.0.0-24) (2026-05-20)
+
+## [7.0.0-23](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-22...v7.0.0-23) (2026-05-20)
+
+
+### Bug Fixes
+
+* обновление зависимости @infomaximum/base-filter до версии 2.0.0 ([c2a834b](https://github.com/Infomaximum/widget-sdk/commit/c2a834bee9127d727b13bdd7bf3720f492da3701))
+
+## [7.0.0-22](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-21...v7.0.0-22) (2026-05-15)
+
+
+### Bug Fixes
+
+* исправлен пропуск NULL-строк в фильтре по формуле [BI-16341] ([7e6d103](https://github.com/Infomaximum/widget-sdk/commit/7e6d103a869937a031dc428e971ee7bcb5205df2))
+
 ## [7.0.0-21](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-20...v7.0.0-21) (2026-05-13)
 
 

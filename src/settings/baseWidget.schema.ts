@@ -59,6 +59,7 @@ export const BaseWidgetSettingsSchema = SchemaRegistry.define({
         markdownMeasures: z.array(MarkdownMeasureSchema.forVersion("17")(z)).default([]),
         markdownText: z.string().default(""),
         markdownTextSize: z.number().default(14),
+        customNoDataHint: z.string().default(""),
         filters: z.array(SettingsFilterSchema.forVersion("17")(z)).default([]),
         filterMode: z.enum(zodEnumLike(v17FilterMode)).default(v17FilterMode.DEFAULT),
         ignoreFilters: z.boolean().default(false),

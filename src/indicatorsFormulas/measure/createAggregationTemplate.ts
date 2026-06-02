@@ -68,6 +68,10 @@ function createAggregationTemplate(
       return anyEvent
         ? createAnyEventTemplate("sum({columnFormula})")
         : createSpecificEventTemplate("sumIf");
+    case EMeasureAggregationTemplateName.anyIf:
+      return anyEvent
+        ? createAnyEventTemplate("any({columnFormula})")
+        : createSpecificEventTemplate("anyIf");
     case EMeasureAggregationTemplateName.top:
       return anyEvent
         ? createAnyEventTemplate("topK(1)({columnFormula})[1]")

@@ -15,6 +15,7 @@ export const EMeasureAggregationTemplateName = VersionedEnum.build({
       minIf: "minIf",
       maxIf: "maxIf",
       sumIf: "sumIf",
+      anyIf: "anyIf",
       top: "top",
       firstValue: "firstValue",
       lastValue: "lastValue",
@@ -24,7 +25,9 @@ export const EMeasureAggregationTemplateName = VersionedEnum.build({
   },
 });
 
-export type TMeasureAggregationTemplateName = TVersionedEnumValues<typeof EMeasureAggregationTemplateName>;
+export type TMeasureAggregationTemplateName = TVersionedEnumValues<
+  typeof EMeasureAggregationTemplateName
+>;
 
 /** На основе значения режима AGGREGATION подготовить параметры для подстановки в шаблонную формулу */
 export const prepareMeasureAggregationParams = (

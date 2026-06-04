@@ -4,6 +4,7 @@ import type { TSchemaType } from "..";
 import type { DisplayConditionSchema, RangeSchema } from "./values.schema";
 import { VersionedEnum, type TVersionedEnumValues } from "../versionedEnum";
 
+/** Режим фильтрации (с возможностью наследования, начиная с v19) */
 export const EWidgetFilterMode = VersionedEnum.build({
   latestVersion: "19",
   get history() {
@@ -17,6 +18,7 @@ export const EWidgetFilterMode = VersionedEnum.build({
     return {
       "17": v17,
       "19": {
+        INHERITED: "INHERITED",
         DEFAULT: "DEFAULT",
         SINGLE: "SINGLE",
         DISABLED: "DISABLED",
@@ -33,6 +35,33 @@ export type TWidgetFiltering =
       mode: typeof EWidgetFilterMode.SINGLE;
     }
   | { ignore: false; mode: TWidgetFilterMode };
+
+/** Режим игнорирования фильтрации (разрешённое значение образа: вкл/выкл) */
+export const EIgnoreFilterMode = VersionedEnum.build({
+  latestVersion: "19",
+  history: {
+    "19": {
+      ENABLED: "ENABLED",
+      DISABLED: "DISABLED",
+    } as const,
+  },
+});
+
+export type TIgnoreFilterMode = TVersionedEnumValues<typeof EIgnoreFilterMode>;
+
+/** Режим игнорирования фильтрации (с возможностью наследования) */
+export const EWidgetIgnoreFilterMode = VersionedEnum.build({
+  latestVersion: "19",
+  history: {
+    "19": {
+      INHERITED: "INHERITED",
+      ENABLED: "ENABLED",
+      DISABLED: "DISABLED",
+    } as const,
+  },
+});
+
+export type TWidgetIgnoreFilterMode = TVersionedEnumValues<typeof EWidgetIgnoreFilterMode>;
 
 export const EMarkdownDisplayMode = VersionedEnum.build({
   latestVersion: "17",

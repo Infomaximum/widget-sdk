@@ -204,3 +204,15 @@ export const EActionButtonsTypes = VersionedEnum.build({
 });
 
 export type TActionButtonsTypes = TVersionedEnumValues<typeof EActionButtonsTypes>;
+
+export enum EExpectedFieldTypes {
+  TEXT = "text",
+  DOUBLE = "number",
+  BOOLEAN = "boolean",
+  INTEGER = "integer",
+  DATE = "date",
+  DATE_TIME = "date_time",
+  BIGINTEGER = "big_integer",
+  BIGDECIMAL = "big_decimal",
+  FILE = "file",
+}

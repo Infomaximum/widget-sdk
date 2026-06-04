@@ -48,8 +48,10 @@ export interface IWidgetPersistValue<T extends object = object> {
  * simplified - упрощенный (для работы фильтрации в образах, открытых в модальном/боковом окне)
  *
  * full - полный
+ *
+ * disabled - фильтрация полностью отключена
  */
-export type TFiltrationAccessibility = "simplified" | "full";
+export type TFiltrationAccessibility = "simplified" | "full" | "disabled";
 
 /**
  * preview - упрощенный

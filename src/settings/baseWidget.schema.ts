@@ -8,7 +8,7 @@ import {
   zodEnumLike,
 } from "..";
 import { ActionButtonSchema } from "../actions.schema";
-import { SettingsFilterSchema } from "../filtration.schema";
+import { SettingsFilterSchema, WidgetIgnoreFilterModeSchema } from "../filtration.schema";
 import { MarkdownMeasureSchema, WidgetSortingIndicatorSchema } from "../indicators.schema";
 import { SchemaRegistry } from "../schemaRegistry";
 
@@ -74,9 +74,7 @@ export const BaseWidgetSettingsSchema = SchemaRegistry.define({
       "19": (z: TZod) =>
         v17(z)
           .omit({ paddings: true, filterMode: true })
-          .extend({
-            filterMode: z.enum(zodEnumLike(EWidgetFilterMode)).default(EWidgetFilterMode.DEFAULT),
-          }),
+          .extend({ ignoreFilters: WidgetIgnoreFilterModeSchema.forVersion("19")(z) }),
     };
   },
 });

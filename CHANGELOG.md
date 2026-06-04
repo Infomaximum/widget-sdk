@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-28](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-27...v7.0.0-28) (2026-06-04)
+
+
+### Features
+
+* добавлен настройки для кастомизации placeholder ([a7b0353](https://github.com/Infomaximum/widget-sdk/commit/a7b03534fe6ae5693a4cff71fb7432dd2530b031))
+* добавлен новый способ ввода - EDITABLE_TEXT_VALUE ([29b2586](https://github.com/Infomaximum/widget-sdk/commit/29b2586c150a5cc4173a488925ae405b2bc71d92))
+* добавлена агрегация any для меры [BI-12921] ([0be1e8e](https://github.com/Infomaximum/widget-sdk/commit/0be1e8e1aa90a544407a75af950d7f775b6a776c))
+* добавлено поле customNoDataHint в BaseWidgetSettingsSchema [BI-16180] ([9b24dfe](https://github.com/Infomaximum/widget-sdk/commit/9b24dfeb4f050fbc616edfd296e465e193e68bd9))
+* расширены настройки действия по клику ([2d2e454](https://github.com/Infomaximum/widget-sdk/commit/2d2e4544e5e3eb4241b704a0ae6efcc64121daba))
+
 ## [7.0.0-27](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-26...v7.0.0-27) (2026-06-04)
 
 

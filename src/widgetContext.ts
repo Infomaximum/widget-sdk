@@ -8,6 +8,7 @@ import type {
   TWidgetVariable,
 } from "./indicators";
 import type { TColor } from "./color";
+import type { EExpectedFieldTypes } from "./actions";
 
 export interface IWidgetTableColumn {
   /** Имя колонки */
@@ -20,6 +21,7 @@ interface IScriptField {
   name: string;
   isRequired: boolean;
   isArray: boolean;
+  type?: EExpectedFieldTypes;
 }
 
 export interface IActionScript {

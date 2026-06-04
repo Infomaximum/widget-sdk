@@ -1,14 +1,14 @@
 import type { TSettingsFilter } from "./filtration";
-import type { EIgnoreFilterMode, EWidgetFilterMode } from "./settings/values";
+import type { TIgnoreFilterMode, TWidgetFilterMode } from "./settings/values";
 
 /** Контекст с данными образа (будет заполняться по мере необходимости) */
 export interface IViewContext {
   /** Фильтры уровня образа */
   filters: TSettingsFilter[];
   /** Режим фильтрации из образа */
-  filterMode: EWidgetFilterMode;
+  filterMode: TWidgetFilterMode;
   /** Режим игнорирования фильтрации из образа */
-  ignoreFilters: EIgnoreFilterMode;
+  ignoreFilters: TIgnoreFilterMode;
   /** Отключена ли фильтрация образа */
   disableFilter: boolean;
 }

@@ -1,5 +1,5 @@
 import { convertFiltersToFormula } from "../../calculators/utils/filters";
-import type { EWidgetIndicatorValueModes, IWidgetDimension } from "../../indicators";
+import { EWidgetIndicatorValueModes, type IWidgetDimension } from "../../indicators";
 import {
   avgTemplate,
   medianTemplate,
@@ -16,24 +16,32 @@ import {
 } from "../shared/aggregationTemplates";
 import { generateColumnFormula } from "../shared";
 import { escapeSingularQuotes } from "../../calculators/utils/escapeSingularQuotes";
+import { VersionedEnum, type TVersionedEnumValues } from "../../versionedEnum";
 
-export enum EDimensionAggregationTemplateName {
-  avg = "avg",
-  median = "median",
-  count = "count",
-  countDistinct = "countDistinct",
-  min = "min",
-  max = "max",
-  sum = "sum",
-  top = "top",
-  firstValue = "firstValue",
-  lastValue = "lastValue",
-  countExecutions = "countExecutions",
-  countReworks = "countReworks",
-}
+export const EDimensionAggregationTemplateName = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      avg: "avg",
+      median: "median",
+      count: "count",
+      countDistinct: "countDistinct",
+      min: "min",
+      max: "max",
+      sum: "sum",
+      top: "top",
+      firstValue: "firstValue",
+      lastValue: "lastValue",
+      countExecutions: "countExecutions",
+      countReworks: "countReworks",
+    } as const,
+  },
+});
+
+export type TDimensionAggregationTemplateName = TVersionedEnumValues<typeof EDimensionAggregationTemplateName>;
 
 /** Шаблоны процессных метрик разреза с режимом AGGREGATION */
-export const dimensionAggregationTemplates: Record<EDimensionAggregationTemplateName, string> = {
+export const dimensionAggregationTemplates: Record<TDimensionAggregationTemplateName, string> = {
   [EDimensionAggregationTemplateName.avg]: avgTemplate,
   [EDimensionAggregationTemplateName.median]: medianTemplate,
   [EDimensionAggregationTemplateName.count]: countTemplate,
@@ -53,7 +61,7 @@ export const prepareDimensionAggregationParams = (
   value: Extract<
     IWidgetDimension["value"],
     {
-      mode: EWidgetIndicatorValueModes.AGGREGATION;
+      mode: typeof EWidgetIndicatorValueModes.AGGREGATION;
     }
   >
 ) => {

@@ -1,15 +1,23 @@
 import type { TNullable } from "./utilityTypes";
+import { VersionedEnum, type TVersionedEnumValues } from "./versionedEnum";
 
-export enum ESimpleDataType {
-  OTHER = "OTHER",
-  DATE = "DATE",
-  FLOAT = "FLOAT",
-  DATETIME = "DATETIME",
-  STRING = "STRING",
-  INTEGER = "INTEGER",
-  DATETIME64 = "DATETIME64",
-  BOOLEAN = "BOOLEAN",
-}
+export const ESimpleDataType = VersionedEnum.build({
+  latestVersion: "17",
+  history: {
+    "17": {
+      OTHER: "OTHER",
+      DATE: "DATE",
+      FLOAT: "FLOAT",
+      DATETIME: "DATETIME",
+      STRING: "STRING",
+      INTEGER: "INTEGER",
+      DATETIME64: "DATETIME64",
+      BOOLEAN: "BOOLEAN",
+    } as const,
+  },
+});
+
+export type TSimpleDataType = TVersionedEnumValues<typeof ESimpleDataType>;
 
 export type TDbTypeContainer = "Array" | "Nullable";
 
@@ -20,7 +28,7 @@ export interface IParsedDbType<T extends TNullable<string> = string> {
   /** Исходный базовый тип (без контейнеров) */
   dbBaseDataType: T;
   /** Обобщенный базовый тип */
-  simpleBaseType: ESimpleDataType;
+  simpleBaseType: TSimpleDataType;
   /** Обобщенный исходный тип (при наличии контейнера `Array` классифицируется как `OTHER`) */
-  simpleType: ESimpleDataType;
+  simpleType: TSimpleDataType;
 }

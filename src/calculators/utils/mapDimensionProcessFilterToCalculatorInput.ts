@@ -3,12 +3,13 @@ import {
   EDimensionProcessFilterTimeUnit,
   formulaFilterMethods,
   type IDimensionProcessFilter,
+  type TDimensionProcessFilterTimeUnit,
 } from "../../filtration";
 import { EWidgetIndicatorValueModes } from "../../indicators";
 import { getProcessDimensionValueFormula } from "../../indicatorsFormulas";
 import type { ICalculatorFilter } from "../calculator";
 
-const intervalByUnit: Record<EDimensionProcessFilterTimeUnit, string> = {
+const intervalByUnit: Record<TDimensionProcessFilterTimeUnit, string> = {
   [EDimensionProcessFilterTimeUnit.YEARS]: "year",
   [EDimensionProcessFilterTimeUnit.MONTHS]: "month",
   [EDimensionProcessFilterTimeUnit.DAYS]: "day",

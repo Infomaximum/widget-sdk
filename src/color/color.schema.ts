@@ -20,7 +20,8 @@ export const ColorRuleSchema = SchemaRegistry.define({
     "17": (z: TZod) =>
       z.object({
         mode: z.literal(EColorMode.RULE),
-        formula: FormulaSchema.forVersion("17")(z),
+        // Здесь не нужна FormulaSchema, т.к. не требуется подстановка формулы
+        formula: z.string().default(""),
       }),
   },
 });

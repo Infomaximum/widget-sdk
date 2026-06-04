@@ -19,7 +19,7 @@ export * from "./actions.schema";
 export * from "./calculators";
 export * from "./controls";
 export * from "./contextMenu";
-export { ESimpleDataType } from "./data";
+export { ESimpleDataType, type TSimpleDataType } from "./data";
 export * from "./filtration";
 export * from "./filtration.schema";
 export * from "./formatting";
@@ -40,7 +40,11 @@ export * from "./dimensionSelection";
 export * from "./viewContext";
 export * from "./color";
 export * from "./preset.schema";
-export { parseClickHouseType, EClickHouseBaseTypes } from "./clickHouseTypes";
+export {
+  parseClickHouseType,
+  EClickHouseBaseTypes,
+  type TClickHouseBaseTypes,
+} from "./clickHouseTypes";
 export * from "./theme";
 export * from "./color/color.schema";
 export * from "./utils/lifecycleRuntime";
@@ -48,6 +52,12 @@ export * from "./utils/schemaMeta";
 export * from "./zod.types";
 export { SchemaRegistryReader } from "./schemaRegistry";
 export { VersionedSchemaFactory, type TSchemaTypeForVersion } from "./versionedSchemaFactory";
+export { VersionedEnum, zodEnumLike, versionedEnumValues } from "./versionedEnum";
+export type {
+  TVersionedEnum,
+  TVersionedEnumValues,
+  IVersionedEnumBuildParams,
+} from "./versionedEnum";
 
 export type TDefineWidgetOptions = {
   manifest?: IWidgetManifest;

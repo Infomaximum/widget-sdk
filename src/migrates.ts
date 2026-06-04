@@ -49,6 +49,18 @@ export interface IWidgetStruct<Settings extends IBaseWidgetSettings = IBaseWidge
   localApiVersion: TVersion;
 }
 
+/**
+ * @deprecated Используйте `IWidgetStruct`. Оставлено для совместимости со старыми миграциями
+ * виджетов, которые типизируют шаг миграции произвольной (в т.ч. legacy, до-миграционной)
+ * формой settings — поэтому ограничение `Settings extends IBaseWidgetSettings` здесь снято.
+ */
+export type TWidgetMigrateStruct<Settings = IBaseWidgetSettings> = Omit<
+  IWidgetStruct,
+  "settings"
+> & {
+  settings: Settings;
+};
+
 export type TMigrateProcessor<T extends TMigrationStruct> = (struct: T) => void;
 
 /** Контекст шага миграции виджета */

@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-27](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-26...v7.0.0-27) (2026-06-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* список параметров в createPanelDescription заменен на объект
+* изменена структура базовых настроек виджета
+
+### Features
+
+* в createPanelDescription прокинут viewContext ([f7a9749](https://github.com/Infomaximum/widget-sdk/commit/f7a97499bcbd1948bd1d5f0586f4f50fb14cc1ab))
+* выполнена переработка настроек фильтрации виджета ([aa5d34b](https://github.com/Infomaximum/widget-sdk/commit/aa5d34b07a39502d22181cf160d8549b41ab788a))
+* добавлен EExpectedFieldTypes и проброс типа поля скрипта [BI-16272] ([5f4bece](https://github.com/Infomaximum/widget-sdk/commit/5f4bece23c0e30ec2714e0ce9884e45efe6b8bcf))
+* добавлен вспомогательный тип для вывода типа значения для конкретной версии версионированной схемы ([12c896b](https://github.com/Infomaximum/widget-sdk/commit/12c896b753ec959f39422adb9118d762367f620f))
+
 ## [7.0.0-26](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-25...v7.0.0-26) (2026-05-29)
 
 

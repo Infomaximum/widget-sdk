@@ -11,6 +11,7 @@ export const EMeasureTemplateNames = VersionedEnum.build({
       min: "min",
       max: "max",
       sum: "sum",
+      any: "any",
     } as const,
   },
 });
@@ -38,6 +39,7 @@ export const measureTemplateFormulas = {
   [EMeasureTemplateNames.min]: `min({columnFormula})`,
   [EMeasureTemplateNames.max]: `max({columnFormula})`,
   [EMeasureTemplateNames.sum]: `sum({columnFormula})`,
+  [EMeasureTemplateNames.any]: `any({columnFormula})`,
 } as const;
 
 export const measureInnerTemplateFormulas = {

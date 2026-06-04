@@ -512,6 +512,21 @@ export interface IActionOnClickControl {
      * @default {defaultActionsConfig}
      */
     actionsConfig?: TActionsConfig;
+    /**
+     * Максимальное количество действий в списке.
+     * При достижении лимита кнопка добавления скрывается.
+     */
+    maxItems?: number;
+    /**
+     * Разрешить удаление действий из списка.
+     * @default true
+     */
+    deletable?: boolean;
+    /**
+     * Показывать поле "Название" в dive-панели действия.
+     * @default true
+     */
+    showActionName?: boolean;
   };
 }
 

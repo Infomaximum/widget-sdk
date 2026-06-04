@@ -9,6 +9,7 @@ export interface IWidgetPlaceholderController {
   setDisplay(value: boolean): void;
   setEmpty(value: boolean): void;
   setOverlay(value: boolean): void;
+  setCustomEmptyTexts(noFilter: string | null, withFilter: string | null): void;
 }
 
 export interface IWidgetPlaceholderValues {
@@ -16,4 +17,6 @@ export interface IWidgetPlaceholderValues {
   isDisplay: boolean | undefined;
   isEmpty: boolean;
   isOverlay: boolean;
+  emptyText: string | null;
+  emptyWithFilterText: string | null;
 }

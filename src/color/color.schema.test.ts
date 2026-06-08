@@ -53,7 +53,7 @@ describe("ColorRangesSchema — схема диапазонов окрашива
       expect(result.success).toBe(false);
 
       if (!result.success) {
-        expect(result.error.issues[0].path[0]).toBe("limits");
+        expect(result.error.issues[0]?.path[0]).toBe("limits");
       }
     });
   });

@@ -120,6 +120,24 @@ export const ColorByDimensionSchema = SchemaRegistry.define({
   },
 });
 
+export const ColorRangesSchema = SchemaRegistry.define({
+  key: "ColorRanges",
+  latestVersion: "17",
+  history: {
+    "17": (z: TZod) =>
+      z
+        .object({
+          mode: z.literal(EColorMode.RANGES),
+          colors: z.array(z.string()).default([]),
+          limits: z.array(z.number()).default([]),
+        })
+        .refine(({ colors, limits }) => limits.length === colors.length - 1, {
+          path: ["limits"],
+          message: "limits.length должно быть равно colors.length - 1",
+        }),
+  },
+});
+
 export const ColoredValueSchema = SchemaRegistry.define({
   key: "ColoredValue",
   latestVersion: "17",
@@ -147,6 +165,7 @@ export const ColorSchema = SchemaRegistry.define({
           ColorFormulaSchema.forVersion("17")(z),
           ColorValuesSchema.forVersion("17")(z),
           ColorByDimensionSchema.forVersion("17")(z),
+          ColorRangesSchema.forVersion("17")(z),
         ])
         .default({ mode: EColorMode.AUTO }),
   },

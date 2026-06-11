@@ -27,6 +27,8 @@ export const EColorMode = VersionedEnum.build({
       VALUES: "VALUES",
       /** Задать цвет конкретным значениям общего разреза. Режим используется только для настроек правила отображения */
       BY_DIMENSION: "BY_DIMENSION",
+      /** Окрашивание по числовым диапазонам меры: colors[n] + limits[n-1] */
+      RANGES: "RANGES",
     } as const,
   },
 });

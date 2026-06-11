@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-29](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-28...v7.0.0-29) (2026-06-11)
+
+
+### Features
+
+* add EColorMode.RANGES + ColorRangesSchema ([a3cba53](https://github.com/Infomaximum/widget-sdk/commit/a3cba533e857cf1c9ce2fa54a8564bc26ec75760))
+
 ## [7.0.0-28](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-27...v7.0.0-28) (2026-06-04)
 
 

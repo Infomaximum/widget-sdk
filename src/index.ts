@@ -37,6 +37,7 @@ export * from "./sorting.schema";
 export * from "./widgetContext";
 export * from "./indicatorsFormulas";
 export * from "./dimensionSelection";
+export * from "./arrayNesting";
 export * from "./viewContext";
 export * from "./color";
 export * from "./preset.schema";

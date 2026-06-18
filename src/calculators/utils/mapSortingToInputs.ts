@@ -16,6 +16,12 @@ import { EDisplayConditionMode } from "../../settings/values";
 import { ESortDirection, type ISortOrder } from "../../sorting";
 import { compactMap } from "../../utils/functions";
 import type { ICalculatorFilter } from "../calculator";
+import {
+  getSlicedDimensionFormula,
+  replaceHierarchiesWithSlicedDimension,
+  type IDimensionNesting,
+} from "../../arrayNesting";
+import type { TWidgetFilterValue } from "../../filtration";
 import { checkDisplayCondition } from "./displayCondition";
 import { selectDimensionFromHierarchy } from "./selectDimensionFromHierarchy";
 
@@ -100,10 +106,12 @@ interface IMapSortingToInputsParams<Settings extends TSettings, Indicator> {
   settings: Settings;
   variables: Map<string, TWidgetVariable>;
   filters: ICalculatorFilter[];
+  widgetFilters?: TWidgetFilterValue[];
   getIndicatorType(
     key: string,
     indicator: Indicator
   ): typeof EWidgetIndicatorType.DIMENSION | typeof EWidgetIndicatorType.MEASURE;
+  dimensionMaxNestingMap?: IDimensionNesting["dimensionMaxNestingMap"];
 }
 
 type TSettings = Pick<IBaseWidgetSettings, "sorting">;
@@ -116,7 +124,9 @@ export function mapSortingToInputs<
   settings,
   variables,
   filters,
+  widgetFilters,
   getIndicatorType,
+  dimensionMaxNestingMap,
 }: IMapSortingToInputsParams<Settings, Indicator>): ISortOrder[] {
   const sortOrder = compactMap(settings["sorting"] ?? [], ({ direction, value }) => {
     if (value.mode === ESortingValueModes.FORMULA) {
@@ -133,6 +143,31 @@ export function mapSortingToInputs<
     }
 
     if (getIndicatorType(value.group, indicator) === EWidgetIndicatorType.DIMENSION) {
+      if (dimensionMaxNestingMap !== undefined) {
+        const slicedDimension = replaceHierarchiesWithSlicedDimension(
+          indicator as unknown as IWidgetDimension | IWidgetDimensionHierarchy<IWidgetDimension>,
+          widgetFilters ?? [],
+          dimensionMaxNestingMap
+        );
+
+        if (
+          !slicedDimension ||
+          !checkDisplayCondition(slicedDimension.displayCondition, variables)
+        ) {
+          return;
+        }
+
+        return {
+          formula: getSlicedDimensionFormula(slicedDimension).slicedDimensionFormula,
+          direction,
+          dbDataType: slicedDimension.dbDataType,
+          displayCondition:
+            slicedDimension.displayCondition?.mode === EDisplayConditionMode.FORMULA
+              ? slicedDimension.displayCondition.formula
+              : undefined,
+        };
+      }
+
       const activeDimensions = (
         isDimensionsHierarchy(indicator)
           ? selectDimensionFromHierarchy(indicator, filters)

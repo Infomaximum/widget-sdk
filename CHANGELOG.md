@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-30](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-29...v7.0.0-30) (2026-06-18)
+
+
+### Features
+
+* array nesting logic migrated from react-bi-utils [WD-2356] ([b263699](https://github.com/Infomaximum/widget-sdk/commit/b2636997531e1321bea83b627aa07b80506365db))
+
 ## [7.0.0-29](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-28...v7.0.0-29) (2026-06-11)
 
 

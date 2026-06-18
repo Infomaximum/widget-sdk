@@ -2,13 +2,17 @@ import type { IWidgetDimension, TWidgetVariable } from "../../indicators";
 import { getDimensionFormula } from "../../indicatorsFormulas";
 import { compactMap } from "../../utils/functions";
 import type { ICalculatorDimensionInput } from "../calculator";
+import { type TSlicedDimension, getSlicedDimensionFormula } from "../../arrayNesting";
 import { checkDisplayCondition, getDisplayConditionFormula } from "./displayCondition";
 
 export function mapDimensionToInput<T extends IWidgetDimension>(
-  dimension: T,
+  dimension: TSlicedDimension<T>,
   variables: Map<string, TWidgetVariable>
 ): ICalculatorDimensionInput | null {
-  const formula = getDimensionFormula(dimension);
+  const formula =
+    dimension.sliceIndex !== undefined
+      ? getSlicedDimensionFormula(dimension).slicedDimensionFormula
+      : getDimensionFormula(dimension);
 
   if (!formula) {
     return null;
@@ -29,7 +33,7 @@ export function mapDimensionToInput<T extends IWidgetDimension>(
 
 /** Конвертировать разрезы виджета во входы для вычислителя */
 export function mapDimensionsToInputs<T extends IWidgetDimension>(
-  dimensions: T[],
+  dimensions: TSlicedDimension<T>[],
   variables: Map<string, TWidgetVariable>
 ) {
   return compactMap(dimensions, (dimension) => mapDimensionToInput(dimension, variables));

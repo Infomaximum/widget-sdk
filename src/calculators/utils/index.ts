@@ -16,7 +16,7 @@ export {
   displayConditionTemplate,
 } from "./displayCondition";
 export { mapMeasuresToInputs } from "./mapMeasuresToInputs";
-export { mapDimensionsToInputs } from "./mapDimensionsToInputs";
+export { mapDimensionToInput, mapDimensionsToInputs } from "./mapDimensionsToInputs";
 export { mapTransitionMeasuresToInputs } from "./mapTransitionMeasuresToInputs";
 export { mapEventMeasuresToInputs } from "./mapEventMeasuresToInputs";
 export { prepareSortOrders, getDefaultSortOrders } from "./mapSortingToInputs";

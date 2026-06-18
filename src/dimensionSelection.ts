@@ -1,5 +1,8 @@
 import type { ICalculatorFilter } from "./calculators";
+import { applyIndexToArrayFormula } from "./calculators/utils";
 import { EWidgetFilterMode, type TWidgetFilterMode } from "./settings/values";
+import { type IWidgetFilter, type TWidgetFilterValue } from "./filtration";
+import { omit } from "./utils/functions";
 
 export interface IDimensionSelection {
   values: Set<string | null>;
@@ -95,21 +98,76 @@ export const updateSingleModeSelection: TUpdateSelection = (
   });
 };
 
-export const replaceFiltersBySelection = (
-  filters: ICalculatorFilter[],
-  selection: IDimensionSelectionByFormula
-) => {
-  return filters.reduce<ICalculatorFilter[]>((acc, filter) => {
-    const calculatorFilter = selection.has(filter.formula)
-      ? selection.get(filter.formula)?.replacedFilter
-      : filter;
+const isWidgetFilter = (filter: ICalculatorFilter | IWidgetFilter): filter is IWidgetFilter =>
+  "filterValue" in filter;
 
-    if (!calculatorFilter) {
+const isCalculatorFilter = (
+  filter: ICalculatorFilter | IWidgetFilter
+): filter is ICalculatorFilter => "formula" in filter;
+
+const getWidgetFilterFormula = ({ filterValue, preparedFilterValue }: IWidgetFilter): string => {
+  if (!("filteringMethod" in filterValue && "formula" in filterValue)) {
+    return preparedFilterValue.formula;
+  }
+
+  const formulaFilterValue = filterValue as TWidgetFilterValue & {
+    filteringMethod: unknown;
+    formula: string;
+    sliceIndex?: number;
+  };
+
+  if (!formulaFilterValue.sliceIndex) {
+    return formulaFilterValue.formula;
+  }
+
+  return applyIndexToArrayFormula(formulaFilterValue.formula, formulaFilterValue.sliceIndex);
+};
+
+const mergeWidgetFilter = (
+  filter: IWidgetFilter,
+  replacedFilter: ICalculatorFilter
+): IWidgetFilter => {
+  return {
+    ...filter,
+    preparedFilterValue: replacedFilter,
+    filterValue: {
+      ...filter.filterValue,
+      ...omit(replacedFilter, ["values"]),
+      checkedValues: replacedFilter.values,
+    },
+  };
+};
+
+export function replaceFiltersBySelection<T extends ICalculatorFilter | IWidgetFilter>(
+  filters: T[],
+  selection: IDimensionSelectionByFormula
+): T[] {
+  return filters.reduce<T[]>((acc, filter) => {
+    const isFilterFromWidget = isWidgetFilter(filter);
+
+    const filterFormula = isFilterFromWidget ? getWidgetFilterFormula(filter) : filter.formula;
+
+    if (!filterFormula) {
       return acc;
     }
 
-    acc.push(calculatorFilter);
+    const currentFilter = selection.has(filterFormula)
+      ? selection.get(filterFormula)?.replacedFilter
+      : filter;
+
+    if (!currentFilter) {
+      return acc;
+    }
+
+    const hasReplacedCalculatorForWidget =
+      selection.has(filterFormula) && isFilterFromWidget && isCalculatorFilter(currentFilter);
+
+    const resolvedFilter = hasReplacedCalculatorForWidget
+      ? mergeWidgetFilter(filter, currentFilter)
+      : currentFilter;
+
+    acc.push(resolvedFilter as T);
 
     return acc;
   }, []);
-};
+}

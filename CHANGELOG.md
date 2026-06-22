@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-31](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-30...v7.0.0-31) (2026-06-22)
+
+
+### Bug Fixes
+
+* **BI-15428:** unescape indicator name in dashboard link parsing ([4f38569](https://github.com/Infomaximum/widget-sdk/commit/4f385697f44e4aa24c41d16b3ac971b42a2a6de9))
+
 ## [7.0.0-30](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-29...v7.0.0-30) (2026-06-18)
 
 

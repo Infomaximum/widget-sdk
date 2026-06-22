@@ -56,7 +56,7 @@ export const parseIndicatorLink = (formula: string): IIndicatorLink | null => {
   const dashboardMatch = formula.match(dashboardLinkRegExp.source);
 
   if (dashboardMatch) {
-    return { scopeName: null, indicatorName: dashboardMatch[1]! };
+    return { scopeName: null, indicatorName: unescapeSpecialCharacters(dashboardMatch[1]!) };
   }
 
   const workspaceMatch = formula.match(workspaceLinkRegExp.source);

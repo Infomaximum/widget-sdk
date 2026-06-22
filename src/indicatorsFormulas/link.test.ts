@@ -1,10 +1,34 @@
-import { parseIndicatorLink } from "./link";
+import { escapeCurlyBracketLinkName, parseIndicatorLink } from "./link";
 
 describe("parseIndicatorLink", () => {
   it("возвращает indicatorName без scope для dashboardLink", () => {
     const result = parseIndicatorLink("#{sales}");
     expect(result).toEqual({ scopeName: null, indicatorName: "sales" });
   });
+
+  // BI-15428: dashboard-ссылка должна разэкранировать спец.символы в имени,
+  // как это уже делает workspace-ветка. Раньше возвращалось имя с бэкслешем,
+  // из-за чего правило окрашивания "не находилось".
+  it.each([
+    ["#{ДашбордБазовы\\.}", "ДашбордБазовы."],
+    ["#{Дашборд\\.Настроить}", "Дашборд.Настроить"],
+    ["#{Скоб\\[ки\\]}", "Скоб[ки]"],
+    ["#{Фигур\\}ная}", "Фигур}ная"],
+    ["#{Слеш\\\\x}", "Слеш\\x"],
+  ])(
+    "разэкранирует спец.символы в имени dashboardLink: %s (BI-15428)",
+    (formula, indicatorName) => {
+      expect(parseIndicatorLink(formula)).toEqual({ scopeName: null, indicatorName });
+    }
+  );
+
+  it.each(["ДашбордБазовы.", ".Начало", "Две..точки", "Скоб[ки]", "Слеш\\x", "БезТочки"])(
+    "туда-обратно escapeCurlyBracketLinkName → parseIndicatorLink: %s (BI-15428)",
+    (name) => {
+      const formula = `#{${escapeCurlyBracketLinkName(name)}}`;
+      expect(parseIndicatorLink(formula)).toEqual({ scopeName: null, indicatorName: name });
+    }
+  );
 
   it("возвращает scopeName и indicatorName для workspaceLink", () => {
     const result = parseIndicatorLink("#{finance}.{profit}");

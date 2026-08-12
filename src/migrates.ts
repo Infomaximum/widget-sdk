@@ -32,6 +32,7 @@ export const apiVersions = [
   "17", // 2508
   "18", // 2601
   "19", // 2602
+  "20", // BI-15638
 ] as const satisfies ReadonlyArray<TVersion>;
 export type TApiVersion = (typeof apiVersions)[number];
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0-33](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-32...v7.0.0-33) (2026-08-12)
+
+
+### Features
+
+* **BI-15638:** add apiVersion 20 for dimension aggregation format migration ([d084ba8](https://github.com/Infomaximum/widget-sdk/commit/d084ba80df4b4f35ef1d2ecea08ad24063af6fd8))
+
 ## [7.0.0-32](https://github.com/Infomaximum/widget-sdk/compare/v7.0.0-31...v7.0.0-32) (2026-08-10)
 
 
